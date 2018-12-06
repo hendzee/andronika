@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ProjectWorker;
 
-class ClientControllers extends Controller
+class ProjectWorkerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class ClientControllers extends Controller
      */
     public function index()
     {
-        
+        $data_worker = ProjectWorker::all();
+        return view('project.project_worker.index', compact('data_worker'));     
     }
 
     /**

@@ -17,7 +17,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Data Projek
+            Data Klien
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -30,8 +30,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="project/create" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Projek Baru
+                                        <a href="client/create" id="sample_editable_1_new" class="btn sbold green"> 
+                                            Klien Baru
                                         </a>
                                     </div>
                                 </div>
@@ -61,26 +61,22 @@
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>                                                                                                    
-                                    <th> ID Project </th>
                                     <th> ID Client </th>
-                                    <th> Proyek </th>                                
-                                    <th> Mulai </th>
-                                    <th> Berakhir </th>  
-                                    <th> Pulau </th>  
-                                    <th> Status </th>  
+                                    <th> Alamat </th>
+                                    <th> Telpon </th>                                
+                                    <th> Email </th>
+                                    <th> Deskripsi </th>  
                                     <th> Aksi </th>                                 
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data_project as $data)
+                                @foreach($data_client as $data)
                                 <tr class="odd gradeX">                                                                       
-                                    <td>{{ $data->id_project }}</td>
                                     <td>{{ $data->id_client }}</td>
-                                    <td>{{ $data->name }}</td>    
-                                    <td>{{ $data->start }}</td>                                
-                                    <td>{{ $data->end }}</td>                                    
-                                    <td>{{ $data->island }}</td>                                    
-                                    <td>{{ $data->status }}</td>                                    
+                                    <td>{{ $data->address }}</td>
+                                    <td>{{ $data->telp }}</td>    
+                                    <td>{{ $data->email }}</td>                                
+                                    <td>{{ $data->description }}</td>                                    
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -88,7 +84,7 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a href="project/{{ $data->id_project }}/edit">
+                                                    <a href="client/{{ $data->id_client }}/edit">
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>

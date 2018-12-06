@@ -42,12 +42,12 @@
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
-        <h1 class="page-title"> Pembayaran Proyek</h1>
+        <h1 class="page-title"> Daftar Pekerja</h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
         <div class="row">
             <div class="col-md-12 ">
-                 <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
                 <div class="portlet light bordered">                   
                     <div class="portlet-body">
                         <div class="table-toolbar">
@@ -84,28 +84,24 @@
                         </div>
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
-                                <tr>                                    
-                                    <th> Nama Projek </th>
-                                    <th> ID Pembayaran </th>
-                                    <th> Tanggal </th>
-                                    <th> Jumlah Transfer </th>
-                                    <th> Total Tagihan </th>                                    
-                                    <th> Kekurangan </th>
-                                    <th> Aksi </th>
+                                <tr>   
+                                    <th></th>                                                                   
+                                    <th> Nama </th>
+                                    <th> Telp </th>
+                                    <th> Alamat </th>                                
+                                    <th> Usia </th>
+                                    <th> Divisi </th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($data_worker as $data)
                                 <tr class="odd gradeX">                                   
-                                    <td>
-                                        Pembangunan Jembatan<br/>
-                                        311210045
-                                    
-                                    </td>                                    
-                                    <td>A637</td>
-                                    <td>10-11-2019</td>
-                                    <td>Rp 20.000.000</td>
-                                    <td>Rp 30.000.000</td>
-                                    <td>Rp 220.000.000</td>                                    
+                                    <td></td>                                                
+                                    <td>{{ $data->name }}</td>
+                                    <td>{{ $data->telp }}</td>
+                                    <td>{{ $data->address }}</td>                                    
+                                    <td>{{ $data->age }}</td>
+                                    <td>{{ $data->division }}</td>
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
@@ -134,7 +130,8 @@
                                             </ul>
                                         </div>
                                     </td>
-                                </tr>                                
+                                </tr>
+                                @endforeach                                
                             </tbody>
                         </table>
                     </div>
