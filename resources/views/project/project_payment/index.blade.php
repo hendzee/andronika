@@ -17,7 +17,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Data Projek
+            Data Transfer
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -30,8 +30,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="project/create" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Projek Baru
+                                        <a href="{{ route('project_payment_create', $id_project) }}" id="sample_editable_1_new" class="btn sbold green"> 
+                                            Transfer Baru
                                         </a>
                                     </div>
                                 </div>
@@ -61,30 +61,22 @@
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>                                                                                                    
-                                    <th> ID Project </th>
-                                    <th> ID Client </th>
-                                    <th> Proyek </th>                                
-                                    <th> Mulai </th>
-                                    <th> Berakhir </th>  
-                                    <th> Pulau </th>  
-                                    <th> Status </th>  
+                                    <th> ID Payment </th>
+                                    <th> ID Projek </th>
+                                    <th> Tanggal </th>                                
+                                    <th> Transfer </th>                                                                                                                    
                                     <th> Aksi </th>                                 
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data_project as $data)
+                                @php($total_transfer = 0)
+                                @foreach($data_payment as $data)
                                 <tr class="odd gradeX">                                                                       
-                                    <td>
-                                        <a href="project/{{ $data->id_project }}">
-                                            {{ $data->id_project }}
-                                        </a>                                        
-                                    </td>
-                                    <td>{{ $data->id_client }}</td>
-                                    <td>{{ $data->name }}</td>    
-                                    <td>{{ $data->start }}</td>                                
-                                    <td>{{ $data->end }}</td>                                    
-                                    <td>{{ $data->island }}</td>                                    
-                                    <td>{{ $data->status }}</td>                                    
+                                    <td>{{ $data->id_payment }}</td>
+                                    <td>{{ $data->id_project }}</td>
+                                    <td>{{ $data->date }}</td>    
+                                    <td>{{ $data->transfer }}</td>
+                                    @php($total_transfer += $data->transfer)                                                                    
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -92,7 +84,7 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a href="project/{{ $data->id_project }}/edit">
+                                                    <a href="{{ route('project_payment.edit', $data->id_payment) }}">
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>
@@ -108,6 +100,10 @@
                                 @endforeach                                
                             </tbody>
                         </table>
+                        <strong>{{ 'Tagihan: ' . $data->project->total }}
+                            <br/>{{ 'Total Transfer: ' . $total_transfer }}
+                            <br/>{{ 'Kekurangan: ' . ($data->project->total - $total_transfer) }}
+                        </strong>
                     </div>
                 </div>
                 <!-- END SAMPLE FORM PORTLET-->                

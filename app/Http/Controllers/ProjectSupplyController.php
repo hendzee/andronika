@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\ProjectSupply;
+use App\Project;
 
 class ProjectSupplyController extends Controller
 {
@@ -13,10 +13,12 @@ class ProjectSupplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {   
-        $data_supply = ProjectSupply::all();
-        return view('project.project_supply.index', compact('data_supply'));
+        $data_supply = ProjectSupply::where('id_project', $id)->get();
+        $id_project = $id;
+
+        return view('project.project_supply.index', compact('data_supply', 'id_project'));
     }
 
     /**
@@ -24,9 +26,11 @@ class ProjectSupplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $id_project = $id;    
+
+        return view('project.project_supply.create', compact('id_project'));
     }
 
     /**
@@ -37,7 +41,13 @@ class ProjectSupplyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $supply = ProjectSupply::create([
+            'item_name' => $request->item_name,
+            'id_project' => $request->id_project,
+            'measure' => $request->measure,            
+        ]);
+
+        return redirect('project_supply_index/'. $request->id_project );
     }
 
     /**
@@ -59,7 +69,10 @@ class ProjectSupplyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data_supply = ProjectSupply::where('item_name', $id)
+            ->first();
+
+        return view('project.project_supply.edit', compact('data_supply'));
     }
 
     /**
@@ -70,8 +83,15 @@ class ProjectSupplyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {        
+        $supply = ProjectSupply::where('item_name', $id)
+            ->first()
+            ->update([
+                'item_name' => $request->item_name,                
+                'measure' => $request->measure,            
+            ]);
+
+        return redirect('project_supply_index/'. $request->id_project );
     }
 
     /**

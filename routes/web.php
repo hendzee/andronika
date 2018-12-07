@@ -15,41 +15,22 @@ Route::get('/', function () {
     return view('project.index');
 });
 
-// Route::get('/project_payment', 'Controller@project_payment');
-
-// Route::get('/project_payment_add', 'Controller@project_payment_add');
-
-// Route::get('/project_payment_edit', 'Controller@project_payment_edit');
-
-// Route::get('/project_supply', function () {
-//     return view('project.project_supply');
-// });
-
-// Route::get('/project_supply', 'Controller@project_supply');
-
-// Route::get('/project_supply_add', 'Controller@project_supply_add');
-
-// Route::get('/project_supply_edit', 'Controller@project_supply_edit');
-
-// Route::get('/supply_purchase', 'Controller@supply_purchase');
-
-// Route::get('/supply_purchase_add', 'Controller@supply_purchase_add');
-
-// Route::get('/supply_purchase_edit', 'Controller@supply_purchase_edit');
-
-// Route::get('/project_worker', 'Controller@project_worker');
-
-// Route::get('/project_worker_add', 'Controller@project_worker_add');
-
-// Route::get('/project_worker_edit', 'Controller@project_worker_edit');
-
-// Route::resoure('client', 'ClientControllers');
-
-// Route::get('/payment', 'ProjectPaymentController@index');
-// Route::get('/project_supply', 'ProjectSupplyController@index');
-// Route::get('/project_worker', 'ProjectWorkerController@index');
-// Route::get('/project_purchase', 'ProjectPurchaseController@index');
-
 Route::resource('employee', 'EmployeeController');
 Route::resource('client', 'ClientController');
 Route::resource('project', 'ProjectController');
+
+Route::resource('project_payment', 'ProjectPaymentController');
+Route::get('project_payment_create/{id}', [ 
+    'uses' => 'ProjectPaymentController@create', 
+    'as' => 'project_payment_create']);
+Route::get('project_payment_index/{id}',[
+    'uses' => 'ProjectPaymentController@index', 
+    'as' => 'project_payment_index']);
+
+Route::resource('project_supply', 'ProjectSupplyController');
+Route::get('project_supply_create/{id}', [ 
+    'uses' => 'ProjectSupplyController@create', 
+    'as' => 'project_supply_create']);
+Route::get('project_supply_index/{id}',[
+    'uses' => 'ProjectSupplyController@index', 
+    'as' => 'project_supply_index']);

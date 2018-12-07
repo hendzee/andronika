@@ -4,18 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ProjectPayment;
+use App\Project;
+use App\GeneratorId;
 
 class ProjectPaymentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource.$data_project =  
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $data_payment = ProjectPayment::all();
-        return view('project.payment.index', compact('data_payment'));
+        $data_payment = ProjectPayment::where('id_project', $id)->get();
+        $id_project = $id;
+
+        return view('project.project_payment.index', compact('data_payment', 'id_project'));
     }
 
     /**
@@ -23,9 +27,11 @@ class ProjectPaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $id_project = $id;
+
+        return view('project.project_payment.create', compact('id_project'));
     }
 
     /**
@@ -36,7 +42,16 @@ class ProjectPaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $gen = new GeneratorId();
+
+        $project_payment = ProjectPayment::create([
+            'id_payment' => $gen->generateId('project_payment'),
+            'id_project' => $request->id_project,
+            'date' => date("Y-m-d", strtotime($request->date)),
+            'transfer' => $request->transfer            
+        ]);
+
+        return redirect('project_payment_index/'. $request->id_project );
     }
 
     /**
@@ -58,7 +73,10 @@ class ProjectPaymentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data_payment = ProjectPayment::where('id_payment', $id)
+            ->first();
+
+        return view('project.project_payment.edit', compact('data_payment'));
     }
 
     /**
@@ -70,7 +88,15 @@ class ProjectPaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data_payment = ProjectPayment::where('id_payment', $id)
+        ->first()
+        ->update([
+            'id_project' => $request->id_project,
+            'date' => date("Y-m-d", strtotime($request->date)),
+            'transfer' => $request->transfer            
+        ]);
+    
+        return redirect('project_payment_index/'. $request->id_project );
     }
 
     /**

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Employee;
 use App\Client;
 use App\Project;
+use App\ProjectPayment;
 
 class GeneratorId extends Model
 {
@@ -34,6 +35,12 @@ class GeneratorId extends Model
                 $search_id = 'id_project';
                 $unique_code = 'PR';
                 $obj = new Project();
+            break;
+
+            case 'project_payment':
+                $search_id = 'id_payment';
+                $unique_code = 'PY';
+                $obj = new ProjectPayment();
             break;
         }
 

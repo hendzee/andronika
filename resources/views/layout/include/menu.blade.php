@@ -40,7 +40,7 @@
                         <a href="{{ route('client.index') }}" class="nav-link ">
                             <span class="title">Data Klien</span>
                         </a>
-                    </li>
+                    </li>                    
                 </ul>
             </li>
             <li class="nav-item  ">

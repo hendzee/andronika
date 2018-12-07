@@ -64,7 +64,12 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $data_project = Project::where('id_project', $id)
+        ->first();
+
+        $id_project = $id;
+
+        return view('project.show', compact('data_project', 'id_project'));
     }
 
     /**
