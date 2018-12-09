@@ -23,6 +23,20 @@
 
             <li class="heading">
                 <h3 class="uppercase">Admin Menu</h3>
+            </li>            
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-building-o"></i>
+                    <span class="title">Dashboard</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link ">
+                            <span class="title">Menu</span>
+                        </a>
+                    </li>                                      
+                </ul>
             </li>
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">

@@ -55,7 +55,7 @@
                                     <tr>
                                         <td>PEMBELIAN BARANG</td>
                                         <td>
-                                            <a href="" class="btn green btn-md">LIHAT DETAIL</a>
+                                            <a href="{{ route('project_purchase_index', $id_project) }}" class="btn green btn-md">LIHAT DETAIL</a>
                                         </td>
                                     </tr>
                                     <tr>

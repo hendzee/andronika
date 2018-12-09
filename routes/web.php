@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('project.index');
+    return view('dashboard.index');
 });
 
 Route::resource('employee', 'EmployeeController');
@@ -20,17 +20,25 @@ Route::resource('client', 'ClientController');
 Route::resource('project', 'ProjectController');
 
 Route::resource('project_payment', 'ProjectPaymentController');
-Route::get('project_payment_create/{id}', [ 
-    'uses' => 'ProjectPaymentController@create', 
-    'as' => 'project_payment_create']);
 Route::get('project_payment_index/{id}',[
     'uses' => 'ProjectPaymentController@index', 
     'as' => 'project_payment_index']);
+Route::get('project_payment_create/{id}', [ 
+    'uses' => 'ProjectPaymentController@create', 
+    'as' => 'project_payment_create']);
 
 Route::resource('project_supply', 'ProjectSupplyController');
-Route::get('project_supply_create/{id}', [ 
-    'uses' => 'ProjectSupplyController@create', 
-    'as' => 'project_supply_create']);
 Route::get('project_supply_index/{id}',[
     'uses' => 'ProjectSupplyController@index', 
     'as' => 'project_supply_index']);
+Route::get('project_supply_create/{id}', [ 
+    'uses' => 'ProjectSupplyController@create', 
+    'as' => 'project_supply_create']);
+
+Route::resource('project_purchase', 'ProjectPurchaseController');
+Route::get('project_purchase_index/{id}',[
+    'uses' => 'ProjectPurchaseController@index', 
+    'as' => 'project_purchase_index']);
+Route::get('project_purchase_create/{id}', [ 
+    'uses' => 'ProjectPurchaseController@create', 
+    'as' => 'project_purchase_create']);
