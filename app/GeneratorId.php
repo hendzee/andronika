@@ -8,6 +8,7 @@ use App\Client;
 use App\Project;
 use App\ProjectPayment;
 use App\ProjectPurchase;
+use App\ProjectWorker;
 
 class GeneratorId extends Model
 {
@@ -48,6 +49,12 @@ class GeneratorId extends Model
                 $search_id = 'id_transaction';
                 $unique_code = 'PP';
                 $obj = new ProjectPurchase();
+            break;
+
+            case 'project_worker':
+                $search_id = 'id_worker';
+                $unique_code = 'PW';
+                $obj = new ProjectWorker();
             break;
         }
 

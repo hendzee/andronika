@@ -61,7 +61,7 @@
                                     <tr>
                                         <td>DATA PEKERJA</td>
                                         <td>
-                                            <a href="" class="btn green btn-md">LIHAT DETAIL</a>
+                                            <a href="{{ route('project_worker_index', $id_project) }}" class="btn green btn-md">LIHAT DETAIL</a>
                                         </td>
                                     </tr>
                                     <tr>

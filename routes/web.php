@@ -42,3 +42,11 @@ Route::get('project_purchase_index/{id}',[
 Route::get('project_purchase_create/{id}', [ 
     'uses' => 'ProjectPurchaseController@create', 
     'as' => 'project_purchase_create']);
+
+Route::resource('project_worker', 'ProjectWorkerController');
+Route::get('project_worker_index/{id}',[
+    'uses' => 'ProjectWorkerController@index', 
+    'as' => 'project_worker_index']);
+Route::get('project_worker_create/{id}', [ 
+    'uses' => 'ProjectWorkerController@create', 
+    'as' => 'project_worker_create']);
