@@ -50,3 +50,19 @@ Route::get('project_worker_index/{id}',[
 Route::get('project_worker_create/{id}', [ 
     'uses' => 'ProjectWorkerController@create', 
     'as' => 'project_worker_create']);
+
+Route::resource('worker_salary', 'WorkerSalaryController');
+Route::get('worker_salary_index/{id}',[
+    'uses' => 'WorkerSalaryController@index', 
+    'as' => 'worker_salary_index']);
+Route::get('worker_salary_create/{id}', [ 
+    'uses' => 'WorkerSalaryController@create', 
+    'as' => 'worker_salary_create']);
+
+Route::resource('project_bonus', 'ProjectBonusController');
+Route::get('project_bonus_index/{id}',[
+    'uses' => 'ProjectBonusController@index', 
+    'as' => 'project_bonus_index']);
+Route::get('project_bonus_create/{id}', [ 
+    'uses' => 'ProjectBonusController@create', 
+    'as' => 'project_bonus_create']);

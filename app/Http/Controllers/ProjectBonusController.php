@@ -1,0 +1,118 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\ProjectBonus;
+use App\GeneratorId;
+use App\ProjectWorker;
+
+class ProjectBonusController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index($id)
+    {
+        $data_bonus = ProjectBonus::where('id_worker', $id)->get();        
+        $id_worker= $id;
+        
+        return view('project.project_bonus.index', compact('data_bonus', 'id_worker'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create($id)
+    {
+        $id_worker = $id;
+        $data_bonus = ProjectWorker::where('id_worker', $id)->first();
+        
+        return view('project.project_bonus.create', compact('id_worker', 'data_bonus'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $gen = new GeneratorId();
+        
+        $bonus = ProjectBonus::create([ 
+            'id_bonus' => $gen->generateId('project_bonus'),
+            'id_project' => $request->id_project,
+            'id_worker' => $request->id_worker,
+            'bonus' => $request->bonus,
+            'description' => $request->description,
+            'status' => 'belum diambil'
+        ]);        
+
+        return redirect('project_bonus_index/'. $request->id_worker );
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $data_bonus = ProjectBonus::where('id_bonus', $id)
+            ->first();        
+
+        return view('project.project_bonus.edit', compact('data_bonus'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $bonus = ProjectBonus::where('id_bonus', $id)
+            ->first()
+            ->update([                
+                'id_project' => $request->id_project,
+                'id_worker' => $request->id_worker,
+                'bonus' => $request->bonus,
+                'description' => $request->description,
+                'status' => $request->status,
+                'date_take' => date('Y-m-d', strtotime($request->date_take))
+            ]);        
+
+        return redirect('project_bonus_index/'. $request->id_worker );
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

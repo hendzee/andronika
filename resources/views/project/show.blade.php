@@ -67,7 +67,7 @@
                                     <tr>
                                         <td>GAJI PEKERJA</td>
                                         <td>
-                                            <a href="" class="btn green btn-md">LIHAT DETAIL</a>
+                                            <a href="{{ route('worker_salary_index', $id_project) }}" class="btn green btn-md">LIHAT DETAIL</a>
                                         </td>
                                     </tr>
                                 </tbody>
