@@ -66,3 +66,11 @@ Route::get('project_bonus_index/{id}',[
 Route::get('project_bonus_create/{id}', [ 
     'uses' => 'ProjectBonusController@create', 
     'as' => 'project_bonus_create']);
+
+Route::resource('ps_transaction', 'PSTransactionController');
+Route::get('ps_transaction_index/{id}',[
+    'uses' => 'PSTransactionController@index', 
+    'as' => 'ps_transaction_index']);
+Route::get('ps_transaction_create/{id}', [ 
+    'uses' => 'PSTransactionController@create', 
+    'as' => 'ps_transaction_create']);
