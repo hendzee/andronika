@@ -50,7 +50,8 @@ class ProjectController extends Controller
             'island' => $request->island,
             'status' => $request->status,
             'start' => date('Y-m-d', strtotime($request->start)),
-            'end' => date('Y-m-d', strtotime($request->end)),            
+            'end' => date('Y-m-d', strtotime($request->end)),
+            'total' => $request->total,            
         ]);
 
         return redirect('project');
@@ -105,7 +106,8 @@ class ProjectController extends Controller
                 'island' => $request->island,
                 'status' => $request->status,
                 'start' => date('Y-m-d', strtotime($request->start)),
-                'end' => date('Y-m-d', strtotime($request->end)),               
+                'end' => date('Y-m-d', strtotime($request->end)), 
+                'total' => $request->total,                          
             ]);
         
         return redirect('project');

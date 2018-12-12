@@ -60,8 +60,7 @@
                         </div>
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
-                                <tr>      
-                                    <th> ID Projek </th>                                                                                              
+                                <tr>                                                                                                                                     
                                     <th> ID Pekerja </th>
                                     <th> Nama </th>
                                     <th> Alamat </th>                                
@@ -75,13 +74,14 @@
                             </thead>
                             <tbody>
                                 @foreach($data_worker as $data)
-                                <tr class="odd gradeX">                                                                       
-                                    <td>{{ $data->id_project }}</td>
+                                <tr class="odd gradeX">                                                                                                           
                                     <td>{{ $data->id_worker }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->address }}</td>    
                                     <td>{{ $data->telp }}</td>                                
-                                    <td>{{ $data->age }}</td>
+                                    <td>
+                                        {{ date('d M, Y', strtotime($data->age)) }}                                      
+                                    </td>
                                     <td>{{ $data->gender }}</td>
                                     <td>{{ $data->religion }}</td>
                                     <td>{{ $data->division }}</td>

@@ -39,10 +39,13 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Klien</label>
                                     <div class="col-md-9">
-                                        <select name="id_client" class="form-control">                                            
+                                        <select name="id_client" class="form-control">    
+                                            <option value="{{ $data_project->id_client }}">
+                                                {{ $data_project->client->description . ' | ' . $data_project->id_client . ' (DATA SAAT INI)' }}
+                                            </option>                                        
                                             @foreach($data_client as $data)
                                                 <option value="{{ $data->id_client }}">
-                                                    {{ $data->id_client . ' - ' . $data->description }}                                                    
+                                                    {{ $data->description . ' | ' . $data->id_client }}                                                    
                                                 </option>
                                             @endforeach
                                         </select>
@@ -54,11 +57,11 @@
                                     <div class="col-md-9">
                                         <select name="island" class="form-control">
                                             <option value="{{ $data_project->island }}"> 
-                                                {{ $data_project->island }}
+                                                {{ $data_project->island . ' (DATA SAAT INI)' }}
                                             </option>
                                             <option value="Sulawesi">Sulawesi</option>
-                                            <option value="A">A</option>
-                                            <option value="B">B</option>
+                                            <option value="Jawa">Jawa</option>
+                                            <option value="Kalimantan">Kalimantan</option>
                                         </select>
                                         <span class="help-block"> Pulau </span>
                                     </div>
@@ -68,7 +71,7 @@
                                     <div class="col-md-9">
                                         <select name="status" class="form-control">
                                             <option value="{{ $data_project->status }}">
-                                                {{ $data_project->status }}
+                                                {{ $data_project->status . ' (DATA SAAT INI)'}}
                                             </option>
                                             <option value="Proses">Proses</option>
                                             <option value="Selesai">Selesai</option>                                            
@@ -89,7 +92,14 @@
                                     <input name="end" value="{{ date('m/d/Y', strtotime($data_project->end)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
                                         <span class="help-block"> Berakhir </span>
                                     </div>
-                                </div>                                                                                                                                                                                        
+                                </div>  
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Harga Projek</label>
+                                    <div class="col-md-9">
+                                        <input type="text" value={{ $data_project->total }} name="total" placeholder="Ex.5000000" class="form-control" />
+                                        <span class="help-block"> Harga Projek </span>
+                                    </div>
+                                </div>                                                                                                                                                                                       
                             </div>        
                             {{ method_field('PUT') }}                   
                             {{ csrf_field() }}

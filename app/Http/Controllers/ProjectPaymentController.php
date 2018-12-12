@@ -18,8 +18,14 @@ class ProjectPaymentController extends Controller
     {
         $data_payment = ProjectPayment::where('id_project', $id)->get();
         $id_project = $id;
+        $total_trans = ProjectPayment::where('id_project', $id)
+            ->sum('transfer');
+        $total = Project::where('id_project', $id)->first();
 
-        return view('project.project_payment.index', compact('data_payment', 'id_project'));
+        $remain = ($total->total - $total_trans) . '.00';
+
+        return view('project.project_payment.index', compact('data_payment', 
+            'id_project', 'total_trans', 'remain'));
     }
 
     /**

@@ -41,7 +41,9 @@
                                     <label class="control-label col-md-3">Nama Barang</label>
                                     <div class="col-md-9">
                                         <select name="name" class="form-control">
-                                            <option value="{{ $data_purchase->name }}">{{ $data_purchase->name }}</option>
+                                            <option value="{{ $data_purchase->name }}">
+                                                {{ $data_purchase->name . ' (DATA SAAT INI)'}}
+                                            </option>
                                             @foreach($data_supply as $data)
                                                 <option value={{ $data->item_name }}>
                                                     {{ $data->item_name . " ($data->measure)" }}
@@ -54,7 +56,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Tanggal Beli</label>
                                     <div class="col-md-9">
-                                        <input name="date" value="{{ date('d/m/Y', strtotime($data_purchase->date)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        <input name="date" value="{{ date('m/d/Y', strtotime($data_purchase->date)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
                                         <span class="help-block"> Tanggal Lahir </span>
                                     </div>
                                 </div>

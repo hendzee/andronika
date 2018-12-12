@@ -61,13 +61,13 @@
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>                                                                                                    
-                                    <th> ID Project </th>
-                                    <th> ID Client </th>
-                                    <th> Proyek </th>                                
+                                    <th> Projek </th>
+                                    <th> Klien </th>                                                                 
                                     <th> Mulai </th>
                                     <th> Berakhir </th>  
                                     <th> Pulau </th>  
-                                    <th> Status </th>  
+                                    <th> Status </th>
+                                    <th> Total Biaya </th>  
                                     <th> Aksi </th>                                 
                                 </tr>
                             </thead>
@@ -75,16 +75,22 @@
                                 @foreach($data_project as $data)
                                 <tr class="odd gradeX">                                                                       
                                     <td>
+                                        {{ $data->name }}
+                                        <br/>
                                         <a href="project/{{ $data->id_project }}">
                                             {{ $data->id_project }}
                                         </a>                                        
                                     </td>
-                                    <td>{{ $data->id_client }}</td>
-                                    <td>{{ $data->name }}</td>    
-                                    <td>{{ $data->start }}</td>                                
-                                    <td>{{ $data->end }}</td>                                    
+                                    <td>
+                                        {{ $data->client->description }}
+                                        <br/>
+                                        {{ $data->id_client }}                                
+                                    </td>
+                                    <td>{{ date('d M, Y', strtotime($data->start)) }}</td>                                
+                                    <td>{{ date('d M, Y', strtotime($data->end)) }}</td>                                    
                                     <td>{{ $data->island }}</td>                                    
-                                    <td>{{ $data->status }}</td>                                    
+                                    <td>{{ $data->status }}</td>
+                                    <td>{{ 'Rp ' . $data->total }}</td>                                    
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">

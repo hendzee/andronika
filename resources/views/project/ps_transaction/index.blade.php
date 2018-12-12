@@ -74,11 +74,11 @@
                                 @foreach($data_transaction as $data)
                                 <tr class="odd gradeX">                                                                                                           
                                     <td>{{ $data->id_transaction }}</td>
-                                    <td>{{ $data->salary->salary_date }}</td>
+                                    <td>{{ date('d M, y', strtotime($data->salary->salary_date)) }}</td>
                                     <td>{{ $data->id_worker }}</td>                                       
                                     <td>{{ $data->worker->name }}</td>        
                                     <td>{{ $data->nominal }}</td>        
-                                    <td>{{ $data->date }}</td>                                                                                
+                                    <td>{{ date('d M, y', strtotime($data->date)) }}</td>                                                                                
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">

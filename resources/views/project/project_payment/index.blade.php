@@ -62,7 +62,7 @@
                             <thead>
                                 <tr>                                                                                                    
                                     <th> ID Payment </th>
-                                    <th> ID Projek </th>
+                                    <th> Projek </th>
                                     <th> Tanggal </th>                                
                                     <th> Transfer </th>                                                                                                                    
                                     <th> Aksi </th>                                 
@@ -73,9 +73,13 @@
                                 @foreach($data_payment as $data)
                                 <tr class="odd gradeX">                                                                       
                                     <td>{{ $data->id_payment }}</td>
-                                    <td>{{ $data->id_project }}</td>
-                                    <td>{{ $data->date }}</td>    
-                                    <td>{{ $data->transfer }}</td>
+                                    <td>
+                                        {{ $data->project->name }}
+                                        <br/>
+                                        {{ $data->id_project }}
+                                    </td>
+                                    <td>{{ date('d M, Y', strtotime($data->date)) }}</td>    
+                                    <td>{{ 'Rp ' . $data->transfer }}</td>
                                     @php($total_transfer += $data->transfer)                                                                    
                                     <td>
                                         <div class="btn-group">
@@ -99,11 +103,17 @@
                                 </tr>
                                 @endforeach                                
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>{{ 'Total Pembayaran: Rp ' . $total_trans }}</td>                    
+                                    <td colspan="4">{{'Sisa Pembayaran: Rp ' . $remain}}</td>                                    
+                                </tr>
+                            </tfoot>
                         </table>
-                        <strong>{{ 'Tagihan: ' . $data->project->total }}
+                        {{-- <strong>{{ 'Tagihan: ' . $data->project->total }}
                             <br/>{{ 'Total Transfer: ' . $total_transfer }}
                             <br/>{{ 'Kekurangan: ' . ($data->project->total - $total_transfer) }}
-                        </strong>
+                        </strong> --}}
                     </div>
                 </div>
                 <!-- END SAMPLE FORM PORTLET-->                

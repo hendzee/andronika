@@ -42,7 +42,7 @@
                                         <select name="id_client" class="form-control">
                                             @foreach($data_client as $data)
                                                 <option value="{{ $data->id_client }}">
-                                                    {{ $data->id_client . ' - ' . $data->description }}                                                    
+                                                    {{ $data->description . ' | ' . $data->id_client }}                                                    
                                                 </option>
                                             @endforeach
                                         </select>
@@ -54,8 +54,8 @@
                                     <div class="col-md-9">
                                         <select name="island" class="form-control">
                                             <option value="Sulawesi">Sulawesi</option>
-                                            <option value="A">A</option>
-                                            <option value="B">B</option>
+                                            <option value="A">Jawa</option>
+                                            <option value="B">Kalimantan</option>
                                         </select>
                                         <span class="help-block"> Pulau </span>
                                     </div>
@@ -83,7 +83,14 @@
                                         <input name="end" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
                                         <span class="help-block"> Berakhir </span>
                                     </div>
-                                </div>                                                                                                                                                                                        
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Harga Projek</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="total" placeholder="Ex.5000000" class="form-control" />
+                                        <span class="help-block"> Harga Projek </span>
+                                    </div>
+                                </div>                                                                                                                                                                                  
                             </div>
                             {{ csrf_field() }}
                             <div class="form-actions">

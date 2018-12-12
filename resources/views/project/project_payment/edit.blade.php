@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Tanggal</label>
                                     <div class="col-md-9">
-                                        <input name="date" value="{{ date('Y/m/d', strtotime($data_payment->transfer)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        <input name="date" value="{{ date('m/d/Y', strtotime($data_payment->date)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
                                         <span class="help-block"> Tanggal Transfer </span>
                                     </div>
                                 </div>                                                                                                                                                          

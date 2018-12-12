@@ -69,7 +69,9 @@
                                     <label class="control-label col-md-3">Agama</label>
                                     <div class="col-md-9">
                                         <select name="religion" value="{{ $data_worker->religion }}" class="form-control" >
-                                            <option value="{{ $data_worker->religion }}">{{ $data_worker->religion }}</option>
+                                            <option value="{{ $data_worker->religion }}">
+                                                {{ $data_worker->religion . ' (DATA SAAT INI)' }}
+                                            </option>
                                             <option value="Islam">Islam</option>
                                             <option value="Kristen">Kristen</option>
                                             <option value="Hindu">Hindu</option>
@@ -82,7 +84,9 @@
                                     <label class="control-label col-md-3">Divisi</label>
                                     <div class="col-md-9">
                                         <select name="division" class="form-control" >
-                                            <option value="{{ $data_worker->division }}">{{ $data_worker->division }}</option>
+                                            <option value="{{ $data_worker->division }}">
+                                                {{ $data_worker->division  . ' (DATA SAAT INI)'}}
+                                            </option>
                                             <option value="Bendahara">Bendahara</option>
                                             <option value="Pemasaran">Pemasaran</option>
                                             <option value="Marketing">Marketing</option>

@@ -76,7 +76,7 @@
                                 <tr class="odd gradeX">                                                                                                           
                                     <td>{{ $data->id_worker }}</td>
                                     <td>{{ $data->worker->name }}</td>
-                                    <td>{{ $data->salary_date }}</td>                                       
+                                    <td>{{ date('d M, Y', strtotime($data->salary_date)) }}</td>                                       
                                     <td>{{ $data->salary }}</td>        
                                     <td> 
                                         {{ $transaction = App\PSTransaction::where('id_salary', $data->id_salary)

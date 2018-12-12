@@ -61,13 +61,12 @@
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>                                                                                                    
-                                    <th> ID Transaksi </th>
-                                    <th> ID Projek </th>
+                                    <th> ID Transaksi </th>                                    
                                     <th> Nama Item </th>                                
                                     <th> Tanggal </th>
                                     <th> Total Barang </th>
                                     <th> Harga/Satuan </th>
-                                    <th> Pembeli </th>
+                                    <th> Tot. Harga </th>
                                     <th> Token </th>                                                                                                                    
                                     <th> Aksi </th>                                 
                                 </tr>
@@ -75,13 +74,16 @@
                             <tbody>
                                 @foreach($data_purchase as $data)
                                 <tr class="odd gradeX">                                                                       
-                                    <td>{{ $data->id_transaction }}</td>
-                                    <td>{{ $data->id_project }}</td>
+                                    <td>
+                                        {{ $data->id_transaction }}
+                                        <br />
+                                        {{ 'keterangan: ' . $data->resp_person }}
+                                    </td>                                    
                                     <td>{{ $data->name }}</td>   
-                                    <td>{{ $data->date }}</td>    
+                                    <td>{{ date('d M, Y', strtotime($data->date)) }}</td>    
                                     <td>{{ $data->total_item }}</td>
-                                    <td>{{ $data->price_per_item }}</td>
-                                    <td>{{ $data->resp_person }}</td>
+                                    <td>{{ 'Rp ' . $data->price_per_item }}</td>
+                                    <td>{{ 'Rp ' . $data->total_item *  $data->price_per_item}}</td>
                                     <td>{{ $data->token }}</td>                                                 
                                     <td>
                                         <div class="btn-group">

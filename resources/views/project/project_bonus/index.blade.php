@@ -80,7 +80,7 @@
                                     <td>{{ $data->status }}</td>                                    
                                     <td>
                                         @if($data->date_take != null)
-                                            {{ date('Y-m-d', strtotime($data->date_take)) }}
+                                            {{ date('d M, Y', strtotime($data->date_take)) }}
                                         @endif
                                     </td>                                                                                                                                                         
                                     <td>
