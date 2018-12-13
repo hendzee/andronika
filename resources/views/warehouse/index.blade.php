@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="{{ route('warehouse_item.create') }}" id="sample_editable_1_new" class="btn sbold green"> 
+                                        <a href="{{ route('warehouse.create') }}" id="sample_editable_1_new" class="btn sbold green"> 
                                             Data Baru
                                         </a>
                                     </div>
@@ -61,16 +61,28 @@
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>                                                                                                                                        
-                                    <th> Nama Barang </th>
-                                    <th> Satuan </th>                
+                                    <th> Nama Barang </th>                                      
+                                    <th> Jumlah </th>
+                                    <th> Rusak </th>
+                                    <th> Dipinjam </th>
+                                    <th> Tersedia </th>
                                     <th> Aksi </th>                                                            
                                 </tr>
                             </thead>
                             <tbody>                                
                                 @foreach($data_item as $data)
                                 <tr class="odd gradeX">                                                                                                           
-                                    <td>{{ $data->item_name }}</td>
-                                    <td>{{ $data->measure }}</td>                                        
+                                    <td>{{ $data->item_name }}</td>                                    
+                                    <td>
+                                        @if ($data->number != null)
+                                            {{ $data->number . ' ' . $data->measure }}                                            
+                                        @else
+                                            {{ 0 . ' ' . $data->measure }}                                            
+                                        @endif
+                                    </td>
+                                    <td>10 buah</td>
+                                    <td>2 buah</td>
+                                    <td>1 buah</td>                                        
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -78,7 +90,7 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a href="{{ route('warehouse_item.edit', $data->item_name) }}">
+                                                    <a href="{{ route('warehouse.edit', $data->item_name) }}">
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>

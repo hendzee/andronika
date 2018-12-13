@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\WarehouseItem;
+use App\Warehouse;
 
-class WarehouseItemController extends Controller
+class WarehouseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class WarehouseItemController extends Controller
      */
     public function index()
     {
-        $data_item = WarehouseItem::all();
+        $data_item = Warehouse::all();
 
-        return view('warehouse.warehouse_item.index', compact('data_item'));
+        return view('warehouse.index', compact('data_item'));
     }
 
     /**
@@ -26,7 +26,7 @@ class WarehouseItemController extends Controller
      */
     public function create()
     {
-        return view('warehouse.warehouse_item.create');
+        return view('warehouse.create');
     }
 
     /**
@@ -37,12 +37,13 @@ class WarehouseItemController extends Controller
      */
     public function store(Request $request)
     {
-        $warehouse_item = WarehouseItem::create([
+        $warehouse = Warehouse::create([
             'item_name' => $request->item_name,
-            'measure' => $request->measure
+            'measure' => $request->measure,
+            'number' => $request->number
         ]);
 
-        return redirect('warehouse_item/');
+        return redirect('warehouse/');
     }
 
     /**
@@ -64,10 +65,10 @@ class WarehouseItemController extends Controller
      */
     public function edit($id)
     {
-        $data_item = WarehouseItem::where('item_name', $id)
+        $data_item = Warehouse::where('item_name', $id)
             ->first();
                 
-        return view('warehouse.warehouse_item.edit', compact('data_item'));
+        return view('warehouse.edit', compact('data_item'));
     }
 
     /**
@@ -79,14 +80,15 @@ class WarehouseItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data_item = WarehouseItem::where('item_name', $id)
+        $data_item = Warehouse::where('item_name', $id)
             ->first()
             ->update([
                 'item_name' => $request->item_name,
-                'measure' => $request->measure
+                'measure' => $request->measure,
+                'number' => $request->number
             ]);
 
-        return redirect('warehouse_item/');
+        return redirect('warehouse/');
     }
 
     /**

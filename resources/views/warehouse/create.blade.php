@@ -27,7 +27,7 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form action="{{ action('WarehouseItemController@store') }}" method="POST" class="form-horizontal form-row-seperated">
+                        <form action="{{ action('WarehouseController@store') }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">                                
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nama Barang</label>
@@ -47,6 +47,13 @@
                                             <option value="Liter">Liter</option>
                                         </select>
                                         <span class="help-block"> Satuan Barang </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Jumlah Barang</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="number" placeholder="Jumlah Barang" class="form-control" />
+                                        <span class="help-block"> Jumlah Barang </span>
                                     </div>
                                 </div>                                                                                                                                                                                                                 
                             </div>

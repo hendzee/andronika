@@ -27,7 +27,7 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form action="{{ action('WarehouseItemController@update', $data_item->item_name) }}" method="POST" class="form-horizontal form-row-seperated">
+                        <form action="{{ action('WarehouseController@update', $data_item->item_name) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">                                
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nama Barang</label>
@@ -51,7 +51,14 @@
                                         </select>
                                         <span class="help-block"> Satuan Barang </span>
                                     </div>
-                                </div>                                                                                                                                                                                                                 
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Jumlah Barang</label>
+                                    <div class="col-md-9">
+                                        <input type="text" value="{{ $data_item->number }}" name="number" placeholder="Jumlah Barang" class="form-control" />
+                                        <span class="help-block"> Jumlah Barang </span>
+                                    </div>
+                                </div>                                                                                                                                                                                                                   
                             </div>
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}

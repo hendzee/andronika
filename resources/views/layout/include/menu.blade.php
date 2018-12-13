@@ -65,13 +65,13 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">
-                        <a href="{{ route( 'warehouse_item.index' ) }}" class="nav-link ">
-                            <span class="title">Data Barang</span>
+                        <a href="{{ route( 'warehouse.index' ) }}" class="nav-link ">
+                            <span class="title">Data Gudang</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
                         <a href="{{ route( 'employee.index' ) }}" class="nav-link ">
-                            <span class="title">Data Gudang</span>
+                            <span class="title">Pembelian Barang</span>
                         </a>
                     </li>
                 </ul>                
