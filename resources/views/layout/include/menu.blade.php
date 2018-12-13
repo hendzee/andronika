@@ -26,7 +26,7 @@
             </li>            
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-building-o"></i>
+                    <i class="fa fa-home"></i>
                     <span class="title">Dashboard</span>
                     <span class="arrow"></span>
                 </a>
@@ -56,6 +56,25 @@
                         </a>
                     </li>                    
                 </ul>
+            </li>           
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-cubes"></i>
+                    <span class="title">Gudang</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{ route( 'warehouse_item.index' ) }}" class="nav-link ">
+                            <span class="title">Data Barang</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{ route( 'employee.index' ) }}" class="nav-link ">
+                            <span class="title">Data Gudang</span>
+                        </a>
+                    </li>
+                </ul>                
             </li>
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
@@ -71,7 +90,6 @@
                     </li>
                 </ul>                
             </li>
-
         </ul>
         <!-- END SIDEBAR MENU -->
         <!-- END SIDEBAR MENU -->
