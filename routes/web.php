@@ -76,4 +76,5 @@ Route::get('ps_transaction_create/{id}', [
     'as' => 'ps_transaction_create']);
 
 Route::resource('warehouse', 'WarehouseController');
+Route::resource('warehouse_purchase', 'WarehousePurchaseController');
     

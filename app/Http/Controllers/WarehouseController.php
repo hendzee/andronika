@@ -37,10 +37,16 @@ class WarehouseController extends Controller
      */
     public function store(Request $request)
     {
+        $number = 0;
+
+        if ($request->number != null){
+            $number = $request->number;
+        }
+
         $warehouse = Warehouse::create([
             'item_name' => $request->item_name,
             'measure' => $request->measure,
-            'number' => $request->number
+            'number' => $number
         ]);
 
         return redirect('warehouse/');

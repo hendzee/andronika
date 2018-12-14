@@ -12,6 +12,7 @@ use App\ProjectWorker;
 use App\WorkerSalary;
 use App\ProjectBonus;
 use App\PSTransaction;
+use App\WarehousePurchase;
 
 class GeneratorId extends Model
 {
@@ -76,6 +77,12 @@ class GeneratorId extends Model
                 $search_id = 'id_transaction';
                 $unique_code = 'PT';
                 $obj = new PSTransaction();
+            break;
+
+            case 'warehouse_purchase':
+                $search_id = 'id_purchase';
+                $unique_code = 'WP';
+                $obj = new WarehousePurchase();
             break;
         }
 
