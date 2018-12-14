@@ -36,8 +36,10 @@ class ProjectPaymentController extends Controller
     public function create($id)
     {
         $id_project = $id;
+        $data_project = Project::where('id_project', $id)
+            ->first();
 
-        return view('project.project_payment.create', compact('id_project'));
+        return view('project.project_payment.create', compact('id_project', 'data_project'));
     }
 
     /**

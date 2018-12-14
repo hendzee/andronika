@@ -53,19 +53,19 @@
                                     </div>
                                 </div>     
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Pulau</label>
+                                    <label class="control-label col-md-3">Daerah</label>
                                     <div class="col-md-9">
                                         <select name="island" class="form-control">
-                                            <option value="{{ $data_project->island }}"> 
-                                                {{ $data_project->island . ' (DATA SAAT INI)' }}
+                                            <option value="{{ $data_project->status }}">
+                                                {{ $data_project->status . ' (DATA SAAT INI)'}}
                                             </option>
-                                            <option value="Sulawesi">Sulawesi</option>
-                                            <option value="Jawa">Jawa</option>
-                                            <option value="Kalimantan">Kalimantan</option>
+                                            <option value="Luwuk">Luwuk</option>
+                                            <option value="Banggai Laut">Banggai Laut</option>
+                                            <option value="Banggai Kepulauan">Banggai Kepulauan</option>
                                         </select>
-                                        <span class="help-block"> Pulau </span>
+                                        <span class="help-block"> Daerah </span>
                                     </div>
-                                </div>  
+                                </div> 
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Status</label>
                                     <div class="col-md-9">
@@ -78,7 +78,7 @@
                                         </select>
                                         <span class="help-block"> Status Projek </span>
                                     </div>
-                                </div>                            
+                                </div>                                                              
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Tanggal Mulai</label>
                                     <div class="col-md-9">

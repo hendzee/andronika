@@ -113,6 +113,17 @@ class ProjectController extends Controller
         return redirect('project');
     }
 
+    public function updateStatus($status, $id)
+    {
+        $data_project = Project::where('id_project', $id)
+            ->first()
+            ->update([                                
+                'status' => $status,                
+            ]);
+        
+        return redirect('project');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

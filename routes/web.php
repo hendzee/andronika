@@ -17,7 +17,11 @@ Route::get('/', function () {
 
 Route::resource('employee', 'EmployeeController');
 Route::resource('client', 'ClientController');
+
 Route::resource('project', 'ProjectController');
+Route::get('project_update_status/{status}/{id}', [        
+    'uses' => 'ProjectController@updateStatus',
+    'as' => 'project_update_status']);
 
 Route::resource('project_payment', 'ProjectPaymentController');
 Route::get('project_payment_index/{id}',[

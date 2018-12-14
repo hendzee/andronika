@@ -17,7 +17,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Data Transfer
+            Uang Masuk Projek
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -109,11 +109,7 @@
                                     <td colspan="4">{{'Sisa Pembayaran: Rp ' . $remain}}</td>                                    
                                 </tr>
                             </tfoot>
-                        </table>
-                        {{-- <strong>{{ 'Tagihan: ' . $data->project->total }}
-                            <br/>{{ 'Total Transfer: ' . $total_transfer }}
-                            <br/>{{ 'Kekurangan: ' . ($data->project->total - $total_transfer) }}
-                        </strong> --}}
+                        </table>                        
                     </div>
                 </div>
                 <!-- END SAMPLE FORM PORTLET-->                

@@ -17,7 +17,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Edit Transfer          
+            Edit Uang Masuk  
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -32,16 +32,16 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">ID Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_payment->id_project }}" disabled class="form-control" />
+                                            <input type="text" value="{{ $data_payment->project->name . ' | ' . date('d M, Y', strtotime($data_payment->project->start)) }}" disabled class="form-control" />
                                         <span class="help-block"> ID Projek </span>
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $data_payment->id_project }}" />
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Transfer</label>
+                                    <label class="control-label col-md-3">Uang Masuk</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_payment->transfer }}" name="transfer" placeholder="Transfer Nominal" class="form-control" />
-                                        <span class="help-block"> Transfer Nominal </span>
+                                        <input type="text" value={{ $data_payment->transfer }} name="transfer" placeholder="Uang Masuk" class="form-control" />
+                                        <span class="help-block"> Uang Masuk </span>
                                     </div>
                                 </div>                             
                                 <div class="form-group">

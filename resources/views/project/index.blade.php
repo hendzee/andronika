@@ -67,7 +67,7 @@
                                     <th> Berakhir </th>  
                                     <th> Pulau </th>  
                                     <th> Status </th>
-                                    <th> Total Biaya </th>  
+                                    <th> Hrg. Projek </th>  
                                     <th> Aksi </th>                                 
                                 </tr>
                             </thead>
@@ -89,7 +89,19 @@
                                     <td>{{ date('d M, Y', strtotime($data->start)) }}</td>                                
                                     <td>{{ date('d M, Y', strtotime($data->end)) }}</td>                                    
                                     <td>{{ $data->island }}</td>                                    
-                                    <td>{{ $data->status }}</td>
+                                    <td>
+                                        {{ $data->status }}
+                                        <br/>
+                                        @if ($data->status == 'Proses')
+                                            <a href="{{ route('project_update_status', ['status' => 'Selesai', 'id' => $data->id_project]) }}" >
+                                                Update (Selesai)
+                                            </a>
+                                        @else
+                                            <a href="{{ route('project_update_status', ['status' => 'Proses', 'id' => $data->id_project]) }}" >
+                                                Update (Proses)
+                                            </a>
+                                        @endif                                
+                                    </td>
                                     <td>{{ 'Rp ' . $data->total }}</td>                                    
                                     <td>
                                         <div class="btn-group">

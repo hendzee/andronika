@@ -42,7 +42,7 @@
                                         <select name="id_client" class="form-control">
                                             @foreach($data_client as $data)
                                                 <option value="{{ $data->id_client }}">
-                                                    {{ $data->description . ' | ' . $data->id_client }}                                                    
+                                                    {{ $data->description . ' | ' . $data->address }}                                                    
                                                 </option>
                                             @endforeach
                                         </select>
@@ -50,14 +50,14 @@
                                     </div>
                                 </div>     
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Pulau</label>
+                                    <label class="control-label col-md-3">Daerah</label>
                                     <div class="col-md-9">
                                         <select name="island" class="form-control">
-                                            <option value="Sulawesi">Sulawesi</option>
-                                            <option value="A">Jawa</option>
-                                            <option value="B">Kalimantan</option>
+                                            <option value="Luwuk">Luwuk</option>
+                                            <option value="Banggai Laut">Banggai Laut</option>
+                                            <option value="Banggai Kepulauan">Banggai Kepulauan</option>
                                         </select>
-                                        <span class="help-block"> Pulau </span>
+                                        <span class="help-block"> Daerah </span>
                                     </div>
                                 </div>  
                                 <div class="form-group">
