@@ -11,4 +11,9 @@ class ProjectWorker extends Model
     protected $guarded = [];
     public $incrementing = false;  
     public $timestamps = false;
+
+    public function project()
+    {
+        return $this->belongsTo('App\Project', 'id_project');
+    }
 }

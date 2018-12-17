@@ -30,10 +30,10 @@
                         <form action="{{ action('ProjectPurchaseController@update', $data_purchase->id_transaction) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">ID Projek</label>
+                                    <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_purchase->id_project }}" placeholder="Nama Lengkap" class="form-control" disabled/>
-                                        <span class="help-block"> ID Projek </span>
+                                        <input type="text" value="{{ $data_purchase->project->name . ' | ' . date('d M, Y', strtotime($data_purchase->project->start)) }}" placeholder="Nama Lengkap" class="form-control" disabled/>
+                                        <span class="help-block"> Projek </span>
                                     </div>
                                 </div>
                                 <input type="hidden" value="{{ $data_purchase->id_project }}" name="id_project" />

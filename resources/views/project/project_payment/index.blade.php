@@ -31,7 +31,7 @@
                                 <div class="col-md-6">
                                     <div class="btn-group">
                                         <a href="{{ route('project_payment_create', $id_project) }}" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Transfer Baru
+                                            Uang Masuk
                                         </a>
                                     </div>
                                 </div>

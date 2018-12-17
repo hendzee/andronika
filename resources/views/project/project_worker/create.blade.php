@@ -30,10 +30,10 @@
                         <form action="{{ action('ProjectWorkerController@store') }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">ID Projek</label>
+                                    <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $id_project }}" placeholder="Nama Lengkap" class="form-control" disabled/>
-                                        <span class="help-block"> ID Projek </span>
+                                        <input type="text" value="{{ $data_project->name . ' | ' . date('d M, Y', strtotime($data_project->start)) }}" placeholder="Nama Lengkap" class="form-control" disabled/>
+                                        <span class="help-block"> Projek </span>
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $id_project }}" />
@@ -43,14 +43,7 @@
                                         <input type="text" name="name" placeholder="Nama Lengkap" class="form-control" />
                                         <span class="help-block"> Nama Lengkap </span>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Tanggal Lahir</label>
-                                    <div class="col-md-9">
-                                        <input name="age" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Lahir </span>
-                                    </div>
-                                </div>
+                                </div>                                
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Alamat</label>
                                     <div class="col-md-9">
@@ -78,13 +71,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Divisi</label>
+                                    <label class="control-label col-md-3">Pekerjaan</label>
                                     <div class="col-md-9">
-                                        <select name="division" class="form-control" >
-                                            <option value="Bendahara">Bendahara</option>
-                                            <option value="Pemasaran">Pemasaran</option>
-                                            <option value="Marketing">Marketing</option>                                            
-                                        </select>
+                                        <input name="telp" type="text" placeholder="Pekerjaan Dalam Projek" class="form-control" />
+                                        <span class="help-block"> Informasi Kerja </span>
                                     </div>
                                 </div>
                                 <div class="form-group">

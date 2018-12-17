@@ -30,10 +30,10 @@
                         <form action="{{ action('ProjectPaymentController@update', $data_payment->id_payment) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">ID Projek</label>
+                                    <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
                                             <input type="text" value="{{ $data_payment->project->name . ' | ' . date('d M, Y', strtotime($data_payment->project->start)) }}" disabled class="form-control" />
-                                        <span class="help-block"> ID Projek </span>
+                                        <span class="help-block">Projek</span>
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $data_payment->id_project }}" />

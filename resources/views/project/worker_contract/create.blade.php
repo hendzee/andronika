@@ -17,7 +17,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Uang Masuk          
+            Kontrak Baru     
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -27,7 +27,7 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form action="{{ action('ProjectPaymentController@store') }}" method="POST" class="form-horizontal form-row-seperated">
+                        <form action="{{ action('WorkerContractController@store') }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Projek</label>
@@ -36,21 +36,27 @@
                                         <span class="help-block"> Projek </span>
                                     </div>
                                 </div>
-                                <input type="hidden" name="id_project" value="{{ $id_project }}" />
+                                <input type="hidden" name="id_project" value="{{ $id_project }}" />                                
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Uang Masuk</label>
+                                    <label class="control-label col-md-3">Pekerja</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="transfer" placeholder="Uang Masuk" class="form-control" />
-                                        <span class="help-block"> Uang Masuk </span>
+                                        <select name="id_worker" class="form-control">
+                                            @foreach($data_worker as $data)
+                                                <option value="{{ $data->id_worker }}">
+                                                    {{ $data->name . ' | ' . $data->address }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="help-block"> Keterangan Pekerja </span>
                                     </div>
-                                </div>                             
+                                </div>   
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Tanggal</label>
+                                    <label class="control-label col-md-3">Nilai Kontrak</label>
                                     <div class="col-md-9">
-                                        <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Transfer </span>
+                                        <input type="text" name="contract_value" class="form-control" />
+                                        <span class="help-block"> Nilai Kontrak </span>
                                     </div>
-                                </div>                                                                                                                                                          
+                                </div>                                                                                          
                             </div>
                             {{ csrf_field() }}
                             <div class="form-actions">

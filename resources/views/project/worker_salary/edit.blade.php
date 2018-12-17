@@ -30,17 +30,17 @@
                         <form action="{{ action('WorkerSalaryController@update', $data_salary->id_salary) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">ID Projek</label>
+                                    <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_salary->id_project }}" disabled class="form-control" />
-                                        <span class="help-block"> ID Projek </span>
+                                        <input type="text" value="{{ $data_salary->project->name . ' | ' . date('d M, Y', strtotime($data_salary->project->start)) }}" disabled class="form-control" />
+                                        <span class="help-block"> Projek </span>
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $data_salary->id_project }}" />   
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Pekerja</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_salary->worker->name . '-' . $data_salary->id_worker }}" disabled class="form-control" />
+                                        <input type="text" value="{{ $data_salary->worker->name . ' | ' . $data_salary->worker->address }}" disabled class="form-control" />
                                         <span class="help-block"> Keterangan Pekerja </span>
                                     </div>
                                 </div>
@@ -51,14 +51,7 @@
                                         <input type="text" value="{{ $data_salary->salary }}" name="salary" class="form-control" />
                                         <span class="help-block"> Jumlah Gaji </span>
                                     </div>
-                                </div>                                                          
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Tanggal Gaji</label>
-                                    <div class="col-md-9">
-                                        <input name="salary_date" value="{{ date('m/d/Y', strtotime($data_salary->salary_date)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Pemberian Gaji </span>
-                                    </div>
-                                </div>                                                                                                                                                                                 
+                                </div>                                                                                                                                                                                                                                                                    
                             </div>
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}

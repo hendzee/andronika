@@ -61,10 +61,11 @@
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>                                                                                                                                        
-                                    <th> ID Pekerja </th>
-                                    <th> Nama </th>
-                                    <th> Tanggal Gaji </th>                                
-                                    <th> Jumlah </th>
+                                    <th> Pekerja </th>                                                                        
+                                    <th> Fullday </th>                                
+                                    <th> Halfday </th>                                
+                                    <th> Gaji/hr </th>
+                                    <th> Total </th>
                                     <th> Diambil </th>
                                     <th> Sisa </th>
                                     <th> Bonus </th>
@@ -74,23 +75,39 @@
                             <tbody>
                                 @foreach($data_salary as $data)
                                 <tr class="odd gradeX">                                                                                                           
-                                    <td>{{ $data->id_worker }}</td>
-                                    <td>{{ $data->worker->name }}</td>
-                                    <td>{{ date('d M, Y', strtotime($data->salary_date)) }}</td>                                       
-                                    <td>{{ $data->salary }}</td>        
+                                    <td>
+                                        {{ $data->worker->name }}
+                                        <br/>                   
+                                        {{ 'Ket: ' . $data->worker->division }}                     
+                                    </td>
+                                    <td>{{ $data->fullday . ' hari' }}</td>
+                                    <td>{{ $data->halfday . ' hari' }}</td>                                    
+                                    <td>{{ 'Rp. ' . $data->salary }}</td>
+                                    <td>
+                                        @php
+                                           $total_sal = ($data->fullday * $data->salary) + ($data->halfday * $data->salary * 0.5) 
+                                        @endphp
+                                        {{ 'Rp. ' . $total_sal }}    
+                                    </td>        
                                     <td> 
-                                        {{ $transaction = App\PSTransaction::where('id_salary', $data->id_salary)
-                                            ->sum('nominal') }}
+                                        @php
+                                           $transaction = App\PSTransaction::where('id_salary', $data->id_salary)
+                                            ->sum('nominal') 
+                                        @endphp
+                                        {{ 'Rp. ' . $transaction }}
                                         <br/>
                                         <a href="{{ route('ps_transaction_index', $data->id_salary) }}">
                                             detail
                                         </a>
                                     </td>
-                                    <td> {{ $data->salary - $transaction }} </td>
+                                    <td> {{ 'Rp. ' . ($total_sal - $transaction) }} </td>
                                     <td>
-                                        {{ $bonus = App\ProjectBonus::where('id_worker', $data->id_worker)
-                                        ->where('status', 'belum diambil')
-                                        ->sum('bonus') }}
+                                        @php
+                                            $bonus = App\ProjectBonus::where('id_worker', $data->id_worker)
+                                                ->where('status', 'belum diambil')
+                                                ->sum('bonus') 
+                                        @endphp
+                                        {{ 'Rp. ' . $bonus }}
                                         <br/>
                                         <a href="{{ route('project_bonus_index', $data->id_worker) }}">
                                             detail

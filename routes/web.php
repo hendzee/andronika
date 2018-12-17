@@ -79,6 +79,22 @@ Route::get('ps_transaction_create/{id}', [
     'uses' => 'PSTransactionController@create', 
     'as' => 'ps_transaction_create']);
 
+Route::resource('worker_contract', 'WorkerContractController');
+Route::get('worker_contract_index/{id}',[
+    'uses' => 'WorkerContractController@index', 
+    'as' => 'worker_contract_index']);
+Route::get('worker_contract_create/{id}', [ 
+    'uses' => 'WorkerContractController@create', 
+    'as' => 'worker_contract_create']);
+
+Route::resource('pct', 'PCTController');
+Route::get('pct_index/{id}',[
+    'uses' => 'PCTController@index', 
+    'as' => 'pct_index']);
+Route::get('pct_create/{id}', [ 
+    'uses' => 'PCTController@create', 
+    'as' => 'pct_create']);
+
 Route::resource('warehouse', 'WarehouseController');
 Route::resource('warehouse_purchase', 'WarehousePurchaseController');
     

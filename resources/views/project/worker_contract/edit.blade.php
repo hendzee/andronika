@@ -17,7 +17,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Uang Masuk          
+            Edit Data Kontrak     
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -27,31 +27,33 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form action="{{ action('ProjectPaymentController@store') }}" method="POST" class="form-horizontal form-row-seperated">
+                        <form action="{{ action('WorkerContractController@update', $data_contract->id_contract) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_project->name . ' | ' . date('d M, Y', strtotime($data_project->start)) }}" disabled class="form-control" />
+                                        <input type="text" value="{{ $data_contract->project->name . ' | ' . date('d M, Y', strtotime($data_contract->project->start)) }}" disabled class="form-control" />
                                         <span class="help-block"> Projek </span>
                                     </div>
                                 </div>
-                                <input type="hidden" name="id_project" value="{{ $id_project }}" />
+                                <input type="hidden" name="id_project" value="{{ $data_contract->id_project }}" />   
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Uang Masuk</label>
+                                    <label class="control-label col-md-3">Pekerja</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="transfer" placeholder="Uang Masuk" class="form-control" />
-                                        <span class="help-block"> Uang Masuk </span>
+                                        <input type="text" value="{{ $data_contract->worker->name . ' | ' . $data_contract->worker->address }}" disabled class="form-control" />
+                                        <span class="help-block"> Keterangan Pekerja </span>
                                     </div>
-                                </div>                             
+                                </div>
+                                <input type="hidden" name="id_worker" value="{{ $data_contract->id_worker }}" />                                                             
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Tanggal</label>
+                                    <label class="control-label col-md-3">Nilai Kontrak</label>
                                     <div class="col-md-9">
-                                        <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Transfer </span>
+                                        <input type="text" value="{{ $data_contract->contract_value }}" name="contract_value" class="form-control" />
+                                        <span class="help-block"> Nilai Kontrak </span>
                                     </div>
-                                </div>                                                                                                                                                          
+                                </div>                                                                                                                                                                                                                                                                    
                             </div>
+                            {{ method_field('PUT') }}
                             {{ csrf_field() }}
                             <div class="form-actions">
                                 <div class="row">

@@ -30,10 +30,10 @@
                         <form action="{{ action('WorkerSalaryController@store') }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">ID Projek</label>
+                                    <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $id_project }}" disabled class="form-control" />
-                                        <span class="help-block"> ID Projek </span>
+                                        <input type="text" value="{{ $data_project->name . ' | ' . date('d M, Y', strtotime($data_project->start)) }}" disabled class="form-control" />
+                                        <span class="help-block"> Projek </span>
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $id_project }}" />                                
@@ -43,7 +43,7 @@
                                         <select name="id_worker" class="form-control">
                                             @foreach($data_worker as $data)
                                                 <option value="{{ $data->id_worker }}">
-                                                    {{ $data->name . ' ' . $data->id_worker }}
+                                                    {{ $data->name . ' | ' . $data->address }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -56,14 +56,7 @@
                                         <input type="text" name="salary" class="form-control" />
                                         <span class="help-block"> Jumlah Gaji </span>
                                     </div>
-                                </div>                                                          
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Tanggal Gaji</label>
-                                    <div class="col-md-9">
-                                        <input name="salary_date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Pemberian Gaji </span>
-                                    </div>
-                                </div>                                                                                                                                                    
+                                </div>                                                                                          
                             </div>
                             {{ csrf_field() }}
                             <div class="form-actions">

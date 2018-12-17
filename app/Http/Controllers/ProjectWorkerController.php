@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ProjectWorker;
+use App\Project;
 use Illuminate\Http\Request;
 use App\GeneratorId;
 
@@ -30,7 +31,9 @@ class ProjectWorkerController extends Controller
     {
         $id_project = $id;    
 
-        return view('project.project_worker.create', compact('id_project'));
+        $data_project = Project::where('id_project', $id)->first();
+
+        return view('project.project_worker.create', compact('id_project', 'data_project'));
     }
 
     /**
@@ -46,8 +49,7 @@ class ProjectWorkerController extends Controller
         $worker = ProjectWorker::create([
             'id_worker' => $gen->generateId('project_worker'),
             'id_project' => $request->id_project,
-            'name' => $request->name,
-            'age' => date("Y-m-d", strtotime($request->age)),
+            'name' => $request->name,            
             'address' => $request->address,
             'telp' => $request->telp,
             'gender' => $request->gender,
@@ -97,8 +99,7 @@ class ProjectWorkerController extends Controller
         ->first()
         ->update([            
             'id_project' => $request->id_project,
-            'name' => $request->name,
-            'age' => date("Y-m-d", strtotime($request->age)),
+            'name' => $request->name,            
             'address' => $request->address,
             'telp' => $request->telp,
             'gender' => $request->gender,

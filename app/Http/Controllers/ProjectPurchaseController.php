@@ -32,9 +32,10 @@ class ProjectPurchaseController extends Controller
     public function create($id)
     {
         $id_project = $id;
+        $data_project = Project::where('id_project', $id)->first();
         $data_supply = ProjectSupply::where('id_project', $id)->get();
 
-        return view('project.project_purchase.create', compact('id_project', 'data_supply'));
+        return view('project.project_purchase.create', compact('id_project', 'data_supply', 'data_project'));
     }
 
     /**

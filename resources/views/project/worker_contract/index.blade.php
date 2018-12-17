@@ -17,7 +17,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Data Pekerja
+            Kontrak Pekerja      
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -30,8 +30,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="{{ route('project_worker_create', $id_project) }}" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Data Pekerja
+                                        <a href="{{ route('worker_contract_create', $id_project) }}" id="sample_editable_1_new" class="btn sbold green"> 
+                                            Kontrak Baru
                                         </a>
                                     </div>
                                 </div>
@@ -60,27 +60,35 @@
                         </div>
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
-                                <tr>                                                                                                                                     
-                                    <th> ID Pekerja </th>
-                                    <th> Nama </th>
-                                    <th> Alamat </th>                                
-                                    <th> Telpon </th>                                    
-                                    <th> Gender </th>
-                                    <th> Agama </th>
-                                    <th> Divisi </th>
-                                    <th> Aksi </th>                                
+                                <tr>                                                                                                                                        
+                                    <th> Pekerja </th>                                                                        
+                                    <th> Nilai Kontrak </th>                                
+                                    <th> Total Pembayaran </th>                                
+                                    <th> Sisa Pembayaran </th> 
+                                    <th> Aksi </th>                                   
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data_worker as $data)
+                                @foreach($data_contract as $data)
                                 <tr class="odd gradeX">                                                                                                           
-                                    <td>{{ $data->id_worker }}</td>
-                                    <td>{{ $data->name }}</td>
-                                    <td>{{ $data->address }}</td>    
-                                    <td>{{ $data->telp }}</td>                                                                    
-                                    <td>{{ $data->gender }}</td>
-                                    <td>{{ $data->religion }}</td>
-                                    <td>{{ $data->division }}</td>
+                                    <td>
+                                        {{ $data->id_worker }}
+                                        <br/>
+                                        Ket:
+                                    </td>
+                                    <td>{{ $data->contract_value }}</td>
+                                    <td> 
+                                        @php
+                                            $transaction = App\PSTransaction::where('id_salary', $data->id_contract)
+                                                ->sum('nominal') 
+                                        @endphp
+                                        {{ 'Rp. ' . $transaction }}
+                                        <br/>
+                                        <a href="{{ route('pct_index', $data->id_contract) }}">
+                                            detail
+                                        </a>
+                                    </td>
+                                    <td>0</td>
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -88,7 +96,7 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a href="{{ route('project_worker.edit', $data->id_worker) }}">
+                                                    <a href="{{ route('worker_contract.edit', $data->id_contract) }}">
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>
@@ -103,7 +111,7 @@
                                 </tr>
                                 @endforeach                                
                             </tbody>
-                        </table>
+                        </table>                        
                     </div>
                 </div>
                 <!-- END SAMPLE FORM PORTLET-->                
