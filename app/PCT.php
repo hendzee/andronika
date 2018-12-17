@@ -11,4 +11,9 @@ class PCT extends Model
     protected $guarded = [];
     public $incrementing = false;  
     public $timestamps = false;
+
+    public function worker()
+    {
+        return $this->belongsTo('App\ProjectWorker', 'id_worker');
+    }
 }

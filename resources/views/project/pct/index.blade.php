@@ -17,7 +17,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Pengambilan Gaji 
+            Pembayaran Transfer
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="{{ route('ps_transaction_create', $id_salary) }}" id="sample_editable_1_new" class="btn sbold green"> 
+                                        <a href="{{ route('pct_create', $id_contract) }}" id="sample_editable_1_new" class="btn sbold green"> 
                                             Buka Transaksi
                                         </a>
                                     </div>
@@ -61,8 +61,7 @@
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>                                                                                                                                        
-                                    <th> ID Transaksi </th>
-                                    <th> Ref Gaji </th>
+                                    <th> ID Transaksi </th>                                    
                                     <th> ID Pekerja </th>                                
                                     <th> Nama </th>
                                     <th> Jumlah </th>
@@ -73,8 +72,7 @@
                             <tbody>
                                 @foreach($data_transaction as $data)
                                 <tr class="odd gradeX">                                                                                                           
-                                    <td>{{ $data->id_transaction }}</td>
-                                    <td>{{ date('d M, y', strtotime($data->salary->salary_date)) }}</td>
+                                    <td>{{ $data->id_transaction }}</td>                                    
                                     <td>{{ $data->id_worker }}</td>                                       
                                     <td>{{ $data->worker->name }}</td>        
                                     <td>{{ $data->nominal }}</td>        
@@ -86,7 +84,7 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a href="{{ route('ps_transaction.edit', $data->id_transaction) }}">
+                                                    <a href="{{ route('pct.edit', $data->id_transaction) }}">
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>
