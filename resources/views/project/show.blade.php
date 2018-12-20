@@ -18,7 +18,7 @@
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
             {{ $data_project->name }}
-            <small>{{ $data_project->id_project }}</small>
+            <small>{{ date('d M, Y', strtotime($data_project->start)) }}</small>
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
