@@ -14,12 +14,13 @@ class PCTController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($id, $id_prj)
     {
         $data_transaction = PCT::where('id_contract', $id)->get();        
-        $id_contract= $id;
+        $id_contract= $id;        
+        $id_project = $id_prj;
         
-        return view('project.pct.index', compact('data_transaction', 'id_contract'));
+        return view('project.pct.index', compact('data_transaction', 'id_contract', 'id_project'));
     }
 
     /**
@@ -54,7 +55,8 @@ class PCTController extends Controller
             'date' => date('Y-m-d', strtotime($request->date))            
         ]);        
 
-        return redirect('pct_index/'. $request->id_contract );
+        
+        return redirect('pct_index/'. $request->id_contract . '/' . $request->id_project);
     }
 
     /**
@@ -99,9 +101,9 @@ class PCTController extends Controller
                 'id_contract' => $request->id_contract,
                 'nominal' => $request->nominal,
                 'date' => date('Y-m-d', strtotime($request->date))            
-            ]);        
-
-        return redirect('pct_index/'. $request->id_contract );
+            ]);                  
+        
+        return redirect('pct_index/'. $request->id_contract . '/' . $request->id_project);
     }
 
     /**

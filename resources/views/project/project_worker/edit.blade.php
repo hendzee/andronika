@@ -6,11 +6,15 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('project.show', $data_worker->id_project) }}"> Menu </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <a href="{{ route('project_worker_index', $data_worker->id_project) }}"> Pekerja Biasa </a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Edit</span>
                 </li>
             </ul>         
         </div>
@@ -84,12 +88,30 @@
                                     <label class="control-label col-md-3">Gender</label>
                                     <div class="col-md-9">
                                     <select name="gender" class="form-control" >
-                                            <option value="{{ $data_worker->gender }}">{{ $data_worker->gender }}</option>
+                                            <option value="{{ $data_worker->gender }}">
+                                                {{ $data_worker->gender . ' (DATA SAAT INI)'}}
+                                            </option>
                                             <option value="Laki-laki">Laki-laki</option>
                                             <option value="Perempuan">Perempuan</option>                                            
                                         </select>
+                                        <span class="help-block"> Gender </span>
                                     </div>
-                                </div>                                                                
+                                </div>  
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Metode Gaji</label>
+                                    <div class="col-md-9">
+                                        <select name="salary_status" class="form-control" >
+                                            <option value={{ $data_worker->salary_status }}>
+                                                {{ $data_worker->salary_status . ' (DATA SAAT INI)' }}
+                                            </option>
+                                            <option value="KONTRAK">KONTRAK</option>
+                                            <option value="HARIAN">HARIAN</option>                                            
+                                        </select>
+                                        <span class="help-block"> 
+                                            Pilih Kontrak (Pembayaran Dengan Sistem Kontrak) / Harian (Dibayar Berdasarkan Hari Kerja)
+                                        </span>
+                                    </div>
+                                </div>                                                                 
                             </div>
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}
@@ -99,7 +121,9 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <button type="button" class="btn default">Batal</button>
+                                        <a href="{{ route('project_worker_index', $data_worker->id_project) }}" class="btn default"> 
+                                            Batal 
+                                        </a>
                                     </div>
                                 </div>
                             </div>

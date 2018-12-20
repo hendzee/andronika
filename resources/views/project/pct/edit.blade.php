@@ -6,11 +6,23 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('project.show', $data_transaction->id_project) }}"> Menu </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <a href="{{ route('worker_contract_index', $data_transaction->id_project) }}"> Pekerja Kontrak </a>
+                    <i class="fa fa-circle"></i>
+                </li>                
+                <li>
+                    <a href="{{ route('pct_index', [
+                        'id' => $data_transaction->id_contract,
+                        'id_prj' => $data_transaction->id_project]) }}"> 
+                        Pembayaran Kontrak 
+                    </a>
+                    <i class="fa fa-circle"></i>
+                </li> 
+                <li>
+                    <span>Edit</span>
                 </li>
             </ul>         
         </div>
@@ -45,7 +57,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_worker" value="{{ $data_transaction->id_worker }}" />                              
-                                <input type="hidden" name="id_contract" value="{{ $data_transaction->id_salary }}" />
+                                <input type="hidden" name="id_contract" value="{{ $data_transaction->id_contract }}" />
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nominal</label>
                                     <div class="col-md-9">
@@ -69,7 +81,11 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <button type="button" class="btn default">Batal</button>
+                                        <a href="{{ route('pct_index', [
+                                            'id' => $data_transaction->id_contract,
+                                            'id_prj' => $data_transaction->id_project]) }}" class="btn default"> 
+                                            Batal
+                                        </a>
                                     </div>
                                 </div>
                             </div>

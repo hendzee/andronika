@@ -6,11 +6,15 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('project.show', $id_project) }}"> Menu </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <a href="{{ route('worker_contract_index', $id_project) }}"> Pekerja Kontrak </a>
+                    <i class="fa fa-circle"></i>
+                </li>                
+                <li>
+                    <span>Daftar</span>
                 </li>
             </ul>         
         </div>
@@ -72,11 +76,11 @@
                                 @foreach($data_contract as $data)
                                 <tr class="odd gradeX">                                                                                                           
                                     <td>
-                                        {{ $data->id_worker }}
+                                        {{ $data->worker->name }}
                                         <br/>
-                                        Ket:
+                                        {{ 'Ket: ' . $data->worker->division }}
                                     </td>
-                                    <td>{{ $data->contract_value }}</td>
+                                    <td>{{ 'Rp. ' . $data->contract_value }}</td>
                                     <td> 
                                         @php
                                             $transaction = App\PSTransaction::where('id_salary', $data->id_contract)
@@ -84,11 +88,15 @@
                                         @endphp
                                         {{ 'Rp. ' . $transaction }}
                                         <br/>
-                                        <a href="{{ route('pct_index', $data->id_contract) }}">
+                                        <a href="{{ route('pct_index', [
+                                            'id' => $data->id_contract,
+                                            'id_prj' => $id_project]) }}">
                                             detail
                                         </a>
                                     </td>
-                                    <td>0</td>
+                                    <td>
+                                        {{ 'Rp. ' . ($data->contract_value - $transaction) }}
+                                    </td>
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">

@@ -14,12 +14,14 @@ class PSTransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
-    {
+    public function index($id, $id_prj)
+    {        
         $data_transaction = PSTransaction::where('id_salary', $id)->get();        
-        $id_salary= $id;
+        $id_salary= $id; 
+        $id_project = $id_prj;       
         
-        return view('project.ps_transaction.index', compact('data_transaction', 'id_salary'));
+        return view('project.ps_transaction.index', compact('data_transaction', 
+            'id_salary', 'id_project'));
     }
 
     /**
@@ -54,7 +56,7 @@ class PSTransactionController extends Controller
             'date' => date('Y-m-d', strtotime($request->date))            
         ]);        
 
-        return redirect('ps_transaction_index/'. $request->id_salary );
+        return redirect('ps_transaction_index/'. $request->id_salary . '/' . $request->id_project);
     }
 
     /**
@@ -100,8 +102,8 @@ class PSTransactionController extends Controller
                 'nominal' => $request->nominal,
                 'date' => date('Y-m-d', strtotime($request->date))            
             ]);        
-
-        return redirect('ps_transaction_index/'. $request->id_salary );
+        
+        return redirect('ps_transaction_index/'. $request->id_salary . '/' . $request->id_project);
     }
 
     /**

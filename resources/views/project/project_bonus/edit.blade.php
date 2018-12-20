@@ -6,11 +6,23 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('project.show', $data_bonus->id_project) }}"> Menu </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <a href="{{ route('worker_salary_index', $data_bonus->id_project) }}"> Gaji Harian </a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <a href="{{ route('project_bonus_index', [
+                        'id' => $data_bonus->id_worker,
+                        'id_prj' => $data_bonus->id_project]) }}"> 
+                        Bonus 
+                    </a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Edit</span>
                 </li>
             </ul>         
         </div>
@@ -30,18 +42,18 @@
                         <form action="{{ action('ProjectBonusController@update', $data_bonus->id_bonus) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">ID Projek</label>
+                                    <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_bonus->id_project }}" disabled class="form-control" />
-                                        <span class="help-block"> ID Projek </span>
+                                        <input type="text" value="{{ $data_bonus->project->name . ' | ' . date('d M, Y', strtotime($data_bonus->project->start)) }}" disabled class="form-control" />
+                                        <span class="help-block"> Projek </span>
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $data_bonus->id_project }}" />
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">ID Pekerja</label>
+                                    <label class="control-label col-md-3">Pekerja</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_bonus->id_worker }}" disabled class="form-control" />
-                                        <span class="help-block"> ID Pekerja </span>
+                                        <input type="text" value="{{ $data_bonus->worker->name . ' | ' . $data_bonus->worker->address }}" disabled class="form-control" />
+                                        <span class="help-block"> Pekerja </span>
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_worker" value="{{ $data_bonus->id_worker }}" />
@@ -88,7 +100,11 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <button type="button" class="btn default">Batal</button>
+                                        <a href="{{ route('project_bonus_index', [
+                                            'id' => $data_bonus->id_worker,
+                                            'id_prj' => $data_bonus->id_project]) }}" class="btn default"> 
+                                            Batal
+                                        </a>
                                     </div>
                                 </div>
                             </div>

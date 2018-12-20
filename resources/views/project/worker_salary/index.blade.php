@@ -6,11 +6,15 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('project.show', $id_project) }}"> Menu </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <a href="{{ route('worker_salary_index', $id_project) }}"> Gaji Harian </a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Daftar</span>
                 </li>
             </ul>         
         </div>
@@ -96,7 +100,8 @@
                                         @endphp
                                         {{ 'Rp. ' . $transaction }}
                                         <br/>
-                                        <a href="{{ route('ps_transaction_index', $data->id_salary) }}">
+                                        <a href="{{ route('ps_transaction_index', ['id' => $data->id_salary, 
+                                            'id_prj' => $data->id_project]) }}">
                                             detail
                                         </a>
                                     </td>
@@ -109,7 +114,9 @@
                                         @endphp
                                         {{ 'Rp. ' . $bonus }}
                                         <br/>
-                                        <a href="{{ route('project_bonus_index', $data->id_worker) }}">
+                                        <a href="{{ route('project_bonus_index', [
+                                            'id' => $data->id_worker,
+                                            'id_prj' => $data->id_project]) }}">
                                             detail
                                         </a>
                                     </td>                                   

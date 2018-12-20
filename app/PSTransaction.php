@@ -21,4 +21,9 @@ class PSTransaction extends Model
     {
         return $this->belongsTo('App\ProjectWorker', 'id_worker');
     }
+
+    public function project()
+    {
+        return $this->belongsTo('App\Project', 'id_project');
+    }
 }

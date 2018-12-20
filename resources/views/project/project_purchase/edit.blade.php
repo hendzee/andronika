@@ -6,11 +6,15 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('project.show', $data_purchase->id_project) }}"> Menu </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <a href="{{ route('project_purchase_index', $data_purchase->id_project) }}"> Pembelian Barang </a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Edit</span>
                 </li>
             </ul>         
         </div>
@@ -97,7 +101,9 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <button type="button" class="btn default">Batal</button>
+                                        <a href="{{ route('project_purchase_index', $data_purchase->id_project) }}" class="btn default"> 
+                                            Batal 
+                                        </a>
                                     </div>
                                 </div>
                             </div>

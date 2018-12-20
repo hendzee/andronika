@@ -6,11 +6,22 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('project.show', $data_transaction->id_project) }}"> Menu </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <a href="{{ route('worker_salary_index', $data_transaction->id_project) }}"> Gaji Harian </a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <a href="{{ route('ps_transaction_index', ['id' => $id_salary, 
+                        'id_prj' => $data_transaction->id_project]) }}"> 
+                        Ambil Gaji 
+                    </a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Baru</span>
                 </li>
             </ul>         
         </div>
@@ -30,28 +41,21 @@
                         <form action="{{ action('PSTransactionController@store', $id_salary) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">ID Projek</label>
+                                    <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_transaction->id_project }}" disabled class="form-control" />
-                                        <span class="help-block"> ID Projek </span>
+                                        <input type="text" value="{{ $data_transaction->project->name . ' | ' . date('d M, Y', strtotime($data_transaction->project->start)) }}" disabled class="form-control" />
+                                        <span class="help-block"> Projek </span>
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $data_transaction->id_project }}" />                                
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">ID Pekerja</label>
+                                    <label class="control-label col-md-3">Pekerja</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_transaction->id_worker }}" disabled class="form-control" />
-                                        <span class="help-block"> ID Pekerja </span>
+                                        <input type="text" value="{{ $data_transaction->worker->name . ' | ' . $data_transaction->worker->address }}" disabled class="form-control" />
+                                        <span class="help-block"> Pekerja </span>
                                     </div>
                                 </div>
-                                <input type="hidden" name="id_worker" value="{{ $data_transaction->id_worker }}" />
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Referensi Gaji</label>
-                                    <div class="col-md-9">
-                                        <input type="text" value="{{ date('d-m-Y', strtotime($data_transaction->salary_date)) }}" disabled class="form-control" />
-                                        <span class="help-block"> Referensi Gaji </span>
-                                    </div>
-                                </div>
+                                <input type="hidden" name="id_worker" value="{{ $data_transaction->id_worker }}" />                                
                                 <input type="hidden" name="id_salary" value="{{ $data_transaction->id_salary }}" />
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nominal</label>
@@ -75,7 +79,10 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <button type="button" class="btn default">Batal</button>
+                                        <a href="{{ route('ps_transaction_index', ['id' => $id_salary, 
+                                                'id_prj' => $data_transaction->id_project]) }}" class="btn default"> 
+                                            Batal 
+                                        </a>
                                     </div>
                                 </div>
                             </div>

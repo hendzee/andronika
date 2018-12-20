@@ -6,11 +6,15 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('project.show', $id_project) }}"> Menu </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <a href="{{ route('project_worker_index', $id_project) }}"> Pekerja Biasa </a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Daftar</span>
                 </li>
             </ul>         
         </div>
@@ -61,26 +65,30 @@
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>                                                                                                                                     
-                                    <th> ID Pekerja </th>
-                                    <th> Nama </th>
+                                    <th> Pekerja </th>                                    
                                     <th> Alamat </th>                                
                                     <th> Telpon </th>                                    
                                     <th> Gender </th>
                                     <th> Agama </th>
-                                    <th> Divisi </th>
+                                    <th> Ket. Kerja </th>
+                                    <th> Met. Gaji </th>
                                     <th> Aksi </th>                                
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($data_worker as $data)
                                 <tr class="odd gradeX">                                                                                                           
-                                    <td>{{ $data->id_worker }}</td>
-                                    <td>{{ $data->name }}</td>
+                                    <td>
+                                        {{ $data->name }}
+                                        <br/>
+                                        {{ $data->id_worker }}
+                                    </td>                                    
                                     <td>{{ $data->address }}</td>    
                                     <td>{{ $data->telp }}</td>                                                                    
                                     <td>{{ $data->gender }}</td>
                                     <td>{{ $data->religion }}</td>
                                     <td>{{ $data->division }}</td>
+                                    <td>{{ $data->salary_status }}</td>
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">

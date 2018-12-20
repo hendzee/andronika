@@ -6,11 +6,15 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('project.show', $id_project) }}"> Menu </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <a href="{{ route('project_purchase_index', $id_project) }}"> Pembelian Barang </a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Daftar</span>
                 </li>
             </ul>         
         </div>
@@ -31,7 +35,7 @@
                                 <div class="col-md-6">
                                     <div class="btn-group">
                                         <a href="{{ route('project_purchase_create', $id_project) }}" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Data Pembalian Baru
+                                            Data Pembelian Baru
                                         </a>
                                     </div>
                                 </div>

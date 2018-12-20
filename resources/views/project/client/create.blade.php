@@ -6,11 +6,11 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{route('client.index')}}">Klien</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <span>Klien Baru</span>
                 </li>
             </ul>         
         </div>
@@ -64,8 +64,8 @@
                                     <div class="col-md-offset-3 col-md-9">
                                         <button type="submit" class="btn green">
                                             Simpan
-                                        </button>
-                                        <button type="button" class="btn default">Batal</button>
+                                        </button>                                        
+                                        <a href="{{route('client.index')}}" class="btn default" >Batal</a>
                                     </div>
                                 </div>
                             </div>

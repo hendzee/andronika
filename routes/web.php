@@ -64,7 +64,7 @@ Route::get('worker_salary_create/{id}', [
     'as' => 'worker_salary_create']);
 
 Route::resource('project_bonus', 'ProjectBonusController');
-Route::get('project_bonus_index/{id}',[
+Route::get('project_bonus_index/{id}/{id_prj}',[
     'uses' => 'ProjectBonusController@index', 
     'as' => 'project_bonus_index']);
 Route::get('project_bonus_create/{id}', [ 
@@ -72,7 +72,7 @@ Route::get('project_bonus_create/{id}', [
     'as' => 'project_bonus_create']);
 
 Route::resource('ps_transaction', 'PSTransactionController');
-Route::get('ps_transaction_index/{id}',[
+Route::get('ps_transaction_index/{id}/{id_prj}',[
     'uses' => 'PSTransactionController@index', 
     'as' => 'ps_transaction_index']);
 Route::get('ps_transaction_create/{id}', [ 
@@ -88,7 +88,7 @@ Route::get('worker_contract_create/{id}', [
     'as' => 'worker_contract_create']);
 
 Route::resource('pct', 'PCTController');
-Route::get('pct_index/{id}',[
+Route::get('pct_index/{id}/{id_prj}',[
     'uses' => 'PCTController@index', 
     'as' => 'pct_index']);
 Route::get('pct_create/{id}', [ 

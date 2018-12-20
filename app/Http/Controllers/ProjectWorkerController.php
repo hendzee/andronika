@@ -54,7 +54,8 @@ class ProjectWorkerController extends Controller
             'telp' => $request->telp,
             'gender' => $request->gender,
             'religion' => $request->religion,
-            'division' => $request->division
+            'division' => $request->division,
+            'salary_status' => $request->salary_status
         ]);
         
         
@@ -104,7 +105,8 @@ class ProjectWorkerController extends Controller
             'telp' => $request->telp,
             'gender' => $request->gender,
             'religion' => $request->religion,
-            'division' => $request->division               
+            'division' => $request->division,
+            'salary_status' => $request->salary_status               
         ]);
     
     return redirect('project_worker_index/' . $request->id_project);

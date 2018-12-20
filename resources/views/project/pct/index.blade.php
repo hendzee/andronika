@@ -6,11 +6,23 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('project.show', $id_project) }}"> Menu </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <a href="{{ route('worker_contract_index', $id_project) }}"> Pekerja Kontrak </a>
+                    <i class="fa fa-circle"></i>
+                </li>                
+                <li>
+                    <a href="{{ route('pct_index', [
+                        'id' => $id_contract,
+                        'id_prj' => $id_project]) }}"> 
+                        Pembayaran Kontrak 
+                    </a>
+                    <i class="fa fa-circle"></i>
+                </li> 
+                <li>
+                    <span>Daftar</span>
                 </li>
             </ul>         
         </div>
@@ -62,8 +74,7 @@
                             <thead>
                                 <tr>                                                                                                                                        
                                     <th> ID Transaksi </th>                                    
-                                    <th> ID Pekerja </th>                                
-                                    <th> Nama </th>
+                                    <th> Pekerja </th>                                                                    
                                     <th> Jumlah </th>
                                     <th> Tanggal Ambil </th>                                    
                                     <th> Aksi </th>                                    
@@ -73,9 +84,12 @@
                                 @foreach($data_transaction as $data)
                                 <tr class="odd gradeX">                                                                                                           
                                     <td>{{ $data->id_transaction }}</td>                                    
-                                    <td>{{ $data->id_worker }}</td>                                       
-                                    <td>{{ $data->worker->name }}</td>        
-                                    <td>{{ $data->nominal }}</td>        
+                                    <td>
+                                        {{ $data->worker->name }}
+                                        <br/>
+                                        {{ $data->id_worker }}                                    
+                                    </td>                                                                           
+                                    <td>{{ 'Rp. ' . $data->nominal }}</td>        
                                     <td>{{ date('d M, y', strtotime($data->date)) }}</td>                                                                                
                                     <td>
                                         <div class="btn-group">

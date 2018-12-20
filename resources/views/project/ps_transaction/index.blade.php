@@ -6,11 +6,21 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('project.show', $id_project) }}"> Menu </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <a href="{{ route('worker_salary_index', $id_project) }}"> Gaji Harian </a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <a href="{{ route('ps_transaction_index', ['id' => $id_salary, 'id_prj' => $id_project]) }}"> 
+                        Ambil Gaji 
+                    </a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Daftar</span>
                 </li>
             </ul>         
         </div>
@@ -61,10 +71,8 @@
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>                                                                                                                                        
-                                    <th> ID Transaksi </th>
-                                    <th> Ref Gaji </th>
-                                    <th> ID Pekerja </th>                                
-                                    <th> Nama </th>
+                                    <th> ID Transaksi </th>                                    
+                                    <th> Pekerja </th>                                                                    
                                     <th> Jumlah </th>
                                     <th> Tanggal Ambil </th>                                    
                                     <th> Aksi </th>                                    
@@ -73,11 +81,13 @@
                             <tbody>
                                 @foreach($data_transaction as $data)
                                 <tr class="odd gradeX">                                                                                                           
-                                    <td>{{ $data->id_transaction }}</td>
-                                    <td>{{ date('d M, y', strtotime($data->salary->salary_date)) }}</td>
-                                    <td>{{ $data->id_worker }}</td>                                       
-                                    <td>{{ $data->worker->name }}</td>        
-                                    <td>{{ $data->nominal }}</td>        
+                                    <td>{{ $data->id_transaction }}</td>                                    
+                                    <td>
+                                        {{ $data->worker->name }}
+                                        <br/>
+                                        {{ $data->id_worker }}
+                                    </td>                                                                           
+                                    <td>{{ 'Rp ' . $data->nominal }}</td>        
                                     <td>{{ date('d M, y', strtotime($data->date)) }}</td>                                                                                
                                     <td>
                                         <div class="btn-group">

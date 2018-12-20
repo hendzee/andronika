@@ -14,12 +14,13 @@ class ProjectBonusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($id, $id_prj)
     {
         $data_bonus = ProjectBonus::where('id_worker', $id)->get();        
-        $id_worker= $id;
-        
-        return view('project.project_bonus.index', compact('data_bonus', 'id_worker'));
+        $id_worker = $id;        
+        $id_project = $id_prj;        
+                
+        return view('project.project_bonus.index', compact('data_bonus', 'id_worker', 'id_project'));
     }
 
     /**
@@ -54,7 +55,7 @@ class ProjectBonusController extends Controller
             'status' => 'belum diambil'
         ]);        
 
-        return redirect('project_bonus_index/'. $request->id_worker );
+        return redirect('project_bonus_index/'. $request->id_worker . '/' . $request->id_project);
     }
 
     /**
@@ -91,18 +92,20 @@ class ProjectBonusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $bonus = ProjectBonus::where('id_bonus', $id)
-            ->first()
-            ->update([                
-                'id_project' => $request->id_project,
-                'id_worker' => $request->id_worker,
-                'bonus' => $request->bonus,
-                'description' => $request->description,
-                'status' => $request->status,
-                'date_take' => date('Y-m-d', strtotime($request->date_take))
-            ]);        
-
-        return redirect('project_bonus_index/'. $request->id_worker );
+        if ($request->status == 'diambil'){
+            $bonus = ProjectBonus::where('id_bonus', $id)
+                ->first()
+                ->update([                
+                    'id_project' => $request->id_project,
+                    'id_worker' => $request->id_worker,
+                    'bonus' => $request->bonus,
+                    'description' => $request->description,
+                    'status' => $request->status,
+                    'date_take' => date('Y-m-d', strtotime($request->date_take))
+                ]);        
+        }
+        
+        return redirect('project_bonus_index/'. $request->id_worker . '/' . $request->id_project);
     }
 
     /**
