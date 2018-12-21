@@ -22,8 +22,63 @@
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
+        <!-- BEGIN DASHBOARD STATS 1-->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
+                    <div class="visual">
+                        <i class="fa fa-comments"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            <span data-counter="counterup" data-value="1349">0</span>
+                        </div>
+                        <div class="desc"> New Feedbacks </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="dashboard-stat dashboard-stat-v2 red" href="#">
+                    <div class="visual">
+                        <i class="fa fa-bar-chart-o"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            <span data-counter="counterup" data-value="12,5">0</span>M$ </div>
+                        <div class="desc"> Total Profit </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="dashboard-stat dashboard-stat-v2 green" href="#">
+                    <div class="visual">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            <span data-counter="counterup" data-value="549">0</span>
+                        </div>
+                        <div class="desc"> New Orders </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
+                    <div class="visual">
+                        <i class="fa fa-globe"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"> +
+                            <span data-counter="counterup" data-value="89"></span>% </div>
+                        <div class="desc"> Brand Popularity </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <!-- END DASHBOARD STATS 1-->
+        <div class="row">
+            <div class="col-md-6">
                 <!-- BEGIN SAMPLE FORM PORTLET-->
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
@@ -75,6 +130,54 @@
                                         <td>
                                             <a href="{{ route('worker_contract_index', $id_project) }}" class="btn green btn-md">LIHAT DETAIL</a>
                                         </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- END SAMPLE FORM PORTLET-->                
+            </div>
+            <div class="col-md-6">
+                <!-- BEGIN SAMPLE FORM PORTLET-->
+                <div class="portlet light bordered">                    
+                    <div class="portlet-body">
+                        <div class="table-scrollable">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th> Informasi </th>
+                                        <th> Detail </th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nama Projek</td>
+                                        <td>{{ $data_project->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+                                        <td>{{ $data_project->status }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Klien</td>
+                                        <td>{{ $data_project->client->description }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Daerah</td>
+                                        <td>{{ $data_project->island }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal Mulai</td>
+                                        <td>{{ date('d M, Y', strtotime($data_project->start)) }}</td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td>Tgl. Berakhir / Deadline</td>
+                                        <td>{{ date('d M, Y', strtotime($data_project->end)) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nilai Projek</td>
+                                        <td>{{ 'Rp. ' . $data_project->total }}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Project;
 use App\Client;
 use App\GeneratorId;
+use App\ProjectPayment;
 
 class ProjectController extends Controller
 {
@@ -66,11 +67,11 @@ class ProjectController extends Controller
     public function show($id)
     {
         $data_project = Project::where('id_project', $id)
-        ->first();
+            ->first();
 
         $id_project = $id;
 
-        return view('project.show', compact('data_project', 'id_project'));
+        return view('project.show', compact('data_project', 'id_project', 'current_financial'));
     }
 
     /**
