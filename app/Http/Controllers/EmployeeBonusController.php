@@ -52,9 +52,8 @@ class EmployeeBonusController extends Controller
             'id_bonus' => $gen->generateId('employee_bonus'),
             'id_employee' => $request->id_employee,            
             'id_salary' => $request->id_salary,
-            'bonus' => $request->bonus,
-            'date' => date("Y-m-d", strtotime($request->date)),
-            'status' => $request->status,
+            'bonus' => $request->bonus,            
+            'status' => 'belum diambil',
             'description' => $request->desc
         ]);
         

@@ -61,8 +61,7 @@
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>                                                                                                    
-                                    <th> ID Karyawan </th>
-                                    <th> Nama </th>
+                                    <th> Karyawan </th>                                    
                                     <th> Devisi </th>
                                     <th> Tanggal Gaji </th>                                
                                     <th> Jumlah </th>
@@ -74,25 +73,34 @@
                             </thead>
                             <tbody>
                                 @foreach($data_employee as $data)
-                                <tr class="odd gradeX">                                                                       
-                                    <td>{{ $data->id_employee }}</td>
-                                    <td>{{ $data->employee->name }}</td>
+                                <tr class="odd gradeX">                                                                                                           
+                                    <td>
+                                        {{ $data->id_employee }}
+                                        <br/>
+                                        {{ $data->employee->name }}
+                                    </td>
                                     <td>{{ $data->employee->division }}</td>
                                     <td>{{ date('d M, Y', strtotime($data->date)) }}</td> 
-                                    <td>{{ $data->salary }}</td>                                
+                                    <td>{{ 'Rp. ' . $data->salary }}</td>                                
                                     <td>
-                                        {{ $transaction = App\EmployeeTransaction::where('id_salary', $data->id_salary)
-                                            ->sum('nominal') }}
+                                        @php
+                                           $transaction = App\EmployeeTransaction::where('id_salary', $data->id_salary)
+                                            ->sum('nominal')
+                                        @endphp
+                                        {{ 'Rp. ' . $transaction }}
                                         <br/>
                                         <a href="{{ route('employee_transaction_index', $data->id_salary) }}">
                                             detail
                                         </a>
                                     </td>
-                                    <td>{{ $data->salary - $transaction }}</td>
+                                    <td>{{ 'Rp. ' . ($data->salary - $transaction) }}</td>
                                     <td>
-                                        {{ $bonus = App\EmployeeBonus::where('id_employee', $data->id_employee)
-                                        ->where('status', 'belum diambil')
-                                        ->sum('bonus') }}
+                                        @php
+                                           $bonus = App\EmployeeBonus::where('id_employee', $data->id_employee)
+                                            ->where('status', 'belum diambil')
+                                            ->sum('bonus') 
+                                        @endphp
+                                        {{ 'Rp . ' . $bonus }}
                                         <br/>
                                         <a href="{{ route('employee_bonus_index', $data->id_salary) }}">
                                             detail
@@ -104,8 +112,8 @@
                                                 AKSI <i class="fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li>
-                                                    <a href="employee_salary/{{ $data->id_salary }}/edit">
+                                                <li>                                                    
+                                                    <a href="{{ route('employee_salary.edit', $data->id_salary) }}">
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>

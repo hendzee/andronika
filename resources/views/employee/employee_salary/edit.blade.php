@@ -28,19 +28,12 @@
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
                         <form action="{{ action('EmployeeSalaryController@update', $data_employee->id_salary) }}" method="POST" class="form-horizontal form-row-seperated">
-                            <div class="form-body">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">ID Gaji</label>
-                                    <div class="col-md-9">
-                                        <input type="text" value="{{ $data_employee->employee->id_employee }}" disabled class="form-control" />
-                                        <span class="help-block"> ID Gaji </span>
-                                    </div>
-                                </div>
+                            <div class="form-body">                                
                                 <input type="hidden" name="id_salary" value="{{ $data_employee->id_salary }}" />   
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Pekerja</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_employee->employee->name . '-' . $data_employee->id_employee }}" disabled class="form-control" />
+                                        <input type="text" value="{{ $data_employee->employee->name . ' | ' . $data_employee->employee->address }}" disabled class="form-control" />
                                         <span class="help-block"> Keterangan Pekerja </span>
                                     </div>
                                 </div>

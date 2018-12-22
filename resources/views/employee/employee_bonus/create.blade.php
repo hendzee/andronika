@@ -52,31 +52,14 @@
                                         <input type="text" name="bonus" placeholder="Nominal" class="form-control" />
                                         <span class="help-block"> Jumlah bonus yang Diterima Pekerja </span>
                                     </div>
-                                </div>    
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Status</label>
-                                    <div class="col-md-9">
-                                        <select class="form-control" name="status">
-                                            <option value="belum diambil">Belum diambil</option>
-                                            <option value="diambil">Sudah diambil</option>
-                                        </select>
-                                        <span class="help-block"> Isikan Jika Bonus Sudah Diambil </span>
-                                    </div>
-                                </div> 
+                                </div>                                    
                                 <div class="form-group">
                                     <label class="control-label col-md-3">keterangan</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="desc" placeholder="Nominal" class="form-control" />
-                                        <span class="help-block"> Jumlah Gaji yang Diterima Pekerja </span>
+                                        <input type="text" name="desc" placeholder="Keterangan Bonus" class="form-control" />
+                                        <span class="help-block"> Keterangan Bonus </span>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Tanggal Pengambilan</label>
-                                    <div class="col-md-9">
-                                        <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Pengambilan Bonus </span>
-                                    </div>
-                                </div>                                                                
+                                </div>                                                                                            
                             </div>
                             {{ csrf_field() }}
                             <div class="form-actions">

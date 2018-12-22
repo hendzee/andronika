@@ -62,8 +62,7 @@
                             <thead>
                                 <tr>                                                                                                                                        
                                     <th> ID Transaksi </th>
-                                    <th> ID Karyawan </th>                                
-                                    <th> Nama </th>
+                                    <th> Karyawan </th>                                                                    
                                     <th> Jumlah </th>
                                     <th> Tanggal Ambil </th>                                    
                                     <th> Aksi </th>                                    
@@ -73,9 +72,12 @@
                                 @foreach($data_transaction as $data)
                                 <tr class="odd gradeX">                                                                                                           
                                     <td>{{ $data->id_transaction }}</td>
-                                    <td>{{ $data->id_employee }}</td>                                       
-                                    <td>{{ $data->employee->name }}</td>        
-                                    <td>{{ $data->nominal }}</td>        
+                                    <td>
+                                        {{ $data->employee->name }}
+                                        <br/>
+                                        {{ $data->id_employee }}                                    
+                                    </td>                                                                           
+                                    <td>{{ 'Rp . ' . $data->nominal }}</td>        
                                     <td>{{ date('d M, y', strtotime($data->date)) }}</td>                                                                                
                                     <td>
                                         <div class="btn-group">

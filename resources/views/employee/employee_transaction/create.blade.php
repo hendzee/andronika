@@ -28,20 +28,13 @@
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
                         <form action="{{ action('EmployeeTransactionController@store', $id_trans) }}" method="POST" class="form-horizontal form-row-seperated">
-                            <div class="form-body">                              
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">ID karyawan</label>
-                                    <div class="col-md-9">
-                                        <input type="text" value="{{ $data_transaction->id_employee }}" disabled class="form-control" />
-                                        <span class="help-block"> ID Karyawan </span>
-                                    </div>
-                                </div>
+                            <div class="form-body">                                                              
                                 <input type="hidden" name="id_employee" value="{{ $data_transaction->id_employee }}" />
                                 <input type="hidden" name="id_salary" value="{{ $id_trans }}" />
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nama</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_transaction->employee->name }}" disabled class="form-control" />
+                                        <input type="text" value="{{ $data_transaction->employee->name . ' | ' . $data_transaction->employee->address}}" disabled class="form-control" />
                                         <span class="help-block"> nama </span>
                                     </div>
                                 </div>

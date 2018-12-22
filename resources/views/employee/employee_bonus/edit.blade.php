@@ -58,7 +58,7 @@
                                     <label class="control-label col-md-3">Nominal</label>
                                     <div class="col-md-9">
                                         <input type="text" value="{{ $data_bonus->bonus }}" name="bonus" placeholder="Nominal" class="form-control" />
-                                        <span class="help-block"> Jumlah Gaji yang Diterima Pekerja </span>
+                                        <span class="help-block"> Jumlah Bonus yang Diterima Pekerja </span>
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -62,8 +62,7 @@
                             <thead>
                                 <tr>                                                                                                                                        
                                     <th> ID Bonus </th>
-                                    <th> ID Karyawan </th>                                
-                                    <th> Nama </th>
+                                    <th> Karyawan </th>                                                                    
                                     <th> Bonus </th>
                                     <th> keterangan </th>
                                     <th> Status </th>
@@ -75,9 +74,12 @@
                                 @foreach($data_bonus as $data)
                                 <tr class="odd gradeX">                                                                                                           
                                     <td>{{ $data->id_bonus }}</td>
-                                    <td>{{ $data->id_employee }}</td>                                       
-                                    <td>{{ $data->employee->name }}</td>        
-                                    <td>{{ $data->bonus }}</td>  
+                                    <td>
+                                        {{ $data->employee->name }}
+                                        <br/>
+                                        {{ $data->id_employee }}
+                                    </td>                                                                           
+                                    <td>{{ 'Rp.' . $data->bonus }}</td>  
                                     <td>{{ $data->description }}</td> 
                                     <td>{{ $data->status }}</td>         
                                     <td>{{ date('d M, y', strtotime($data->date)) }}</td>                                                                                
