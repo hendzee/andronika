@@ -6,11 +6,11 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('employee_salary.index') }}">Gaji Karyawan</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <span>Baru</span>
                 </li>
             </ul>         
         </div>
@@ -36,7 +36,7 @@
                                         <select name="id_employee" class="form-control">
                                             @foreach($data_employee as $data)
                                                 <option value="{{ $data->id_employee }}">
-                                                    {{ $data->name . ' ' . $data->id_employee }}
+                                                    {{ $data->name . ' | ' . $data->address }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -63,7 +63,9 @@
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
                                         <button type="submit" class="btn green">Simpan</button>
-                                        <button type="button" class="btn default">Batal</button>
+                                        <a href="{{ route('employee_salary.index') }}" class="btn default">
+                                            Batal
+                                        </a>
                                     </div>
                                 </div>
                             </div>

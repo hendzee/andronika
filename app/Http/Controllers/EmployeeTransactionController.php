@@ -20,6 +20,7 @@ class EmployeeTransactionController extends Controller
         //
         $data_transaction = EmployeeTransaction::where('id_salary', $id)->get();
         $id_trans = $id;
+        
         return view('employee.employee_transaction.index', compact('data_transaction', 'id_trans'));
     }
 
