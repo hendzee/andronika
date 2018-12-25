@@ -6,18 +6,18 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{ route('employee.index') }}">Karyawan</a>
+                    <a href="{{ route('employee_salary.index') }}">Gaji Karyawan</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Daftar Karyawan</span>
+                    <span>Daftar Gaji</span>
                 </li>
             </ul>         
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Data Karyawan
+            Gaji Karyawan
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -30,8 +30,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="employee/create" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Karyawan Baru
+                                        <a href="employee_salary/create" id="sample_editable_1_new" class="btn sbold green"> 
+                                            Gaji Baru
                                         </a>
                                     </div>
                                 </div>
@@ -61,42 +61,68 @@
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>                                                                                                    
-                                    <th> ID Karyawan </th>
-                                    <th> Nama </th>
-                                    <th> Alamat </th>                                
-                                    <th> Telpon </th>
-                                    <th> Umur </th>
-                                    <th> Gender </th>
-                                    <th> Agama </th>
-                                    <th> Divisi </th>
+                                    <th> Karyawan </th>                                    
+                                    <th> Devisi </th>
+                                    <th> Tanggal Gaji </th>                                
+                                    <th> Jumlah </th>
+                                    <th> Diambil </th>
+                                    <th> Sisa </th>
+                                    <th> Bonus </th>
                                     <th> Aksi </th>                                
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($data_employee as $data)
-                                <tr class="odd gradeX">                                                                       
-                                    <td>{{ $data->id_employee }}</td>
-                                    <td>{{ $data->name }}</td>
-                                    <td>{{ $data->address }}</td>    
-                                    <td>{{ $data->telp }}</td>                                
-                                    <td>{{ $data->age }}</td>
-                                    <td>{{ $data->gender }}</td>
-                                    <td>{{ $data->religion }}</td>
-                                    <td>{{ $data->division }}</td>
+                                <tr class="odd gradeX">                                                                                                           
+                                    <td>
+                                        {{ $data->id_employee }}
+                                        <br/>
+                                        {{ $data->employee->name }}
+                                    </td>
+                                    <td>{{ $data->employee->division }}</td>
+                                    <td>{{ date('d M, Y', strtotime($data->date)) }}</td> 
+                                    <td>{{ 'Rp. ' . $data->salary }}</td>                                
+                                    <td>
+                                        @php
+                                           $transaction = App\EmployeeTransaction::where('id_salary', $data->id_salary)
+                                            ->sum('nominal')
+                                        @endphp
+                                        {{ 'Rp. ' . $transaction }}
+                                        <br/>
+                                        <a href="{{ route('employee_transaction_index', $data->id_salary) }}">
+                                            detail
+                                        </a>
+                                    </td>
+                                    <td>{{ 'Rp. ' . ($data->salary - $transaction) }}</td>
+                                    <td>
+                                        @php
+                                           $bonus = App\EmployeeBonus::where('id_employee', $data->id_employee)
+                                            ->where('status', 'belum diambil')
+                                            ->sum('bonus') 
+                                        @endphp
+                                        {{ 'Rp . ' . $bonus }}
+                                        <br/>
+                                        <a href="{{ route('employee_bonus_index', $data->id_salary) }}">
+                                            detail
+                                        </a>
+                                    </td>
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                                 AKSI <i class="fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li>
-                                                    <a href="employee/{{ $data->id_employee }}/edit">
+                                                <li>                                                    
+                                                    <a href="{{ route('employee_salary.edit', $data->id_salary) }}">
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="">
-                                                        <i class="icon-tag"></i> Hapus
+                                                    {{-- @csrf --}}
+                                                    {{-- @method('DELETE') --}}
+                                                    {{-- <button type="submit" class="btn btn-danger"> <i class="icon-tag"></i> Hapus</button> --}}
+                                                    <a href="#">
+                                                        <i class="icon-tag"></i> Hapus 
                                                     </a>
                                                 </li>                                                
                                             </ul>

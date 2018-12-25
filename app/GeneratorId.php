@@ -31,6 +31,24 @@ class GeneratorId extends Model
                 $unique_code = 'EM';
                 $obj = new Employee();
             break;
+                        
+            case 'employee_salary':
+                $search_id = 'id_employee';
+                $unique_code = 'ES';
+                $obj = new EmployeeSalary();
+            break;
+
+            case 'employee_transaction':
+                $search_id = 'id_transaction';
+                $unique_code = 'ET';
+                $obj = new EmployeeTransaction();
+            break;
+
+            case 'employee_bonus':
+                $search_id = 'id_bonus';
+                $unique_code = 'BS';
+                $obj = new EmployeeBonus();
+            break;            
 
             case 'client':
                 $search_id = 'id_client';

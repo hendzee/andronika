@@ -6,18 +6,22 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{ route('employee.index') }}">Karyawan</a>
+                    <a href="{{ route('employee_salary.index') }}">Gaji Karyawan</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Daftar Karyawan</span>
+                    <a href="{{ route('employee_transaction_index', $id_trans) }}">Pengambilan Gaji</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Baru</span>
                 </li>
             </ul>         
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Data Karyawan
+            Bonus Karyawan
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -30,8 +34,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="employee/create" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Karyawan Baru
+                                        <a href="{{ route('employee_bonus_create', $id_salary) }}" id="sample_editable_1_new" class="btn sbold green"> 
+                                            Bonus Baru
                                         </a>
                                     </div>
                                 </div>
@@ -60,29 +64,29 @@
                         </div>
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
-                                <tr>                                                                                                    
-                                    <th> ID Karyawan </th>
-                                    <th> Nama </th>
-                                    <th> Alamat </th>                                
-                                    <th> Telpon </th>
-                                    <th> Umur </th>
-                                    <th> Gender </th>
-                                    <th> Agama </th>
-                                    <th> Divisi </th>
-                                    <th> Aksi </th>                                
+                                <tr>                                                                                                                                        
+                                    <th> ID Bonus </th>
+                                    <th> Karyawan </th>                                                                    
+                                    <th> Bonus </th>
+                                    <th> keterangan </th>
+                                    <th> Status </th>
+                                    <th> Tanggal Ambil </th>                                    
+                                    <th> Aksi </th>                                    
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data_employee as $data)
-                                <tr class="odd gradeX">                                                                       
-                                    <td>{{ $data->id_employee }}</td>
-                                    <td>{{ $data->name }}</td>
-                                    <td>{{ $data->address }}</td>    
-                                    <td>{{ $data->telp }}</td>                                
-                                    <td>{{ $data->age }}</td>
-                                    <td>{{ $data->gender }}</td>
-                                    <td>{{ $data->religion }}</td>
-                                    <td>{{ $data->division }}</td>
+                                @foreach($data_bonus as $data)
+                                <tr class="odd gradeX">                                                                                                           
+                                    <td>{{ $data->id_bonus }}</td>
+                                    <td>
+                                        {{ $data->employee->name }}
+                                        <br/>
+                                        {{ $data->id_employee }}
+                                    </td>                                                                           
+                                    <td>{{ 'Rp.' . $data->bonus }}</td>  
+                                    <td>{{ $data->description }}</td> 
+                                    <td>{{ $data->status }}</td>         
+                                    <td>{{ date('d M, y', strtotime($data->date)) }}</td>                                                                                
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -90,7 +94,7 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a href="employee/{{ $data->id_employee }}/edit">
+                                                    <a href="{{ route('employee_bonus.edit', $data->id_bonus) }}">
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>
@@ -105,7 +109,7 @@
                                 </tr>
                                 @endforeach                                
                             </tbody>
-                        </table>
+                        </table>                        
                     </div>
                 </div>
                 <!-- END SAMPLE FORM PORTLET-->                

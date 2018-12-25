@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('dashboard.index');
 });
 
-Route::resource('employee', 'EmployeeController');
 Route::resource('client', 'ClientController');
 
 Route::resource('project', 'ProjectController');
@@ -97,4 +96,22 @@ Route::get('pct_create/{id}', [
 
 Route::resource('warehouse', 'WarehouseController');
 Route::resource('warehouse_purchase', 'WarehousePurchaseController');
-    
+
+Route::resource('employee', 'EmployeeController');
+Route::resource('employee_salary', 'EmployeeSalaryController');
+
+Route::resource('employee_transaction', 'EmployeeTransactionController');
+Route::get('employee_transaction_index/{id}',[
+    'uses' => 'EmployeeTransactionController@index', 
+    'as' => 'employee_transaction_index']);
+Route::get('employee_transaction_create/{id}', [ 
+    'uses' => 'EmployeeTransactionController@create', 
+    'as' => 'employee_transaction_create']);
+
+Route::resource('employee_bonus', 'EmployeeBonusController');
+Route::get('employee_bonus_index/{id}',[
+    'uses' => 'EmployeeBonusController@index', 
+    'as' => 'employee_bonus_index']);
+Route::get('employee_bonus_create/{id}', [ 
+    'uses' => 'EmployeeBonusController@create', 
+    'as' => 'employee_bonus_create']);

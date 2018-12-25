@@ -88,6 +88,11 @@
                             <span class="title">Data Karyawan</span>
                         </a>
                     </li>
+                    <li class="nav-item  ">
+                        <a href="{{ route( 'employee_salary.index' ) }}" class="nav-link ">
+                            <span class="title">Gaji Karyawan</span>
+                        </a>
+                    </li>
                 </ul>                
             </li>
         </ul>
