@@ -75,9 +75,9 @@
                                 @foreach($data_employee as $data)
                                 <tr class="odd gradeX">                                                                                                           
                                     <td>
-                                        {{ $data->id_employee }}
-                                        <br/>
                                         {{ $data->employee->name }}
+                                        <br/>
+                                        {{ $data->id_employee }}
                                     </td>
                                     <td>{{ $data->employee->division }}</td>
                                     <td>{{ date('d M, Y', strtotime($data->date)) }}</td> 

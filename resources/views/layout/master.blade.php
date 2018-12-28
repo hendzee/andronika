@@ -43,7 +43,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="{{ asset('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') }}" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="{{ asset('assets/global/css/components.min.css') }}" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="{{ asset('assets/global/css/components.css') }}" rel="stylesheet" id="style_components" type="text/css" />
     <link href="{{ asset('assets/global/css/plugins.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
     <link href="{{ asset('assets/global/plugins/bootstrap-table/bootstrap-table.min.css') }}" rel="stylesheet" type="text/css" />

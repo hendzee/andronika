@@ -74,11 +74,9 @@
                             <tbody>
                                 @foreach($data_project as $data)
                                 <tr class="odd gradeX">                                                                       
-                                    <td>
-                                        {{ $data->name }}
-                                        <br/>
+                                    <td>                                        
                                         <a href="project/{{ $data->id_project }}">
-                                            {{ $data->id_project }}
+                                            {{ $data->name }}
                                         </a>                                        
                                     </td>
                                     <td>

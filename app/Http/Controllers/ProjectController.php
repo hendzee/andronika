@@ -7,6 +7,10 @@ use App\Project;
 use App\Client;
 use App\GeneratorId;
 use App\ProjectPayment;
+use App\WorkerSalary;
+use App\ProjectBonus;
+use App\ProjectPurchase;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -66,12 +70,36 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
+        //financial data
+        $income = ProjectPayment::where('id_project', $id)
+            ->get()
+            ->sum('transfer');
+
+        $worker_payment = WorkerSalary::select(DB::raw('sum(salary * fullday) as total'))
+            ->where('id_project', $id)
+            ->first();
+        
+        $project_bonus = ProjectBonus::where('id_project', $id)
+            ->get()
+            ->sum('bonus');
+
+        $project_purchase = ProjectPurchase::select(DB::raw('sum(price_per_item * total_item) as total'))
+            ->where('id_project', $id)
+            ->first();
+        
+        $outcome = ($worker_payment->total) + $project_bonus + ($project_purchase->total);
+
+        $assets = $income - $outcome;
+        $profit = ($assets / $income) * 100;
+        //end financial data
+
         $data_project = Project::where('id_project', $id)
             ->first();
 
         $id_project = $id;
-
-        return view('project.show', compact('data_project', 'id_project', 'current_financial'));
+        
+        return view('project.show', compact('data_project', 'id_project',
+            'income', 'outcome', 'assets', 'profit'));
     }
 
     /**

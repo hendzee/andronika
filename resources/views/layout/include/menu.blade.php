@@ -95,6 +95,20 @@
                     </li>
                 </ul>                
             </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-money"></i>
+                    <span class="title">Mutasi Uang</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{ route( 'employee.index' ) }}" class="nav-link ">
+                            <span class="title">Data Mutasi</span>
+                        </a>
+                    </li>                    
+                </ul>                
+            </li>
         </ul>
         <!-- END SIDEBAR MENU -->
         <!-- END SIDEBAR MENU -->
