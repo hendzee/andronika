@@ -17,7 +17,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Klien Baru          
+            Projek Baru          
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -59,17 +59,7 @@
                                         </select>
                                         <span class="help-block"> Daerah </span>
                                     </div>
-                                </div>  
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Status</label>
-                                    <div class="col-md-9">
-                                        <select name="status" class="form-control">
-                                            <option value="Proses">Proses</option>
-                                            <option value="Selesai">Selesai</option>                                            
-                                        </select>
-                                        <span class="help-block"> Status Projek </span>
-                                    </div>
-                                </div>                            
+                                </div>                                  
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Tanggal Mulai</label>
                                     <div class="col-md-9">

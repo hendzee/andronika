@@ -115,3 +115,5 @@ Route::get('employee_bonus_index/{id}',[
 Route::get('employee_bonus_create/{id}', [ 
     'uses' => 'EmployeeBonusController@create', 
     'as' => 'employee_bonus_create']);
+
+Route::resource('mutation', 'MutationController');

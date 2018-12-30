@@ -103,7 +103,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">
-                        <a href="{{ route( 'employee.index' ) }}" class="nav-link ">
+                        <a href="{{ route( 'mutation.index' ) }}" class="nav-link ">
                             <span class="title">Data Mutasi</span>
                         </a>
                     </li>                    

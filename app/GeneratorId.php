@@ -14,6 +14,7 @@ use App\ProjectBonus;
 use App\PSTransaction;
 use App\WarehousePurchase;
 use App\WorkerContract;
+use App\Mutation;
 
 class GeneratorId extends Model
 {
@@ -108,6 +109,12 @@ class GeneratorId extends Model
                 $search_id = 'id_contract';
                 $unique_code = 'CT';
                 $obj = new WorkerContract();
+            break;
+
+            case 'mutation':
+                $search_id = 'id_mutation';
+                $unique_code = 'MT';
+                $obj = new Mutation();
             break;
         }
 

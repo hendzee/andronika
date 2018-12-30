@@ -53,7 +53,7 @@ class ProjectController extends Controller
             'id_client' => $request->id_client,
             'name' => $request->name,
             'island' => $request->island,
-            'status' => $request->status,
+            'status' => 'PROSES',
             'start' => date('Y-m-d', strtotime($request->start)),
             'end' => date('Y-m-d', strtotime($request->end)),
             'total' => $request->total,            
