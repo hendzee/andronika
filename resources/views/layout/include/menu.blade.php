@@ -32,7 +32,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">
-                        <a href="#" class="nav-link ">
+                        <a href="{{ route('dashboard.index') }}" class="nav-link ">
                             <span class="title">Menu</span>
                         </a>
                     </li>                                      

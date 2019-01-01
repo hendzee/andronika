@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('dashboard.index');
 });
 
+Route::resource('dashboard', 'DashboardController');
+
 Route::resource('client', 'ClientController');
 
 Route::resource('project', 'ProjectController');
