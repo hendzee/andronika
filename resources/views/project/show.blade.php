@@ -120,6 +120,12 @@
                                             <a href="{{ route('worker_contract_index', $id_project) }}" class="btn green btn-md">LIHAT DETAIL</a>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>DATA MUTASI</td>
+                                        <td>
+                                            <a href="{{ route('mutation.show', $id_project) }}" class="btn green btn-md">LIHAT DETAIL</a>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

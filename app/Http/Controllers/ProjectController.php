@@ -11,6 +11,7 @@ use App\WorkerSalary;
 use App\ProjectBonus;
 use App\ProjectPurchase;
 use Illuminate\Support\Facades\DB;
+use App\Mutation;
 
 class ProjectController extends Controller
 {
@@ -71,7 +72,7 @@ class ProjectController extends Controller
     public function show($id)
     {
         //financial data
-        $income = ProjectPayment::where('id_project', $id)
+        $payment = ProjectPayment::where('id_project', $id)
             ->get()
             ->sum('transfer');
 
@@ -86,8 +87,19 @@ class ProjectController extends Controller
         $project_purchase = ProjectPurchase::select(DB::raw('sum(price_per_item * total_item) as total'))
             ->where('id_project', $id)
             ->first();
+
+        $mutation_in = Mutation::where('destiny', $id)
+            ->get()
+            ->sum('nominal');
+
+        $mutation_out = Mutation::where('source', $id)
+            ->get()
+            ->sum('nominal');
+
+        $income = $payment + $mutation_in;
         
-        $outcome = ($worker_payment->total) + $project_bonus + ($project_purchase->total);
+        $outcome = ($worker_payment->total) + $project_bonus + ($project_purchase->total)
+            + $mutation_out;
 
         $assets = $income - $outcome;
         $profit = ($assets / $income) * 100;
