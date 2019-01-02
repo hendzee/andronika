@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="employee/create" id="sample_editable_1_new" class="btn sbold green"> 
+                                        <a href="{{ route('warehouse_rent.create') }}" id="sample_editable_1_new" class="btn sbold green"> 
                                             Peminjaman Baru
                                         </a>
                                     </div>
@@ -67,53 +67,74 @@
                                     <th> ID Peminjaman </th>
                                     <th> Klien </th>
                                     <th> Nama Barang </th>                                
-                                    <th> Jml. Barang </th>
+                                    <th> Jumlah </th>
                                     <th> Hrg. Sewa/Hari </th>
                                     <th> Tgl. Sewa </th>
-                                    <th> Tot. Pembayaran </th>                                    
+                                    <th> Tot. Pembayaran </th>
+                                    <th> Status </th>                                    
                                     <th> Aksi </th>                                
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($data_rent as $data)
-                                <tr class="odd gradeX">                                                                       
-                                    <td>{{ $data->id_rent }}</td>
-                                    <td>
-                                        {{ $data->client->description }}
-                                        <br/>
-                                        {{ $data->client->address }}
-                                    </td>
-                                    <td>{{ $data->item_name }}</td>    
-                                    <td>{{ $data->number_item }}</td>                                
-                                    <td>{{ 'Rp. ' . $data->price_day }}</td>
-                                    <td>
-                                        {{ 
-                                            date('d M, Y', strtotime($data->start)) 
-                                            . ' - ' 
-                                            . date('d M, Y', strtotime($data->end)) 
-                                        }}
-                                    </td>
-                                    <td>{{ 't' }}</td>                                    
-                                    <td>
-                                        <div class="btn-group">
-                                            <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                                AKSI <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li>
-                                                    <a href="employee/{{ $data->id_employee }}/edit">
-                                                        <i class="icon-docs"></i> Edit 
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <i class="icon-tag"></i> Hapus
-                                                    </a>
-                                                </li>                                                
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    @php
+                                        $start = new DateTime($data->start);
+                                        $end = new DateTime($data->end);
+                                        $diff = date_diff($start, $end);
+                                        $finalDiff =  ($diff->format('%a')) + 1;
+                                    @endphp
+
+                                    <tr class="odd gradeX">                                                                       
+                                        <td>{{ $data->id_rent }}</td>
+                                        <td>
+                                            {{ $data->client->description }}
+                                            <br/>
+                                            {{ $data->client->address }}
+                                        </td>
+                                        <td>{{ $data->item_name }}</td>    
+                                        <td>{{ $data->number_item }}</td>                                
+                                        <td>{{ 'Rp. ' . $data->price_day }}</td>
+                                        <td>
+                                            {{ 
+                                                date('d M, Y', strtotime($data->start)) 
+                                                . ' - ' 
+                                                . date('d M, Y', strtotime($data->end))                                                                                             
+                                            }}
+                                            <br/>
+                                            <span class="label label-sm label-danger top-space">
+                                                {{ $finalDiff . ' hari' }}
+                                            </span>
+                                        </td>                                   
+                                        <td>
+                                            {{ 'Rp. ' 
+                                                . ($finalDiff * ($data->price_day) * ($data->number_item))
+                                            }}
+                                        </td>
+                                        <td>
+                                            <span class="label label-sm label-danger">
+                                                {{ $data->status }}
+                                            </span>
+                                        </td>                                    
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                    AKSI <i class="fa fa-angle-down"></i>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        <a href="{{ route('warehouse_rent.edit', $data->id_rent) }}">
+                                                            <i class="icon-docs"></i> Edit 
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <i class="icon-tag"></i> Hapus
+                                                        </a>
+                                                    </li>                                                
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach                                
                             </tbody>
                         </table>

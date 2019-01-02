@@ -17,7 +17,7 @@ class ClientController extends Controller
     {
         $data_client = Client::all();
         
-        return view('project.client.index', compact('data_client'));
+        return view('client.index', compact('data_client'));
     }
 
     /**
@@ -27,7 +27,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-       return view('project.client.create');
+       return view('client.create');
     }
 
     /**
@@ -73,7 +73,7 @@ class ClientController extends Controller
         $data_client = Client::where('id_client', $id)
             ->first();
 
-        return view('project.client.edit', compact('data_client'));
+        return view('client.edit', compact('data_client'));
     }
 
     /**

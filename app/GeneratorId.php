@@ -15,6 +15,7 @@ use App\PSTransaction;
 use App\WarehousePurchase;
 use App\WorkerContract;
 use App\Mutation;
+use App\WarehouseRent;
 
 class GeneratorId extends Model
 {
@@ -115,6 +116,12 @@ class GeneratorId extends Model
                 $search_id = 'id_mutation';
                 $unique_code = 'MT';
                 $obj = new Mutation();
+            break;
+
+            case 'warehouse_rent':
+                $search_id = 'id_rent';
+                $unique_code = 'RN';
+                $obj = new WarehouseRent();
             break;
         }
 

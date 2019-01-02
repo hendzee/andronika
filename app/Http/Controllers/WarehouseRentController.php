@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\WarehouseRent;
+use App\Warehouse;
+use App\Client;
+use App\GeneratorId;
 
 class WarehouseRentController extends Controller
 {
@@ -25,8 +28,12 @@ class WarehouseRentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $data_client = Client::all();
+        $data_item = Warehouse::where('rent_status', 'BOLEH')
+            ->get();
+
+        return view('warehouse.warehouse_rent.create', compact('data_client', 'data_item'));
     }
 
     /**
@@ -37,7 +44,20 @@ class WarehouseRentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $gen = new GeneratorId();
+
+        $warehouse_rent = WarehouseRent::create([
+            'id_rent' => $gen->generateId('warehouse_rent'),
+            'id_client' => $request->id_client,
+            'item_name' => $request->item_name,
+            'number_item' => $request->number_item,
+            'price_day' => $request->price_day,
+            'start' => date('Y-m-d', strtotime($request->start)),
+            'end' => date('Y-m-d', strtotime($request->end)),
+            'status' => 'DISEWA'
+        ]);
+
+        return redirect('warehouse_rent');
     }
 
     /**
@@ -59,7 +79,15 @@ class WarehouseRentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data_client = Client::all();
+        $data_item = Warehouse::where('rent_status', 'BOLEH')
+            ->get();
+
+        $data_rent = WarehouseRent::where('id_rent', $id)
+            ->first();
+
+        return view('warehouse.warehouse_rent.edit', compact('data_client', 'data_item', 
+            'data_rent'));
     }
 
     /**
@@ -71,7 +99,19 @@ class WarehouseRentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $warehouse_rent = WarehouseRent::where('id_rent', $id)
+            ->first()
+            ->update([                
+                'id_client' => $request->id_client,
+                'item_name' => $request->item_name,
+                'number_item' => $request->number_item,
+                'price_day' => $request->price_day,
+                'start' => date('Y-m-d', strtotime($request->start)),
+                'end' => date('Y-m-d', strtotime($request->end)),
+                'status' => $request->status
+            ]);
+
+        return redirect('warehouse_rent');
     }
 
     /**
