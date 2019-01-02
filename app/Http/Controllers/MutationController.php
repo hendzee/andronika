@@ -64,7 +64,11 @@ class MutationController extends Controller
      */
     public function show($id)
     {
-        //
+        $data_mutation = Mutation::where('source', $id)
+            ->orWhere('destiny', $id)
+            ->get();
+
+        return view('mutation.show', compact('data_mutation'));
     }
 
     /**
