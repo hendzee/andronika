@@ -40,6 +40,20 @@
             </li>
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-male"></i>
+                    <span class="title">Klien</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{ route('client.index') }}" class="nav-link ">
+                            <span class="title">Daftar Klien</span>
+                        </a>
+                    </li>                                      
+                </ul>
+            </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-building-o"></i>
                     <span class="title">Project</span>
                     <span class="arrow"></span>
@@ -48,11 +62,6 @@
                     <li class="nav-item  ">
                         <a href="{{ route('project.index') }}" class="nav-link ">
                             <span class="title">Data Projek</span>
-                        </a>
-                    </li>
-                    <li class="nav-item  ">
-                        <a href="{{ route('client.index') }}" class="nav-link ">
-                            <span class="title">Data Klien</span>
                         </a>
                     </li>                    
                 </ul>
@@ -74,9 +83,14 @@
                             <span class="title">Pembelian Barang</span>
                         </a>
                     </li>
+                    <li class="nav-item  ">
+                        <a href="{{ route( 'warehouse_rent.index' ) }}" class="nav-link ">
+                            <span class="title">Peminjaman Barang</span>
+                        </a>
+                    </li>
                 </ul>                
             </li>
-            <li class="nav-item  ">
+            <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-users"></i>
                     <span class="title">Karyawan</span>

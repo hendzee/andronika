@@ -4,5 +4,5 @@ $(document).ready(function(){
         .removeAttr('style')            
     });
 
-    $('th:first').attr('style', 'min-width:200px')
+    $('th:first').attr('style', 'min-width:150px')
 });
