@@ -119,3 +119,5 @@ Route::get('employee_bonus_create/{id}', [
     'as' => 'employee_bonus_create']);
 
 Route::resource('mutation', 'MutationController');
+
+Route::resource('warehouse_rent', 'WarehouseRentController');
