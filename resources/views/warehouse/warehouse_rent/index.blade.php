@@ -106,9 +106,21 @@
                                             </span>
                                         </td>                                   
                                         <td>
-                                            {{ 'Rp. ' 
-                                                . ($finalDiff * ($data->price_day) * ($data->number_item))
-                                            }}
+                                            <a href="{{ route('rent_payment.show', $data->id_rent) }}">
+                                                {{ 'Rp. ' 
+                                                    . $total = ($finalDiff * ($data->price_day) * ($data->number_item))
+                                                }}
+                                            </a>
+                                            <br/>
+                                            @if ($total <= ($data->payment->sum('nominal')))
+                                                <span class="label label-sm label-danger top-space">
+                                                    LUNAS
+                                                </span>
+                                            @else
+                                                <span class="label label-sm label-danger top-space">
+                                                    BELUM LUNAS
+                                                </span>
+                                            @endif                                            
                                         </td>
                                         <td>
                                             <span class="label label-sm label-danger">

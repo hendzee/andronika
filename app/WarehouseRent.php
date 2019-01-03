@@ -16,4 +16,9 @@ class WarehouseRent extends Model
     {
         return $this->belongsTo('App\Client', 'id_client');
     }
+
+    public function payment()
+    {
+        return $this->hasMany('App\RentPayment', 'id_rent');
+    }
 }

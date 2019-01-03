@@ -16,6 +16,7 @@ use App\WarehousePurchase;
 use App\WorkerContract;
 use App\Mutation;
 use App\WarehouseRent;
+use App\RentPayment;
 
 class GeneratorId extends Model
 {
@@ -122,6 +123,12 @@ class GeneratorId extends Model
                 $search_id = 'id_rent';
                 $unique_code = 'RN';
                 $obj = new WarehouseRent();
+            break;
+
+            case 'rent_payment':
+                $search_id = 'id_payment';
+                $unique_code = 'PS';
+                $obj = new RentPayment();
             break;
         }
 

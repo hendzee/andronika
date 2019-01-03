@@ -6,11 +6,11 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{ route('project.show', $id_project) }}"> Menu </a>
+                    <a href=""> Menu </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="{{ route('project_payment_index', $id_project) }}"> Pembayaran Projek </a>
+                    <a href=""> Pembayaran Projek </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
@@ -21,7 +21,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Uang Masuk Projek
+            Pembayaran Sewa Barang
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -34,8 +34,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="{{ route('project_payment_create', $id_project) }}" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Uang Masuk
+                                        <a href="{{ route('rent_payment_create', $id_rent) }}" id="sample_editable_1_new" class="btn sbold green"> 
+                                            Pembayaran Baru
                                         </a>
                                     </div>
                                 </div>
@@ -66,9 +66,9 @@
                             <thead>
                                 <tr>                                                                                                    
                                     <th> ID Payment </th>
-                                    <th> Projek </th>
-                                    <th> Tanggal </th>                                
-                                    <th> Transfer </th>                                                                                                                    
+                                    <th> ID Rent </th>
+                                    <th> Nominal </th>                                
+                                    <th> Tanggal </th>                                                                                                                    
                                     <th> Aksi </th>                                 
                                 </tr>
                             </thead>
@@ -76,13 +76,9 @@
                                 @foreach($data_payment as $data)
                                 <tr class="odd gradeX">                                                                       
                                     <td>{{ $data->id_payment }}</td>
-                                    <td>
-                                        {{ $data->project->name }}
-                                        <br/>
-                                        {{ $data->id_project }}
-                                    </td>
-                                    <td>{{ date('d M, Y', strtotime($data->date)) }}</td>    
-                                    <td>{{ 'Rp ' . $data->transfer }}</td>                                      
+                                    <td>{{ $data->id_rent }}</td>
+                                    <td>{{ 'Rp ' . $data->nominal }}</td>
+                                    <td>{{ date('d M, Y', strtotime($data->date)) }}</td>                                        
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -90,8 +86,8 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a href="{{ route('project_payment.edit', $data->id_payment) }}">
-                                                        <i class="icon-docs"></i> Edit 
+                                                    <a href="{{ route('rent_payment.edit', $data->id_payment) }}">
+                                                        <i class="icon-docs"></i> Edit
                                                     </a>
                                                 </li>
                                                 <li>
@@ -107,12 +103,10 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="5">
-                                        {{ 'Total Pembayaran: Rp ' . $total_trans }}                                        
-                                    </td>                                                              
+                                    <td colspan="5">{{ 'Total Pembayaran: Rp. ' . $total_trans }}</td>                                                
                                 </tr>
                                 <tr>
-                                    <td colspan="5">{{'Sisa Pembayaran: Rp ' . $remain}}</td>
+                                    <td colspan="5">{{'Sisa Pembayaran: Rp. ' . $remain}}</td>
                                 </tr>
                             </tfoot>
                         </table>                        
