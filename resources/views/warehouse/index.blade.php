@@ -66,6 +66,7 @@
                                     <th> Rusak </th>
                                     <th> Dipinjam </th>
                                     <th> Tersedia </th>
+                                    <th> Status Pinjam </th>
                                     <th> Aksi </th>                                                            
                                 </tr>
                             </thead>
@@ -82,7 +83,8 @@
                                     </td>
                                     <td>10 buah</td>
                                     <td>2 buah</td>
-                                    <td>1 buah</td>                                        
+                                    <td>1 buah</td>   
+                                    <td> {{ $data->rent_status }} </td>                                     
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">

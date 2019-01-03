@@ -46,7 +46,8 @@ class WarehouseController extends Controller
         $warehouse = Warehouse::create([
             'item_name' => $request->item_name,
             'measure' => $request->measure,
-            'number' => $number
+            'number' => $number,
+            'rent_status' => $request->rent_status
         ]);
 
         return redirect('warehouse/');
@@ -91,7 +92,8 @@ class WarehouseController extends Controller
             ->update([
                 'item_name' => $request->item_name,
                 'measure' => $request->measure,
-                'number' => $request->number
+                'number' => $request->number,
+                'rent_status' => $request->rent_status
             ]);
 
         return redirect('warehouse/');

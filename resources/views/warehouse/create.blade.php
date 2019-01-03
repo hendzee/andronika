@@ -37,6 +37,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-md-3">Dapat Dipinjamkan</label>
+                                    <div class="col-md-9">
+                                        <select name="rent_status" class="form-control">
+                                            <option value="BOLEH">BOLEH</option>
+                                            <option value="TIDAK">TIDAK</option>                                                
+                                        </select>
+                                        <span class="help-block"> Dapat Dipinjamkan </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-md-3">Satuan</label>
                                     <div class="col-md-9">
                                         <select name="measure" class="form-control">
