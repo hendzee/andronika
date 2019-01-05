@@ -105,7 +105,7 @@ class WarehouseSellController extends Controller
         $get_warehouse = Warehouse::where('item_name', $request->item_name)
             ->first();
 
-        $number = ($get_warehouse->number - $get_sell->number) + $request->number;
+        $number = ($get_warehouse->number + $get_sell->number) - $request->number;
 
         $warehouse =  Warehouse::where('item_name', $request->item_name)
             ->first()
@@ -124,7 +124,7 @@ class WarehouseSellController extends Controller
                 'token' => $request->token
             ]);
 
-        return redirect()->back();
+        return redirect('warehouse_sell');
     }
 
     /**

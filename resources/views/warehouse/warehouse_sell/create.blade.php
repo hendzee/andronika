@@ -58,24 +58,24 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Tanggal Pembelian</label>
+                                    <label class="control-label col-md-3">Tanggal Penjualan</label>
                                     <div class="col-md-9">
                                         <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Pembelian </span>
+                                        <span class="help-block"> Tanggal Penjualan </span>
                                     </div>
                                 </div>  
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Pembeli</label>
+                                    <label class="control-label col-md-3">Penanggung Jawab</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="resp_person" placeholder="Pembeli" class="form-control" />
-                                        <span class="help-block"> Pembeli </span>
+                                        <input type="text" name="resp_person" placeholder="Penanggung Jawab" class="form-control" />
+                                        <span class="help-block"> Penanggung Jawab </span>
                                     </div>
                                 </div>                                      
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Bukti Transaksi</label>
                                     <div class="col-md-9">
                                         <input type="text" name="token" placeholder="Bukti Transaksi" class="form-control" />
-                                        <span class="help-block"> Harga Barang / Satuan </span>
+                                        <span class="help-block"> Bukti Transaksi </span>
                                     </div>
                                 </div>                                                                                                                                                                           
                             </div>
