@@ -88,6 +88,11 @@
                             <span class="title">Peminjaman Barang</span>
                         </a>
                     </li>
+                    <li class="nav-item  ">
+                        <a href="{{ route( 'warehouse_sell.index' ) }}" class="nav-link ">
+                            <span class="title">Penjualan Barang</span>
+                        </a>
+                    </li>
                 </ul>                
             </li>
             <li class="nav-item">

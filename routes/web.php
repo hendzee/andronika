@@ -126,3 +126,5 @@ Route::resource('rent_payment', 'RentPaymentController');
 Route::get('rent_payment_create/{id}', [ 
     'uses' => 'RentPaymentController@create', 
     'as' => 'rent_payment_create']);
+
+Route::resource('warehouse_sell', 'WarehouseSellController');
