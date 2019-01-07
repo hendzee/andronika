@@ -17,7 +17,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Barang Baru          
+            Penjualan Baru          
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
