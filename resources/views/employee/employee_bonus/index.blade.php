@@ -10,7 +10,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="{{ route('employee_transaction_index', $id_trans) }}">Pengambilan Gaji</a>
+                    <a href="{{ route('employee_transaction_index', $id_salary) }}">Pengambilan Gaji</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
