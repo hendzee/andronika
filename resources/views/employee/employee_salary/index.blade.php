@@ -98,6 +98,7 @@
                                         @php
                                            $bonus = App\EmployeeBonus::where('id_employee', $data->id_employee)
                                             ->where('status', 'belum diambil')
+                                            ->where('id_salary', $data->id_salary)
                                             ->sum('bonus') 
                                         @endphp
                                         {{ 'Rp . ' . $bonus }}
@@ -117,10 +118,7 @@
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>
-                                                <li>
-                                                    {{-- @csrf --}}
-                                                    {{-- @method('DELETE') --}}
-                                                    {{-- <button type="submit" class="btn btn-danger"> <i class="icon-tag"></i> Hapus</button> --}}
+                                                <li>                                                    
                                                     <a href="#">
                                                         <i class="icon-tag"></i> Hapus 
                                                     </a>
