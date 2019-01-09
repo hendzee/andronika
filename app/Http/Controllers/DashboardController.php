@@ -11,7 +11,7 @@ class DashboardController extends Controller
     {
         $assets_data = new AssetsData();        
 
-        return $assets_data->getCompanyAsset();
+        echo $assets_data->getCompanyAsset();
         
         // return view('dashboard.index');
     }

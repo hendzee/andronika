@@ -9,6 +9,8 @@ use App\WorkerSalary;
 use App\ProjectBonus;
 use App\ProjectPurchase;
 use App\Mutation;
+use App\WarehouseSell;
+use App\WarehouseRent;
 
 class AssetsData extends Model
 {
@@ -16,6 +18,11 @@ class AssetsData extends Model
     {        
         $company_asset = 0;
 
+        return $this->getCompanyIncome();
+    }
+
+    public function getCompanyIncome()
+    {
         //project assset
         $project_payment = DB::table('project')
             ->join('project_payment', 'project.id_project', '=', 'project_payment.id_project' )
@@ -63,8 +70,34 @@ class AssetsData extends Model
         $project_asset = $project_income - $project_outcome;        
         //end project asset
 
-        //project income from mutation
+        //company income mutation
+        $company_mutation_in = Mutation::where('destiny', 'PERUSAHAAN')
+            ->get()
+            ->sum('nominal');
+        //end company income mutation
 
-        echo $project_asset;        
+        //company income selling
+        $company_sell = WarehouseSell::select(DB::raw('sum(price_per_item * number) as total'))
+            ->first();
+        //end compant income selling
+
+        //company income renting
+        $company_rent = RentPayment::all()
+            ->sum('nominal');
+        //end company income renting
+
+        $company_income = $project_asset + $company_mutation_in 
+            + ($company_sell->total) + $company_rent;
+
+        return $company_income;  
+    }
+
+    public function getCompanyOutcome()
+    {
+        //company outcome mutation
+        $company_mutation_out = Mutation::where('source', 'PERUSAHAAN')
+            ->get()
+            ->sum('nominal');
+        //end company outcome mutation
     }
 }
