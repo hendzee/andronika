@@ -12,6 +12,7 @@ use App\ProjectBonus;
 use App\ProjectPurchase;
 use Illuminate\Support\Facades\DB;
 use App\Mutation;
+use App\WorkerContract;
 
 class ProjectController extends Controller
 {
@@ -80,6 +81,10 @@ class ProjectController extends Controller
             . '+ (salary * halfday * 0.5)) as total'))
             ->where('id_project', $id)
             ->first();
+
+        $worker_contract = WorkerContract::where('id_project', $id)
+            ->get()
+            ->sum('contract_value');
         
         $project_bonus = ProjectBonus::where('id_project', $id)
             ->get()
@@ -99,8 +104,8 @@ class ProjectController extends Controller
 
         $income = $payment + $mutation_in;
         
-        $outcome = ($worker_payment->total) + $project_bonus + ($project_purchase->total)
-            + $mutation_out;
+        $outcome = ($worker_payment->total) + $worker_contract + $project_bonus 
+            + ($project_purchase->total) + $mutation_out;
 
         $assets = $income - $outcome;
         $profit = ($assets / $income) * 100;
