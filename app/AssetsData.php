@@ -11,6 +11,7 @@ use App\ProjectPurchase;
 use App\Mutation;
 use App\WarehouseSell;
 use App\WarehouseRent;
+use App\WorkerContract;
 
 class AssetsData extends Model
 {
@@ -35,6 +36,12 @@ class AssetsData extends Model
             ->where('project.status', 'SELESAI')
             ->select(DB::raw('sum((salary * fullday) + (salary * halfday * 0.5)) as total'))
             ->first();
+
+        $worker_contract = DB::table('project')
+            ->join('worker_contract', 'project.id_project', '=', 'worker_contract.id_project' )
+            ->where('status', 'SELESAI')
+            ->get()
+            ->sum('contract_value');
 
         $project_bonus = DB::table('project')
             ->join('project_bonus', 'project.id_project', '=', 'project_bonus.id_project')
@@ -64,7 +71,8 @@ class AssetsData extends Model
 
         $project_income = $project_payment + $project_mutation_in;
         
-        $project_outcome = ($worker_payment->total) + $project_bonus + ($project_purchase->total)
+        $project_outcome = ($worker_payment->total) + $worker_contract 
+            + $project_bonus + ($project_purchase->total) 
             + $project_mutation_out;
 
         $project_asset = $project_income - $project_outcome;        
