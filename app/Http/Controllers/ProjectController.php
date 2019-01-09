@@ -76,7 +76,8 @@ class ProjectController extends Controller
             ->get()
             ->sum('transfer');
 
-        $worker_payment = WorkerSalary::select(DB::raw('sum(salary * fullday) as total'))
+        $worker_payment = WorkerSalary::select(DB::raw('sum((salary * fullday)' 
+            . '+ (salary * halfday * 0.5)) as total'))
             ->where('id_project', $id)
             ->first();
         
