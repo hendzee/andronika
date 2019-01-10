@@ -64,7 +64,7 @@
                                     <th> ID Tranportasi </th>
                                     <th> Supir </th>                               
                                     <th> Pengantaran </th>
-                                    <th> Total Biaya </th>
+                                    <th> Total Biaya Solar </th>
                                     <th> Keterangan </th>
                                     <th> Token </th>
                                     <th> Aksi </th>                                
@@ -76,11 +76,11 @@
                                     <td> {{ $data->id_transportation }} </td>
                                     <td> {{ $data->employee->name .'|'. $data->employee->id_employee }} </td>
                                     <td> 
-                                        {{ $data->starting_point .'-'. $data->destination }} 
+                                        {{ $data->starting_point .' - '. $data->destination }} 
                                         <br> 
-                                        {{ $data->distance .' KM ' }} 
+                                        {{ $data->distance .' Km ' }} 
                                     </td>
-                                    <td> {{ $data->cost}} </td>
+                                    <td> {{ 'Rp. ' . $data->cost}} </td>
                                     <td> {{ $data->description }} </td>  
                                     <td> {{ $data->url_token }} </td>
                                     <td>

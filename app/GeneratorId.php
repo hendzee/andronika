@@ -18,6 +18,9 @@ use App\Mutation;
 use App\WarehouseRent;
 use App\RentPayment;
 use App\WarehouseSell;
+use App\Transportation;
+use App\Driver;
+use APp\Fuel;
 
 class GeneratorId extends Model
 {
@@ -136,6 +139,24 @@ class GeneratorId extends Model
                 $search_id = 'id_sell';
                 $unique_code = 'WL';
                 $obj = new WarehouseSell();
+            break;
+
+            case 'transportation':
+                $search_id = 'id_transportation';
+                $unique_code = 'TT';
+                $obj = new Transportation();
+            break;
+
+            case 'fuel':
+                $search_id = 'id_fuel';
+                $unique_code = 'TF';
+                $obj = new Fuel();
+            break;
+
+            case 'driver':
+                $search_id = 'id_driver';
+                $unique_code = 'TD';
+                $obj = new Driver();
             break;
         }
 

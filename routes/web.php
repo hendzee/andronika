@@ -128,3 +128,11 @@ Route::get('rent_payment_create/{id}', [
     'as' => 'rent_payment_create']);
 
 Route::resource('warehouse_sell', 'WarehouseSellController');
+
+Route::resource('transportation', 'TransportationController');
+Route::get('transportation_update_status/{status}/{id}', [        
+    'uses' => 'TransportationController@updateStatus',
+    'as' => 'transportation_update_status']);
+
+// Route::resource('driver', 'DriverController');
+Route::resource('fuel', 'FuelController');

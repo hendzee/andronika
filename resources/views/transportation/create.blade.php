@@ -35,7 +35,7 @@
                                         <select name="id_employee" class="form-control">
                                             @foreach($data_employee as $data)
                                                 <option value="{{ $data->id_employee }}">
-                                                    {{ $data->id_employee . ' | ' . $data->name }}
+                                                    {{ $data->name . ' | ' . $data->address }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -64,14 +64,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Total</label>
+                                    <label class="control-label col-md-3">Total Biaya Solar</label>
                                     <div class="col-md-9">
                                         <input type="text" name="cost" class="form-control" placeholder="Total Pengeluaran Bahan Bakar"/>
                                         <span class="help-block"> Total Pengeluaran Bahan Bakar </span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Keterangan</label>
+                                    <label class="control-label col-md-3">Keterangan Transportasi</label>
                                     <div class="col-md-9">
                                         <input type="text" name="description" class="form-control" placeholder="Keterangan"/>
                                         <span class="help-block"> Keterangan Barang Yang Dikirim </span>

@@ -15,9 +15,9 @@ class TransportationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {        
         $data_transportation = Transportation::all();
+        
         return view('transportation.index', compact('data_transportation'));
     }
 
@@ -28,9 +28,9 @@ class TransportationController extends Controller
      */
     public function create()
     {
-        //
-        $data_employee = Employee::where('division', 'driver')
-        ->get();
+        $data_employee = Employee::where('division', 'DRIVER')
+            ->get();
+        
         return view('transportation.create', compact('data_employee'));
     }
 
@@ -78,11 +78,13 @@ class TransportationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data_employee = Employee::where('division', 'DRIVER')
+            ->get();
+
         $data_transportation = Transportation::where('id_transportation', $id)
             ->first();        
 
-        return view('transportation.edit', compact('data_transportation'));
+        return view('transportation.edit', compact('data_transportation', 'data_employee'));
     }
 
     /**
@@ -94,17 +96,17 @@ class TransportationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $data_transportation = Transportation::where('id_transportation', $id)
-        ->first()
-        ->update([   
-            'starting_point' =>$request->starting_point,
-            'destination' =>$request->destination,
-            'distance' =>$request->distance,
-            'cost' =>$request->cost,
-            'url_token' => $request->url_token,
-            'description' =>$request->description
-        ]);
+            ->first()
+            ->update([  
+                'id_employee' => $request->id_employee, 
+                'starting_point' =>$request->starting_point,
+                'destination' =>$request->destination,
+                'distance' =>$request->distance,
+                'cost' =>$request->cost,
+                'url_token' => $request->url_token,
+                'description' =>$request->description
+            ]);
     
         return redirect('transportation');
     }

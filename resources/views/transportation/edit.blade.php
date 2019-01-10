@@ -28,16 +28,28 @@
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
                         <form action="{{ action('TransportationController@update', $data_transportation->id_transportation) }}" method="POST" class="form-horizontal form-row-seperated">
-                            <div class="form-body">     
-                                <input type="hidden" name="id_transportation" value="{{ $data_transportation->id_transportation }}" />   
+                            <div class="form-body">                                     
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Pekerja</label>
+                                    <label class="control-label col-md-3">Supir</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_transportation->employee->name . ' | ' . $data_transportation->id_employee }}" disabled class="form-control" />
-                                        <span class="help-block"> Keterangan Pekerja </span>
+                                        <select name="id_employee" class="form-control">
+                                            <option value="{{ $data_transportation->id_employee }}">
+                                                {{ 
+                                                    $data_transportation->employee->name
+                                                    . ' | '
+                                                    . $data_transportation->employee->address
+                                                    . ' (DATA SAAT INI)'
+                                                }}
+                                            </option>
+                                            @foreach($data_employee as $data)
+                                                <option value="{{ $data->id_employee }}">
+                                                    {{ $data->name . ' | ' . $data->address }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="help-block"> Keterangan Supir </span>
                                     </div>
                                 </div>
-                                <input type="hidden" name="id_employee" value="{{ $data_transportation->id_employee }}" /> 
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Awal</label>
                                     <div class="col-md-9">
@@ -60,14 +72,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Total</label>
+                                    <label class="control-label col-md-3">Total Biaya Solar</label>
                                     <div class="col-md-9">
                                         <input type="text" name="cost" value="{{ $data_transportation->cost }}" class="form-control" placeholder="Total Pengeluaran Bahan Bakar"/>
                                         <span class="help-block"> Total Pengeluaran Bahan Bakar </span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Keterangan</label>
+                                    <label class="control-label col-md-3">Keterangan Transportasi</label>
                                     <div class="col-md-9">
                                         <input type="text" name="description" value="{{ $data_transportation->description }}" class="form-control" placeholder="Keterangan"/>
                                         <span class="help-block"> Keterangan Barang Yang Dikirim </span>

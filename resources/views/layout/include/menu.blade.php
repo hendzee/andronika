@@ -128,8 +128,26 @@
                     </li>                    
                 </ul>                
             </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-money"></i>
+                    <span class="title">Transportasi</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{ route( 'transportation.index' ) }}" class="nav-link ">
+                            <span class="title">Data Transportasi</span>
+                        </a>
+                    </li>                    
+                    <li class="nav-item  ">
+                        <a href="{{ route( 'fuel.index' ) }}" class="nav-link ">
+                            <span class="title">Data Solar</span>
+                        </a>
+                    </li>                    
+                </ul>                
+            </li>
         </ul>
-        <!-- END SIDEBAR MENU -->
         <!-- END SIDEBAR MENU -->
     </div>
     <!-- END SIDEBAR -->
