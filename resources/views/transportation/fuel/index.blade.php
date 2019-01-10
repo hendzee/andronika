@@ -27,15 +27,8 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <div class="table-toolbar">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="btn-group">
-                                        <a href="fuel/create" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Bahan Bakar Baru
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+                            <div class="row">                                
+                                <div class="col-md-12">
                                     <div class="btn-group pull-right">
                                         <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                             <i class="fa fa-angle-down"></i>

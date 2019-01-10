@@ -10,7 +10,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Edit Data Bahan Bakar</span>
+                    <span>Edit Data Solar</span>
                 </li>
             </ul>         
         </div>
@@ -27,12 +27,11 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form action="{{ action('FuelController@update', $data_fuel->id_fuel) }}" method="POST" class="form-horizontal form-row-seperated">
-                            <input type="hidden" name="id_fuel" value="{{ $data_fuel->id_fuel }}" /> 
+                        <form action="{{ action('FuelController@update', $data_fuel->id_fuel) }}" method="POST" class="form-horizontal form-row-seperated">                            
                             <div class="form-group">
                                 <label class="control-label col-md-3">Name</label>
                                 <div class="col-md-9">
-                                    <input type="text" name="name" value="{{ $data_fuel->name }}" class="form-control" placeholder="Nama"/>
+                                    <input type="text" name="name" value="{{ $data_fuel->name }}" class="form-control" placeholder="Nama" disabled/>
                                     <span class="help-block"> Nama Bahan Bakar Kendaraan </span>
                                 </div>
                             </div>                                                          

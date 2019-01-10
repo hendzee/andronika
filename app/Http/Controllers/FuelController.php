@@ -91,8 +91,7 @@ class FuelController extends Controller
         //
         $data_fuel = Fuel::where('id_fuel', $id)
         ->first()
-        ->update([
-            'name' => $request->name,
+        ->update([            
             'price' => $request->price,
             'date' => date("Y-m-d", strtotime($request->date))    
         ]);
