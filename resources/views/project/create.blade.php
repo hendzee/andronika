@@ -75,12 +75,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Harga Projek</label>
+                                    <label class="col-md-3 control-label">Harga Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="total" placeholder="Ex.5000000" class="form-control" />
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp.
+                                                </span>
+                                                <input type="text" id="total" placeholder="Ex.5000000" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="total" class="masking-form-hidden">
+                                            </div>
+                                        </div>
                                         <span class="help-block"> Harga Projek </span>
                                     </div>
-                                </div>                                                                                                                                                                                  
+                                </div>
+
                             </div>
                             {{ csrf_field() }}
                             <div class="form-actions">

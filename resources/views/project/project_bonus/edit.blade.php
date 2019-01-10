@@ -60,7 +60,15 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Jumlah Bonus</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_bonus->bonus }}" name="bonus" placeholder="Jumlah Bonus" class="form-control" />
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" value="{{ round($data_bonus->bonus) }}" placeholder="Uang Bonus" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="bonus" class="masking-form-hidden">
+                                            </div>
+                                        </div>                                        
                                         <span class="help-block"> Jumlah Bonus </span>
                                     </div>
                                 </div>    

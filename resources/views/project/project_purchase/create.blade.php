@@ -58,7 +58,7 @@
                                     <label class="control-label col-md-3">Tanggal Beli</label>
                                     <div class="col-md-9">
                                         <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Lahir </span>
+                                        <span class="help-block"> Tanggal Beli </span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -71,7 +71,16 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Harga/Satuan</label>
                                     <div class="col-md-9">
-                                        <input name="price_per_item" type="text" placeholder="Harga/Satuan" class="form-control" />
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" placeholder="Harga/Satuan"
+                                                       class="form-control masking-form"/>
+                                                <input type="hidden" id="total_hidden" name="price_per_item" class="masking-form-hidden">
+                                            </div>
+                                        </div>
                                         <span class="help-block"> Harga/Satuan </span>
                                     </div>
                                 </div>

@@ -52,8 +52,14 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Jumlah Gaji</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_salary->salary }}" name="salary" class="form-control" />
-                                        <span class="help-block"> Jumlah Gaji </span>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Rp
+                                            </span>
+                                            <input type="text" value="{{ number_format($data_salary->salary) }}" placeholder="Jumlah Gaji" class="form-control masking-form" />
+                                            <input type="hidden" id="total_hidden" name="salary" class="masking-form-hidden">
+                                        </div>
+                                        <span class="help-block"> Jumlah Gaji </span>                                        
                                     </div>
                                 </div>                                                                                                                                                                                                                                                                    
                             </div>

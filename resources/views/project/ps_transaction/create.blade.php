@@ -60,7 +60,15 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nominal</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="nominal" placeholder="Nominal" class="form-control" />
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" placeholder="Uang Masuk" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="nominal" class="masking-form-hidden">
+                                            </div>
+                                        </div>                                        
                                         <span class="help-block"> Jumlah Gaji yang Diterima Pekerja </span>
                                     </div>
                                 </div>    

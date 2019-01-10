@@ -22,7 +22,7 @@ class ProjectPaymentController extends Controller
             ->sum('transfer');
         $total = Project::where('id_project', $id)->first();
 
-        $remain = ($total->total - $total_trans) . '.00';
+        $remain = ($total->total - $total_trans);
 
         return view('project.project_payment.index', compact('data_payment', 
             'id_project', 'total_trans', 'remain'));
@@ -103,8 +103,8 @@ class ProjectPaymentController extends Controller
             'date' => date("Y-m-d", strtotime($request->date)),
             'transfer' => $request->transfer            
         ]);
-    
-        return redirect('project_payment_index/'. $request->id_project );
+
+        return redirect('project_payment_index/'. $request->id_project );    
     }
 
     /**

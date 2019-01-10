@@ -52,8 +52,16 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nilai Kontrak</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_contract->contract_value }}" name="contract_value" class="form-control" />
-                                        <span class="help-block"> Nilai Kontrak </span>
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" value="{{ round($data_contract->contract_value) }}" placeholder="Nilai Kontrak" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="contract_value" class="masking-form-hidden">
+                                            </div>
+                                        </div>                                        
+                                        <span class="help-block"> Nilai Kontrak </span>                                        
                                     </div>
                                 </div>                                                                                                                                                                                                                                                                    
                             </div>
