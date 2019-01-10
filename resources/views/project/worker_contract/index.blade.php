@@ -80,13 +80,13 @@
                                         <br/>
                                         {{ 'Ket: ' . $data->worker->division }}
                                     </td>
-                                    <td>{{ 'Rp. ' . $data->contract_value }}</td>
+                                    <td>{{ 'Rp ' . number_format($data->contract_value) }}</td>
                                     <td> 
                                         @php
                                             $transaction = App\PSTransaction::where('id_salary', $data->id_contract)
                                                 ->sum('nominal') 
                                         @endphp
-                                        {{ 'Rp. ' . $transaction }}
+                                        {{ 'Rp ' . number_format($transaction) }}
                                         <br/>
                                         <a href="{{ route('pct_index', [
                                             'id' => $data->id_contract,
@@ -95,7 +95,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        {{ 'Rp. ' . ($data->contract_value - $transaction) }}
+                                        {{ 'Rp ' . number_format(($data->contract_value - $transaction)) }}
                                     </td>
                                     <td>
                                         <div class="btn-group">

@@ -99,7 +99,7 @@
                                             {{ $data->destiny }}                                            
                                         @endif
                                     </td>    
-                                    <td>{{ $data->nominal }}</td>                                
+                                    <td>{{ 'Rp ' . number_format($data->nominal) }}</td>                                
                                     <td>{{ date('m D, Y', strtotime($data->date)) }}</td>                                    
                                     <td>
                                         <div class="btn-group">

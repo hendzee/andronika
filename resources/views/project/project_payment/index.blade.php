@@ -82,7 +82,7 @@
                                         {{ $data->id_project }}
                                     </td>
                                     <td>{{ date('d M, Y', strtotime($data->date)) }}</td>    
-                                    <td>{{ 'Rp ' . $data->transfer }}</td>                                      
+                                    <td>{{ 'Rp ' . number_format($data->transfer) }}</td>                                      
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -108,11 +108,11 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="5">
-                                        {{ 'Total Pembayaran: Rp ' . $total_trans }}                                        
+                                        {{ 'Total Pembayaran: Rp ' . number_format($total_trans) }}                                        
                                     </td>                                                              
                                 </tr>
                                 <tr>
-                                    <td colspan="5">{{'Sisa Pembayaran: Rp ' . $remain}}</td>
+                                    <td colspan="5">{{'Sisa Pembayaran: Rp ' . number_format($remain)}}</td>
                                 </tr>
                             </tfoot>
                         </table>                        

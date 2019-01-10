@@ -89,7 +89,7 @@
                                         <br/>
                                         {{ $data->id_worker }}                                    
                                     </td>                                                                           
-                                    <td>{{ 'Rp. ' . $data->nominal }}</td>        
+                                    <td>{{ 'Rp ' . number_format($data->nominal) }}</td>        
                                     <td>{{ date('d M, y', strtotime($data->date)) }}</td>                                                                                
                                     <td>
                                         <div class="btn-group">

@@ -86,33 +86,33 @@
                                     </td>
                                     <td>{{ $data->fullday . ' hari' }}</td>
                                     <td>{{ $data->halfday . ' hari' }}</td>                                    
-                                    <td>{{ 'Rp. ' . $data->salary }}</td>
+                                    <td>{{ 'Rp ' . number_format($data->salary) }}</td>
                                     <td>
                                         @php
                                            $total_sal = ($data->fullday * $data->salary) + ($data->halfday * $data->salary * 0.5) 
                                         @endphp
-                                        {{ 'Rp. ' . $total_sal }}    
+                                        {{ 'Rp ' . number_format($total_sal) }}    
                                     </td>        
                                     <td> 
                                         @php
                                            $transaction = App\PSTransaction::where('id_salary', $data->id_salary)
                                             ->sum('nominal') 
                                         @endphp
-                                        {{ 'Rp. ' . $transaction }}
+                                        {{ 'Rp ' . number_format($transaction) }}
                                         <br/>
                                         <a href="{{ route('ps_transaction_index', ['id' => $data->id_salary, 
                                             'id_prj' => $data->id_project]) }}">
                                             detail
                                         </a>
                                     </td>
-                                    <td> {{ 'Rp. ' . ($total_sal - $transaction) }} </td>
+                                    <td> {{ 'Rp ' . number_format(($total_sal - $transaction)) }} </td>
                                     <td>
                                         @php
                                             $bonus = App\ProjectBonus::where('id_worker', $data->id_worker)
                                                 ->where('status', 'belum diambil')
                                                 ->sum('bonus') 
                                         @endphp
-                                        {{ 'Rp. ' . $bonus }}
+                                        {{ 'Rp ' . number_format($bonus) }}
                                         <br/>
                                         <a href="{{ route('project_bonus_index', [
                                             'id' => $data->id_worker,

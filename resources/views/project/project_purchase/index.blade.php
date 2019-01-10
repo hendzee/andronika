@@ -86,8 +86,8 @@
                                     <td>{{ $data->name }}</td>   
                                     <td>{{ date('d M, Y', strtotime($data->date)) }}</td>    
                                     <td>{{ $data->total_item }}</td>
-                                    <td>{{ 'Rp ' . $data->price_per_item }}</td>
-                                    <td>{{ 'Rp ' . $data->total_item *  $data->price_per_item}}</td>
+                                    <td>{{ 'Rp ' . number_format($data->price_per_item) }}</td>
+                                    <td>{{ 'Rp ' . number_format($data->total_item *  $data->price_per_item)}}</td>
                                     <td>{{ $data->token }}</td>                                                 
                                     <td>
                                         <div class="btn-group">

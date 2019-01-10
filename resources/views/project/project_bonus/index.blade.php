@@ -87,12 +87,14 @@
                                 <tr class="odd gradeX">                                                                       
                                     <td>{{ $data->id_worker }}</td>
                                     <td>{{ $data->worker->name }}</td>
-                                    <td>{{ $data->bonus }}</td> 
+                                    <td>{{ 'Rp ' . number_format($data->bonus) }}</td> 
                                     <td>{{ $data->description }}</td>                    
                                     <td>{{ $data->status }}</td>                                    
                                     <td>
                                         @if($data->date_take != null)
                                             {{ date('d M, Y', strtotime($data->date_take)) }}
+                                        @else
+                                            BELUM DIAMBIL
                                         @endif
                                     </td>                                                                                                                                                         
                                     <td>

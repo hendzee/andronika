@@ -31,7 +31,7 @@
                     </div>
                     <div class="details">
                         <div class="number">
-                            Rp. <span data-counter="counterup" data-value="{{$income}}">0</span>
+                            Rp <span data-counter="counterup" data-value="{{ number_format($income) }}">0</span>
                         </div>
                         <div class="desc"> Pemasukan </div>
                     </div>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="details">
                         <div class="number">
-                            Rp. <span data-counter="counterup" data-value="{{$outcome}}">0</span>
+                            Rp <span data-counter="counterup" data-value="{{ number_format($outcome) }}">0</span>
                         </div>
                         <div class="desc"> Pengeluaran </div>
                     </div>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="details">
                         <div class="number">
-                            Rp. <span data-counter="counterup" data-value="{{ $assets }}">0</span>                           
+                            Rp <span data-counter="counterup" data-value="{{ number_format($assets) }}">0</span>                           
                         </div>
                         <div class="desc"> Profit </div>
                     </div>
@@ -172,7 +172,7 @@
                                     </tr>
                                     <tr>
                                         <td>Nilai Projek</td>
-                                        <td>{{ 'Rp. ' . $data_project->total }}</td>
+                                        <td>{{ 'Rp ' . number_format($data_project->total) }}</td>
                                     </tr>
                                 </tbody>
                             </table>
