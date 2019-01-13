@@ -93,6 +93,11 @@
                             <span class="title">Penjualan Barang</span>
                         </a>
                     </li>
+                    <li class="nav-item  ">
+                        <a href="{{ route( 'repair_and_used.index' ) }}" class="nav-link ">
+                            <span class="title">Barang Rusak / Dipakai</span>
+                        </a>
+                    </li>
                 </ul>                
             </li>
             <li class="nav-item">
@@ -130,7 +135,7 @@
             </li>
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-money"></i>
+                    <i class="fa fa-truck"></i>
                     <span class="title">Transportasi</span>
                     <span class="arrow"></span>
                 </a>

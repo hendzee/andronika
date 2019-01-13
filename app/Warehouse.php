@@ -11,4 +11,14 @@ class Warehouse extends Model
     protected $guarded = [];
     public $incrementing = false;  
     public $timestamps = false;
+
+    public function rent()
+    {
+        return $this->hasMany('App\WarehouseRent', 'item_name');
+    }
+
+    public function repair_and_used()
+    {
+        return $this->hasOne('App\RepairAndUsed', 'item_name');
+    }
 }

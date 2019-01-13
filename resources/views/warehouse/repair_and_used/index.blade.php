@@ -27,15 +27,8 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <div class="table-toolbar">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="btn-group">
-                                        <a href="{{ route('warehouse.create') }}" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Data Baru
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+                            <div class="row">                                
+                                <div class="col-md-12">
                                     <div class="btn-group pull-right">
                                         <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                             <i class="fa fa-angle-down"></i>
@@ -43,15 +36,15 @@
                                         <ul class="dropdown-menu pull-right">
                                             <li>
                                                 <a href="">
-                                                    <i class="fa fa-print"></i> Print </a>
+                                                <i class="fa fa-print"></i> Print </a>
                                             </li>
                                             <li>
                                                 <a href="">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
+                                                <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
                                             </li>
                                             <li>
                                                 <a href="">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                                <i class="fa fa-file-excel-o"></i> Export to Excel </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -62,37 +55,25 @@
                             <thead>
                                 <tr>                                                                                                                                        
                                     <th> Nama Barang </th>                                      
-                                    <th> Jumlah </th>
-                                    <th> Rusak </th>
-                                    <th> Dipinjam </th>
-                                    <th> Tersedia </th>
-                                    <th> Status Pinjam </th>
+                                    <th> Jumlah Barang Rusak </th>
+                                    <th> Jumlah Barang Dipakai </th>                                    
                                     <th> Aksi </th>                                                            
                                 </tr>
                             </thead>
                             <tbody>                                
-                                @foreach($data_item as $data)
+                                @foreach($data_warehouse as $data)
                                 <tr class="odd gradeX">                                                                                                           
                                     <td>{{ $data->item_name }}</td>                                    
-                                    <td>
-                                        @if ($data->number != null)
-                                            {{ $data->number . ' ' . $data->measure }}                                            
-                                        @else
-                                            {{ 0 . ' ' . $data->measure }}                                            
-                                        @endif
+                                    <td>                                    
+                                        {{ 
+                                            $data->repair_and_used == null ? 0 : $data->repair_and_used->number_repair 
+                                        }}
                                     </td>
                                     <td>
-                                        10 buah                                        
-                                    </td>
-                                    <td>
-                                        @if ($data->rent_status == 'BOLEH')
-                                            {{ $data->rent->sum('number_item') }}                                                                                        
-                                        @else
-                                            -
-                                        @endif                                        
-                                    </td>
-                                    <td>1 buah</td>   
-                                    <td> {{ $data->rent_status }} </td>                                     
+                                        {{ 
+                                            $data->repair_and_used == null ? 0 : $data->repair_and_used->number_used 
+                                        }}
+                                    </td>                                    
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -100,7 +81,7 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a href="{{ route('warehouse.edit', $data->item_name) }}">
+                                                    <a href="{{ route('repair_and_used.edit', $data->item_name) }}">
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>
