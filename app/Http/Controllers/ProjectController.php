@@ -13,6 +13,7 @@ use App\ProjectPurchase;
 use Illuminate\Support\Facades\DB;
 use App\Mutation;
 use App\WorkerContract;
+use App\Http\Requests\ProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -46,7 +47,7 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
         $gen = new GeneratorId();
 
@@ -143,7 +144,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectRequest $request, $id)
     {
         $data_project = Project::where('id_project', $id)
             ->first()

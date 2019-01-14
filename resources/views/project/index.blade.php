@@ -100,7 +100,7 @@
                                             </a>
                                         @endif                                
                                     </td>
-                                    <td>{{ 'Rp. ' . number_format($data->total) }}</td>                                    
+                                    <td>{{ 'Rp ' . number_format($data->total) }}</td>                                    
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">

@@ -28,12 +28,15 @@
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
                         <form action="{{ action('ProjectController@update', $data_project->id_project) }}" method="POST" class="form-horizontal form-row-seperated">
-                            <div class="form-body">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Nama Projek</label>
+                            <div class="form-body">                                
+                                <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Nama projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_project->name }}" name="name" placeholder="Nama Projek" class="form-control" />
-                                        <span class="help-block"> Nama Projek </span>
+                                        <input type="text" value="{{ old('name', $data_project->name) }}" name="name" placeholder="Nama Projek" class="form-control" />                                        
+                                        
+                                        @if ($errors->has('name'))
+                                            <span class="help-block"> {{ $errors->first('name') }} </span>
+                                        @endif
                                     </div>
                                 </div>                             
                                 <div class="form-group">
@@ -73,39 +76,54 @@
                                             <option value="{{ $data_project->status }}">
                                                 {{ $data_project->status . ' (DATA SAAT INI)'}}
                                             </option>
-                                            <option value="Proses">Proses</option>
-                                            <option value="Selesai">Selesai</option>                                            
+                                            <option value="Proses">PROSES</option>
+                                            <option value="Selesai">SELESAI</option>                                            
                                         </select>
                                         <span class="help-block"> Status Projek </span>
                                     </div>
-                                </div>                                                              
-                                <div class="form-group">
+                                </div>                                                                                              
+                                <div class="form-group {{ $errors->has('start') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Mulai</label>
                                     <div class="col-md-9">
-                                        <input name="start" value="{{ date('m/d/Y', strtotime($data_project->start)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Pelaksanaan </span>
+                                        <input name="start" value="{{ old('start', date('m/d/Y', strtotime($data_project->start))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('start'))
+                                            <span class="help-block"> {{ $errors->first('start') }} </span>
+                                        @else
+                                            <span class="help-block"> dd/mm/yyy. </span>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="form-group">
+                                </div>                                
+                                <div class="form-group {{ $errors->has('end') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Berakhir</label>
                                     <div class="col-md-9">
-                                    <input name="end" value="{{ date('m/d/Y', strtotime($data_project->end)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Berakhir </span>
+                                        <input name="end" value="{{ old('end', date('m/d/Y', strtotime($data_project->end))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('end'))
+                                            <span class="help-block"> {{ $errors->first('end') }} </span>
+                                        @else
+                                            <span class="help-block"> dd/mm/yyy. </span>
+                                        @endif
                                     </div>
-                                </div>  
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Harga Projek</label>
+                                </div>                                  
+                                <div class="form-group {{ $errors->has('total') ? 'has-error' : '' }}">
+                                    <label class="col-md-3 control-label">Harga Projek</label>
                                     <div class="col-md-9">
                                         <div class="input-inline">
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                     Rp
                                                 </span>
-                                                <input type="text" value="{{ round($data_project->total) }}" id="total" placeholder="Ex.5000000" class="form-control masking-form" />
+                                                <input type="text" value="{{ old('total', round($data_project->total)) }}" id="total" placeholder="Ex.5000000" class="form-control masking-form" />
                                                 <input type="hidden" id="total_hidden" name="total" class="masking-form-hidden">
                                             </div>
                                         </div>
-                                        <span class="help-block"> Harga Projek </span>
+                                        
+                                        @if ($errors->has('total'))
+                                            <span class="help-block"> {{ $errors->first('total') }} </span>
+                                        @else
+                                            <span class="help-block"> Harga projek. </span>
+                                        @endif
                                     </div>
                                 </div>                                                                                                                                                                                       
                             </div>        

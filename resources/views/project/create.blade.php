@@ -29,11 +29,14 @@
                         <!-- BEGIN FORM-->
                         <form action="{{ action('ProjectController@store') }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Nama Projek</label>
+                                <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Nama projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="name" placeholder="Nama Projek" class="form-control" />
-                                        <span class="help-block"> Nama Projek </span>
+                                        <input type="text" value="{{ old('name') }}" name="name" placeholder="Nama Projek" class="form-control" />                                        
+                                        
+                                        @if ($errors->has('name'))
+                                            <span class="help-block"> {{ $errors->first('name') }} </span>
+                                        @endif
                                     </div>
                                 </div>                             
                                 <div class="form-group">
@@ -46,50 +49,63 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <span class="help-block"> Keterangan Klien </span>
+                                        <span class="help-block"> Keterangan klien. </span>
                                     </div>
                                 </div>     
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Daerah</label>
                                     <div class="col-md-9">
                                         <select name="island" class="form-control">
-                                            <option value="Luwuk">Luwuk</option>
-                                            <option value="Banggai Laut">Banggai Laut</option>
-                                            <option value="Banggai Kepulauan">Banggai Kepulauan</option>
-                                        </select>
-                                        <span class="help-block"> Daerah </span>
+                                            <option value="Luwuk">LUWUK</option>
+                                            <option value="Banggai Laut">BANGGAI LAUT</option>
+                                            <option value="Banggai Kepulauan">BANGGAI KEPULAUAN</option>
+                                        </select>                                        
                                     </div>
                                 </div>                                  
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('start') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Mulai</label>
                                     <div class="col-md-9">
-                                        <input name="start" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Pelaksanaan </span>
+                                        <input name="start" value="{{ old('start') }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('start'))
+                                            <span class="help-block"> {{ $errors->first('start') }} </span>
+                                        @else
+                                            <span class="help-block"> dd/mm/yyy. </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('end') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Berakhir</label>
                                     <div class="col-md-9">
-                                        <input name="end" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Berakhir </span>
+                                        <input name="end" value="{{ old('end') }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('end'))
+                                            <span class="help-block"> {{ $errors->first('end') }} </span>
+                                        @else
+                                            <span class="help-block"> dd/mm/yyy. </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('total') ? 'has-error' : '' }}">
                                     <label class="col-md-3 control-label">Harga Projek</label>
                                     <div class="col-md-9">
                                         <div class="input-inline">
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                    Rp.
+                                                    Rp
                                                 </span>
-                                                <input type="text" id="total" placeholder="Ex.5000000" class="form-control masking-form" />
+                                                <input type="text" value="{{ old('total') }}" id="total" placeholder="Ex.5000000" class="form-control masking-form" />
                                                 <input type="hidden" id="total_hidden" name="total" class="masking-form-hidden">
                                             </div>
                                         </div>
-                                        <span class="help-block"> Harga Projek </span>
+                                        
+                                        @if ($errors->has('total'))
+                                            <span class="help-block"> {{ $errors->first('total') }} </span>
+                                        @else
+                                            <span class="help-block"> Harga projek. </span>
+                                        @endif
                                     </div>
                                 </div>
-
                             </div>
                             {{ csrf_field() }}
                             <div class="form-actions">
