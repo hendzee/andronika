@@ -126,6 +126,9 @@ class AssetsData extends Model
             ->sum('bonus');
         //end company employee bonus
 
-        return $company_bonus;
+        $company_outcome = $company_mutation_out + ($company_purchase->total) + $company_salary 
+            + $company_bonus;
+
+        return $company_outcome;
     }
 }

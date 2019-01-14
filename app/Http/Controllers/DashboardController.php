@@ -11,8 +11,9 @@ class DashboardController extends Controller
     {
         $assets_data = new AssetsData();        
 
-        echo $assets_data->getCompanyOutcome();
+        $data_outcome = $assets_data->getCompanyOutcome();
+        $data_income = $assets_data->getCompanyIncome();
         
-        // return view('dashboard.index');
+        return view('dashboard.index', compact('data_income', 'data_outcome'));
     }
 }

@@ -106,7 +106,7 @@
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
-        <h1 class="page-title"> Admin Dashboard
+        <h1 class="page-title"> PT. Andronika Putra Delta
             <small>statistics, charts, recent events and reports</small>
         </h1>
         <!-- END PAGE TITLE-->
@@ -120,9 +120,9 @@
                     </div>
                     <div class="details">
                         <div class="number">
-                            <span data-counter="counterup" data-value="1349">0</span>
+                            Rp <span data-counter="counterup" data-value="{{ number_format($data_income) }}">0</span>
                         </div>
-                        <div class="desc"> New Feedbacks </div>
+                        <div class="desc"> Total Pemasukkan </div>
                     </div>
                 </a>
             </div>
@@ -133,8 +133,9 @@
                     </div>
                     <div class="details">
                         <div class="number">
-                            <span data-counter="counterup" data-value="12,5">0</span>M$ </div>
-                        <div class="desc"> Total Profit </div>
+                            Rp <span data-counter="counterup" data-value="{{ number_format($data_outcome) }}">0</span> 
+                        </div>
+                        <div class="desc"> Total Pengeluaran </div>
                     </div>
                 </a>
             </div>

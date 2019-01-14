@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.index');
-});
+Route::get('/', 'DashboardController@index');
 
 Route::resource('dashboard', 'DashboardController');
 
