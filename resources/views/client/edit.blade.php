@@ -28,33 +28,53 @@
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
                         <form action="{{ action('ClientController@update', $data_client->id_client) }}" method="POST" class="form-horizontal form-row-seperated">
-                            <div class="form-body">
-                                <div class="form-group">
+                            <div class="form-body">                                
+                                <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Alamat</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_client->address}}" name="address" placeholder="Alamat" class="form-control" />
-                                        <span class="help-block"> Alamat Klien </span>
+                                        <input type="text" value="{{ old('address', $data_client->address) }}" name="address" placeholder="Alamat" class="form-control" />
+                                        
+                                        @if ($errors->has('address'))
+                                            <span class="help-block"> {{ $errors->first('address') }} </span>
+                                        @else
+                                            <span class="help-block"> Alamat klien (rumah, kantor, dsb). </span>
+                                        @endif
                                     </div>
                                 </div>                             
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Email</label>
                                     <div class="col-md-9">
-                                        <input name="email" value="{{ $data_client->email }}" type="text" placeholder="Email" class="form-control" />
-                                        <span class="help-block"> Email </span>
+                                        <input name="email" value="{{ old('email', $data_client->email) }}" type="text" placeholder="Email" class="form-control" />
+                                        
+                                        @if ($errors->has('email'))
+                                            <span class="help-block"> {{ $errors->first('email') }} </span>
+                                        @else
+                                            <span class="help-block"> Ex: example.gmail.com. </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('telp') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Telpon</label>
                                     <div class="col-md-9">
-                                        <input name="telp" value="{{ $data_client->telp }}" type="text" placeholder="Telpon" class="form-control" />
-                                        <span class="help-block"> Telpon / No Handphone </span>
+                                        <input name="telp" value="{{ old('telp', $data_client->telp) }}" type="text" placeholder="Telpon" class="form-control" />
+                                        
+                                        @if ($errors->has('telp'))
+                                            <span class="help-block"> {{ $errors->first('telp') }} </span>
+                                        @else
+                                            <span class="help-block"> Telpon rumah atau kantor. </span>
+                                        @endif
                                     </div>
                                 </div>  
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Deskripsi</label>
+                                <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Klien</label>
                                     <div class="col-md-9">
-                                        <input name="description" value="{{ $data_client->description }}" type="text" placeholder="Deskripsi" class="form-control" />
-                                        <span class="help-block"> Deskripsi,  nama klien dsb </span>
+                                        <input name="description" value="{{ old('description', $data_client->description) }}" type="text" placeholder="Deskripsi" class="form-control" />
+                                        
+                                        @if ($errors->has('description'))
+                                            <span class="help-block"> {{ $errors->first('description') }} </span>
+                                        @else
+                                            <span class="help-block"> Nama klien / lembaga. </span>
+                                        @endif
                                     </div>
                                 </div>                                                                                                                          
                             </div>
