@@ -18,11 +18,12 @@ use App\EmployeeBonus;
 
 class AssetsData extends Model
 {
-    public function getCompanyAsset()
+    public function getCompanyProfit()
     {        
         $company_asset = 0;
+        $company_asset = $this->getCompanyIncome() - $this->getCompanyOutcome();
 
-        return $this->getCompanyIncome();
+        return $company_asset;
     }
 
     public function getCompanyIncome()
