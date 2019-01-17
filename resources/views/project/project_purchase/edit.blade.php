@@ -56,51 +56,61 @@
                                         </select>
                                         <span class="help-block"> Nama Barang </span>
                                     </div>
-                                </div>
-                                <div class="form-group">
+                                </div>                                
+                                <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Beli</label>
                                     <div class="col-md-9">
-                                        <input name="date" value="{{ date('m/d/Y', strtotime($data_purchase->date)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Lahir </span>
+                                        <input name="date" value="{{ old('date', date('m/d/Y', strtotime($data_purchase->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('date'))
+                                            <span class="help-block"> {{ $errors->first('date') }} </span>
+                                        @else
+                                            <span class="help-block"> mm/dd/yyy. </span>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="form-group">
+                                </div>                                
+                                <div class="form-group {{ $errors->has('total_item') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Jumlah</label>
                                     <div class="col-md-9">
-                                        <input name="total_item" value="{{ $data_purchase->total_item }}" type="text" placeholder="Jumlah Barang" class="form-control" />
-                                        <span class="help-block"> Jumlah Barang </span>
+                                        <input name="total_item" value="{{ old('total_item', $data_purchase->total_item) }}" type="text" placeholder="Jumlah Barang" class="form-control" />
+                                        
+                                        @if ($errors->has('total_item'))
+                                            <span class="help-block"> {{ $errors->first('total_item') }} </span>
+                                        @else
+                                            <span class="help-block"> Jumlah barang. </span>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="form-group">
+                                </div>                                
+                                <div class="form-group {{ $errors->has('price_per_item') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Harga/Satuan</label>
                                     <div class="col-md-9">
                                         <div class="input-inline">
                                             <div class="input-group">
-                                            <span class="input-group-addon">
-                                                Rp
-                                            </span>
-                                            <input type="text" placeholder="Harga/Satuan"
-                                                    class="form-control masking-form" value="{{ round($data_purchase->price_per_item) }}"/>
-                                            <input type="hidden" id="total_hidden" name="price_per_item" class="masking-form-hidden">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" value="{{ old('price_per_item', round($data_purchase->price_per_item)) }}" placeholder="Harga/Satuan" class="form-control masking-form"/>
+                                                <input type="hidden" id="total_hidden" name="price_per_item" class="masking-form-hidden">
                                             </div>
-                                        </div>
-                                        <span class="help-block"> Harga/Satuan </span>
+
+                                            @if ($errors->has('price_per_item'))
+                                                <span class="help-block"> {{ $errors->first('price_per_item') }} </span>
+                                            @endif
+                                        </div>                                        
                                     </div>
-                                </div>
-                                <div class="form-group">
+                                </div>                                
+                                <div class="form-group {{ $errors->has('resp_person') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Pembeli</label>
                                     <div class="col-md-9">
-                                        <input name="resp_person" value="{{ $data_purchase->resp_person }}" type="text" placeholder="Pembeli" class="form-control" />
-                                        <span class="help-block"> Nama Pembeli </span>
+                                        <input name="resp_person" value="{{ old('resp_person', $data_purchase->resp_person) }}" type="text" placeholder="Pembeli" class="form-control" />
+                                        
+                                        @if ($errors->has('resp_person'))
+                                            <span class="help-block"> {{ $errors->first('resp_person') }} </span>
+                                        @else
+                                            <span class="help-block"> Nama pembeli. </span>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Token</label>
-                                    <div class="col-md-9">
-                                        <input name="token" value="{{ $data_purchase->token }}" type="text" placeholder="Token" class="form-control" />
-                                        <span class="help-block"> Token </span>
-                                    </div>
-                                </div>                                                               
+                                </div>                                
                             </div>
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}

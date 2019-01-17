@@ -7,6 +7,7 @@ use App\ProjectPurchase;
 use App\Project;
 use App\GeneratorId;
 use App\ProjectSupply;
+use App\Http\Requests\ProjectPurchaseRequest;
 
 
 class ProjectPurchaseController extends Controller
@@ -44,7 +45,7 @@ class ProjectPurchaseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectPurchaseRequest $request)
     {
         $gen = new GeneratorId();
 
@@ -55,8 +56,7 @@ class ProjectPurchaseController extends Controller
             'name' => $request->name,
             'total_item' => $request->total_item,
             'price_per_item' => $request->price_per_item,
-            'resp_person' => $request->resp_person,
-            'token' => $request->token
+            'resp_person' => $request->resp_person            
         ]);
 
         return redirect('project_purchase_index/'. $request->id_project );
@@ -97,7 +97,7 @@ class ProjectPurchaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectPurchaseRequest $request, $id)
     {        
         $purchase = ProjectPurchase::where('id_transaction', $id)
             ->first()
@@ -107,8 +107,7 @@ class ProjectPurchaseController extends Controller
                 'name' => $request->name,
                 'total_item' => $request->total_item,
                 'price_per_item' => $request->price_per_item,
-                'resp_person' => $request->resp_person,
-                'token' => $request->token 
+                'resp_person' => $request->resp_person                
             ]);        
     
         return redirect('project_purchase_index/'. $request->id_project );
