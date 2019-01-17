@@ -65,7 +65,7 @@
                                     <th> Asal </th>
                                     <th> Tujuan </th>                                
                                     <th> Nominal </th>
-                                    <th> date </th>                                    
+                                    <th> Tanggal </th>                                    
                                     <th> Aksi </th>                                
                                 </tr>
                             </thead>
@@ -100,7 +100,7 @@
                                         @endif
                                     </td>    
                                     <td>{{ 'Rp ' . number_format($data->nominal) }}</td>                                
-                                    <td>{{ date('m D, Y', strtotime($data->date)) }}</td>                                    
+                                    <td>{{ date('d M, Y', strtotime($data->date)) }}</td>                                    
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
