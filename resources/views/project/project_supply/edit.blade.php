@@ -36,16 +36,18 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_supply->project->name . ' | ' . date('d M, Y', strtotime($data_supply->project->start)) }}" disabled class="form-control" />
-                                        <span class="help-block"> Projek </span>
+                                        <input type="text" value="{{ $data_supply->project->name . ' | ' . date('d M, Y', strtotime($data_supply->project->start)) }}" disabled class="form-control" />                                        
                                     </div>
                                 </div>
-                                <input type="hidden" name="id_project" value="{{ $data_supply->id_project }}" />
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Nama</label>
+                                <input type="hidden" name="id_project" value="{{ $data_supply->id_project }}" />                                
+                                <div class="form-group {{ $errors->has('item_name') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Nama Barang</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_supply->item_name }}" name="item_name" placeholder="nama" class="form-control" />
-                                        <span class="help-block"> Nama Harus Diisi </span>
+                                        <input type="text" value="{{ old('item_name'), $data_supply->item_name }}" name="item_name" placeholder="Nama Barang" class="form-control" />
+                                        
+                                        @if ($errors->has('item_name'))
+                                            <span class="help-block"> {{ $errors->first('item_name') }} </span>    
+                                        @endif
                                     </div>
                                 </div>                             
                                 <div class="form-group">
@@ -53,12 +55,11 @@
                                     <div class="col-md-9">
                                         <select name="measure" class="form-control">
                                             <option value="{{ $data_supply->measure }}">{{ $data_supply->measure }}</option>
-                                            <option value="Sak">Sak</option>
-                                            <option value="Kg">Kg</option>
-                                            <option value="Ton">Ton</option>
-                                            <option value="Liter">Liter</option>
+                                            <option value="SAK">Sak</option>
+                                            <option value="KG">Kg</option>
+                                            <option value="TON">Ton</option>
+                                            <option value="LITER">Liter</option>
                                         </select>
-                                        <span class="help-block"> Tanggal Transfer </span>
                                     </div>
                                 </div>                                                                                                                                                          
                             </div>

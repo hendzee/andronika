@@ -36,28 +36,29 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_project->name . ' | ' . date('d M, Y', strtotime($data_project->start)) }}" disabled class="form-control" />
-                                        <span class="help-block">Projek</span>
+                                        <input type="text" value="{{ $data_project->name . ' | ' . date('d M, Y', strtotime($data_project->start)) }}" disabled class="form-control" />                                        
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $id_project }}" />
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('item_name') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Nama Barang</label>
                                     <div class="col-md-9">
                                         <input type="text" name="item_name" placeholder="Nama Barang" class="form-control" />
-                                        <span class="help-block"> Nama Barang </span>
+                                        
+                                        @if ($errors->has('item_name'))
+                                            <span class="help-block"> {{ $errors->first('item_name') }} </span>    
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Satuan</label>
                                     <div class="col-md-9">
                                         <select name="measure" class="form-control">
-                                            <option value="Sak">Sak</option>
-                                            <option value="Kg">Kg</option>
-                                            <option value="Ton">Ton</option>
-                                            <option value="Liter">Liter</option>
-                                        </select>
-                                        <span class="help-block"> Satuan Barang </span>
+                                            <option value="SAK">Sak</option>
+                                            <option value="KG">Kg</option>
+                                            <option value="TON">Ton</option>
+                                            <option value="LITER">Liter</option>
+                                        </select>                                        
                                     </div>
                                 </div>                                                                                                                                                                                                                 
                             </div>
