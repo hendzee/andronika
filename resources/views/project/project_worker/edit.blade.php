@@ -36,30 +36,42 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_worker->project->name . ' | ' . date('d M, Y', strtotime($data_worker->project->start)) }}" placeholder="Nama Lengkap" class="form-control" disabled/>
-                                        <span class="help-block"> Projek </span>
+                                        <input type="text" value="{{ $data_worker->project->name . ' | ' . date('d M, Y', strtotime($data_worker->project->start)) }}" placeholder="Nama Lengkap" class="form-control" disabled/>                                        
                                     </div>
                                 </div>
-                                <input type="hidden" name="id_project" value="{{ $data_worker->id_project }}" />
-                                <div class="form-group">
+                                <input type="hidden" name="id_project" value="{{ $data_worker->id_project }}" />                                
+                                <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Nama</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="name" value="{{ $data_worker->name }}" placeholder="Nama Lengkap" class="form-control" />
-                                        <span class="help-block"> Nama Lengkap </span>
+                                        <input type="text" value="{{ old('name', $data_worker->name) }}" name="name" placeholder="Nama Lengkap" class="form-control" />
+                                        
+                                        @if ($errors->has('name'))
+                                            <span class="help-block"> {{ $errors->first('name') }} </span>
+                                        @else
+                                            <span class="help-block"> Nama lengkap. </span>
+                                        @endif
                                     </div>
-                                </div>                               
-                                <div class="form-group">
+                                </div>                                                               
+                                <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Alamat</label>
                                     <div class="col-md-9">
-                                        <input name="address" value="{{ $data_worker->address }}" type="text" placeholder="Alamat Rumah" class="form-control" />
-                                        <span class="help-block"> Alamat Rumah </span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
+                                        <input name="address" value="{{ old('address', $data_worker->address) }}" type="text" placeholder="Alamat Rumah" class="form-control" />                                        
+                                        
+                                        @if ($errors->has('address'))
+                                            <span class="help-block"> {{ $errors->first('address') }} </span>
+                                        @endif
+                                    </div>                                   
+                                </div>                                
+                                <div class="form-group {{ $errors->has('telp') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Telpon</label>
                                     <div class="col-md-9">
-                                        <input name="telp" value="{{ $data_worker->telp }}" type="text" placeholder="Telpon" class="form-control" />
-                                        <span class="help-block"> Telpon / No Handphone </span>
+                                        <input name="telp" value="{{ old('telp', $data_worker->telp) }}" type="text" placeholder="Telpon" class="form-control" />
+                                        
+                                        @if ($errors->has('telp'))
+                                            <span class="help-block"> {{ $errors->first('telp') }} </span>
+                                        @else
+                                            <span class="help-block"> Telpon / No handphone. </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -69,19 +81,24 @@
                                             <option value="{{ $data_worker->religion }}">
                                                 {{ $data_worker->religion . ' (DATA SAAT INI)' }}
                                             </option>
-                                            <option value="Islam">Islam</option>
-                                            <option value="Kristen">Kristen</option>
-                                            <option value="Hindu">Hindu</option>
-                                            <option value="Budha">Budha</option>
-                                            <option value="Konghucu">Konghucu</option>
+                                            <option value="ISLAM">ISLAM</option>
+                                            <option value="KRISTEN">KRISTEN</option>
+                                            <option value="HINDU">HINDU</option>
+                                            <option value="BUDHA">BUDHA</option>
+                                            <option value="KONGHUCU">KONGHUCU</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-group">
+                                </div>                                
+                                <div class="form-group {{ $errors->has('division') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Pekerjaan</label>
-                                    <div class="col-md-9">                                        
-                                        <input name="division" value="{{ $data_worker->division }}" type="text" placeholder="Pekerjaan Dalam Projek" class="form-control" />
-                                        <span class="help-block"> Informasi Kerja </span>
+                                    <div class="col-md-9">
+                                        <input name="division" value="{{ old('division', $data_worker->division) }}" type="text" placeholder="Pekerjaan Dalam Projek" class="form-control" />
+                                        
+                                        @if ($errors->has('division'))
+                                            <span class="help-block"> {{ $errors->first('division') }} </span>
+                                        @else
+                                            <span class="help-block"> Informasi kerja. </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -91,8 +108,8 @@
                                             <option value="{{ $data_worker->gender }}">
                                                 {{ $data_worker->gender . ' (DATA SAAT INI)'}}
                                             </option>
-                                            <option value="Laki-laki">Laki-laki</option>
-                                            <option value="Perempuan">Perempuan</option>                                            
+                                            <option value="PRIA">PRIA</option>
+                                            <option value="WANITA">WANITA</option>                                           
                                         </select>
                                         <span class="help-block"> Gender </span>
                                     </div>
@@ -108,7 +125,7 @@
                                             <option value="HARIAN">HARIAN</option>                                            
                                         </select>
                                         <span class="help-block"> 
-                                            Pilih Kontrak (Pembayaran Dengan Sistem Kontrak) / Harian (Dibayar Berdasarkan Hari Kerja)
+                                            Pilih kontrak (pembayaran dengan sistem kontrak) / harian (dibayar berdasarkan hari kerja)
                                         </span>
                                     </div>
                                 </div>                                                                 

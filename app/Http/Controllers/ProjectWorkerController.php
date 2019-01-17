@@ -6,6 +6,7 @@ use App\ProjectWorker;
 use App\Project;
 use Illuminate\Http\Request;
 use App\GeneratorId;
+use App\Http\Requests\ProjectWorkerRequest;
 
 class ProjectWorkerController extends Controller
 {
@@ -42,7 +43,7 @@ class ProjectWorkerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectWorkerRequest $request)
     {
         $gen = new GeneratorId();
 
@@ -94,7 +95,7 @@ class ProjectWorkerController extends Controller
      * @param  \App\ProjectWorker  $projectWorker
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectWorkerRequest $request, $id)
     {
         $data_worker = ProjectWorker::where('id_worker', $id)
         ->first()
