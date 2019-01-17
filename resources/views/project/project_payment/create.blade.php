@@ -36,12 +36,11 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_project->name . ' | ' . date('d M, Y', strtotime($data_project->start)) }}" disabled class="form-control" />
-                                        <span class="help-block"> Projek </span>
+                                        <input type="text" value="{{ $data_project->name . ' | ' . date('d M, Y', strtotime($data_project->start)) }}" disabled class="form-control" />                                        
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $id_project }}" />
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('transfer') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Uang Masuk</label>
                                     <div class="col-md-9">
                                         <div class="input-inline">
@@ -49,18 +48,26 @@
                                                 <span class="input-group-addon">
                                                     Rp
                                                 </span>
-                                                <input type="text" placeholder="Uang Masuk" class="form-control masking-form" />
+                                                <input type="text" value={{ old('transfer') }} placeholder="Uang Masuk" class="form-control masking-form" />
                                                 <input type="hidden" id="total_hidden" name="transfer" class="masking-form-hidden">
                                             </div>
                                         </div>
-                                        <span class="help-block"> Uang Masuk </span>
+
+                                        @if ($errors->has('transfer'))
+                                            <span class="help-block"> {{ $errors->first('transfer') }} </span>                                            
+                                        @endif
                                     </div>
                                 </div>                             
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal</label>
                                     <div class="col-md-9">
-                                        <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Transfer </span>
+                                        <input name="date" value="{{ old('date') }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('date'))                                            
+                                            <span class="help-block"> {{ $errors->first('date') }} </span>
+                                        @else
+                                            <span class="help-block"> Tanggal transfer (mm/dd/yyy). </span>
+                                        @endif
                                     </div>
                                 </div>                                                                                                                                                          
                             </div>

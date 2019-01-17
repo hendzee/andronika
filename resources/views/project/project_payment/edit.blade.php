@@ -40,8 +40,8 @@
                                         <span class="help-block">Projek</span>
                                     </div>
                                 </div>
-                                <input type="hidden" name="id_project" value="{{ $data_payment->id_project }}" />
-                                <div class="form-group">
+                                <input type="hidden" name="id_project" value="{{ $data_payment->id_project }}" />                                                          
+                                <div class="form-group {{ $errors->has('transfer') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Uang Masuk</label>
                                     <div class="col-md-9">
                                         <div class="input-inline">
@@ -49,20 +49,28 @@
                                                 <span class="input-group-addon">
                                                     Rp
                                                 </span>
-                                                <input type="text" placeholder="Uang Masuk" value="{{ round($data_payment->transfer) }}" class="form-control masking-form" />
+                                                <input type="text" value={{ old('transfer', round($data_payment->transfer)) }} placeholder="Uang Masuk" class="form-control masking-form" />
                                                 <input type="hidden" id="total_hidden" name="transfer" class="masking-form-hidden">
                                             </div>
                                         </div>
-                                        <span class="help-block"> Uang Masuk </span>
+
+                                        @if ($errors->has('transfer'))
+                                            <span class="help-block"> {{ $errors->first('transfer') }} </span>                                            
+                                        @endif
                                     </div>
-                                </div>                             
-                                <div class="form-group">
+                                </div>                                  
+                                <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal</label>
                                     <div class="col-md-9">
-                                        <input name="date" value="{{ date('m/d/Y', strtotime($data_payment->date)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Transfer </span>
+                                        <input name="date" value="{{ old('date', date('m/d/Y', strtotime($data_payment->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('date'))                                            
+                                            <span class="help-block"> {{ $errors->first('date') }} </span>
+                                        @else
+                                            <span class="help-block"> Tanggal transfer (mm/dd/yyy). </span>
+                                        @endif
                                     </div>
-                                </div>                                                                                                                                                          
+                                </div>                                                                                                                                                           
                             </div>
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}

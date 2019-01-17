@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\ProjectPayment;
 use App\Project;
 use App\GeneratorId;
+use App\Http\Requests\ProjectPaymentRequest;
 
 class ProjectPaymentController extends Controller
 {
@@ -48,7 +49,7 @@ class ProjectPaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectPaymentRequest $request)
     {
         $gen = new GeneratorId();
 
@@ -94,7 +95,7 @@ class ProjectPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectPaymentRequest $request, $id)
     {
         $data_payment = ProjectPayment::where('id_payment', $id)
         ->first()
