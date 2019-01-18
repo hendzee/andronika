@@ -31,15 +31,8 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <div class="table-toolbar">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="btn-group">
-                                        <a href="{{ route('worker_salary_create', $id_project) }}" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Data Baru
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+                            <div class="row">                                
+                                <div class="col-md-12">
                                     <div class="btn-group pull-right">
                                         <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                             <i class="fa fa-angle-down"></i>
@@ -66,8 +59,8 @@
                             <thead>
                                 <tr>                                                                                                                                        
                                     <th> Pekerja </th>                                                                        
-                                    <th> Fullday </th>                                
-                                    <th> Halfday </th>                                
+                                    <th> 1 Hari </th>                                
+                                    <th> 1/2 Hari </th>                                
                                     <th> Gaji/hr </th>
                                     <th> Total </th>
                                     <th> Diambil </th>
@@ -77,48 +70,85 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data_salary as $data)
+                                @foreach($data_worker as $data)
                                 <tr class="odd gradeX">                                                                                                           
                                     <td>
-                                        {{ $data->worker->name }}
+                                        {{ $data->name }}
                                         <br/>                   
-                                        {{ 'Ket: ' . $data->worker->division }}                     
+                                        {{ 'Ket: ' . $data->division }}                     
                                     </td>
-                                    <td>{{ $data->fullday . ' hari' }}</td>
-                                    <td>{{ $data->halfday . ' hari' }}</td>                                    
-                                    <td>{{ 'Rp ' . number_format($data->salary) }}</td>
                                     <td>
-                                        @php
-                                           $total_sal = ($data->fullday * $data->salary) + ($data->halfday * $data->salary * 0.5) 
-                                        @endphp
-                                        {{ 'Rp ' . number_format($total_sal) }}    
+                                        @if ($data->worker_salary == null)
+                                            -
+                                        @else
+                                            {{ $data->worker_salary->fullday . ' hari' }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($data->worker_salary == null)
+                                            -
+                                        @else
+                                            {{ $data->worker_salary->halfday . ' hari' }}
+                                        @endif
+                                    </td>                                    
+                                    <td>
+                                        @if ($data->worker_salary == null)
+                                            -
+                                        @else
+                                            {{ 'Rp ' . number_format($data->worker_salary->salary) }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($data->worker_salary == null)
+                                            -
+                                        @else
+                                            @php
+                                                $total_sal = ($data->worker_salary->fullday * $data->worker_salary->salary) 
+                                                + ($data->worker_salary->halfday * $data->worker_salary->salary * 0.5) 
+                                            @endphp
+                                            {{ 'Rp ' . number_format($total_sal) }}    
+                                        @endif                                        
                                     </td>        
-                                    <td> 
-                                        @php
-                                           $transaction = App\PSTransaction::where('id_salary', $data->id_salary)
-                                            ->sum('nominal') 
-                                        @endphp
-                                        {{ 'Rp ' . number_format($transaction) }}
-                                        <br/>
-                                        <a href="{{ route('ps_transaction_index', ['id' => $data->id_salary, 
+                                    <td>
+                                        @if ($data->ps_transaction == null)
+                                            -    
+                                        @else   
+                                            @php
+                                                $transaction = 0
+                                            @endphp                                         
+                                            {{ 'Rp ' . number_format($transaction = $data->ps_transaction->sum('nominal')) }}
+                                            <br/>                                            
+                                        @endif   
+                                        
+                                        <a href="{{ route('ps_transaction_index', ['id' => $data->id_worker, 
                                             'id_prj' => $data->id_project]) }}">
                                             detail
                                         </a>
                                     </td>
-                                    <td> {{ 'Rp ' . number_format(($total_sal - $transaction)) }} </td>
                                     <td>
-                                        @php
+                                        @if ($data->ps_transaction == null)
+                                            -
+                                        @else
+                                            {{ 'Rp ' . number_format(($total_sal - $transaction)) }} 
+                                        @endif                                         
+                                    </td>
+                                    <td>
+                                        @if ($data->worker_salary == null)
+                                            -    
+                                        @else
+                                            @php
                                             $bonus = App\ProjectBonus::where('id_worker', $data->id_worker)
                                                 ->where('status', 'belum diambil')
                                                 ->sum('bonus') 
-                                        @endphp
-                                        {{ 'Rp ' . number_format($bonus) }}
-                                        <br/>
-                                        <a href="{{ route('project_bonus_index', [
-                                            'id' => $data->id_worker,
-                                            'id_prj' => $data->id_project]) }}">
-                                            detail
-                                        </a>
+                                            @endphp
+                                            {{ 'Rp ' . number_format($bonus) }}
+                                            <br/>
+                                            <a href="{{ route('project_bonus_index', [
+                                                'id' => $data->id_worker,
+                                                'id_prj' => $data->id_project]) }}">
+                                                detail
+                                            </a>    
+                                        @endif
                                     </td>                                   
                                     <td>
                                         <div class="btn-group">
@@ -127,7 +157,7 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a href="{{ route('worker_salary.edit', $data->id_salary) }}">
+                                                    <a href="{{ route('worker_salary.edit', $data->id_worker) }}">
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>

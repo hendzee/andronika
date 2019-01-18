@@ -16,4 +16,9 @@ class Project extends Model
     {
         return $this->belongsTo('App\Client', 'id_client');
     }
+
+    public function worker_salary()
+    {
+        return $this->hasMany('App\WorkerSalary', 'id_project');
+    }
 }

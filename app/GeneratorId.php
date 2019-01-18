@@ -9,7 +9,6 @@ use App\Project;
 use App\ProjectPayment;
 use App\ProjectPurchase;
 use App\ProjectWorker;
-use App\WorkerSalary;
 use App\ProjectBonus;
 use App\PSTransaction;
 use App\WarehousePurchase;
@@ -86,12 +85,6 @@ class GeneratorId extends Model
                 $unique_code = 'PW';
                 $obj = new ProjectWorker();
             break;  
-            
-            case 'worker_salary':
-                $search_id = 'id_salary';
-                $unique_code = 'WS';
-                $obj = new WorkerSalary();
-            break; 
 
             case 'project_bonus':
                 $search_id = 'id_bonus';

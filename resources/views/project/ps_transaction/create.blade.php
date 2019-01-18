@@ -14,7 +14,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="{{ route('ps_transaction_index', ['id' => $id_salary, 
+                    <a href="{{ route('ps_transaction_index', ['id' => $id_worker, 
                         'id_prj' => $data_transaction->id_project]) }}"> 
                         Ambil Gaji 
                     </a>
@@ -38,7 +38,7 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form action="{{ action('PSTransactionController@store', $id_salary) }}" method="POST" class="form-horizontal form-row-seperated">
+                        <form action="{{ action('PSTransactionController@store', $id_worker) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Projek</label>
@@ -56,7 +56,6 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_worker" value="{{ $data_transaction->id_worker }}" />                                
-                                <input type="hidden" name="id_salary" value="{{ $data_transaction->id_salary }}" />
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nominal</label>
                                     <div class="col-md-9">
@@ -87,7 +86,7 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <a href="{{ route('ps_transaction_index', ['id' => $id_salary, 
+                                        <a href="{{ route('ps_transaction_index', ['id' => $id_worker, 
                                                 'id_prj' => $data_transaction->id_project]) }}" class="btn default"> 
                                             Batal 
                                         </a>

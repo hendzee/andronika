@@ -16,4 +16,14 @@ class ProjectWorker extends Model
     {
         return $this->belongsTo('App\Project', 'id_project');
     }
+
+    public function worker_salary()
+    {
+        return $this->hasOne('App\WorkerSalary', 'id_worker');
+    }
+
+    public function ps_transaction()
+    {
+        return $this->hasMany('App\PSTransaction', 'id_worker');
+    }
 }

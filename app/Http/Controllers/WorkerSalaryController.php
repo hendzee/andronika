@@ -7,6 +7,7 @@ use App\WorkerSalary;
 use App\ProjectWorker;
 use App\Project;
 use App\GeneratorId;
+use Illuminate\Support\Facades\DB;
 
 class WorkerSalaryController extends Controller
 {
@@ -17,10 +18,19 @@ class WorkerSalaryController extends Controller
      */
     public function index($id)
     {
-        $data_salary = WorkerSalary::where('id_project', $id)->get();
+        // $data_salary = DB::table('project_worker')
+        //     ->join('worker_salary', 'project_worker.id_worker', '=', 'worker_salary.id_worker' )
+        //     ->where('project_worker.id_project', $id)
+        //     ->where('salary_status', 'HARIAN')
+        //     ->get();
+        
+        $data_worker = ProjectWorker::where('id_project', $id)
+            ->where('salary_status', 'HARIAN')
+            ->get();
+        
         $id_project = $id;
         
-        return view('project.worker_salary.index', compact('data_salary', 'id_project'));
+        return view('project.worker_salary.index', compact('data_worker', 'id_project'));
     }
 
     /**
@@ -30,14 +40,15 @@ class WorkerSalaryController extends Controller
      */
     public function create($id)
     {
-        $id_project = $id;
-        $data_project = Project::where('id_project', $id)->first();
-        $data_worker = ProjectWorker::where([
-            'id_project' => $id,
-            'salary_status' => 'HARIAN'])
-            ->get();
+        // $id_project = $id;
+        // $data_project = Project::where('id_project', $id)->first();
+        
+        // $data_worker = ProjectWorker::where([
+        //     'id_project' => $id,
+        //     'salary_status' => 'HARIAN'])
+        //     ->get();
 
-        return view('project.worker_salary.create', compact('id_project', 'data_worker', 'data_project'));
+        // return view('project.worker_salary.create', compact('id_project', 'data_worker', 'data_project'));
     }
 
     /**
@@ -48,22 +59,22 @@ class WorkerSalaryController extends Controller
      */
     public function store(Request $request)
     {       
-        $gen = new GeneratorId();
+        // $gen = new GeneratorId();
 
-        $check_data = WorkerSalary::where('id_worker', $request->id_worker)
-            ->get();
+        // $check_data = WorkerSalary::where('id_worker', $request->id_worker)
+        //     ->get();
 
-        //check if salary_data and id_worker must be unique
-        if ($check_data->count() < 1){
-            $salary = WorkerSalary::create([ 
-                'id_salary' => $gen->generateId('worker_salary'),                
-                'id_project' => $request->id_project,
-                'id_worker' => $request->id_worker,
-                'salary' => $request->salary
-            ]);
-        };
+        // //check if salary_data and id_worker must be unique
+        // if ($check_data->count() < 1){
+        //     $salary = WorkerSalary::create([ 
+        //         'id_salary' => $gen->generateId('worker_salary'),                
+        //         'id_project' => $request->id_project,
+        //         'id_worker' => $request->id_worker,
+        //         'salary' => $request->salary
+        //     ]);
+        // };
 
-        return redirect('worker_salary_index/'. $request->id_project );
+        // return redirect('worker_salary_index/'. $request->id_project );
     }
 
     /**
@@ -84,11 +95,13 @@ class WorkerSalaryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        $data_salary = WorkerSalary::where('id_salary', $id)
-            ->first();        
-    
-        return view('project.worker_salary.edit', compact('data_salary'));
+    {       
+        $data_worker = ProjectWorker::where('id_worker', $id)
+            ->first();
+        
+        $id_worker = $id;
+        
+        return view('project.worker_salary.edit', compact('data_worker', 'id_worker'));
     }
 
     /**
@@ -99,13 +112,28 @@ class WorkerSalaryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {               
-        $salary = WorkerSalary::where('id_salary', $id)
+    {      
+        $check_data = WorkerSalary::where('id_worker', $id)
+            ->first();
+
+        if ($check_data == null){
+            $salary = WorkerSalary::create([                 
+                'id_worker' => $request->id_worker,
+                'id_project' => $request->id_project,
+                'salary' => $request->salary,
+                'fullday' => $request->fullday,
+                'halfday' => $request->halfday
+            ]);
+        } else {
+            $salary = WorkerSalary::where('id_worker', $id)
             ->first()
             ->update([                
-                'salary' => $request->salary
-            ]);        
-           
+                'salary' => $request->salary,
+                'fullday' => $request->fullday,
+                'halfday' => $request->halfday
+            ]);    
+        }
+                   
         return redirect('worker_salary_index/'. $request->id_project );
     }
 

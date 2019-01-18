@@ -14,7 +14,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="{{ route('ps_transaction_index', ['id' => $id_salary, 'id_prj' => $id_project]) }}"> 
+                    <a href="{{ route('ps_transaction_index', ['id' => $id_worker, 'id_prj' => $id_project]) }}"> 
                         Ambil Gaji 
                     </a>
                     <i class="fa fa-circle"></i>
@@ -40,7 +40,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="{{ route('ps_transaction_create', $id_salary) }}" id="sample_editable_1_new" class="btn sbold green"> 
+                                        <a href="{{ route('ps_transaction_create', $id_worker) }}" id="sample_editable_1_new" class="btn sbold green"> 
                                             Buka Transaksi
                                         </a>
                                     </div>

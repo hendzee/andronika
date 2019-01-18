@@ -16,12 +16,12 @@ class PSTransactionController extends Controller
      */
     public function index($id, $id_prj)
     {        
-        $data_transaction = PSTransaction::where('id_salary', $id)->get();        
-        $id_salary= $id; 
+        $data_transaction = PSTransaction::where('id_worker', $id)->get();        
+        $id_worker = $id; 
         $id_project = $id_prj;       
         
         return view('project.ps_transaction.index', compact('data_transaction', 
-            'id_salary', 'id_project'));
+            'id_worker', 'id_project'));
     }
 
     /**
@@ -31,10 +31,10 @@ class PSTransactionController extends Controller
      */
     public function create($id)
     {
-        $id_salary = $id;
-        $data_transaction = WorkerSalary::where('id_salary', $id)->first();
+        $id_worker = $id;
+        $data_transaction = WorkerSalary::where('id_worker', $id)->first();
 
-        return view('project.ps_transaction.create', compact('id_salary', 'data_transaction'));
+        return view('project.ps_transaction.create', compact('id_worker', 'data_transaction'));
     }
 
     /**
@@ -50,13 +50,12 @@ class PSTransactionController extends Controller
         $transaction = PSTransaction::create([ 
             'id_transaction' => $gen->generateId('ps_transaction'),
             'id_project' => $request->id_project,
-            'id_worker' => $request->id_worker,
-            'id_salary' => $request->id_salary,
+            'id_worker' => $request->id_worker,            
             'nominal' => $request->nominal,
             'date' => date('Y-m-d', strtotime($request->date))            
         ]);        
 
-        return redirect('ps_transaction_index/'. $request->id_salary . '/' . $request->id_project);
+        return redirect('ps_transaction_index/'. $request->id_worker . '/' . $request->id_project);
     }
 
     /**
@@ -97,13 +96,12 @@ class PSTransactionController extends Controller
             ->first()
             ->update([             
                 'id_project' => $request->id_project,
-                'id_worker' => $request->id_worker,
-                'id_salary' => $request->id_salary,
+                'id_worker' => $request->id_worker,                
                 'nominal' => $request->nominal,
                 'date' => date('Y-m-d', strtotime($request->date))            
             ]);        
         
-        return redirect('ps_transaction_index/'. $request->id_salary . '/' . $request->id_project);
+        return redirect('ps_transaction_index/'. $request->id_worker . '/' . $request->id_project);
     }
 
     /**

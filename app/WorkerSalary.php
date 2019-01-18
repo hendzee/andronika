@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class WorkerSalary extends Model
 {
     protected $table = 'worker_salary';
-    protected $primaryKey = 'id_salary';
+    protected $primaryKey = 'id_worker';
     protected $guarded = [];
     public $incrementing = false;  
     public $timestamps = false;

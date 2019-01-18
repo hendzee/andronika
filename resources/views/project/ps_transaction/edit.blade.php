@@ -15,7 +15,7 @@
                 </li>
                 <li>
                     <a href="{{ route('ps_transaction_index', 
-                        ['id' => $data_transaction->id_salary,
+                        ['id' => $data_transaction->id_worker,
                         'id_prj' => $data_transaction->id_project]) }}"> 
                         Ambil Gaji 
                     </a>
@@ -56,8 +56,7 @@
                                         <span class="help-block"> Pekerja </span>
                                     </div>
                                 </div>
-                                <input type="hidden" name="id_worker" value="{{ $data_transaction->id_worker }}" />                                
-                                <input type="hidden" name="id_salary" value="{{ $data_transaction->id_salary }}" />
+                                <input type="hidden" name="id_worker" value="{{ $data_transaction->id_worker }}" />                                                                
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nominal</label>
                                     <div class="col-md-9">
@@ -90,7 +89,7 @@
                                             Simpan
                                         </button>
                                         <a href="{{ route('ps_transaction_index', 
-                                            ['id' => $data_transaction->id_salary,
+                                            ['id' => $data_transaction->id_worker,
                                             'id_prj' => $data_transaction->id_project]) }}" class="btn default"> 
                                             Batal
                                         </a>
