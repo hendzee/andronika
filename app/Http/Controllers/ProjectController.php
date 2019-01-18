@@ -109,7 +109,12 @@ class ProjectController extends Controller
             + ($project_purchase->total) + $mutation_out;
 
         $assets = $income - $outcome;
-        $profit = ($assets / $income) * 100;
+
+        if ($income > 0){
+            $profit = ($assets / $income) * 100;
+        }else {
+            $profit = 0;
+        }
         //end financial data
 
         $data_project = Project::where('id_project', $id)
