@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\PCT;
 use App\WorkerContract;
 use App\GeneratorId;
+use App\Http\Requests\PCTRequest;
 
 class PCTController extends Controller
 {
@@ -44,7 +45,7 @@ class PCTController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PCTRequest $request)
     {
         $gen = new GeneratorId();
         
@@ -92,7 +93,7 @@ class PCTController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PCTRequest $request, $id)
     {
         $transaction = PCT::where('id_transaction', $id)
             ->first()

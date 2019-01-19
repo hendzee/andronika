@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_worker" value="{{ $data_transaction->id_worker }}" />                                
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('nominal') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Nominal</label>
                                     <div class="col-md-9">
                                         <div class="input-inline">
@@ -62,17 +62,26 @@
                                                 <span class="input-group-addon">
                                                     Rp
                                                 </span>
-                                                <input type="text" placeholder="Uang Terima" class="form-control masking-form" />
+                                                <input type="text" value="{{ old('nominal') }}" placeholder="Uang Terima" class="form-control masking-form" />
                                                 <input type="hidden" id="total_hidden" name="nominal" class="masking-form-hidden">
                                             </div>
-                                        </div>                                        
-                                        <span class="help-block"> Jumlah uang yang diterima. </span>
+                                        </div>
+                                        
+                                        @if ($errors->has('nominal'))
+                                            <span class="help-block"> {{ $errors->first('nominal') }} </span>
+                                        @else
+                                            <span class="help-block"> Jumlah uang yang diterima. </span>
+                                        @endif                                        
                                     </div>
                                 </div>    
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Pengambilan</label>
                                     <div class="col-md-9">
-                                        <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />                                        
+                                        <input name="date" value="{{ old('date') }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />                                        
+                                        
+                                        @if ($errors->has('date'))
+                                            <span class="help-block"> {{ $errors->first('date') }} </span>
+                                        @endif
                                     </div>
                                 </div>                                                                
                             </div>

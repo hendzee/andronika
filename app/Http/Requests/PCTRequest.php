@@ -13,7 +13,7 @@ class PCTRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,15 +24,17 @@ class PCTRequest extends FormRequest
     public function rules()
     {
         return [
-            'nominal' => $request->nominal,
-            'date' => date('Y-m-d', strtotime($request->date)) 
+            'nominal' => 'required|numeric',
+            'date' => 'required'
         ];
     }
 
     public function messages()
     {
         return [
-
+            'nominal.required' => 'Jumlah nominal harus diisi.',
+            'nominal.numeric' => 'Format salah.',
+            'date.required' => 'Tanggal harus diisi.'
         ];
     }
 }
