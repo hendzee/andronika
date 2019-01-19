@@ -47,30 +47,42 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_worker" value="{{ $id_worker }}" />                                                                
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('salary') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Gaji/Hari</label>
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 Rp
                                             </span>
-                                            <input type="text" value="{{ $data_worker->worker_salary == null ? 0 : round($data_worker->worker_salary->salary) }}" placeholder="Gaji/Hari" class="form-control masking-form" />
+                                            <input type="text" value="{{ old('salary', $data_worker->worker_salary == null ? 0 : round($data_worker->worker_salary->salary)) }}" placeholder="Gaji/Hari" class="form-control masking-form" />
                                             <input type="hidden" id="total_hidden" name="salary" class="masking-form-hidden">
-                                        </div>                                        
+                                        </div>
+
+                                        @if ($errors->has('salary'))
+                                            <span class="help-block"> {{ $errors->first('salary') }} </span>                                        
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('fullday') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Hari Kerja (1 hari)</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_worker->worker_salary == null ? 0 : $data_worker->worker_salary->fullday }}" name="fullday" class="form-control" />                                        
-                                        <span class="help-block"> Jumlah 1 hari kerja (fullday). </span>
+                                        <input type="text" value="{{ old('fullday', $data_worker->worker_salary == null ? '' : $data_worker->worker_salary->fullday) }}" name="fullday" class="form-control" />                                        
+                                        @if ($errors->has('fullday'))
+                                            <span class="help-block"> {{ $errors->first('fullday') }} </span>
+                                        @else
+                                            <span class="help-block"> Jumlah 1 hari kerja (fullday). </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('halfday') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Hari Kerja (1/2 hari)</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_worker->worker_salary == null ? 0 : $data_worker->worker_salary->halfday }}" name="halfday" class="form-control" />                                        
-                                        <span class="help-block"> Jumlah 1/2 hari kerja (halfday). </span>
+                                        <input type="text" value="{{ old('halfday', $data_worker->worker_salary == null ? '' : $data_worker->worker_salary->halfday) }}" name="halfday" class="form-control" />                                        
+                                        @if ($errors->has('halfday'))
+                                            <span class="help-block"> {{ $errors->first('halfday') }} </span>    
+                                        @else
+                                            <span class="help-block"> Jumlah 1/2 hari kerja (halfday). </span>
+                                        @endif
                                     </div>
                                 </div>                                                                                          
                             </div>

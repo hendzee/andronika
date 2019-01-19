@@ -8,6 +8,7 @@ use App\ProjectWorker;
 use App\Project;
 use App\GeneratorId;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\WorkerSalaryRequest;
 
 class WorkerSalaryController extends Controller
 {
@@ -82,7 +83,7 @@ class WorkerSalaryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(WorkerSalaryRequest $request, $id)
     {      
         $check_data = WorkerSalary::where('id_worker', $id)
             ->first();
