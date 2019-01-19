@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\ProjectBonus;
 use App\GeneratorId;
 use App\ProjectWorker;
+use App\Http\Requests\ProjectBonusRequest;
 
 class ProjectBonusController extends Controller
 {
@@ -42,7 +43,7 @@ class ProjectBonusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectBonusRequest $request)
     {
         $gen = new GeneratorId();
         
@@ -90,7 +91,7 @@ class ProjectBonusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectBonusRequest $request, $id)
     {
         if ($request->status == 'diambil'){
             $bonus = ProjectBonus::where('id_bonus', $id)

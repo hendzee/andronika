@@ -44,20 +44,18 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_bonus->project->name . ' | ' . date('d M, Y', strtotime($data_bonus->project->start)) }}" disabled class="form-control" />
-                                        <span class="help-block"> Projek </span>
+                                        <input type="text" value="{{ $data_bonus->project->name . ' | ' . date('d M, Y', strtotime($data_bonus->project->start)) }}" disabled class="form-control" />                                        
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $data_bonus->id_project }}" />
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Pekerja</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_bonus->name . ' | ' . $data_bonus->address }}" disabled class="form-control" />
-                                        <span class="help-block"> Pekerja </span>
+                                        <input type="text" value="{{ $data_bonus->name . ' | ' . $data_bonus->address }}" disabled class="form-control" />                                        
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_worker" value="{{ $data_bonus->id_worker }}" />
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('bonus') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Jumlah Bonus</label>
                                     <div class="col-md-9">
                                         <div class="input-inline">
@@ -65,18 +63,26 @@
                                                 <span class="input-group-addon">
                                                     Rp
                                                 </span>
-                                                <input type="text" placeholder="Bonus" class="form-control masking-form" />
+                                                <input type="text" value="{{ old('bonus') }}" placeholder="Bonus" class="form-control masking-form" />
                                                 <input type="hidden" id="total_hidden" name="bonus" class="masking-form-hidden">
                                             </div>
-                                        </div>                                        
-                                        <span class="help-block"> Jumlah Bonus </span>
+                                        </div>
+                                        
+                                        @if ($errors->has('bonus'))
+                                            <span class="help-block"> {{ $errors->first('bonus') }} </span>    
+                                        @endif
                                     </div>
                                 </div>    
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Deskripsi</label>
+                                <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Keterangan</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="description" placeholder="Deskripsi" class="form-control" />
-                                        <span class="help-block"> Deskripsi </span>
+                                        <input type="text" value="{{ old('description') }}" name="description" placeholder="Keterangan" class="form-control" />
+                                        
+                                        @if ($errors->has('description'))
+                                            <span class="help-block"> {{ $errors->first('description') }} </span>
+                                        @else
+                                            <span class="help-block"> Keterangan pemberian bonus. </span>
+                                        @endif
                                     </div>
                                 </div>                                                                
                             </div>
