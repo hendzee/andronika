@@ -43,20 +43,18 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_transaction->project->name . ' | ' . date('d M, Y', strtotime($data_transaction->project->start)) }}" disabled class="form-control" />
-                                        <span class="help-block"> Projek </span>
+                                        <input type="text" value="{{ $data_transaction->project->name . ' | ' . date('d M, Y', strtotime($data_transaction->project->start)) }}" disabled class="form-control" />                                        
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $data_transaction->id_project }}" />                                
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Pekerja</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_transaction->worker->name . ' | ' . $data_transaction->worker->address }}" disabled class="form-control" />
-                                        <span class="help-block"> Pekerja </span>
+                                        <input type="text" value="{{ $data_transaction->worker->name . ' | ' . $data_transaction->worker->address }}" disabled class="form-control" />                                        
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_worker" value="{{ $data_transaction->id_worker }}" />                                
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('nominal') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Nominal</label>
                                     <div class="col-md-9">
                                         <div class="input-inline">
@@ -64,18 +62,28 @@
                                                 <span class="input-group-addon">
                                                     Rp
                                                 </span>
-                                                <input type="text" placeholder="Uang Masuk" class="form-control masking-form" />
+                                                <input type="text" value="{{ old('nominal') }}" placeholder="Uang Masuk" class="form-control masking-form" />
                                                 <input type="hidden" id="total_hidden" name="nominal" class="masking-form-hidden">
                                             </div>
-                                        </div>                                        
-                                        <span class="help-block"> Jumlah Gaji yang Diterima Pekerja </span>
+                                        </div>
+
+                                        @if ($errors->has('nominal'))
+                                            <span class="help-block"> {{ $errors->first('nominal') }} </span>    
+                                        @else
+                                            <span class="help-block"> Gaji yang sudah diambil. </span>
+                                        @endif                                        
                                     </div>
                                 </div>    
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Pengambilan</label>
                                     <div class="col-md-9">
-                                        <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Pengambilan Gaji </span>
+                                        <input name="date" value="{{ old('date') }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('date'))
+                                            <span class="help-block"> {{ $errors->first('date') }} </span>    
+                                        @else
+                                            <span class="help-block"> Tanggal pengambilan. </span>    
+                                        @endif
                                     </div>
                                 </div>                                                                
                             </div>

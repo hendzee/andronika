@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\PSTransaction;
 use App\WorkerSalary;
 use App\GeneratorId;
+use App\Http\Requests\PSTransactionRequest;
 
 class PSTransactionController extends Controller
 {
@@ -43,7 +44,7 @@ class PSTransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PSTransactionRequest $request)
     {
         $gen = new GeneratorId();
         
@@ -90,7 +91,7 @@ class PSTransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PSTransactionRequest $request, $id)
     {
         $transaction = PSTransaction::where('id_transaction', $id)
             ->first()
