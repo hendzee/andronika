@@ -126,29 +126,27 @@
                                         </a>
                                     </td>
                                     <td>
-                                        @if ($data->ps_transaction == null)
+                                        @if ($data->ps_transaction == null || $data->worker_salary == null)
                                             -
                                         @else
                                             {{ 'Rp ' . number_format(($total_sal - $transaction)) }} 
                                         @endif                                         
                                     </td>
                                     <td>
-                                        @if ($data->worker_salary == null)
+                                        @if ($data->project_bonus == null)
                                             -    
-                                        @else
-                                            @php
-                                            $bonus = App\ProjectBonus::where('id_worker', $data->id_worker)
-                                                ->where('status', 'belum diambil')
-                                                ->sum('bonus') 
-                                            @endphp
-                                            {{ 'Rp ' . number_format($bonus) }}
-                                            <br/>
-                                            <a href="{{ route('project_bonus_index', [
-                                                'id' => $data->id_worker,
-                                                'id_prj' => $data->id_project]) }}">
-                                                detail
-                                            </a>    
+                                        @else                                            
+                                            {{ 'Rp ' . number_format($data->project_bonus->where('status', 'BELUM DIAMBIL')                                                
+                                                ->sum('bonus')) 
+                                            }}                                                                                       
                                         @endif
+
+                                        <br/>
+                                        <a href="{{ route('project_bonus_index', [
+                                            'id' => $data->id_worker,
+                                            'id_prj' => $data->id_project]) }}">
+                                            detail
+                                        </a> 
                                     </td>                                   
                                     <td>
                                         <div class="btn-group">

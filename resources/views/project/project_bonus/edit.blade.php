@@ -86,8 +86,8 @@
                                             <option value="{{ $data_bonus->status }}">
                                                 {{ $data_bonus->status . ' (Nilai Saat Ini)' }}
                                             </option>
-                                            <option value="belum diambil">Belum diambil</option>
-                                            <option value="diambil">Sudah diambil</option>
+                                            <option value="BELUM DIAMBIL">BELUM DIAMBIL</option>
+                                            <option value="DIAMBIL">SUDAH DIAMBIL</option>
                                         </select>
                                         <span class="help-block"> Isikan Jika Bonus Sudah Diambil </span>
                                     </div>

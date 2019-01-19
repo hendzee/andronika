@@ -47,7 +47,7 @@ class WorkerContractController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {        
         $gen = new GeneratorId();
 
         $check_data = WorkerContract::where('id_worker', $request->id_worker)

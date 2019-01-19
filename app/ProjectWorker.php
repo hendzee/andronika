@@ -26,4 +26,9 @@ class ProjectWorker extends Model
     {
         return $this->hasMany('App\PSTransaction', 'id_worker');
     }
+    
+    public function project_bonus()
+    {
+        return $this->hasMany('App\ProjectBonus', 'id_worker');
+    }
 }

@@ -83,7 +83,7 @@
                                     <td>{{ 'Rp ' . number_format($data->contract_value) }}</td>
                                     <td> 
                                         @php
-                                            $transaction = App\PSTransaction::where('id_salary', $data->id_contract)
+                                            $transaction = App\PCT::where('id_contract', $data->id_contract)
                                                 ->sum('nominal') 
                                         @endphp
                                         {{ 'Rp ' . number_format($transaction) }}

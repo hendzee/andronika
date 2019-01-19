@@ -17,13 +17,7 @@ class WorkerSalaryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($id)
-    {
-        // $data_salary = DB::table('project_worker')
-        //     ->join('worker_salary', 'project_worker.id_worker', '=', 'worker_salary.id_worker' )
-        //     ->where('project_worker.id_project', $id)
-        //     ->where('salary_status', 'HARIAN')
-        //     ->get();
-        
+    {   
         $data_worker = ProjectWorker::where('id_project', $id)
             ->where('salary_status', 'HARIAN')
             ->get();
@@ -40,15 +34,7 @@ class WorkerSalaryController extends Controller
      */
     public function create($id)
     {
-        // $id_project = $id;
-        // $data_project = Project::where('id_project', $id)->first();
         
-        // $data_worker = ProjectWorker::where([
-        //     'id_project' => $id,
-        //     'salary_status' => 'HARIAN'])
-        //     ->get();
-
-        // return view('project.worker_salary.create', compact('id_project', 'data_worker', 'data_project'));
     }
 
     /**
@@ -59,22 +45,7 @@ class WorkerSalaryController extends Controller
      */
     public function store(Request $request)
     {       
-        // $gen = new GeneratorId();
-
-        // $check_data = WorkerSalary::where('id_worker', $request->id_worker)
-        //     ->get();
-
-        // //check if salary_data and id_worker must be unique
-        // if ($check_data->count() < 1){
-        //     $salary = WorkerSalary::create([ 
-        //         'id_salary' => $gen->generateId('worker_salary'),                
-        //         'id_project' => $request->id_project,
-        //         'id_worker' => $request->id_worker,
-        //         'salary' => $request->salary
-        //     ]);
-        // };
-
-        // return redirect('worker_salary_index/'. $request->id_project );
+        
     }
 
     /**

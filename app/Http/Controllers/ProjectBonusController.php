@@ -52,7 +52,7 @@ class ProjectBonusController extends Controller
             'id_worker' => $request->id_worker,
             'bonus' => $request->bonus,
             'description' => $request->description,
-            'status' => 'belum diambil'
+            'status' => 'BELUM DIAMBIL'
         ]);        
 
         return redirect('project_bonus_index/'. $request->id_worker . '/' . $request->id_project);
