@@ -70,8 +70,7 @@
                                     <th> Tanggal </th>
                                     <th> Total Barang </th>
                                     <th> Harga/Satuan </th>
-                                    <th> Tot. Harga </th>
-                                    <th> Token </th>                                                                                                                    
+                                    <th> Tot. Harga </th>                                                                                                                                                    
                                     <th> Aksi </th>                                 
                                 </tr>
                             </thead>
@@ -83,12 +82,11 @@
                                         <br />
                                         {{ 'keterangan: ' . $data->resp_person }}
                                     </td>                                    
-                                    <td>{{ $data->name }}</td>   
+                                    <td>{{ $data->project_supply->item_name }}</td>   
                                     <td>{{ date('d M, Y', strtotime($data->date)) }}</td>    
                                     <td>{{ $data->total_item }}</td>
                                     <td>{{ 'Rp ' . number_format($data->price_per_item) }}</td>
-                                    <td>{{ 'Rp ' . number_format($data->total_item *  $data->price_per_item)}}</td>
-                                    <td>{{ $data->token }}</td>                                                 
+                                    <td>{{ 'Rp ' . number_format($data->total_item *  $data->price_per_item)}}</td>                                                                                  
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">

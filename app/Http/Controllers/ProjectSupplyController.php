@@ -49,6 +49,7 @@ class ProjectSupplyController extends Controller
         $gen = new GeneratorId;
 
         $check_data = ProjectSupply::where('item_name', $request->item_name)
+            ->where('id_project', $request->id_project)
             ->first();
 
         if ($check_data == null){
@@ -98,6 +99,7 @@ class ProjectSupplyController extends Controller
     public function update(ProjectSupplyRequest $request, $id)
     {        
         $check_data = ProjectSupply::where('item_name', $request->item_name)
+            ->where('id_project', $request->id_project)
             ->first();
         
         if ($check_data == null){

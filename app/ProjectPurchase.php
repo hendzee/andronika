@@ -16,4 +16,9 @@ class ProjectPurchase extends Model
     {
         return $this->belongsTo('App\Project', 'id_project');
     }
+
+    public function project_supply()
+    {
+        return $this->belongsTo('App\ProjectSupply', 'id_supply');
+    }
 }

@@ -44,12 +44,12 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nama Barang</label>
                                     <div class="col-md-9">
-                                        <select name="name" class="form-control">
+                                        <select name="id_supply" class="form-control">
                                             <option value="{{ $data_purchase->name }}">
                                                 {{ $data_purchase->name . ' (DATA SAAT INI)'}}
                                             </option>
                                             @foreach($data_supply as $data)
-                                                <option value={{ $data->item_name }}>
+                                                <option value={{ $data->id_supply }}>
                                                     {{ $data->item_name . " ($data->measure)" }}
                                                 </option>                                                
                                             @endforeach                                        

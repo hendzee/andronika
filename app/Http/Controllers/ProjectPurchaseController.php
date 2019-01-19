@@ -53,7 +53,7 @@ class ProjectPurchaseController extends Controller
             'id_transaction' => $gen->generateId('project_purchase'),
             'id_project' => $request->id_project,
             'date' => date("Y-m-d", strtotime($request->date)),
-            'name' => $request->name,
+            'id_supply' => $request->id_supply,
             'total_item' => $request->total_item,
             'price_per_item' => $request->price_per_item,
             'resp_person' => $request->resp_person            
@@ -104,7 +104,7 @@ class ProjectPurchaseController extends Controller
             ->update([
                 'id_project' => $request->id_project,
                 'date' => date("Y-m-d", strtotime($request->date)),
-                'name' => $request->name,
+                'id_supply' => $request->id_supply,
                 'total_item' => $request->total_item,
                 'price_per_item' => $request->price_per_item,
                 'resp_person' => $request->resp_person                
