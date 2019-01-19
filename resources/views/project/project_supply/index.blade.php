@@ -84,7 +84,7 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a href="{{ route('project_supply.edit', $data->item_name) }}">
+                                                    <a href="{{ route('project_supply.edit', $data->id_supply) }}">
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>

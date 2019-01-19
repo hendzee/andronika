@@ -20,6 +20,7 @@ use App\WarehouseSell;
 use App\Transportation;
 use App\Driver;
 use APp\Fuel;
+use App\ProjectSupply;
 
 class GeneratorId extends Model
 {
@@ -72,6 +73,12 @@ class GeneratorId extends Model
                 $search_id = 'id_payment';
                 $unique_code = 'PY';
                 $obj = new ProjectPayment();
+            break;
+
+            case 'project_supply':
+                $search_id = 'id_supply';
+                $unique_code = 'SP';
+                $obj = new ProjectSupply();
             break;
 
             case 'project_purchase':

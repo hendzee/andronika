@@ -31,7 +31,7 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form action="{{ action('ProjectSupplyController@update', $data_supply->item_name) }}" method="POST" class="form-horizontal form-row-seperated">
+                        <form action="{{ action('ProjectSupplyController@update', $data_supply->id_supply) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Projek</label>
@@ -43,7 +43,7 @@
                                 <div class="form-group {{ $errors->has('item_name') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Nama Barang</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ old('item_name'), $data_supply->item_name }}" name="item_name" placeholder="Nama Barang" class="form-control" />
+                                        <input type="text" value="{{ old('item_name', $data_supply->item_name) }}" name="item_name" placeholder="Nama Barang" class="form-control" />
                                         
                                         @if ($errors->has('item_name'))
                                             <span class="help-block"> {{ $errors->first('item_name') }} </span>    
@@ -51,14 +51,14 @@
                                     </div>
                                 </div>                             
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Tanggal</label>
+                                    <label class="control-label col-md-3">Satuan</label>
                                     <div class="col-md-9">
                                         <select name="measure" class="form-control">
                                             <option value="{{ $data_supply->measure }}">{{ $data_supply->measure }}</option>
-                                            <option value="SAK">Sak</option>
-                                            <option value="KG">Kg</option>
-                                            <option value="TON">Ton</option>
-                                            <option value="LITER">Liter</option>
+                                            <option value="SAK">SAK</option>
+                                            <option value="KG">KG</option>
+                                            <option value="TON">TON</option>
+                                            <option value="LITER">LITER</option>
                                         </select>
                                     </div>
                                 </div>                                                                                                                                                          

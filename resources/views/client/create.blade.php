@@ -29,6 +29,18 @@
                         <!-- BEGIN FORM-->
                         <form action="{{ action('ClientController@store') }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
+                                <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Klien</label>
+                                    <div class="col-md-9">
+                                        <input name="description" value="{{ old('description') }}" type="text" placeholder="Nama Klien" class="form-control" />
+                                        
+                                        @if ($errors->has('description'))
+                                            <span class="help-block"> {{ $errors->first('description') }} </span>
+                                        @else
+                                            <span class="help-block"> Nama klien / lembaga. </span>
+                                        @endif
+                                    </div>
+                                </div>
                                 <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Alamat</label>
                                     <div class="col-md-9">
@@ -64,19 +76,7 @@
                                             <span class="help-block"> Telpon rumah atau kantor. </span>
                                         @endif
                                     </div>
-                                </div>  
-                                <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
-                                    <label class="control-label col-md-3">Klien</label>
-                                    <div class="col-md-9">
-                                        <input name="description" value="{{ old('description') }}" type="text" placeholder="Deskripsi" class="form-control" />
-                                        
-                                        @if ($errors->has('description'))
-                                            <span class="help-block"> {{ $errors->first('description') }} </span>
-                                        @else
-                                            <span class="help-block"> Nama klien / lembaga. </span>
-                                        @endif
-                                    </div>
-                                </div>                                                                                                                          
+                                </div>                                                                                                                                                            
                             </div>
                             {{ csrf_field() }}
                             <div class="form-actions">

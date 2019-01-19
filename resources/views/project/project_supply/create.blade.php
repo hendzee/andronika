@@ -54,10 +54,10 @@
                                     <label class="control-label col-md-3">Satuan</label>
                                     <div class="col-md-9">
                                         <select name="measure" class="form-control">
-                                            <option value="SAK">Sak</option>
-                                            <option value="KG">Kg</option>
-                                            <option value="TON">Ton</option>
-                                            <option value="LITER">Liter</option>
+                                            <option value="SAK">SAK</option>
+                                            <option value="KG">KG</option>
+                                            <option value="TON">TON</option>
+                                            <option value="LITER">LITER</option>
                                         </select>                                        
                                     </div>
                                 </div>                                                                                                                                                                                                                 

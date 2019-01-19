@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\ProjectSupply;
 use App\Project;
 use App\Http\Requests\ProjectSupplyRequest;
+use App\GeneratorId;
 
 class ProjectSupplyController extends Controller
 {
@@ -45,11 +46,19 @@ class ProjectSupplyController extends Controller
      */
     public function store(ProjectSupplyRequest $request)
     {
-        $supply = ProjectSupply::create([
-            'item_name' => $request->item_name,
-            'id_project' => $request->id_project,
-            'measure' => $request->measure,            
-        ]);
+        $gen = new GeneratorId;
+
+        $check_data = ProjectSupply::where('item_name', $request->item_name)
+            ->first();
+
+        if ($check_data == null){
+            $supply = ProjectSupply::create([
+                'id_supply' => $gen->generateId('project_supply'),
+                'item_name' => $request->item_name,
+                'id_project' => $request->id_project,
+                'measure' => $request->measure,            
+            ]);
+        }
 
         return redirect('project_supply_index/'. $request->id_project );
     }
@@ -73,7 +82,7 @@ class ProjectSupplyController extends Controller
      */
     public function edit($id)
     {
-        $data_supply = ProjectSupply::where('item_name', $id)
+        $data_supply = ProjectSupply::where('id_supply', $id)
             ->first();
 
         return view('project.project_supply.edit', compact('data_supply'));
@@ -88,12 +97,17 @@ class ProjectSupplyController extends Controller
      */
     public function update(ProjectSupplyRequest $request, $id)
     {        
-        $supply = ProjectSupply::where('item_name', $id)
+        $check_data = ProjectSupply::where('item_name', $request->item_name)
+            ->first();
+        
+        if ($check_data == null){
+            $supply = ProjectSupply::where('id_supply', $id)
             ->first()
             ->update([
                 'item_name' => $request->item_name,                
                 'measure' => $request->measure,            
-            ]);
+            ]);   
+        }        
 
         return redirect('project_supply_index/'. $request->id_project );
     }
