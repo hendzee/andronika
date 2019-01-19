@@ -110,20 +110,23 @@
                                         @endif                                        
                                     </td>        
                                     <td>
-                                        @if ($data->ps_transaction == null)
+                                        @if ($data->worker_salary == null)
                                             -    
-                                        @else   
-                                            @php
-                                                $transaction = 0
-                                            @endphp                                         
-                                            {{ 'Rp ' . number_format($transaction = $data->ps_transaction->sum('nominal')) }}
+                                        @else
+                                            @if ($data->ps_transaction == null)
+                                                0
+                                            @else
+                                                @php
+                                                    $transaction = 0
+                                                @endphp                                         
+                                                {{ 'Rp ' . number_format($transaction = $data->ps_transaction->sum('nominal')) }}
+                                            @endif                                               
                                             <br/>                                            
+                                            <a href="{{ route('ps_transaction_index', ['id' => $data->id_worker, 
+                                                'id_prj' => $data->id_project]) }}">
+                                                detail
+                                            </a>
                                         @endif   
-                                        
-                                        <a href="{{ route('ps_transaction_index', ['id' => $data->id_worker, 
-                                            'id_prj' => $data->id_project]) }}">
-                                            detail
-                                        </a>
                                     </td>
                                     <td>
                                         @if ($data->ps_transaction == null || $data->worker_salary == null)
