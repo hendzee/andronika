@@ -14,7 +14,7 @@
                     <i class="fa fa-circle"></i>
                 </li>                
                 <li>
-                    <a href="{{ route('pct_index', ['id' => $id_contract, 
+                    <a href="{{ route('pct_index', ['id' => $id_worker, 
                         'id_prj' => $data_transaction->id_project]) }}"> 
                         Pembayaran Kontrak 
                     </a>
@@ -38,25 +38,22 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form action="{{ action('PCTController@store', $id_contract) }}" method="POST" class="form-horizontal form-row-seperated">
+                        <form action="{{ action('PCTController@store', $id_worker) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_transaction->project->name . ' | ' . date('d M, Y', strtotime($data_transaction->project->start)) }}" disabled class="form-control" />
-                                        <span class="help-block"> Projek </span>
+                                        <input type="text" value="{{ $data_transaction->project->name . ' | ' . date('d M, Y', strtotime($data_transaction->project->start)) }}" disabled class="form-control" />                                        
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $data_transaction->id_project }}" />                                
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Pekerja</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_transaction->worker->name . ' | ' . $data_transaction->worker->address}}" disabled class="form-control" />
-                                        <span class="help-block"> Pekerja </span>
+                                        <input type="text" value="{{ $data_transaction->worker->name . ' | ' . $data_transaction->worker->address }}" disabled class="form-control" />                                        
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_worker" value="{{ $data_transaction->id_worker }}" />                                
-                                <input type="hidden" name="id_contract" value="{{ $data_transaction->id_contract }}" />
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nominal</label>
                                     <div class="col-md-9">
@@ -69,14 +66,13 @@
                                                 <input type="hidden" id="total_hidden" name="nominal" class="masking-form-hidden">
                                             </div>
                                         </div>                                        
-                                        <span class="help-block"> Jumlah Uang yang Diterima Pekerja </span>
+                                        <span class="help-block"> Jumlah uang yang diterima. </span>
                                     </div>
                                 </div>    
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Tanggal Pengambilan</label>
                                     <div class="col-md-9">
-                                        <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Pengambilan Gaji </span>
+                                        <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />                                        
                                     </div>
                                 </div>                                                                
                             </div>
@@ -87,7 +83,7 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <a href="{{ route('pct_index', ['id' => $id_contract, 
+                                        <a href="{{ route('pct_index', ['id' => $id_worker, 
                                             'id_prj' => $data_transaction->id_project]) }}" class="btn default"> 
                                             Batal
                                         </a>

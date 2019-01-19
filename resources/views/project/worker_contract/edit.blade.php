@@ -6,11 +6,11 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{ route('project.show', $data_contract->id_project) }}"> Menu </a>
+                    <a href="{{ route('project.show', $data_worker->id_project) }}"> Menu </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="{{ route('worker_contract_index', $data_contract->id_project) }}"> Pekerja Kontrak </a>
+                    <a href="{{ route('worker_contract_index', $data_worker->id_project) }}"> Pekerja Kontrak </a>
                     <i class="fa fa-circle"></i>
                 </li>                
                 <li>
@@ -31,24 +31,22 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form action="{{ action('WorkerContractController@update', $data_contract->id_contract) }}" method="POST" class="form-horizontal form-row-seperated">
+                        <form action="{{ action('WorkerContractController@update', $data_worker->id_worker) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_contract->project->name . ' | ' . date('d M, Y', strtotime($data_contract->project->start)) }}" disabled class="form-control" />
-                                        <span class="help-block"> Projek </span>
+                                        <input type="text" value="{{ $data_worker->project->name . ' | ' . date('d M, Y', strtotime($data_worker->project->start)) }}" disabled class="form-control" />                                        
                                     </div>
                                 </div>
-                                <input type="hidden" name="id_project" value="{{ $data_contract->id_project }}" />   
+                                <input type="hidden" name="id_project" value="{{ $data_worker->id_project }}" />   
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Pekerja</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_contract->worker->name . ' | ' . $data_contract->worker->address }}" disabled class="form-control" />
-                                        <span class="help-block"> Keterangan Pekerja </span>
+                                        <input type="text" value="{{ $data_worker->name . ' | ' . $data_worker->address }}" disabled class="form-control" />                                        
                                     </div>
                                 </div>
-                                <input type="hidden" name="id_worker" value="{{ $data_contract->id_worker }}" />                                                             
+                                <input type="hidden" name="id_worker" value="{{ $data_worker->id_worker }}" />                                                             
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nilai Kontrak</label>
                                     <div class="col-md-9">
@@ -57,7 +55,7 @@
                                                 <span class="input-group-addon">
                                                     Rp
                                                 </span>
-                                                <input type="text" value="{{ round($data_contract->contract_value) }}" placeholder="Nilai Kontrak" class="form-control masking-form" />
+                                                <input type="text" value="{{ $data_worker->worker_contract == null ? 0 : round($data_worker->worker_contract->contract_value) }}" placeholder="Nilai Kontrak" class="form-control masking-form" />
                                                 <input type="hidden" id="total_hidden" name="contract_value" class="masking-form-hidden">
                                             </div>
                                         </div>                                        
@@ -73,7 +71,7 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <a href="{{ route('worker_contract_index', $data_contract->id_project) }}" class="btn default"> 
+                                        <a href="{{ route('worker_contract_index', $data_worker->id_project) }}" class="btn default"> 
                                             Batal
                                         </a>
                                     </div>

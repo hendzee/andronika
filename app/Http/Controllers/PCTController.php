@@ -16,11 +16,13 @@ class PCTController extends Controller
      */
     public function index($id, $id_prj)
     {
-        $data_transaction = PCT::where('id_contract', $id)->get();        
-        $id_contract= $id;        
+        $data_transaction = PCT::where('id_project', $id_prj)
+            ->where('id_worker', $id)
+            ->get();        
+        $id_worker = $id;        
         $id_project = $id_prj;
         
-        return view('project.pct.index', compact('data_transaction', 'id_contract', 'id_project'));
+        return view('project.pct.index', compact('data_transaction', 'id_worker', 'id_project'));
     }
 
     /**
@@ -30,10 +32,10 @@ class PCTController extends Controller
      */
     public function create($id)
     {
-        $id_contract = $id;
-        $data_transaction = WorkerContract::where('id_contract', $id)->first();
+        $id_worker = $id;
+        $data_transaction = WorkerContract::where('id_worker', $id)->first();
 
-        return view('project.pct.create', compact('id_contract', 'data_transaction'));
+        return view('project.pct.create', compact('id_worker', 'data_transaction'));
     }
 
     /**
@@ -49,14 +51,13 @@ class PCTController extends Controller
         $transaction = PCT::create([ 
             'id_transaction' => $gen->generateId('ps_transaction'),
             'id_project' => $request->id_project,
-            'id_worker' => $request->id_worker,
-            'id_contract' => $request->id_contract,
+            'id_worker' => $request->id_worker,            
             'nominal' => $request->nominal,
             'date' => date('Y-m-d', strtotime($request->date))            
         ]);        
 
         
-        return redirect('pct_index/'. $request->id_contract . '/' . $request->id_project);
+        return redirect('pct_index/'. $request->id_worker . '/' . $request->id_project);
     }
 
     /**
@@ -98,12 +99,11 @@ class PCTController extends Controller
             ->update([             
                 'id_project' => $request->id_project,
                 'id_worker' => $request->id_worker,
-                'id_contract' => $request->id_contract,
                 'nominal' => $request->nominal,
                 'date' => date('Y-m-d', strtotime($request->date))            
             ]);                  
         
-        return redirect('pct_index/'. $request->id_contract . '/' . $request->id_project);
+        return redirect('pct_index/'. $request->id_worker . '/' . $request->id_project);
     }
 
     /**

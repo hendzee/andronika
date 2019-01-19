@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\WorkerContract;
 use App\Project;
 use App\ProjectWorker;
-use App\GeneratorId;
 
 class WorkerContractController extends Controller
 {
@@ -17,10 +16,12 @@ class WorkerContractController extends Controller
      */
     public function index($id)
     {
-        $data_contract = WorkerContract::where('id_project', $id)->get();
+        $data_worker = ProjectWorker::where('id_project', $id)
+            ->where('salary_status', 'KONTRAK')
+            ->get();
         $id_project = $id;
         
-        return view('project.worker_contract.index', compact('data_contract', 'id_project'));
+        return view('project.worker_contract.index', compact('data_worker', 'id_project'));
     }
 
     /**
@@ -30,14 +31,7 @@ class WorkerContractController extends Controller
      */
     public function create($id)
     {
-        $id_project = $id;
-        $data_project = Project::where('id_project', $id)->first();
-        $data_worker = ProjectWorker::where([
-            'id_project' => $id,
-            'salary_status' => 'KONTRAK'])
-            ->get();
-
-        return view('project.worker_contract.create', compact('id_project', 'data_worker', 'data_project'));
+        
     }
 
     /**
@@ -48,22 +42,7 @@ class WorkerContractController extends Controller
      */
     public function store(Request $request)
     {        
-        $gen = new GeneratorId();
-
-        $check_data = WorkerContract::where('id_worker', $request->id_worker)
-            ->get();
-
-        //check if id_contract must be unique
-        if ($check_data->count() < 1){
-            $salary = WorkerContract::create([ 
-                'id_contract' => $gen->generateId('worker_contract'),                
-                'id_project' => $request->id_project,
-                'id_worker' => $request->id_worker,
-                'contract_value' => $request->contract_value
-            ]);
-        };
-
-        return redirect('worker_contract_index/'. $request->id_project );
+        
     }
 
     /**
@@ -85,10 +64,10 @@ class WorkerContractController extends Controller
      */
     public function edit($id)
     {
-        $data_contract = WorkerContract::where('id_contract', $id)
+        $data_worker = ProjectWorker::where('id_worker', $id)
             ->first();        
     
-        return view('project.worker_contract.edit', compact('data_contract'));
+        return view('project.worker_contract.edit', compact('data_worker'));
     }
 
     /**
@@ -100,11 +79,23 @@ class WorkerContractController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $contract = WorkerContract::where('id_contract', $id)
-            ->first()
-            ->update([                
-            'contract_value' => $request->contract_value
+        $check_data = WorkerContract::where('id_project', $request->id_project)
+            ->where('id_worker', $request->id_worker)
+            ->first();
+
+        if ($check_data == null){
+            $contract = WorkerContract::create([                 
+                'id_project' => $request->id_project,
+                'id_worker' => $request->id_worker,
+                'contract_value' => $request->contract_value
+            ]);
+        }else {
+            $contract = WorkerContract::where('id_worker', $id)
+                ->first()
+                ->update([                
+                'contract_value' => $request->contract_value
         ]);        
+        }        
        
         return redirect('worker_contract_index/' . $request->id_project );
     }

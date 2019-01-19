@@ -31,15 +31,8 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <div class="table-toolbar">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="btn-group">
-                                        <a href="{{ route('worker_contract_create', $id_project) }}" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Kontrak Baru
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+                            <div class="row">                                
+                                <div class="col-md-12">
                                     <div class="btn-group pull-right">
                                         <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                             <i class="fa fa-angle-down"></i>
@@ -73,29 +66,48 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data_contract as $data)
+                                @foreach($data_worker as $data)
                                 <tr class="odd gradeX">                                                                                                           
                                     <td>
-                                        {{ $data->worker->name }}
+                                        {{ $data->name }}
                                         <br/>
-                                        {{ 'Ket: ' . $data->worker->division }}
-                                    </td>
-                                    <td>{{ 'Rp ' . number_format($data->contract_value) }}</td>
-                                    <td> 
-                                        @php
-                                            $transaction = App\PCT::where('id_contract', $data->id_contract)
-                                                ->sum('nominal') 
-                                        @endphp
-                                        {{ 'Rp ' . number_format($transaction) }}
-                                        <br/>
-                                        <a href="{{ route('pct_index', [
-                                            'id' => $data->id_contract,
-                                            'id_prj' => $id_project]) }}">
-                                            detail
-                                        </a>
+                                        {{ 'Ket: ' . $data->division }}
                                     </td>
                                     <td>
-                                        {{ 'Rp ' . number_format(($data->contract_value - $transaction)) }}
+                                        @if ($data->worker_contract == null)
+                                            -
+                                        @else
+                                            {{ 'Rp ' . number_format($data->worker_contract->contract_value) }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($data->worker_contract == null)
+                                            -
+                                        @else
+                                            @php
+                                            $transaction = $data->pct->where('id_contract', $data->id_contract)
+                                                ->where('id_worker', $data->id_worker)
+                                                ->sum('nominal') 
+                                            @endphp
+                                            {{ 'Rp ' . number_format($transaction) }}
+                                            <br/>
+                                            <a href="{{ route('pct_index', [
+                                                'id' => $data->id_worker,
+                                                'id_prj' => $id_project]) }}">
+                                                detail
+                                            </a>
+                                            @endif                                                                                                                                 
+                                    </td>
+                                    <td>                                        
+                                        @if ($data->worker_contract == null)
+                                            -
+                                        @else
+                                            @if ($data->pct == null)
+                                                {{ number_format(($data->worker_contract->contract_value)) }}
+                                            @else
+                                                {{ 'Rp ' . number_format(($data->worker_contract->contract_value - $transaction)) }}
+                                            @endif
+                                        @endif
                                     </td>
                                     <td>
                                         <div class="btn-group">
@@ -104,7 +116,7 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a href="{{ route('worker_contract.edit', $data->id_contract) }}">
+                                                    <a href="{{ route('worker_contract.edit', $data->id_worker) }}">
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>

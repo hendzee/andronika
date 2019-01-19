@@ -15,7 +15,7 @@
                 </li>                
                 <li>
                     <a href="{{ route('pct_index', [
-                        'id' => $id_contract,
+                        'id' => $id_worker,
                         'id_prj' => $id_project]) }}"> 
                         Pembayaran Kontrak 
                     </a>
@@ -42,7 +42,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="{{ route('pct_create', $id_contract) }}" id="sample_editable_1_new" class="btn sbold green"> 
+                                        <a href="{{ route('pct_create', $id_worker) }}" id="sample_editable_1_new" class="btn sbold green"> 
                                             Buka Transaksi
                                         </a>
                                     </div>

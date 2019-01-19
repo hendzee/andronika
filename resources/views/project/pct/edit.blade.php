@@ -15,7 +15,7 @@
                 </li>                
                 <li>
                     <a href="{{ route('pct_index', [
-                        'id' => $data_transaction->id_contract,
+                        'id' => $data_transaction->id_worker,
                         'id_prj' => $data_transaction->id_project]) }}"> 
                         Pembayaran Kontrak 
                     </a>
@@ -29,7 +29,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Edit Data Pemberian Gaji
+            Edit Data Pembayaran Kontrak
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -44,20 +44,17 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">ID Projek</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_transaction->id_project }}" disabled class="form-control" />
-                                        <span class="help-block"> ID Projek </span>
+                                        <input type="text" value="{{ $data_transaction->id_project }}" disabled class="form-control" />                                        
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $data_transaction->id_project }}" />                                
                                 <div class="form-group">
                                     <label class="control-label col-md-3">ID Pekerja</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_transaction->id_worker }}" disabled class="form-control" />
-                                        <span class="help-block"> ID Pekerja </span>
+                                        <input type="text" value="{{ $data_transaction->id_worker }}" disabled class="form-control" />                                        
                                     </div>
-                                </div>
-                                <input type="hidden" name="id_worker" value="{{ $data_transaction->id_worker }}" />                              
-                                <input type="hidden" name="id_contract" value="{{ $data_transaction->id_contract }}" />
+                                </div>                                                              
+                                <input type="hidden" name="id_worker" value="{{ $data_transaction->id_worker }}" />
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nominal</label>
                                     <div class="col-md-9">
@@ -90,7 +87,7 @@
                                             Simpan
                                         </button>
                                         <a href="{{ route('pct_index', [
-                                            'id' => $data_transaction->id_contract,
+                                            'id' => $data_transaction->id_worker,
                                             'id_prj' => $data_transaction->id_project]) }}" class="btn default"> 
                                             Batal
                                         </a>
