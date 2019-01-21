@@ -51,7 +51,6 @@ class WarehouseSellController extends Controller
             'price_per_item' => $request->price_per_item,
             'date' => date('Y-m-d', strtotime($request->date)),
             'resp_person' => $request->resp_person,
-            'token' => $request->token
         ]);
 
         $warehouse = Warehouse::where('item_name', $request->item_name)
@@ -121,7 +120,6 @@ class WarehouseSellController extends Controller
                 'price_per_item' => $request->price_per_item,
                 'date' => date('Y-m-d', strtotime($request->date)),
                 'resp_person' => $request->resp_person,
-                'token' => $request->token
             ]);
 
         return redirect('warehouse_sell');

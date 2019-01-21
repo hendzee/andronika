@@ -71,13 +71,6 @@
                                         <span class="help-block"> Penanggung Jawab </span>
                                     </div>
                                 </div>                                      
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Bukti Transaksi</label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="token" placeholder="Bukti Transaksi" class="form-control" />
-                                        <span class="help-block"> Bukti Transaksi </span>
-                                    </div>
-                                </div>                                                                                                                                                                           
                             </div>
                             {{ csrf_field() }}
                             <div class="form-actions">

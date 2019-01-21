@@ -67,7 +67,6 @@
                                     <th> Harga/Item </th>
                                     <th> Total Harga </th>
                                     <th> Oleh </th>
-                                    <th> Token </th>
                                     <th> Aksi </th>                                                            
                                 </tr>
                             </thead>
@@ -80,7 +79,6 @@
                                     <td>{{ $data->price_per_item }}</td>                                        
                                     <td>{{ $data->number * $data->price_per_item }}</td>
                                     <td>{{ $data->resp_person }}</td>
-                                    <td>{{ $data->token }}</td>                                                                            
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">

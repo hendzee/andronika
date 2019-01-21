@@ -71,13 +71,6 @@
                                         <span class="help-block"> Pembeli </span>
                                     </div>
                                 </div>                                      
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Bukti Transaksi</label>
-                                    <div class="col-md-9">
-                                        <input type="text" value="{{ $data_sell->token }}" name="token" placeholder="Bukti Transaksi" class="form-control" />
-                                        <span class="help-block"> Harga Barang / Satuan </span>
-                                    </div>
-                                </div>                                                                                                                                                                           
                             </div>
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}
