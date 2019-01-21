@@ -6,7 +6,7 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="#">Warehouse</a>
+                    <a href="{{ route('repair_and_used.index') }}">Barang Dipakai/Rusak</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
@@ -60,7 +60,7 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <a href="{{ route('employee.index') }}" class="btn default">
+                                        <a href="{{ route('repair_and_used.index') }}" class="btn default">
                                             Batal
                                         </a>
                                     </div>

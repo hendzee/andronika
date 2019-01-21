@@ -6,11 +6,11 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('warehouse_sell.index') }}">Penjualan</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <span>Baru</span>
                 </li>
             </ul>         
         </div>
@@ -86,7 +86,9 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <button type="button" class="btn default">Batal</button>
+                                        <a href="{{ route('warehouse_sell.index') }}" class="btn default">
+                                            Batal
+                                        </a>
                                     </div>
                                 </div>
                             </div>

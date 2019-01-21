@@ -6,7 +6,7 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{ route('employee_salary.index') }}">Gaji Karyawan</a>
+                    <a href="{{ route('warehouse_rent.index') }}">Peminjaman</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
@@ -89,7 +89,7 @@
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
                                         <button type="submit" class="btn green">Simpan</button>
-                                        <a href="{{ route('employee_salary.index') }}" class="btn default">
+                                        <a href="{{ route('warehouse_rent.index') }}" class="btn default">
                                             Batal
                                         </a>
                                     </div>

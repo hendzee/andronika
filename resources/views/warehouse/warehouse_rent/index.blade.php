@@ -6,11 +6,11 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{ route('employee.index') }}">Karyawan</a>
+                    <a href="{{ route('warehouse_rent.index') }}">Peminjaman</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Daftar Karyawan</span>
+                    <span>Daftar Peminjaman</span>
                 </li>
             </ul>         
         </div>
