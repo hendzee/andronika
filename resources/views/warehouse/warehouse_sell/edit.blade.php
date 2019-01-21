@@ -51,10 +51,18 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Harga Barang / Satuan</label>
+                                    <label class="col-md-3 control-label">Harga</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_sell->price_per_item }}" name="price_per_item" placeholder="Harga Barang / Satuan" class="form-control" />
-                                        <span class="help-block"> Harga Barang / Satuan </span>
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" value="{{ round($data_sell->price_per_item) }}" id="total" placeholder="Harga Per Satuan" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="total" class="masking-form-hidden">
+                                            </div>
+                                        </div>
+                                        <span class="help-block"> Harga per satuan. </span>
                                     </div>
                                 </div>
                                 <div class="form-group">

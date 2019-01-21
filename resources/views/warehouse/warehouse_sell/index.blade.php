@@ -76,8 +76,8 @@
                                     <td>{{ $data->item_name }}</td>                                                                        
                                     <td>{{ date('d M, Y', strtotime($data->date)) }}</td>
                                     <td>{{ $data->number }}</td>
-                                    <td>{{ $data->price_per_item }}</td>                                        
-                                    <td>{{ $data->number * $data->price_per_item }}</td>
+                                    <td>{{ 'Rp ' . number_format($data->price_per_item) }}</td>                                        
+                                    <td>{{ 'Rp ' . number_format ($data->number * $data->price_per_item) }}</td>
                                     <td>{{ $data->resp_person }}</td>
                                     <td>
                                         <div class="btn-group">

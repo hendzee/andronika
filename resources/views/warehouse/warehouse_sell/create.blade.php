@@ -58,6 +58,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">Harga</label>
+                                    <div class="col-md-9">
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" id="total" placeholder="Harga Per Satuan" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="total" class="masking-form-hidden">
+                                            </div>
+                                        </div>
+                                        <span class="help-block"> Harga per satuan. </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-md-3">Tanggal Penjualan</label>
                                     <div class="col-md-9">
                                         <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
