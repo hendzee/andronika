@@ -4,11 +4,7 @@
         <!-- BEGIN PAGE HEADER-->
         <!-- BEGIN PAGE BAR -->
         <div class="page-bar">
-            <ul class="page-breadcrumb">
-                <li>
-                    <a href="{{ route('employee.index') }}">Karyawan</a>
-                    <i class="fa fa-circle"></i>
-                </li>
+            <ul class="page-breadcrumb">                
                 <li>
                     <span>Data Mutasi</span>
                 </li>

@@ -6,11 +6,11 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{ route('employee.index') }}">Karyawan</a>
+                    <a href="{{ route('mutation.index') }}">Mutasi</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Baru</span>
+                    <span>Edit</span>
                 </li>
             </ul>         
         </div>
@@ -117,7 +117,7 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <a href="{{ route('employee.index') }}" class="btn default">
+                                        <a href="{{ route('mutation.index') }}" class="btn default">
                                             Batal
                                         </a>
                                     </div>
