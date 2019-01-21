@@ -79,11 +79,6 @@
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="{{ route( 'warehouse_purchase.index' ) }}" class="nav-link ">
-                            <span class="title">Pembelian Barang</span>
-                        </a>
-                    </li>
-                    <li class="nav-item  ">
                         <a href="{{ route( 'warehouse_rent.index' ) }}" class="nav-link ">
                             <span class="title">Peminjaman Barang</span>
                         </a>

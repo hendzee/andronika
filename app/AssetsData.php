@@ -12,7 +12,6 @@ use App\Mutation;
 use App\WarehouseSell;
 use App\WarehouseRent;
 use App\WorkerContract;
-use App\WarehousePurchase;
 use App\EmployeeSalary;
 use App\EmployeeBonus;
 
@@ -110,12 +109,7 @@ class AssetsData extends Model
         $company_mutation_out = Mutation::where('source', 'PERUSAHAAN')
             ->get()
             ->sum('nominal');
-        //end company outcome mutation
-
-        //company outcome purchase
-        $company_purchase = WarehousePurchase::select(DB::raw('sum(price_per_item * number) as total'))
-            ->first();
-        //end company outcome purchase
+        //end company outcome mutation        
 
         //company outcome employee salary
         $company_salary = EmployeeSalary::all()
@@ -127,7 +121,7 @@ class AssetsData extends Model
             ->sum('bonus');
         //end company employee bonus
 
-        $company_outcome = $company_mutation_out + ($company_purchase->total) + $company_salary 
+        $company_outcome = $company_mutation_out + $company_salary 
             + $company_bonus;
 
         return $company_outcome;

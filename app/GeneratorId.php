@@ -11,7 +11,6 @@ use App\ProjectPurchase;
 use App\ProjectWorker;
 use App\ProjectBonus;
 use App\PSTransaction;
-use App\WarehousePurchase;
 use App\Mutation;
 use App\WarehouseRent;
 use App\RentPayment;
@@ -102,13 +101,7 @@ class GeneratorId extends Model
                 $search_id = 'id_transaction';
                 $unique_code = 'PT';
                 $obj = new PSTransaction();
-            break;
-
-            case 'warehouse_purchase':
-                $search_id = 'id_purchase';
-                $unique_code = 'WP';
-                $obj = new WarehousePurchase();
-            break;
+            break;            
 
             case 'mutation':
                 $search_id = 'id_mutation';
