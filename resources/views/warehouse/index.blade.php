@@ -64,6 +64,7 @@
                                     <th> Nama Barang </th>                                      
                                     <th> Jumlah </th>
                                     <th> Rusak </th>
+                                    <th> Dipakai </th>
                                     <th> Dipinjam </th>
                                     <th> Tersedia </th>
                                     <th> Status Pinjam </th>
@@ -82,17 +83,45 @@
                                         @endif
                                     </td>
                                     <td>
-                                        10 buah                                        
+                                        @php
+                                            $repair = 0;
+                                        @endphp
+
+                                        {{ $repair = $data->repair_and_used == null ? 0 : $data->repair_and_used->number_repair }}                                        
+                                        {{ ' ' . $data->measure }}
+                                    </td>
+                                    <td>
+                                        @php
+                                            $used = 0;    
+                                        @endphp
+
+                                        {{ $used = $data->repair_and_used == null ? : $data->repair_and_used->number_used }}                                        
+                                        {{ ' ' . $data->measure }}
                                     </td>
                                     <td>
                                         @if ($data->rent_status == 'BOLEH')
-                                            {{ $data->rent->sum('number_item') }}                                                                                        
+                                            @php
+                                                $rent = 0;
+                                            @endphp
+
+                                            {{ $rent = $data->rent->sum('number_item') }}   
+                                            {{ ' ' . $data->measure }}                                                                                     
                                         @else
                                             -
                                         @endif                                        
                                     </td>
-                                    <td>1 buah</td>   
-                                    <td> {{ $data->rent_status }} </td>                                     
+                                    <td>
+                                          @if ($data->rent_status == 'BOLEH')
+                                              {{ $data->number - ($repair + $used + $rent) }}
+                                          @else
+                                              {{ $data->number - ($repair + $used) }}
+                                          @endif  
+
+                                          {{ ' ' . $data->measure }}
+                                    </td>   
+                                    <td> 
+                                        {{ $data->rent_status }}                                         
+                                    </td>                                     
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
