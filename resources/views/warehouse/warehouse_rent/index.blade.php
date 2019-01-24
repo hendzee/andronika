@@ -93,7 +93,7 @@
                                         </td>
                                         <td>{{ $data->item_name }}</td>    
                                         <td>{{ $data->number_item }}</td>                                
-                                        <td>{{ 'Rp. ' . $data->price_day }}</td>
+                                        <td>{{ 'Rp ' . number_format($data->price_day) }}</td>
                                         <td>
                                             {{ 
                                                 date('d M, Y', strtotime($data->start)) 
@@ -107,9 +107,10 @@
                                         </td>                                   
                                         <td>
                                             <a href="{{ route('rent_payment.show', $data->id_rent) }}">
-                                                {{ 'Rp. ' 
-                                                    . $total = ($finalDiff * ($data->price_day) * ($data->number_item))
-                                                }}
+                                                @php
+                                                    $total = ($finalDiff * ($data->price_day) * ($data->number_item))
+                                                @endphp
+                                                {{ 'Rp ' . number_format($total) }}
                                             </a>
                                             <br/>
                                             @if ($total <= ($data->payment->sum('nominal')))

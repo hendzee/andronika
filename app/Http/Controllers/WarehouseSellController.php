@@ -7,6 +7,7 @@ use App\Warehouse;
 use App\WarehouseSell;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\WarehouseSellRequest;
 
 class WarehouseSellController extends Controller
 {
@@ -40,7 +41,7 @@ class WarehouseSellController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WarehouseSellRequest $request)
     {
         $gen = new GeneratorId();
 
@@ -96,7 +97,7 @@ class WarehouseSellController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(WarehouseSellRequest $request, $id)
     {
         $get_sell = WarehouseSell::where('id_sell', $id)
             ->first();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RepairAndUsed;
 use App\Warehouse;
+use App\Http\Requests\RepairAndUsedRequest;
 
 class RepairAndUsedController extends Controller
 {
@@ -74,7 +75,7 @@ class RepairAndUsedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RepairAndUsedRequest $request, $id)
     {
         $check_data = RepairAndUsed::where('item_name', $id)
             ->first();

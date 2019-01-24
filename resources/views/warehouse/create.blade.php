@@ -29,21 +29,23 @@
                         <!-- BEGIN FORM-->
                         <form action="{{ action('WarehouseController@store') }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">                                
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Nama Barang</label>
+                                <div class="form-group {{ $errors->has('item_name') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Nama barang</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="item_name" placeholder="Nama Barang" class="form-control" />
-                                        <span class="help-block"> Nama Barang </span>
+                                        <input type="text" value="{{ old('item_name') }}" name="item_name" placeholder="Nama Barang" class="form-control" />                                        
+
+                                        @if ($errors->has('item_name'))
+                                            <span class="help-block"> {{ $errors->first('item_name') }} </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Dapat Dipinjamkan</label>
+                                    <label class="control-label col-md-3">Status Peminjaman</label>
                                     <div class="col-md-9">
                                         <select name="rent_status" class="form-control">
                                             <option value="BOLEH">BOLEH</option>
                                             <option value="TIDAK">TIDAK</option>                                                
-                                        </select>
-                                        <span class="help-block"> Dapat Dipinjamkan </span>
+                                        </select>                                        
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -56,14 +58,17 @@
                                             <option value="Ton">Ton</option>
                                             <option value="Liter">Liter</option>
                                         </select>
-                                        <span class="help-block"> Satuan Barang </span>
+                                        <span class="help-block"> Satuan barang. </span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('number') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Jumlah Barang</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="number" placeholder="Jumlah Barang" class="form-control" />
-                                        <span class="help-block"> Jumlah Barang </span>
+                                        <input type="text" value="{{ old('number') }}" name="number" placeholder="Jumlah Barang" class="form-control" />
+                                        
+                                        @if ($errors->has('number'))
+                                            <span class="help-block"> {{ $errors->first('number') }} </span>
+                                        @endif
                                     </div>
                                 </div>                                                                                                                                                                                                                 
                             </div>

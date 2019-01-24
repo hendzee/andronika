@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Warehouse;
+use App\Http\Requests\WarehouseRequest;
 
 class WarehouseController extends Controller
 {
@@ -35,7 +36,7 @@ class WarehouseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WarehouseRequest $request)
     {
         $number = 0;
 
@@ -85,7 +86,7 @@ class WarehouseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(WarehouseRequest $request, $id)
     {
         $data_item = Warehouse::where('item_name', $id)
             ->first()

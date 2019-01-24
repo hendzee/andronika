@@ -37,18 +37,28 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="item_name" value="{{ $item_name }}" class="form-control" />
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('number_repair') ? 'has-error' : ''}} ">
                                     <label class="control-label col-md-3">Barang Rusak</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="number_repair" value="{{ $repair_and_used == null ? 0 : $repair_and_used->number_repair }}" placeholder="Nama Lengkap" class="form-control" />
-                                        <span class="help-block"> Jumlah Barang Rusak </span>
+                                        <input type="text" name="number_repair" value="{{ old('number_repair', $repair_and_used == null ? 0 : $repair_and_used->number_repair) }}" placeholder="Barang Rusak" class="form-control" />
+                                        
+                                        @if ($errors->has('number_repair'))
+                                            <span class="help-block"> {{ $errors->first('number_repair') }} </span>    
+                                        @else
+                                            <span class="help-block"> Jumlah Barang Rusak </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('number_used') ? 'has-error' : ''}} ">
                                     <label class="control-label col-md-3">Barang Dipakai</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="number_used" value="{{ $repair_and_used == null ? 0 : $repair_and_used->number_used }}" placeholder="Nama Lengkap" class="form-control" />
-                                        <span class="help-block"> Jumlah Barang Dipakai </span>
+                                        <input type="text" name="number_used" value="{{ old('number_used', $repair_and_used == null ? 0 : $repair_and_used->number_used) }}" placeholder="Barang Dipakai" class="form-control" />
+                                        
+                                        @if ($errors->has('number_used'))
+                                            <span class="help-block"> {{ $errors->first('number_used') }} </span>    
+                                        @else
+                                            <span class="help-block"> Jumlah Barang Dipakai </span>
+                                        @endif
                                     </div>
                                 </div>                                
                             </div>

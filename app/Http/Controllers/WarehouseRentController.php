@@ -7,6 +7,7 @@ use App\WarehouseRent;
 use App\Warehouse;
 use App\Client;
 use App\GeneratorId;
+use App\Http\Requests\WarehouseRentRequest;
 
 class WarehouseRentController extends Controller
 {
@@ -42,7 +43,7 @@ class WarehouseRentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WarehouseRentRequest $request)
     {
         $gen = new GeneratorId();
 
@@ -97,7 +98,7 @@ class WarehouseRentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(WarehouseRentRequest $request, $id)
     {
         $warehouse_rent = WarehouseRent::where('id_rent', $id)
             ->first()

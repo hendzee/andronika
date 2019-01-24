@@ -7,6 +7,7 @@ use App\RentPayment;
 use App\GeneratorId;
 use App\WarehouseRent;
 use DateTime;   
+use App\Http\Requests\RentPaymentRequest;
 
 class RentPaymentController extends Controller
 {
@@ -38,7 +39,7 @@ class RentPaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RentPaymentRequest $request)
     {
         $gen = new GeneratorId();
 
@@ -106,7 +107,7 @@ class RentPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RentPaymentRequest $request, $id)
     {
         $payment = RentPayment::where('id_payment', $id)
             ->first()

@@ -43,21 +43,17 @@
                                         </span>
                                     </div>
                                 </div>                            
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('number') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Jumlah Barang</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="number" placeholder="Jumlah Barang" class="form-control" />
-                                        <span class="help-block"> Jumlah Barang </span>
+                                        <input type="text" value="{{ old('number') }}" name="number" placeholder="Jumlah Barang" class="form-control" />
+                                        
+                                        @if ($errors->has('number'))
+                                            <span class="help-block"> {{ $errors->first('number') }} </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Harga Barang / Satuan</label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="price_per_item" placeholder="Harga Barang / Satuan" class="form-control" />
-                                        <span class="help-block"> Harga Barang / Satuan </span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('price_per_item') ? 'has-error' : '' }}">
                                     <label class="col-md-3 control-label">Harga</label>
                                     <div class="col-md-9">
                                         <div class="input-inline">
@@ -65,25 +61,38 @@
                                                 <span class="input-group-addon">
                                                     Rp
                                                 </span>
-                                                <input type="text" id="total" placeholder="Harga Per Satuan" class="form-control masking-form" />
-                                                <input type="hidden" id="total_hidden" name="total" class="masking-form-hidden">
+                                                <input type="text" value="{{ old('price_per_item') }}" id="total" placeholder="Harga Per Satuan" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="price_per_item" class="masking-form-hidden">
                                             </div>
                                         </div>
-                                        <span class="help-block"> Harga per satuan. </span>
+
+                                        @if ($errors->has('price_per_item'))
+                                            <span class="help-block"> {{ $errors->first('price_per_item') }} </span>
+                                        @else
+                                            <span class="help-block"> Harga per satuan. </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Tanggal Penjualan</label>
+                                <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Tanggal Terjual</label>
                                     <div class="col-md-9">
-                                        <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Penjualan </span>
+                                        <input name="date" value="{{ old('date') }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('date'))
+                                            <span class="help-block"> {{ $errors->first('date') }} </span>
+                                        @endif
                                     </div>
                                 </div>  
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('resp_person') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Penanggung Jawab</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="resp_person" placeholder="Penanggung Jawab" class="form-control" />
-                                        <span class="help-block"> Penanggung Jawab </span>
+                                        <input type="text" value="{{ old('resp_person') }}" name="resp_person" placeholder="Penanggung Jawab" class="form-control" />
+                                        
+                                        @if ($errors->has('resp_person'))
+                                            <span class="help-block"> {{ $errors->first('resp_person') }} </span>
+                                        @else
+                                            <span class="help-block"> Nama penjual / kasir / penanggung jawab penjualan barang. </span>
+                                        @endif
                                     </div>
                                 </div>                                      
                             </div>

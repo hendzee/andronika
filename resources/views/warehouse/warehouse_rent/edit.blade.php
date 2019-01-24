@@ -61,7 +61,6 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <span class="help-block"> Keterangan Karyawan </span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -78,32 +77,56 @@
                                         <span class="help-block"> Status </span>
                                     </div>
                                 </div>      
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Biaya Sewa / Hari</label>
+                                <div class="form-group {{ $errors->has('price_day') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Biaya Sewa</label>
                                     <div class="col-md-9">
-                                        <input type="text" value={{ $data_rent->price_day }} name="price_day" class="form-control" />
-                                        <span class="help-block"> Biaya Sewa / Hari </span>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                Rp
+                                            </span>
+                                            <input type="text" value="{{ old('price_day', round($data_rent->price_day)) }}" placeholder="Biaya" class="form-control masking-form" />
+                                            <input type="hidden" id="total_hidden" name="price_day" class="masking-form-hidden">
+                                        </div>
+
+                                        @if ($errors->has('price_day'))
+                                            <span class="help-block"> {{ $errors->first('price_day') }} </span>
+                                        @else
+                                            <span class="help-block"> Biaya sewa per hari. </span>
+                                        @endif
                                     </div>
                                 </div>  
-                                <div class="form-group">
-                                        <label class="control-label col-md-3">Jumlah Barang</label>
-                                        <div class="col-md-9">
-                                            <input type="text" value={{ $data_rent->number_item }} name="number_item" class="form-control" />
-                                            <span class="help-block"> Jumlah Barang </span>
-                                        </div>
-                                    </div>                                                         
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('number_item') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Jumlah Barang</label>
+                                    <div class="col-md-9">
+                                        <input type="text" value="{{ old('number_item', $data_rent->number_item) }}" name="number_item" class="form-control" />
+                                        
+                                        @if ($errors->has('number_item'))
+                                            <span class="help-block"> {{ $errors->first('number_item') }} </span>
+                                        @endif
+                                    </div>
+                                </div>                                                         
+                                <div class="form-group {{ $errors->has('start') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Mulai</label>
                                     <div class="col-md-9">
-                                        <input name="start" value={{ date('m/d/Y', strtotime($data_rent->start)) }} class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Mulai </span>
+                                        <input name="start" value="{{ old('start', date('m/d/Y', strtotime($data_rent->start))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('start'))
+                                            <span class="help-block"> {{ $errors->first('start') }} </span>
+                                        @else
+                                            <span class="help-block"> MM/DD/YYY. </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('end') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Selesai</label>
                                     <div class="col-md-9">
-                                        <input name="end" value={{ date('m/d/Y', strtotime($data_rent->end)) }} class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Selesai </span>
+                                        <input name="end" value="{{ old('end', date('m/d/Y', strtotime($data_rent->end))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('end'))
+                                            <span class="help-block"> {{ $errors->first('end') }} </span>
+                                        @else
+                                            <span class="help-block"> MM/DD/YYY. </span>
+                                        @endif
                                     </div>
                                 </div>                                                                                                                                                    
                             </div>

@@ -6,11 +6,11 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href=""> Menu </a>
+                    <a href="{{ route('warehouse_rent.index') }}"> Peminjaman </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href=""> Pembayaran Projek </a>
+                    <a href="#"> Pembayaran Sewa Barang </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
@@ -77,7 +77,7 @@
                                 <tr class="odd gradeX">                                                                       
                                     <td>{{ $data->id_payment }}</td>
                                     <td>{{ $data->id_rent }}</td>
-                                    <td>{{ 'Rp ' . $data->nominal }}</td>
+                                    <td>{{ 'Rp ' . number_format($data->nominal) }}</td>
                                     <td>{{ date('d M, Y', strtotime($data->date)) }}</td>                                        
                                     <td>
                                         <div class="btn-group">
@@ -103,10 +103,10 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="5">{{ 'Total Pembayaran: Rp. ' . $total_trans }}</td>                                                
+                                    <td colspan="5">{{ 'Total Uang Masuk: Rp ' . number_format($total_trans) }}</td>                                                
                                 </tr>
                                 <tr>
-                                    <td colspan="5">{{'Sisa Pembayaran: Rp. ' . $remain}}</td>
+                                    <td colspan="5">{{'Sisa Pembayaran: Rp ' . number_format($remain) }}</td>
                                 </tr>
                             </tfoot>
                         </table>                        
