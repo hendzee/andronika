@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\GeneratorId;
 use App\Employee;
 use App\EmployeeSalary;
 
@@ -16,7 +15,8 @@ class EmployeeSalaryController extends Controller
      */
     public function index()
     {
-        $data_employee = EmployeeSalary::all();
+        $data_employee = Employee::all();
+        
         return view('employee.employee_salary.index', compact('data_employee'));
     }
 
@@ -27,8 +27,8 @@ class EmployeeSalaryController extends Controller
      */
     public function create()
     {
-        $data_employee = employee::all();
-        return view('employee.employee_salary.create', compact('data_employee'));
+        // $data_employee = employee::all();
+        // return view('employee.employee_salary.create', compact('data_employee'));
     }
 
     /**
@@ -39,16 +39,16 @@ class EmployeeSalaryController extends Controller
      */
     public function store(Request $request)
     {
-        $gen = new GeneratorId();
+        // $gen = new GeneratorId();
 
-        $employee = EmployeeSalary::create([
-            'id_salary' => $gen->generateId('employee_salary'),
-            'id_employee' => $request->id_employee,
-            'salary' => $request->salary,
-            'date' => date("Y-m-d", strtotime($request->date)),
-        ]);
+        // $employee = EmployeeSalary::create([
+        //     'id_salary' => $gen->generateId('employee_salary'),
+        //     'id_employee' => $request->id_employee,
+        //     'salary' => $request->salary,
+        //     'date' => date("Y-m-d", strtotime($request->date)),
+        // ]);
 
-        return redirect('/employee_salary');
+        // return redirect('/employee_salary');
     }
 
     /**
@@ -70,7 +70,7 @@ class EmployeeSalaryController extends Controller
      */
     public function edit($id)
     {
-        $data_employee = EmployeeSalary::where('id_salary', $id)
+        $data_employee = Employee::where('id_employee', $id)
             ->first();
 
         return view('employee.employee_salary.edit', compact('data_employee'));
@@ -85,12 +85,21 @@ class EmployeeSalaryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data_employee = EmployeeSalary::where('id_salary', $id)
+        $check_data = EmployeeSalary::where('id_employee', $id)
+            ->first();
+
+        if ($check_data == null){
+            $employee_salary = EmployeeSalary::create([
+                'id_employee' => $request->id_employee,
+                'salary' => $request->salary,
+            ]);
+        }else {
+            $employee_salary = EmployeeSalary::where('id_employee', $id)
             ->first()
             ->update([
                 'salary' => $request->salary,   
-                'date' => date("Y-m-d", strtotime($request->date))            
             ]);
+        }
         
         return redirect('/employee_salary');
     }

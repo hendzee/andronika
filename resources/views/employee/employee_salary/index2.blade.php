@@ -28,7 +28,14 @@
                     <div class="portlet-body">
                         <div class="table-toolbar">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="btn-group">
+                                        <a href="employee_salary/create" id="sample_editable_1_new" class="btn sbold green"> 
+                                            Gaji Baru
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="btn-group pull-right">
                                         <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                             <i class="fa fa-angle-down"></i>
@@ -53,21 +60,53 @@
                         </div>
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
-                                <tr>
-                                    <th> ID Karyawan </th>                                                                                                    
-                                    <th> Nama </th>                                    
-                                    <th> Divisi </th>
-                                    <th> Gaji Pokok </th>
+                                <tr>                                                                                                    
+                                    <th> Karyawan </th>                                    
+                                    <th> Devisi </th>
+                                    <th> Tanggal Gaji </th>                                
+                                    <th> Jumlah </th>
+                                    <th> Diambil </th>
+                                    <th> Sisa </th>
+                                    <th> Bonus </th>
                                     <th> Aksi </th>                                
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($data_employee as $data)
-                                <tr class="odd gradeX">
-                                    <td>{{ $data->id_employee }}</td>
-                                    <td>{{ $data->name }}</td>
-                                    <td>{{ $data->division }}</td>
-                                    <td>{{ $data->employee_salary ? $data->employee_salary->salary : '-' }}</td>
+                                <tr class="odd gradeX">                                                                                                           
+                                    <td>
+                                        {{ $data->employee->name }}
+                                        <br/>
+                                        {{ $data->id_employee }}
+                                    </td>
+                                    <td>{{ $data->employee->division }}</td>
+                                    <td>{{ date('d M, Y', strtotime($data->date)) }}</td> 
+                                    <td>{{ 'Rp. ' . $data->salary }}</td>                                
+                                    <td>
+                                        @php
+                                           $transaction = App\EmployeeTransaction::where('id_salary', $data->id_salary)
+                                            ->sum('nominal')
+                                        @endphp
+                                        {{ 'Rp. ' . $transaction }}
+                                        <br/>
+                                        <a href="{{ route('employee_transaction_index', $data->id_salary) }}">
+                                            detail
+                                        </a>
+                                    </td>
+                                    <td>{{ 'Rp. ' . ($data->salary - $transaction) }}</td>
+                                    <td>
+                                        @php
+                                           $bonus = App\EmployeeBonus::where('id_employee', $data->id_employee)
+                                            ->where('status', 'belum diambil')
+                                            ->where('id_salary', $data->id_salary)
+                                            ->sum('bonus') 
+                                        @endphp
+                                        {{ 'Rp . ' . $bonus }}
+                                        <br/>
+                                        <a href="{{ route('employee_bonus_index', $data->id_salary) }}">
+                                            detail
+                                        </a>
+                                    </td>
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -75,7 +114,7 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>                                                    
-                                                    <a href="{{ route('employee_salary.edit', $data->id_employee) }}">
+                                                    <a href="{{ route('employee_salary.edit', $data->id_salary) }}">
                                                         <i class="icon-docs"></i> Edit 
                                                     </a>
                                                 </li>

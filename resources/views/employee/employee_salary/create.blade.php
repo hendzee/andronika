@@ -29,7 +29,6 @@
                         <!-- BEGIN FORM-->
                         <form action="{{ action('EmployeeSalaryController@store') }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
-                                {{-- <input type="hidden" name="id_project" value="{{ $id_project }}" />                                 --}}
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Karyawan</label>
                                     <div class="col-md-9">

@@ -132,7 +132,8 @@ Route::get('transportation_update_status/{status}/{id}', [
     'uses' => 'TransportationController@updateStatus',
     'as' => 'transportation_update_status']);
 
-// Route::resource('driver', 'DriverController');
 Route::resource('fuel', 'FuelController');
 
 Route::resource('repair_and_used', 'RepairAndUsedController');
+
+Route::resource('salary_month', 'SalaryMonthController');

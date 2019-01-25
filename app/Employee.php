@@ -11,4 +11,9 @@ class Employee extends Model
     protected $guarded = [];
     public $incrementing = false;  
     public $timestamps = false;
+
+    public function employee_salary()
+    {
+        return $this->hasOne('App\EmployeeSalary', 'id_employee');
+    }
 }

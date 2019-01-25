@@ -10,48 +10,44 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Edit</span>
+                    <span>Baru</span>
                 </li>
             </ul>         
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Gaji Pokok Karyawan        
+            Data Gaji Baru        
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
+        <div class="m-heading-1 border-green m-bordered">
+            <p> 
+                Setelah anda membuat tanggal penggajian baru, sistem akan otomatis membuat daftar gaji pokok
+                untuk setiap karyawan berdasarkan gaji pokok masing-masing karyawan.
+            </p>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN SAMPLE FORM PORTLET-->
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form action="{{ action('EmployeeSalaryController@update', $data_employee->id_employee) }}" method="POST" class="form-horizontal form-row-seperated">
-                            <div class="form-body">                                
+                        <form action="{{ action('SalaryMonthController@store') }}" method="POST" class="form-horizontal form-row-seperated">
+                            <div class="form-body">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Pekerja</label>
+                                    <label class="control-label col-md-3">Tanggal Gaji</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_employee->name . ' | ' . $data_employee->address }}" disabled class="form-control" />
-                                        <span class="help-block"> Keterangan Pekerja </span>
+                                        <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        <span class="help-block"> Tanggal Pemberian Gaji </span>
                                     </div>
-                                </div>
-                                <input type="hidden" name="id_employee" value="{{ $data_employee->id_employee }}" />                                                             
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Gaji Pokok</label>
-                                    <div class="col-md-9">
-                                        <input type="text" value="{{ $data_employee->employee_salary == null ? 0 : round($data_employee->employee_salary->salary) }}" name="salary" class="form-control" />
-                                    </div>
-                                </div>                                                          
+                                </div>                                                                                                                                                    
                             </div>
-                            {{ method_field('PUT') }}
                             {{ csrf_field() }}
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
-                                        <button type="submit" class="btn green">
-                                            Simpan
-                                        </button>
+                                        <button type="submit" class="btn green">Simpan</button>
                                         <a href="{{ route('employee_salary.index') }}" class="btn default">
                                             Batal
                                         </a>

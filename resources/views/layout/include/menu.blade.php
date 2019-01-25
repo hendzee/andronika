@@ -109,7 +109,12 @@
                     </li>
                     <li class="nav-item  ">
                         <a href="{{ route( 'employee_salary.index' ) }}" class="nav-link ">
-                            <span class="title">Gaji Karyawan</span>
+                            <span class="title">Gaji Pokok</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{ route( 'salary_month.index' ) }}" class="nav-link ">
+                            <span class="title">Gaji Bulanan</span>
                         </a>
                     </li>
                 </ul>                
