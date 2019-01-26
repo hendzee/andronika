@@ -10,7 +10,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="{{ route('employee_transaction_index', $id_salary) }}">Pengambilan Gaji</a>
+                    <a href="{{ route('employee_transaction_index', $id_detail) }}">Pengambilan Gaji</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="{{ route('employee_bonus_create', $id_salary) }}" id="sample_editable_1_new" class="btn sbold green"> 
+                                        <a href="{{ route('employee_bonus_create', $id_detail) }}" id="sample_editable_1_new" class="btn sbold green"> 
                                             Bonus Baru
                                         </a>
                                     </div>

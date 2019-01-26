@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Employee;
-use App\EmployeeSalary;
+use App\SMDetail;
 
-class EmployeeSalaryController extends Controller
+class SMDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class EmployeeSalaryController extends Controller
      */
     public function index()
     {
-        $data_employee = Employee::all();
-        
-        return view('employee.employee_salary.index', compact('data_employee'));
+        //
     }
 
     /**
@@ -27,6 +24,7 @@ class EmployeeSalaryController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -37,6 +35,7 @@ class EmployeeSalaryController extends Controller
      */
     public function store(Request $request)
     {
+        //
     }
 
     /**
@@ -47,7 +46,10 @@ class EmployeeSalaryController extends Controller
      */
     public function show($id)
     {
-        //
+        $data_detail = SMDetail::where('id_month', $id)
+            ->get();
+
+        return view('employee.salary_month_detail.show', compact('data_detail'));
     }
 
     /**
@@ -58,10 +60,7 @@ class EmployeeSalaryController extends Controller
      */
     public function edit($id)
     {
-        $data_employee = Employee::where('id_employee', $id)
-            ->first();
-
-        return view('employee.employee_salary.edit', compact('data_employee'));
+        //
     }
 
     /**
@@ -73,23 +72,7 @@ class EmployeeSalaryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $check_data = EmployeeSalary::where('id_employee', $id)
-            ->first();
-
-        if ($check_data == null){
-            $employee_salary = EmployeeSalary::create([
-                'id_employee' => $request->id_employee,
-                'salary' => $request->salary,
-            ]);
-        }else {
-            $employee_salary = EmployeeSalary::where('id_employee', $id)
-            ->first()
-            ->update([
-                'salary' => $request->salary,   
-            ]);
-        }
-        
-        return redirect('/employee_salary');
+        //
     }
 
     /**
@@ -100,11 +83,6 @@ class EmployeeSalaryController extends Controller
      */
     public function destroy($id)
     {
-        // EmployeeSalary::find($id)->delete();
-        //return redirect('/employee_salary');
-        $EmployeeSalary->delete();
-  
-        return redirect()->route('EmployeeSalary.index')
-                        ->with('success','Product deleted successfully');
+        //
     }
 }

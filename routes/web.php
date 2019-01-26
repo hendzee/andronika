@@ -137,3 +137,5 @@ Route::resource('fuel', 'FuelController');
 Route::resource('repair_and_used', 'RepairAndUsedController');
 
 Route::resource('salary_month', 'SalaryMonthController');
+
+Route::resource('salary_month_detail', 'SMDetailController');

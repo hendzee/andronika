@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_bonus" value="{{ $data_bonus->id_bonus }}" />
-                                <input type="hidden" name="id_salary" value="{{ $data_bonus->id_salary }}" />                                
+                                <input type="hidden" name="id_detail" value="{{ $data_bonus->id_detail }}" />                                
                                 <div class="form-group">
                                     <label class="control-label col-md-3">ID Karyawan</label>
                                     <div class="col-md-9">
@@ -68,8 +68,8 @@
                                             <option value="{{ $data_bonus->status }}">
                                                 {{ $data_bonus->status . ' (Nilai Saat Ini)' }}
                                             </option>
-                                            <option value="belum diambil">Belum diambil</option>
-                                            <option value="diambil">Sudah diambil</option>
+                                            <option value="BELUM DIAMBIL">BELUM DIAMBIL</option>
+                                            <option value="SUDAH DIAMBIL">SUDAH DIAMBIL</option>
                                         </select>
                                         <span class="help-block"> Isikan Jika Bonus Sudah Diambil </span>
                                     </div>

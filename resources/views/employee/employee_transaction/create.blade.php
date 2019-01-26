@@ -10,7 +10,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="{{ route('employee_transaction_index', $data_transaction->id_salary) }}">
+                    <a href="{{ route('employee_transaction_index', $data_transaction->id_detail) }}">
                         Pengambilan Gaji
                     </a>
                     <i class="fa fa-circle"></i>
@@ -36,7 +36,7 @@
                         <form action="{{ action('EmployeeTransactionController@store', $id_trans) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">                                                              
                                 <input type="hidden" name="id_employee" value="{{ $data_transaction->id_employee }}" />
-                                <input type="hidden" name="id_salary" value="{{ $id_trans }}" />
+                                <input type="hidden" name="id_detail" value="{{ $id_trans }}" />
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nama</label>
                                     <div class="col-md-9">
@@ -67,7 +67,7 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <a href="{{ route('employee_transaction_index', $data_transaction->id_salary) }}" class="btn default">
+                                        <a href="{{ route('employee_transaction_index', $data_transaction->id_detail) }}" class="btn default">
                                             Batal
                                         </a>
                                     </div>

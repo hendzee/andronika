@@ -20,6 +20,7 @@ use App\Driver;
 use APp\Fuel;
 use App\ProjectSupply;
 use App\SalaryMonth;
+use App\SMDetail;
 
 class GeneratorId extends Model
 {
@@ -42,6 +43,12 @@ class GeneratorId extends Model
                 $search_id = 'id_month';
                 $unique_code = 'MO';
                 $obj = new SalaryMonth();
+            break;
+
+             case 'salary_month_detail':
+                $search_id = 'id_detail';
+                $unique_code = 'MD';
+                $obj = new SMDetail();
             break;
                         
             case 'employee_transaction':

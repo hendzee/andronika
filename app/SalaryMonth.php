@@ -11,4 +11,9 @@ class SalaryMonth extends Model
     protected $guarded = [];
     public $incrementing = false;  
     public $timestamps = false;
+
+    public function salary_month_detail()
+    {
+        return $this->hasMany('App\SMDetail', 'id_month');
+    }
 }

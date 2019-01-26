@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\SalaryMonth;
 use App\Employee;
 use App\GeneratorId;
+use App\SMDetail;
 
 class SalaryMonthController extends Controller
 {
@@ -44,11 +45,24 @@ class SalaryMonthController extends Controller
         $check_data = SalaryMonth::where('date', date('Y-m-d', strtotime($request->date)))
             ->first();
 
+        $data_employee = Employee::all();
+
         if ($check_data == null){
+            $id_month = $gen->generateId('salary_month');
+
             $data_salary = SalaryMonth::create([
-                'id_month' => $gen->generateId('salary_month'),
+                'id_month' => $id_month,
                 'date' => date('Y-m-d', strtotime($request->date))
             ]);
+
+            foreach ($data_employee as $key => $data) {
+                $smdetail = SMDetail::create([
+                    'id_month' => $id_month,
+                    'id_detail' => $gen->generateId('salary_month_detail'),
+                    'id_employee' => $data->id_employee,
+                    'salary' => $data->employee_salary->salary
+                ]);
+            }
         }
         
         return redirect('salary_month/');
@@ -62,7 +76,7 @@ class SalaryMonthController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -73,9 +87,10 @@ class SalaryMonthController extends Controller
      */
     public function edit($id)
     {
-        $id_salary = $id;
+        $data_month = SalaryMonth::where('id_month', $id)
+            ->first();
 
-        return view('employee.salary_month.edit');
+        return view('employee.salary_month.edit', compact('data_month'));
     }
 
     /**
@@ -87,7 +102,17 @@ class SalaryMonthController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $check_data = SalaryMonth::where('date', date('Y-m-d', strtotime($request->date)))
+            ->first();
+
+        if ($check_data == null){
+            $data_month = SalaryMonth::where('id_month', $id)
+                ->update([
+                    'date' => date('Y-m-d', strtotime($request->date))
+                ]);
+        }
+
+        return redirect('salary_month/');
     }
 
     /**

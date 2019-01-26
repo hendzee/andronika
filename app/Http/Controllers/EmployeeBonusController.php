@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\GeneratorId;
 use App\Employee;
-use App\EmployeeSalary;
+use App\SMDetail;
 use App\EmployeeBonus;
 
 class EmployeeBonusController extends Controller
@@ -18,10 +18,10 @@ class EmployeeBonusController extends Controller
     public function index($id)
     {
         //
-        $data_bonus = EmployeeBonus::where('id_salary', $id)->get();        
-        $id_salary= $id;
+        $data_bonus = EmployeeBonus::where('id_detail', $id)->get();        
+        $id_detail= $id;
         
-        return view('employee.employee_bonus.index', compact('data_bonus', 'id_salary'));
+        return view('employee.employee_bonus.index', compact('data_bonus', 'id_detail'));
     }
 
     /**
@@ -32,9 +32,9 @@ class EmployeeBonusController extends Controller
     public function create($id)
     {
         //
-        $data_bonus = EmployeeSalary::where('id_salary', $id)->first();
-        $id_salary = $id;
-        return view('employee.employee_bonus.create', compact('data_bonus', 'id_salary'));
+        $data_bonus = SMDetail::where('id_detail', $id)->first();
+        $id_detail = $id;
+        return view('employee.employee_bonus.create', compact('data_bonus', 'id_detail'));
     }
 
     /**
@@ -51,13 +51,13 @@ class EmployeeBonusController extends Controller
         $employee = EmployeeBonus::create([
             'id_bonus' => $gen->generateId('employee_bonus'),
             'id_employee' => $request->id_employee,            
-            'id_salary' => $request->id_salary,
+            'id_detail' => $request->id_detail,
             'bonus' => $request->bonus,            
-            'status' => 'belum diambil',
+            'status' => 'BELUM DIAMBIL',
             'description' => $request->desc
         ]);
         
-        return redirect('employee_bonus_index/'. $request->id_salary);
+        return redirect('employee_bonus_index/'. $request->id_detail);
     }
 
     /**
@@ -105,7 +105,7 @@ class EmployeeBonusController extends Controller
                 'description' => $request->desc,            
             ]);
         
-        return redirect('employee_bonus_index/'. $request->id_salary);
+        return redirect('employee_bonus_index/'. $request->id_detail);
     }
 
     /**

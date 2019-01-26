@@ -69,7 +69,7 @@
                                 @foreach($data_salary as $data)
                                     <tr class="odd gradeX">                                                                                                           
                                         <td>
-                                            <a href="#">
+                                            <a href="{{ route('salary_month_detail.show', $data->id_month) }}">
                                                 PENGGAJIAN PADA TANGGAL:
                                                 {{ date('d M, Y', strtotime($data->date)) }}
                                             </a>
@@ -81,7 +81,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li>                                                    
-                                                        <a href="{{ route('employee_salary.edit', $data->id_month) }}">
+                                                        <a href="{{ route('salary_month.edit', $data->id_month) }}">
                                                             <i class="icon-docs"></i> Edit 
                                                         </a>
                                                     </li>

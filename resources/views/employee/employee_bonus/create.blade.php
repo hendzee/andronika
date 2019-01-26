@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_employee" value="{{ $data_bonus->id_employee }}" />
-                                <input type="hidden" name="id_salary" value="{{ $id_salary }}" />
+                                <input type="hidden" name="id_detail" value="{{ $id_detail }}" />
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nama</label>
                                     <div class="col-md-9">

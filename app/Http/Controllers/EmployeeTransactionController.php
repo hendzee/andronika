@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\GeneratorId;
 use App\Employee;
-use App\EmployeeSalary;
+use App\SMDetail;
 use App\EmployeeTransaction;
 
 class EmployeeTransactionController extends Controller
@@ -17,8 +17,7 @@ class EmployeeTransactionController extends Controller
      */
     public function index($id)
     {
-        //
-        $data_transaction = EmployeeTransaction::where('id_salary', $id)->get();
+        $data_transaction = EmployeeTransaction::where('id_detail', $id)->get();
         $id_trans = $id;
         
         return view('employee.employee_transaction.index', compact('data_transaction', 'id_trans'));
@@ -31,9 +30,9 @@ class EmployeeTransactionController extends Controller
      */
     public function create($id)
     {
-        //
-        $data_transaction = EmployeeSalary::where('id_salary', $id)->first();
+        $data_transaction = SMDetail::where('id_detail', $id)->first();
         $id_trans = $id;
+        
         return view('employee.employee_transaction.create', compact('data_transaction', 'id_trans'));
     }
 
@@ -50,13 +49,13 @@ class EmployeeTransactionController extends Controller
 
         $employee = EmployeeTransaction::create([
             'id_transaction' => $gen->generateId('employee_transaction'),
-            'id_salary' => $request->id_salary,            
+            'id_detail' => $request->id_detail,            
             'id_employee' => $request->id_employee,
             'nominal' => $request->nominal,
             'date' => date("Y-m-d", strtotime($request->date)),
         ]);
 
-        return redirect('employee_transaction_index/'. $request->id_salary);
+        return redirect('employee_transaction_index/'. $request->id_detail);
     }
 
     /**
@@ -102,7 +101,7 @@ class EmployeeTransactionController extends Controller
                 'date' => date("Y-m-d", strtotime($request->date))            
             ]);
         
-        return redirect('employee_transaction_index/'. $request->id_salary);
+        return redirect('employee_transaction_index/'. $request->id_detail);
     }
 
     /**
@@ -113,12 +112,9 @@ class EmployeeTransactionController extends Controller
      */
     public function destroy(EmployeeTransaction $employeeTransaction)
     {
-        //
-        // EmployeeSalary::find($id)->delete();
-        //return redirect('/employee_salary');
         $EmployeeSalary->delete();
   
         return redirect()->route('EmployeeSalary.index')
-                        ->with('success','Product deleted successfully');
+            ->with('success','Product deleted successfully');
     }
 }

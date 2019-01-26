@@ -17,7 +17,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Gaji Karyawan
+            Detail Gaji Bulanan
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -64,7 +64,7 @@
                                     <th> Karyawan </th>                                    
                                     <th> Devisi </th>
                                     <th> Tanggal Gaji </th>                                
-                                    <th> Jumlah </th>
+                                    <th> Gaji Pokok </th>
                                     <th> Diambil </th>
                                     <th> Sisa </th>
                                     <th> Bonus </th>
@@ -72,7 +72,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data_employee as $data)
+                                @foreach($data_detail as $data)
                                 <tr class="odd gradeX">                                                                                                           
                                     <td>
                                         {{ $data->employee->name }}
@@ -80,30 +80,28 @@
                                         {{ $data->id_employee }}
                                     </td>
                                     <td>{{ $data->employee->division }}</td>
-                                    <td>{{ date('d M, Y', strtotime($data->date)) }}</td> 
-                                    <td>{{ 'Rp. ' . $data->salary }}</td>                                
+                                    <td>{{ date('d M, Y', strtotime($data->salary_month->date)) }}</td> 
+                                    <td>{{ 'Rp ' . number_format($data->salary) }}</td>                                
                                     <td>
                                         @php
-                                           $transaction = App\EmployeeTransaction::where('id_salary', $data->id_salary)
-                                            ->sum('nominal')
+                                            $transaction = $data->employee_transaction->sum('nominal')
                                         @endphp
-                                        {{ 'Rp. ' . $transaction }}
+                                        {{ 'Rp ' . number_format($transaction) }}
                                         <br/>
-                                        <a href="{{ route('employee_transaction_index', $data->id_salary) }}">
+                                        <a href="{{ route('employee_transaction_index', $data->id_detail) }}">
                                             detail
                                         </a>
                                     </td>
-                                    <td>{{ 'Rp. ' . ($data->salary - $transaction) }}</td>
+                                    <td>{{ 'Rp ' . number_format(($data->salary - $transaction)) }}</td>
                                     <td>
                                         @php
-                                           $bonus = App\EmployeeBonus::where('id_employee', $data->id_employee)
-                                            ->where('status', 'belum diambil')
-                                            ->where('id_salary', $data->id_salary)
-                                            ->sum('bonus') 
+                                            $bonus = $data->employee_bonus
+                                                ->where('id_detail', $data->id_detail)
+                                                ->sum('bonus') 
                                         @endphp
                                         {{ 'Rp . ' . $bonus }}
                                         <br/>
-                                        <a href="{{ route('employee_bonus_index', $data->id_salary) }}">
+                                        <a href="{{ route('employee_bonus_index', $data->id_detail) }}">
                                             detail
                                         </a>
                                     </td>
@@ -114,9 +112,9 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>                                                    
-                                                    <a href="{{ route('employee_salary.edit', $data->id_salary) }}">
+                                                    {{-- <a href="{{ route('employee_salary.edit', $data->id_salary) }}">
                                                         <i class="icon-docs"></i> Edit 
-                                                    </a>
+                                                    </a> --}}
                                                 </li>
                                                 <li>                                                    
                                                     <a href="#">

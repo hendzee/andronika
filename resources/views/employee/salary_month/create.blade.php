@@ -24,7 +24,10 @@
         <div class="m-heading-1 border-green m-bordered">
             <p> 
                 Setelah anda membuat tanggal penggajian baru, sistem akan otomatis membuat daftar gaji pokok
-                untuk setiap karyawan berdasarkan gaji pokok masing-masing karyawan.
+                untuk setiap karyawan berdasarkan gaji pokok masing-masing karyawan. Setelah dibuat, 
+                gaji pokok karyawan pada daftar gaji bulanan tidak berkaitan lagi dengan daftar gaji pokok yang ada
+                pada menu gaji pokok. Untuk mengedit gaji pokok bulanan, lakukan langsung di halaman "gaji bulanan"
+                bukan pada menu "gaji pokok".
             </p>
         </div>
         <div class="row">
