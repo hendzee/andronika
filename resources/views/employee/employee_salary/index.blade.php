@@ -67,7 +67,7 @@
                                     <td>{{ $data->id_employee }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->division }}</td>
-                                    <td>{{ $data->employee_salary ? $data->employee_salary->salary : '-' }}</td>
+                                    <td>{{ $data->employee_salary ? 'Rp ' . number_format($data->employee_salary->salary) : '-' }}</td>
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">

@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_month" value="{{ $id_month }}">                                  
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('salary') ? 'has-error' : '' }}">
                                     <label class="col-md-3 control-label">Gaji Pokok</label>
                                     <div class="col-md-9">
                                         <div class="input-inline">
@@ -56,7 +56,12 @@
                                                 <input type="hidden" id="total_hidden" name="salary" class="masking-form-hidden">
                                             </div>
                                         </div>
-                                        <span class="help-block"> Sesuaikan dengan gaji pokok pada menu "Gaji Pokok". </span>
+
+                                        @if ($errors->has('salary'))
+                                            <span class="help-block"> {{ $errors->first('salary') }} </span>
+                                        @else
+                                            <span class="help-block"> Sesuaikan dengan gaji pokok pada menu "Gaji Pokok". </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

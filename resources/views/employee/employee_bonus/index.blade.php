@@ -87,7 +87,7 @@
                                         <br/>
                                         {{ $data->id_employee }}
                                     </td>                                                                           
-                                    <td>{{ 'Rp.' . $data->bonus }}</td>  
+                                    <td>{{ 'Rp ' . number_format($data->bonus) }}</td>  
                                     <td>{{ $data->description }}</td> 
                                     <td>{{ $data->status }}</td>         
                                     <td>{{ date('d M, y', strtotime($data->date)) }}</td>                                                                                

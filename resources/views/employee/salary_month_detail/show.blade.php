@@ -103,7 +103,7 @@
                                                 ->where('id_detail', $data->id_detail)
                                                 ->sum('bonus') 
                                         @endphp
-                                        {{ 'Rp ' . $bonus }}
+                                        {{ 'Rp ' . number_format($bonus) }}
                                         <br/>
                                         <a href="{{ route('employee_bonus_index', $data->id_detail) }}">
                                             detail

@@ -8,6 +8,7 @@ use App\Employee;
 use App\GeneratorId;
 use App\SMDetail;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\SalaryMonthRequest;
 
 class SalaryMonthController extends Controller
 {
@@ -39,7 +40,7 @@ class SalaryMonthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SalaryMonthRequest $request)
     {
         $gen = new GeneratorId;
 
@@ -108,7 +109,7 @@ class SalaryMonthController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SalaryMonthRequest $request, $id)
     {
         $check_data = SalaryMonth::where('date', date('Y-m-d', strtotime($request->date)))
             ->first();

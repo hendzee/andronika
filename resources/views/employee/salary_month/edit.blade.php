@@ -29,11 +29,16 @@
                         <!-- BEGIN FORM-->
                         <form action="{{ action('SalaryMonthController@update', $data_month->id_month) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Gaji</label>
                                     <div class="col-md-9">
                                         <input name="date" value="{{ date('m-d-Y', strtotime($data_month->date)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Pemberian Gaji </span>
+                                        
+                                        @if ($errors->has('date'))
+                                            <span class="help-block"> {{ $errors->first('date') }} </span>
+                                        @else
+                                            <span class="help-block"> Tanggal Pemberian Gaji </span>
+                                        @endif
                                     </div>
                                 </div>                                                                                                                                                    
                             </div>

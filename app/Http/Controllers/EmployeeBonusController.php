@@ -7,6 +7,7 @@ use App\GeneratorId;
 use App\Employee;
 use App\SMDetail;
 use App\EmployeeBonus;
+use App\Http\Requests\EmployeeBonusRequest;
 
 class EmployeeBonusController extends Controller
 {
@@ -52,7 +53,7 @@ class EmployeeBonusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeeBonusRequest $request)
     {
         $gen = new GeneratorId();
 
@@ -107,7 +108,7 @@ class EmployeeBonusController extends Controller
      * @param  \App\EmployeeBonus  $employeeBonus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmployeeBonusRequest $request, $id)
     {
         //
         $data_bonus = EmployeeBonus::where('id_bonus', $id)

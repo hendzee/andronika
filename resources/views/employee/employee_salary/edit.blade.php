@@ -37,12 +37,24 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_employee" value="{{ $data_employee->id_employee }}" />                                                             
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('bonus') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Gaji Pokok</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_employee->employee_salary == null ? 0 : round($data_employee->employee_salary->salary) }}" name="salary" class="form-control" />
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" value="{{ old('salary', $data_employee->employee_salary == null ? 0 : round($data_employee->employee_salary->salary) ) }}" placeholder="Gaji Pokok" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="salary" class="masking-form-hidden">
+                                            </div>
+                                        </div>
+                                        
+                                        @if ($errors->has('bonus'))
+                                            <span class="help-block"> {{ $errors->first('salary') }} </span>    
+                                        @endif
                                     </div>
-                                </div>                                                          
+                                </div>                                                            
                             </div>
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}

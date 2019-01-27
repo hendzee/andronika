@@ -29,32 +29,48 @@
                         <!-- BEGIN FORM-->
                         <form action="{{ action('EmployeeController@update', $data_employee->id_employee) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Nama</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="name" value="{{ $data_employee->name }}" placeholder="Nama Lengkap" class="form-control" />
-                                        <span class="help-block"> Nama Lengkap </span>
+                                        <input type="text" value="{{ old('name', $data_employee->name) }}" name="name" placeholder="Nama Lengkap" class="form-control" />
+                                        
+                                        @if ($errors->has('name'))
+                                            <span class="help-block"> {{ $errors->first('name') }} </span>
+                                        @else
+                                            <span class="help-block"> Nama Lengkap </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('age') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Lahir</label>
                                     <div class="col-md-9">
-                                        <input name="age" value="{{ date('d/m/Y', strtotime($data_employee->age)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Lahir </span>
+                                        <input name="age" value="{{ old('age', date('d/m/Y', strtotime($data_employee->age))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('age'))
+                                            <span class="help-block"> {{ $errors->first('age') }} </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Alamat</label>
                                     <div class="col-md-9">
-                                        <input name="address" value="{{ $data_employee->address }}" type="text" placeholder="Alamat Rumah" class="form-control" />
-                                        <span class="help-block"> Alamat Rumah </span>
+                                        <input name="address" value="{{ old('address', $data_employee->address) }}" type="text" placeholder="Alamat Rumah" class="form-control" />
+                                        
+                                        @if ($errors->has('address'))
+                                            <span class="help-block"> {{ $errors->first('address') }} </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('telp') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Telpon</label>
                                     <div class="col-md-9">
-                                        <input name="telp" value="{{ $data_employee->telp }}" type="text" placeholder="Telpon" class="form-control" />
-                                        <span class="help-block"> Telpon / No Handphone </span>
+                                        <input name="telp" value="{{ old('telp', $data_employee->telp) }}" type="text" placeholder="Telpon" class="form-control" />
+                                        
+                                        @if ($errors->has('telp'))
+                                            <span class="help-block"> {{ $errors->first('telp') }} </span>
+                                        @else
+                                            <span class="help-block"> Telpon / No Handphone </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -62,11 +78,11 @@
                                     <div class="col-md-9">
                                         <select name="religion" value="{{ $data_employee->religion }}" class="form-control" >
                                             <option value="{{ $data_employee->religion }}">{{ $data_employee->religion }}</option>
-                                            <option value="Islam">Islam</option>
-                                            <option value="Kristen">Kristen</option>
-                                            <option value="Hindu">Hindu</option>
-                                            <option value="Budha">Budha</option>
-                                            <option value="Konghucu">Konghucu</option>
+                                            <option value="ISLAM">ISLAM</option>
+                                            <option value="KRISTEN">KRISTEN</option>
+                                            <option value="HINDU">HINDU</option>
+                                            <option value="BUDHA">BUDHA</option>
+                                            <option value="KONGHUCU">KONGHUCU</option>
                                         </select>
                                     </div>
                                 </div>
@@ -75,19 +91,19 @@
                                     <div class="col-md-9">
                                         <select name="division" class="form-control" >
                                             <option value="{{ $data_employee->division }}">{{ $data_employee->division }}</option>
-                                            <option value="Bendahara">Bendahara</option>
-                                            <option value="Pemasaran">Pemasaran</option>
-                                            <option value="Marketing">Marketing</option>
+                                            <option value="BENDAHARA">BENDAHARA</option>
+                                            <option value="DRIVER">DRIVER</option>
+                                            <option value="MARKETING">MARKETING</option> 
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Gender</label>
                                     <div class="col-md-9">
-                                    <select name="gender" class="form-control" >
+                                        <select name="gender" class="form-control" >
                                             <option value="{{ $data_employee->gender }}">{{ $data_employee->gender }}</option>
-                                            <option value="Laki-laki">Laki-laki</option>
-                                            <option value="Perempuan">Perempuan</option>                                            
+                                            <option value="PRIA">PRIA</option>
+                                            <option value="WANITA">WANITA</option>                                            
                                         </select>
                                     </div>
                                 </div>                                                                

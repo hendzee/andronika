@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\SMDetail;
 use App\Employee;
 use App\GeneratorId;
+use App\Http\Requests\SMDetailRequest;
 
 class SMDetailController extends Controller
 {
@@ -38,7 +39,7 @@ class SMDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SMDetailRequest $request)
     {
         $gen = new GeneratorId;
         $check_data = SMDetail::where('id_month', $request->id_month)
@@ -94,7 +95,7 @@ class SMDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SMDetailRequest $request, $id)
     {
         $data_detail = SMDetail::where('id_detail', $id)
             ->update([

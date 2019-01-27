@@ -37,20 +37,12 @@
                         <!-- BEGIN FORM-->
                         <form action="{{ action('EmployeeBonusController@update', $data_bonus->id_bonus) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">ID Bonus</label>
-                                    <div class="col-md-9">
-                                        <input type="text" value="{{ $data_bonus->id_bonus }}" disabled class="form-control" />
-                                        <span class="help-block"> ID Bonus </span>
-                                    </div>
-                                </div>
                                 <input type="hidden" name="id_bonus" value="{{ $data_bonus->id_bonus }}" />
                                 <input type="hidden" name="id_detail" value="{{ $data_bonus->id_detail }}" />                                
                                 <div class="form-group">
                                     <label class="control-label col-md-3">ID Karyawan</label>
                                     <div class="col-md-9">
                                         <input type="text" value="{{ $data_bonus->id_employee }}" disabled class="form-control" />
-                                        <span class="help-block"> ID Karyawan </span>
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_employee" value="{{ $data_bonus->id_employee }}" />
@@ -58,17 +50,29 @@
                                     <label class="control-label col-md-3">Nama</label>
                                     <div class="col-md-9">
                                         <input type="text" value="{{ $data_bonus->employee->name }}" disabled class="form-control" />
-                                        <span class="help-block"> Nama Karyawan </span>
                                     </div>
                                 </div>
                                 <input type="hidden" name="name" value="{{ $data_bonus->employee->name }}" />
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Nominal</label>
+                                <div class="form-group {{ $errors->has('bonus') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Bonus</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_bonus->bonus }}" name="bonus" placeholder="Nominal" class="form-control" />
-                                        <span class="help-block"> Jumlah Bonus yang Diterima Pekerja </span>
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" value="{{ old('bonus', round($data_bonus->bonus)) }}" placeholder="Bonus" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="bonus" class="masking-form-hidden">
+                                            </div>
+                                        </div>
+                                        
+                                        @if ($errors->has('bonus'))
+                                            <span class="help-block"> {{ $errors->first('bonus') }} </span>    
+                                        @else
+                                            <span class="help-block"> Jumlah bonus yang diterima karyawan. </span>
+                                        @endif
                                     </div>
-                                </div>
+                                </div>                                     
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Status</label>
                                     <div class="col-md-9">
@@ -79,21 +83,25 @@
                                             <option value="BELUM DIAMBIL">BELUM DIAMBIL</option>
                                             <option value="SUDAH DIAMBIL">SUDAH DIAMBIL</option>
                                         </select>
-                                        <span class="help-block"> Isikan Jika Bonus Sudah Diambil </span>
                                     </div>
                                 </div> 
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">keterangan</label>
+                                <div class="form-group {{ $errors->has('desc') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Keterangan</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ $data_bonus->description }}" name="desc" placeholder="Nominal" class="form-control" />
-                                        <span class="help-block"> Jumlah Gaji yang Diterima Pekerja </span>
+                                        <input type="text" value="{{ old('desc', $data_bonus->description) }}" name="desc" placeholder="Keterangan Bonus" class="form-control" />
+                                        
+                                        @if ($errors->has('desc'))
+                                            <span class="help-block"> {{ $errors->first('desc') }} </span>
+                                        @else
+                                            <span class="help-block"> Keterangan bonus. </span>
+                                        @endif
                                     </div>
-                                </div>
+                                </div>                                                                                            
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Tanggal Pengambilan</label>
                                     <div class="col-md-9">
-                                        <input name="date" value="{{ date('d/m/Y', strtotime($data_bonus->date)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Pengambilan Bonus </span>
+                                        <input name="date" value="{{ date('m/d/Y', strtotime($data_bonus->date)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        <span class="help-block"> Tanggal pengambilan bonus. </span>
                                     </div>
                                 </div>                                                                
                             </div>

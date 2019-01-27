@@ -7,6 +7,7 @@ use App\GeneratorId;
 use App\Employee;
 use App\SMDetail;
 use App\EmployeeTransaction;
+use App\Http\Requests\EmployeeTransactionRequest;
 
 class EmployeeTransactionController extends Controller
 {
@@ -54,7 +55,7 @@ class EmployeeTransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeeTransactionRequest $request)
     {
         //
         $gen = new GeneratorId();
@@ -110,7 +111,7 @@ class EmployeeTransactionController extends Controller
      * @param  \App\EmployeeTransaction  $employeeTransaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmployeeTransactionRequest $request, $id)
     {
         $data_employee = EmployeeTransaction::where('id_transaction', $id)
             ->first()
