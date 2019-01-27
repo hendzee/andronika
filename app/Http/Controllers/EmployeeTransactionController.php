@@ -18,9 +18,15 @@ class EmployeeTransactionController extends Controller
     public function index($id)
     {
         $data_transaction = EmployeeTransaction::where('id_detail', $id)->get();
-        $id_trans = $id;
+        $id_detail = $id;
+
+        $data_detail = SMDetail::where('id_detail', $id_detail)
+            ->first();
+
+        $id_month = $data_detail->id_month;
         
-        return view('employee.employee_transaction.index', compact('data_transaction', 'id_trans'));
+        return view('employee.employee_transaction.index', compact('data_transaction', 'id_detail', 
+            'id_month'));
     }
 
     /**
@@ -31,9 +37,15 @@ class EmployeeTransactionController extends Controller
     public function create($id)
     {
         $data_transaction = SMDetail::where('id_detail', $id)->first();
-        $id_trans = $id;
+        $id_detail = $id;
+
+        $data_detail = SMDetail::where('id_detail', $id_detail)
+            ->first();
+
+        $id_month = $data_detail->id_month;
         
-        return view('employee.employee_transaction.create', compact('data_transaction', 'id_trans'));
+        return view('employee.employee_transaction.create', compact('data_transaction', 'id_detail',
+            'id_month'));
     }
 
     /**
@@ -77,11 +89,18 @@ class EmployeeTransactionController extends Controller
      */
     public function edit($id)
     {
-        //
         $data_transaction = EmployeeTransaction::where('id_transaction', $id)
-            ->first();        
+            ->first();
+            
+        $id_detail = $data_transaction->id_detail;
 
-        return view('employee.employee_transaction.edit', compact('data_transaction'));
+        $data_detail = SMDetail::where('id_detail', $id_detail)
+            ->first();
+
+        $id_month = $data_detail->id_month;
+
+        return view('employee.employee_transaction.edit', compact('data_transaction', 'id_detail', 
+            'id_month'));
     }
 
     /**
@@ -93,7 +112,6 @@ class EmployeeTransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $data_employee = EmployeeTransaction::where('id_transaction', $id)
             ->first()
             ->update([

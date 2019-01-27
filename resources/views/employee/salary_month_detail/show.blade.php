@@ -6,11 +6,15 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{ route('employee_salary.index') }}">Gaji Karyawan</a>
+                    <a href="{{ route('salary_month.index') }}">Gaji Bulanan</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Daftar Gaji</span>
+                    <a href="{{ route('salary_month_detail.show', $id_month) }}">Detail Gaji Bulanan</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Daftar</span>
                 </li>
             </ul>         
         </div>

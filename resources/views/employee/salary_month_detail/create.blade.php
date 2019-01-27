@@ -6,18 +6,22 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{ route('project.index') }}">Projek</a>
+                    <a href="{{ route('salary_month.index') }}">Gaji Bulanan</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Projek Baru</span>
+                    <a href="{{ route('salary_month_detail.show', $id_month) }}">Detail Gaji Bulanan</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Baru</span>
                 </li>
             </ul>         
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Projek Baru          
+            Gaji Pokok (Bulan Ini)          
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -63,7 +67,9 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <a href="{{ route('project.index') }}" class="btn default">Batal</a>
+                                        <a href="{{ route('salary_month_detail.show', $id_month) }}" class="btn default">
+                                            Batal
+                                        </a>
                                     </div>
                                 </div>
                             </div>

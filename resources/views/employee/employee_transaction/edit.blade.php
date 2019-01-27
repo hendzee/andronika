@@ -6,13 +6,15 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{ route('employee_salary.index') }}">Gaji Karyawan</a>
+                    <a href="{{ route('salary_month.index') }}">Gaji Bulanan</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="{{ route('employee_transaction_index', $data_transaction->id_detail) }}">
-                        Pengambilan Gaji
-                    </a>
+                    <a href="{{ route('salary_month_detail.show', $id_month) }}">Detail Gaji Bulanan</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <a href="{{ route('employee_transaction_index', $id_detail) }}">Pengambilan Gaji</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
@@ -83,7 +85,7 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <a href="{{ route('employee_transaction_index', $data_transaction->id_detail) }}" class="btn default">
+                                        <a href="{{ route('employee_transaction_index', $id_detail) }}" class="btn default">
                                             Batal
                                         </a>
                                     </div>

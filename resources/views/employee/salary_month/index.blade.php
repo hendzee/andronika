@@ -6,11 +6,11 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{ route('employee_salary.index') }}">Gaji Bulanan</a>
+                    <a href="#">Gaji Bulanan</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Daftar Gaji</span>
+                    <span>Daftar</span>
                 </li>
             </ul>         
         </div>
@@ -31,7 +31,7 @@
                                 <div class="col-md-6">
                                     <div class="btn-group">
                                         <a href="{{ route('salary_month.create') }}" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Gaji Baru
+                                            Tanggal Baru
                                         </a>
                                     </div>
                                 </div>

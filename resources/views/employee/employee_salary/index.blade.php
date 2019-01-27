@@ -6,18 +6,18 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{ route('employee_salary.index') }}">Gaji Karyawan</a>
+                    <a href="#">Gaji Pokok</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Daftar Gaji</span>
+                    <span>Daftar</span>
                 </li>
             </ul>         
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Gaji Karyawan
+            Gaji Pokok
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->

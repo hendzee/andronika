@@ -10,7 +10,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Edit</span>
+                    <span>Baru/Edit</span>
                 </li>
             </ul>         
         </div>

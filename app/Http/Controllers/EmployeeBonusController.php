@@ -17,11 +17,15 @@ class EmployeeBonusController extends Controller
      */
     public function index($id)
     {
-        //
         $data_bonus = EmployeeBonus::where('id_detail', $id)->get();        
         $id_detail= $id;
+
+        $data_detail = SMDetail::where('id_detail', $id_detail)
+            ->first();
+
+        $id_month = $data_detail->id_month;
         
-        return view('employee.employee_bonus.index', compact('data_bonus', 'id_detail'));
+        return view('employee.employee_bonus.index', compact('data_bonus', 'id_detail', 'id_month'));
     }
 
     /**
@@ -31,10 +35,15 @@ class EmployeeBonusController extends Controller
      */
     public function create($id)
     {
-        //
         $data_bonus = SMDetail::where('id_detail', $id)->first();
         $id_detail = $id;
-        return view('employee.employee_bonus.create', compact('data_bonus', 'id_detail'));
+
+        $data_detail = SMDetail::where('id_detail', $id_detail)
+            ->first();
+
+        $id_month = $data_detail->id_month;
+        
+        return view('employee.employee_bonus.create', compact('data_bonus', 'id_detail', 'id_month'));
     }
 
     /**
@@ -45,7 +54,6 @@ class EmployeeBonusController extends Controller
      */
     public function store(Request $request)
     {
-        // //
         $gen = new GeneratorId();
 
         $employee = EmployeeBonus::create([
@@ -79,11 +87,17 @@ class EmployeeBonusController extends Controller
      */
     public function edit($id)
     {
-        //
         $data_bonus = EmployeeBonus::where('id_bonus', $id)
             ->first();        
 
-        return view('employee.employee_bonus.edit', compact('data_bonus'));
+        $id_detail = $data_bonus->id_detail;
+
+        $data_detail = SMDetail::where('id_detail', $id_detail)
+            ->first();
+
+        $id_month = $data_detail->id_month;
+
+        return view('employee.employee_bonus.edit', compact('data_bonus', 'id_detail', 'id_month'));
     }
 
     /**

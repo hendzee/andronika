@@ -6,11 +6,19 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{ route('salary_month.index') }}">Gaji Bulanan</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Form Stuff</span>
+                    <a href="{{ route('salary_month_detail.show', $id_month) }}">Detail Gaji Bulanan</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <a href="{{ route('employee_bonus_index', $id_detail) }}">Bonus Karyawan</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Baru</span>
                 </li>
             </ul>         
         </div>
@@ -97,7 +105,9 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <button type="button" class="btn default">Batal</button>
+                                        <a href="{{ route('employee_bonus_index', $id_detail) }}" class="btn default">
+                                            Batal
+                                        </a>
                                     </div>
                                 </div>
                             </div>
