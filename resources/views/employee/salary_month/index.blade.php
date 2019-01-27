@@ -70,7 +70,6 @@
                                     <tr class="odd gradeX">                                                                                                           
                                         <td>
                                             <a href="{{ route('salary_month_detail.show', $data->id_month) }}">
-                                                PENGGAJIAN PADA TANGGAL:
                                                 {{ date('d M, Y', strtotime($data->date)) }}
                                             </a>
                                         </td>

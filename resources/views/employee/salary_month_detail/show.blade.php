@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="employee_salary/create" id="sample_editable_1_new" class="btn sbold green"> 
+                                        <a href="{{ route('smd_create', $id_month) }}" id="sample_editable_1_new" class="btn sbold green"> 
                                             Gaji Baru
                                         </a>
                                     </div>
@@ -62,7 +62,7 @@
                             <thead>
                                 <tr>                                                                                                    
                                     <th> Karyawan </th>                                    
-                                    <th> Devisi </th>
+                                    <th> Divisi </th>
                                     <th> Tanggal Gaji </th>                                
                                     <th> Gaji Pokok </th>
                                     <th> Diambil </th>
@@ -99,7 +99,7 @@
                                                 ->where('id_detail', $data->id_detail)
                                                 ->sum('bonus') 
                                         @endphp
-                                        {{ 'Rp . ' . $bonus }}
+                                        {{ 'Rp ' . $bonus }}
                                         <br/>
                                         <a href="{{ route('employee_bonus_index', $data->id_detail) }}">
                                             detail
@@ -111,10 +111,10 @@
                                                 AKSI <i class="fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li>                                                    
-                                                    {{-- <a href="{{ route('employee_salary.edit', $data->id_salary) }}">
+                                                <li>
+                                                    <a href="{{ route('salary_month_detail.edit', $data->id_detail) }}">
                                                         <i class="icon-docs"></i> Edit 
-                                                    </a> --}}
+                                                    </a>
                                                 </li>
                                                 <li>                                                    
                                                     <a href="#">

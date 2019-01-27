@@ -7,6 +7,7 @@ use App\SalaryMonth;
 use App\Employee;
 use App\GeneratorId;
 use App\SMDetail;
+use Illuminate\Support\Facades\DB;
 
 class SalaryMonthController extends Controller
 {
@@ -55,14 +56,21 @@ class SalaryMonthController extends Controller
                 'date' => date('Y-m-d', strtotime($request->date))
             ]);
 
+            $data_insert = [];
+            $x = 0;
+
             foreach ($data_employee as $key => $data) {
-                $smdetail = SMDetail::create([
+                $data_insert[] = array(
                     'id_month' => $id_month,
-                    'id_detail' => $gen->generateId('salary_month_detail'),
+                    'id_detail' => $gen->generateId('salary_month_detail') . $x,
                     'id_employee' => $data->id_employee,
                     'salary' => $data->employee_salary->salary
-                ]);
+                );
+                
+                $x++;
             }
+
+            DB::table('salary_month_detail')->insert($data_insert);
         }
         
         return redirect('salary_month/');

@@ -95,7 +95,6 @@ Route::get('pct_create/{id}', [
     'as' => 'pct_create']);
 
 Route::resource('warehouse', 'WarehouseController');
-Route::resource('warehouse_purchase', 'WarehousePurchaseController');
 
 Route::resource('employee', 'EmployeeController');
 Route::resource('employee_salary', 'EmployeeSalaryController');
@@ -139,3 +138,6 @@ Route::resource('repair_and_used', 'RepairAndUsedController');
 Route::resource('salary_month', 'SalaryMonthController');
 
 Route::resource('salary_month_detail', 'SMDetailController');
+Route::get('salary_month_detail_create/{id}', [ 
+    'uses' => 'SMDetailController@create', 
+    'as' => 'smd_create']);
