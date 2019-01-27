@@ -55,7 +55,7 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <span class="help-block"> Uang Asal </span>
+                                        <span class="help-block"> Uang asal / sumber. </span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -84,28 +84,47 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <span class="help-block"> Tujuan Uang </span>
+                                        <span class="help-block"> Tujuan uang mutasi. </span>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Nominal Uang</label>
+                                <div class="form-group {{ $errors->has('nominal') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Nominal</label>
                                     <div class="col-md-9">
-                                        <input name="nominal" value="{{ $data_mutation->nominal }}" type="text" placeholder="Nominal Uang" class="form-control" />
-                                        <span class="help-block"> Nominal Uang </span>
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" value="{{ old('nominal', round($data_mutation->nominal)) }}" placeholder="Nominal" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="nominal" class="masking-form-hidden">
+                                            </div>
+                                        </div>
+                                        
+                                        @if ($errors->has('nominal'))
+                                            <span class="help-block"> {{ $errors->first('nominal') }} </span>    
+                                        @endif
                                     </div>
-                                </div>    
-                                <div class="form-group">
+                                </div>        
+                                <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Mutasi</label>
                                     <div class="col-md-9">
-                                        <input name="date" value="{{ date('m/d/Y', strtotime($data_mutation->date)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        <span class="help-block"> Tanggal Mutasi </span>
+                                        <input name="date" value="{{ old('date', date('m/d/Y', strtotime($data_mutation->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('date'))
+                                            <span class="help-block"> {{ $errors->first('date') }} </span>
+                                        @endif
                                     </div>
-                                </div>                                
-                                <div class="form-group">
+                                </div>                                                                
+                                <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Keterangan</label>
                                     <div class="col-md-9">
-                                        <input name="description" value="{{ $data_mutation->description }}" type="text" placeholder="Keterangan" class="form-control" />
-                                        <span class="help-block"> Keterangan </span>
+                                        <input name="description" value="{{ old('description', $data_mutation->description) }}" type="text" placeholder="Keterangan" class="form-control" />
+                                        
+                                        @if ($errors->has('description'))
+                                            <span class="help-block"> {{ $errors->first('description') }} </span>
+                                        @else
+                                            <span class="help-block"> Keterangan mutasi. </span>
+                                        @endif
                                     </div>
                                 </div>                                                                
                             </div>

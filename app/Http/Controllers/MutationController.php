@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Mutation;
 use App\Project;
 use App\GeneratorId;
+use App\Http\Requests\MutationRequest;
 
 class MutationController extends Controller
 {
@@ -40,7 +41,7 @@ class MutationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MutationRequest $request)
     {
         $gen = new GeneratorId();
 
@@ -95,7 +96,7 @@ class MutationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MutationRequest $request, $id)
     {
         $mutation = Mutation::where('id_mutation', $id)
             ->first()
