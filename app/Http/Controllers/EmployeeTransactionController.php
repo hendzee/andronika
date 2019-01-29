@@ -129,11 +129,14 @@ class EmployeeTransactionController extends Controller
      * @param  \App\EmployeeTransaction  $employeeTransaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EmployeeTransaction $employeeTransaction)
+    public function destroy($id)
     {
-        $EmployeeSalary->delete();
-  
-        return redirect()->route('EmployeeSalary.index')
-            ->with('success','Product deleted successfully');
+        $data_detail = EmployeeTransaction::where('id_transaction', $id)
+            ->first();
+
+        $data_transaction = EmployeeTransaction::where('id_transaction', $id)
+            ->delete();
+
+        return redirect('employee_transaction_index/'. $data_detail->id_detail);
     }
 }
