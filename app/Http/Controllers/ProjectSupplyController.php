@@ -122,6 +122,12 @@ class ProjectSupplyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_project = ProjectSupply::where('id_supply', $id)
+            ->first();
+
+        $data_supply = ProjectSupply::where('id_supply', $id)
+            ->delete();
+
+        return redirect('project_supply_index/'. $data_project->id_project );
     }
 }
