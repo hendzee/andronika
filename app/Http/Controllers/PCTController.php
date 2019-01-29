@@ -115,6 +115,12 @@ class PCTController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_id = PCT::where('id_transaction', $id)
+            ->first();
+
+        $data_transaction = PCT::where('id_transaction', $id)
+            ->delete();
+
+        return redirect('pct_index/'. $data_id->id_worker . '/' . $data_id->id_project);
     }
 }
