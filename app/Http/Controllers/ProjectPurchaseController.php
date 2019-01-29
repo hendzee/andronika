@@ -121,6 +121,12 @@ class ProjectPurchaseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_project = ProjectPurchase::where('id_transaction', $id)
+            ->first();
+
+        $data_purchase = ProjectPurchase::where('id_transaction', $id)
+            ->delete();
+        
+        return redirect('project_purchase_index/'. $data_project->id_project );
     }
 }
