@@ -132,6 +132,9 @@ class SalaryMonthController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_month = SalaryMonth::where('id_month', $id)
+            ->delete();
+
+        return redirect('salary_month/');
     }
 }
