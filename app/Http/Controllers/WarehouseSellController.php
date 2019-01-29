@@ -134,6 +134,9 @@ class WarehouseSellController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_sell = WarehouseSell::where('id_sell', $id)
+            ->delete();
+            
+        return redirect('warehouse_sell');
     }
 }
