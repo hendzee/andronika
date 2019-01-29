@@ -128,6 +128,12 @@ class RentPaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_rent = RentPayment::where('id_payment', $id)
+            ->first();
+
+        $data_payment = RentPayment::where('id_payment', $id)
+            ->delete();
+
+        return redirect ('rent_payment/' . $data_rent->id_rent);
     }
 }
