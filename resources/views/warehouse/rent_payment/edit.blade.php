@@ -42,13 +42,13 @@
                                 </div>
                                 <input type="hidden" name="id_rent" value="{{ $data_payment->id_rent }}" />
                                 <div class="form-group {{ $errors->has('nominal') ? 'has-error' : '' }}">
-                                    <label class="control-label col-md-3">Biaya Sewa</label>
+                                    <label class="control-label col-md-3">Uang Masuk</label>
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 Rp
                                             </span>
-                                            <input type="text" value="{{ old('nominal', round($data_payment->nominal)) }}" placeholder="Biaya" class="form-control masking-form" />
+                                            <input type="text" value="{{ old('nominal', round($data_payment->nominal)) }}" placeholder="Uang Masuk" class="form-control masking-form" />
                                             <input type="hidden" id="total_hidden" name="nominal" class="masking-form-hidden">
                                         </div>
 

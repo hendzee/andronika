@@ -123,6 +123,9 @@ class WarehouseRentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_rent = WarehouseRent::where('id_rent', $id)
+            ->delete();
+        
+        return redirect('warehouse_rent');
     }
 }
