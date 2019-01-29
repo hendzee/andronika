@@ -119,6 +119,9 @@ class MutationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_mutation = Mutation::where('id_mutation', $id)
+            ->delete();
+
+        return redirect('mutation');
     }
 }
