@@ -152,22 +152,12 @@
                                         </a> 
                                     </td>                                   
                                     <td>
-                                        <div class="btn-group">
-                                            <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                                AKSI <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li>
-                                                    <a href="{{ route('worker_salary.edit', $data->id_worker) }}">
-                                                        <i class="icon-docs"></i> Edit 
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <i class="icon-tag"></i> Hapus
-                                                    </a>
-                                                </li>                                                
-                                            </ul>
+                                        <div class="row button-on-table">
+                                            <div class="col-xs-12">
+                                                <a href="{{ route('worker_salary.edit', $data->id_worker) }}" class="btn btn-icon-only green">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
