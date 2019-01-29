@@ -110,7 +110,7 @@ class ProjectWorkerController extends Controller
             'salary_status' => $request->salary_status               
         ]);
     
-    return redirect('project_worker_index/' . $request->id_project);
+        return redirect('project_worker_index/' . $request->id_project);
     }
 
     /**
@@ -119,8 +119,14 @@ class ProjectWorkerController extends Controller
      * @param  \App\ProjectWorker  $projectWorker
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProjectWorker $projectWorker)
+    public function destroy($id)
     {
-        //
+        $data_project = ProjectWorker::where('id_worker', $id)
+            ->first();
+
+        $data_worker = ProjectWorker::where('id_worker', $id)
+            ->delete();
+
+        return redirect('project_worker_index/' . $data_project->id_project);
     }
 }
