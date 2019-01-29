@@ -98,22 +98,22 @@
                                         @endif
                                     </td>                                                                                                                                                         
                                     <td>
-                                        <div class="btn-group">
-                                            <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                                AKSI <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li>
-                                                    <a href="{{ route('project_bonus.edit', $data->id_bonus) }}">
-                                                        <i class="icon-docs"></i> Edit 
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <i class="icon-tag"></i> Hapus
-                                                    </a>
-                                                </li>                                                
-                                            </ul>
+                                        <div class="row button-on-table">
+                                            <div class="col-xs-6">
+                                                <a href="{{ route('project_bonus.edit', $data->id_bonus) }}" class="btn btn-icon-only green">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <form action="{{ action('ProjectBonusController@destroy', $data->id_bonus) }}" method="POST">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+
+                                                    <button type="submit" class="btn btn-icon-only red">
+                                                        <i class="fa fa-remove"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

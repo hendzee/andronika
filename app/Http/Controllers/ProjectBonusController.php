@@ -117,6 +117,12 @@ class ProjectBonusController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_id = ProjectBonus::where('id_bonus', $id)
+            ->first();
+
+        $data_bonus = ProjectBonus::where('id_bonus', $id)
+            ->delete();
+
+        return redirect('project_bonus_index/'. $data_id->id_worker . '/' . $data_id->id_project);
     }
 }
