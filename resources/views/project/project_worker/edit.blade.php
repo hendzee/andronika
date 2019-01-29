@@ -10,7 +10,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="{{ route('project_worker_index', $data_worker->id_project) }}"> Pekerja Biasa </a>
+                    <a href="{{ route('project_worker_index', $data_worker->id_project) }}"> Pekerja </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>

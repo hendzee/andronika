@@ -185,6 +185,13 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_project = Project::where('id_project', $id)->delete();
+
+        //remove data mutation
+        $remove_mutation = Mutation::where('source', $id)
+            ->orWhere('destiny', $id)
+            ->delete();
+
+        return redirect('project');
     }
 }

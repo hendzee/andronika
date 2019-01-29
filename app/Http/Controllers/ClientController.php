@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Client;
 use App\GeneratorId;
 use App\Http\Requests\ClientRequest;
+use App\Mutation;
 
 class ClientController extends Controller
 {
@@ -107,6 +108,11 @@ class ClientController extends Controller
     public function destroy($id)
     {
         $data_client = Client::where('id_client', $id)->delete();
+
+        //remove data mutation
+        $remove_mutation = Mutation::where('source', $id)
+            ->orWhere('destiny', $id)
+            ->delete();
 
         return redirect('client');
     }
