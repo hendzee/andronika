@@ -116,6 +116,11 @@ class ProjectPaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_project = ProjectPayment::where('id_payment', $id)
+            ->first();
+        $data_payment = ProjectPayment::where('id_payment', $id)
+            ->delete();
+
+        return redirect('project_payment_index/'. $data_project->id_project );
     }
 }
