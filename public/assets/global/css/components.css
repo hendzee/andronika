@@ -30200,3 +30200,7 @@ body.stop-scrolling {
 .dashboard-stat.green .details .number .profit-desc {
     font-size: 23px;
 }
+
+div.button-on-table {
+  width: 85px;
+}

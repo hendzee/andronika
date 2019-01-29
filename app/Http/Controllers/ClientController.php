@@ -106,6 +106,8 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_client = Client::where('id_client', $id)->delete();
+
+        return redirect('client');
     }
 }
