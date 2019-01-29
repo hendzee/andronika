@@ -110,7 +110,6 @@ class EmployeeBonusController extends Controller
      */
     public function update(EmployeeBonusRequest $request, $id)
     {
-        //
         $data_bonus = EmployeeBonus::where('id_bonus', $id)
             ->first()
             ->update([
@@ -129,8 +128,14 @@ class EmployeeBonusController extends Controller
      * @param  \App\EmployeeBonus  $employeeBonus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EmployeeBonus $employeeBonus)
+    public function destroy($id)
     {
-        //
+        $data_detail = EmployeeBonus::where('id_bonus', $id)
+            ->first();
+
+        $data_bonus = EmployeeBonus::where('id_bonus', $id)
+            ->delete();
+        
+        return redirect('employee_bonus_index/'. $data_detail->id_detail);
     }
 }
