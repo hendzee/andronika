@@ -113,6 +113,12 @@ class SMDetailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_month = SMDetail::where('id_detail', $id)
+            ->first();
+
+        $data_detail = SMDetail::where('id_detail', $id)
+            ->delete();
+
+        return redirect('salary_month_detail/'.$data_month->id_month);
     }
 }
