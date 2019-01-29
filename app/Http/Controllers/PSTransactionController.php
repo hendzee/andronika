@@ -113,6 +113,12 @@ class PSTransactionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_id = PSTransaction::where('id_transaction', $id)
+            ->first();
+
+        $data_transaction = PSTransaction::where('id_transaction', $id)
+            ->delete();
+
+        return redirect('ps_transaction_index/'. $data_id->id_worker . '/' . $data_id->id_project);
     }
 }
