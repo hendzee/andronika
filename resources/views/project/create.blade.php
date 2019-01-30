@@ -56,9 +56,9 @@
                                     <label class="control-label col-md-3">Daerah</label>
                                     <div class="col-md-9">
                                         <select name="island" class="form-control">
-                                            <option value="Luwuk">LUWUK</option>
-                                            <option value="Banggai Laut">BANGGAI LAUT</option>
-                                            <option value="Banggai Kepulauan">BANGGAI KEPULAUAN</option>
+                                            <option value="LUWUK">LUWUK</option>
+                                            <option value="BANGGAI LAUT">BANGGAI LAUT</option>
+                                            <option value="BANGGAI KEPULAUAN">BANGGAI KEPULAUAN</option>
                                         </select>                                        
                                     </div>
                                 </div>                                  

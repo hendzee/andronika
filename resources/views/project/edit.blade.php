@@ -59,12 +59,12 @@
                                     <label class="control-label col-md-3">Daerah</label>
                                     <div class="col-md-9">
                                         <select name="island" class="form-control">
-                                            <option value="{{ $data_project->status }}">
-                                                {{ $data_project->status . ' (DATA SAAT INI)'}}
+                                            <option value="{{ $data_project->island }}">
+                                                {{ $data_project->island . ' (DATA SAAT INI)'}}
                                             </option>
-                                            <option value="Luwuk">Luwuk</option>
-                                            <option value="Banggai Laut">Banggai Laut</option>
-                                            <option value="Banggai Kepulauan">Banggai Kepulauan</option>
+                                            <option value="LUWUK">LUWUK</option>
+                                            <option value="BANGGAI LAUT">BANGGAI LAUT</option>
+                                            <option value="BANGGAI KEPULAUAN">BANGGAI KEPULAUAN</option>
                                         </select>
                                         <span class="help-block"> Daerah </span>
                                     </div>

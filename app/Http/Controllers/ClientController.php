@@ -98,17 +98,26 @@ class ClientController extends Controller
      */
     public function update(ClientRequest $request, $id)
     {
-        $data_employee = Client::where('id_client', $id)
-            ->first()
-            ->update([
-                'address' => $request->address,
-                'email' => $request->email,
-                'telp' => $request->telp,
-                'description' => $request->description                
-            ]);
+         $check_client = Client::where('description', $request->description)
+            ->where('address', $request->address)
+            ->first();
         
-        return redirect('client')
-            ->with('success', 'Data berhasil dirubah.');
+        if($check_client == null){
+            $data_employee = Client::where('id_client', $id)
+                ->first()
+                ->update([
+                    'address' => $request->address,
+                    'email' => $request->email,
+                    'telp' => $request->telp,
+                    'description' => $request->description                
+                ]);
+        
+            return redirect('client')
+                ->with('success', 'Data berhasil dirubah.');
+        }else{
+            return redirect('client')
+                ->with('error', 'Data sudah ada.');
+        }
     }
 
     /**

@@ -38,7 +38,13 @@ class ProjectController extends Controller
     {
         $data_client = Client::all();
 
-        return view('project.create', compact('data_client'));
+        if (count($data_client) > 0){
+            return view('project.create', compact('data_client'));
+        }else {
+            return redirect('project')
+                ->with('error', 'Data klien kosong, isi minimal 1 klien.');;
+        }
+
     }
 
     /**
@@ -51,18 +57,27 @@ class ProjectController extends Controller
     {
         $gen = new GeneratorId();
 
-        $project = Project::create([
-            'id_project' => $gen->generateId('project'),
-            'id_client' => $request->id_client,
-            'name' => $request->name,
-            'island' => $request->island,
-            'status' => 'PROSES',
-            'start' => date('Y-m-d', strtotime($request->start)),
-            'end' => date('Y-m-d', strtotime($request->end)),
-            'total' => $request->total,            
-        ]);
+        $check_project = Project::where('name', $request->name)
+            ->first();
 
-        return redirect('project');
+        if ($check_project == null){
+            $project = Project::create([
+                'id_project' => $gen->generateId('project'),
+                'id_client' => $request->id_client,
+                'name' => $request->name,
+                'island' => $request->island,
+                'status' => 'PROSES',
+                'start' => date('Y-m-d', strtotime($request->start)),
+                'end' => date('Y-m-d', strtotime($request->end)),
+                'total' => $request->total,            
+            ]);
+
+            return redirect('project')
+                ->with('success', 'Data berhasil ditambahkan.');
+        }else {
+            return redirect('project')
+                ->with('error', 'Data sudah ada, mohon gunakan nama projek lain.');
+        }
     }
 
     /**
@@ -163,7 +178,8 @@ class ProjectController extends Controller
                 'total' => $request->total,                          
             ]);
         
-        return redirect('project');
+        return redirect('project')
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     public function updateStatus($status, $id)
@@ -192,6 +208,7 @@ class ProjectController extends Controller
             ->orWhere('destiny', $id)
             ->delete();
 
-        return redirect('project');
+        return redirect('project')
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
