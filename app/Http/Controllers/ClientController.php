@@ -42,15 +42,26 @@ class ClientController extends Controller
     {
         $gen = new GeneratorId();
 
-        $employee = Client::create([
-            'id_client' => $gen->generateId('client'),
-            'address' => $request->address,
-            'email' => $request->email,
-            'telp' => $request->telp,
-            'description' => $request->description            
-        ]);
+        $check_client = Client::where('description', $request->description)
+            ->where('address', $request->address)
+            ->first();
 
-        return redirect('client');
+        if($check_client == null)
+        {
+            $employee = Client::create([
+                'id_client' => $gen->generateId('client'),
+                'address' => $request->address,
+                'email' => $request->email,
+                'telp' => $request->telp,
+                'description' => $request->description            
+            ]);
+
+            return redirect('client')
+                ->with('success', 'Data berhasil ditambahkan.');    
+        }else{
+            return redirect('client')
+                ->with('error', 'Data sudah ada.');
+        }
     }
 
     /**
@@ -96,7 +107,8 @@ class ClientController extends Controller
                 'description' => $request->description                
             ]);
         
-        return redirect('client');
+        return redirect('client')
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -114,6 +126,7 @@ class ClientController extends Controller
             ->orWhere('destiny', $id)
             ->delete();
 
-        return redirect('client');
+        return redirect('client')
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
