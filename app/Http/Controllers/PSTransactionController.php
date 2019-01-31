@@ -56,7 +56,8 @@ class PSTransactionController extends Controller
             'date' => date('Y-m-d', strtotime($request->date))            
         ]);        
 
-        return redirect('ps_transaction_index/'. $request->id_worker . '/' . $request->id_project);
+        return redirect('ps_transaction_index/'. $request->id_worker . '/' . $request->id_project)
+            ->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -102,7 +103,8 @@ class PSTransactionController extends Controller
                 'date' => date('Y-m-d', strtotime($request->date))            
             ]);        
         
-        return redirect('ps_transaction_index/'. $request->id_worker . '/' . $request->id_project);
+        return redirect('ps_transaction_index/'. $request->id_worker . '/' . $request->id_project)
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -119,6 +121,7 @@ class PSTransactionController extends Controller
         $data_transaction = PSTransaction::where('id_transaction', $id)
             ->delete();
 
-        return redirect('ps_transaction_index/'. $data_id->id_worker . '/' . $data_id->id_project);
+        return redirect('ps_transaction_index/'. $data_id->id_worker . '/' . $data_id->id_project)
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
