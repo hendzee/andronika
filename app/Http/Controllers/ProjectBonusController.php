@@ -56,7 +56,8 @@ class ProjectBonusController extends Controller
             'status' => 'BELUM DIAMBIL'
         ]);        
 
-        return redirect('project_bonus_index/'. $request->id_worker . '/' . $request->id_project);
+        return redirect('project_bonus_index/'. $request->id_worker . '/' . $request->id_project)
+            ->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -93,7 +94,16 @@ class ProjectBonusController extends Controller
      */
     public function update(ProjectBonusRequest $request, $id)
     {
-        if ($request->status == 'diambil'){
+        $date = null;
+
+        if ($request->status == 'DIAMBIL'){
+            $date = date('Y-m-d', strtotime($request->date_take));
+        }
+
+        if ($request->status == 'DIAMBIL' && $request->date_take == null){
+            return redirect('project_bonus_index/'. $request->id_worker . '/' . $request->id_project)
+                ->with('error', 'Masukkan tanggal ketika status ("SUDAH DIAMBIL").');
+        }else{
             $bonus = ProjectBonus::where('id_bonus', $id)
                 ->first()
                 ->update([                
@@ -102,11 +112,13 @@ class ProjectBonusController extends Controller
                     'bonus' => $request->bonus,
                     'description' => $request->description,
                     'status' => $request->status,
-                    'date_take' => date('Y-m-d', strtotime($request->date_take))
+                    'date_take' => $date
                 ]);        
-        }
         
-        return redirect('project_bonus_index/'. $request->id_worker . '/' . $request->id_project);
+            return redirect('project_bonus_index/'. $request->id_worker . '/' . $request->id_project)
+                ->with('success', 'Data berhasil dirubah.');
+        }
+
     }
 
     /**
@@ -123,6 +135,7 @@ class ProjectBonusController extends Controller
         $data_bonus = ProjectBonus::where('id_bonus', $id)
             ->delete();
 
-        return redirect('project_bonus_index/'. $data_id->id_worker . '/' . $data_id->id_project);
+        return redirect('project_bonus_index/'. $data_id->id_worker . '/' . $data_id->id_project)
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
