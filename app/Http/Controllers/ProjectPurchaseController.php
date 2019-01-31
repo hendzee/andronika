@@ -59,7 +59,8 @@ class ProjectPurchaseController extends Controller
             'resp_person' => $request->resp_person            
         ]);
 
-        return redirect('project_purchase_index/'. $request->id_project );
+        return redirect('project_purchase_index/'. $request->id_project )
+            ->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -110,7 +111,8 @@ class ProjectPurchaseController extends Controller
                 'resp_person' => $request->resp_person                
             ]);        
     
-        return redirect('project_purchase_index/'. $request->id_project );
+        return redirect('project_purchase_index/'. $request->id_project )
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -127,6 +129,7 @@ class ProjectPurchaseController extends Controller
         $data_purchase = ProjectPurchase::where('id_transaction', $id)
             ->delete();
         
-        return redirect('project_purchase_index/'. $data_project->id_project );
+        return redirect('project_purchase_index/'. $data_project->id_project )
+            ->with('success', 'Data berhasil dihapus.');
     }
 }

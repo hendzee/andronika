@@ -45,8 +45,8 @@
                                     <label class="control-label col-md-3">Nama Barang</label>
                                     <div class="col-md-9">
                                         <select name="id_supply" class="form-control">
-                                            <option value="{{ $data_purchase->name }}">
-                                                {{ $data_purchase->name . ' (DATA SAAT INI)'}}
+                                            <option value="{{ $data_purchase->id_supply }}">
+                                                {{ $data_purchase->project_supply->item_name . ' (DATA SAAT INI)'}}
                                             </option>
                                             @foreach($data_supply as $data)
                                                 <option value={{ $data->id_supply }}>
