@@ -58,7 +58,8 @@ class PCTController extends Controller
         ]);        
 
         
-        return redirect('pct_index/'. $request->id_worker . '/' . $request->id_project);
+        return redirect('pct_index/'. $request->id_worker . '/' . $request->id_project)
+            ->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -104,7 +105,8 @@ class PCTController extends Controller
                 'date' => date('Y-m-d', strtotime($request->date))            
             ]);                  
         
-        return redirect('pct_index/'. $request->id_worker . '/' . $request->id_project);
+        return redirect('pct_index/'. $request->id_worker . '/' . $request->id_project)
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -121,6 +123,7 @@ class PCTController extends Controller
         $data_transaction = PCT::where('id_transaction', $id)
             ->delete();
 
-        return redirect('pct_index/'. $data_id->id_worker . '/' . $data_id->id_project);
+        return redirect('pct_index/'. $data_id->id_worker . '/' . $data_id->id_project)
+            ->with('success', 'Data berhasil dihapus.');
     }
 }

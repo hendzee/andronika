@@ -97,7 +97,8 @@ class WorkerContractController extends Controller
         ]);        
         }        
        
-        return redirect('worker_contract_index/' . $request->id_project );
+        return redirect('worker_contract_index/' . $request->id_project )
+            ->with('success', 'Data berhasil ditambahkan / dirubah.');
     }
 
     /**
