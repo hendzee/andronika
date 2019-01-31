@@ -59,9 +59,13 @@ class ProjectSupplyController extends Controller
                 'id_project' => $request->id_project,
                 'measure' => $request->measure,            
             ]);
-        }
 
-        return redirect('project_supply_index/'. $request->id_project );
+            return redirect('project_supply_index/'. $request->id_project )
+            ->with('success', 'Data berhasil ditambahkan.');
+        }else{
+            return redirect('project_supply_index/'. $request->id_project )
+                ->with('error', 'Data sudah ada, gunakan nama baru.');;
+        }
     }
 
     /**
@@ -104,14 +108,21 @@ class ProjectSupplyController extends Controller
         
         if ($check_data == null){
             $supply = ProjectSupply::where('id_supply', $id)
-            ->first()
-            ->update([
-                'item_name' => $request->item_name,                
-                'measure' => $request->measure,            
-            ]);   
+                ->first()
+                ->update([
+                    'item_name' => $request->item_name,                
+                    'measure' => $request->measure,            
+                ]);   
+        }else {
+            $supply = ProjectSupply::where('id_supply', $id)
+                ->first()
+                ->update([
+                    'measure' => $request->measure,            
+                ]);   
         }        
 
-        return redirect('project_supply_index/'. $request->id_project );
+        return redirect('project_supply_index/'. $request->id_project )
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -128,6 +139,7 @@ class ProjectSupplyController extends Controller
         $data_supply = ProjectSupply::where('id_supply', $id)
             ->delete();
 
-        return redirect('project_supply_index/'. $data_project->id_project );
+        return redirect('project_supply_index/'. $data_project->id_project )
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
