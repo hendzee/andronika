@@ -106,7 +106,8 @@ class WorkerSalaryController extends Controller
             ]);    
         }
                    
-        return redirect('worker_salary_index/'. $request->id_project );
+        return redirect('worker_salary_index/'. $request->id_project )
+            ->with('success', 'Data berhasil ditambahkan / dirubah.');
     }
 
     /**
