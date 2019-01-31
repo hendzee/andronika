@@ -47,20 +47,29 @@ class ProjectWorkerController extends Controller
     {
         $gen = new GeneratorId();
 
-        $worker = ProjectWorker::create([
-            'id_worker' => $gen->generateId('project_worker'),
-            'id_project' => $request->id_project,
-            'name' => $request->name,            
-            'address' => $request->address,
-            'telp' => $request->telp,
-            'gender' => $request->gender,
-            'religion' => $request->religion,
-            'division' => $request->division,
-            'salary_status' => $request->salary_status
-        ]);
+        $check_worker = ProjectWorker::where('name', $request->name)
+            ->where('address', $request->address)
+            ->first();
+
+        if ($check_worker == null){
+            $worker = ProjectWorker::create([
+                'id_worker' => $gen->generateId('project_worker'),
+                'id_project' => $request->id_project,
+                'name' => $request->name,            
+                'address' => $request->address,
+                'telp' => $request->telp,
+                'gender' => $request->gender,
+                'religion' => $request->religion,
+                'division' => $request->division,
+                'salary_status' => $request->salary_status
+            ]);
         
-        
-        return redirect('project_worker_index/' . $request->id_project);
+            return redirect('project_worker_index/' . $request->id_project)
+                ->with('success', 'Data berhasil ditambahkan.');
+        }else{
+            return redirect('project_worker_index/' . $request->id_project)
+                ->with('error', 'Data dengan nama dan alamat yang dimasukkan sudah ada.');;
+        }
     }
 
     /**
@@ -97,20 +106,38 @@ class ProjectWorkerController extends Controller
      */
     public function update(ProjectWorkerRequest $request, $id)
     {
-        $data_worker = ProjectWorker::where('id_worker', $id)
-        ->first()
-        ->update([            
-            'id_project' => $request->id_project,
-            'name' => $request->name,            
-            'address' => $request->address,
-            'telp' => $request->telp,
-            'gender' => $request->gender,
-            'religion' => $request->religion,
-            'division' => $request->division,
-            'salary_status' => $request->salary_status               
-        ]);
+        $check_worker = ProjectWorker::where('name', $request->name)
+            ->where('address', $request->address)
+            ->first();
+
+        if ($check_worker == null){
+            $data_worker = ProjectWorker::where('id_worker', $id)
+                ->first()
+                ->update([            
+                    'id_project' => $request->id_project,
+                    'name' => $request->name,            
+                    'address' => $request->address,
+                    'telp' => $request->telp,
+                    'gender' => $request->gender,
+                    'religion' => $request->religion,
+                    'division' => $request->division,
+                    'salary_status' => $request->salary_status               
+                ]);
+        }else{
+            $data_worker = ProjectWorker::where('id_worker', $id)
+                ->first()
+                ->update([            
+                    'id_project' => $request->id_project,
+                    'telp' => $request->telp,
+                    'gender' => $request->gender,
+                    'religion' => $request->religion,
+                    'division' => $request->division,
+                    'salary_status' => $request->salary_status               
+                ]);
+        }
     
-        return redirect('project_worker_index/' . $request->id_project);
+        return redirect('project_worker_index/' . $request->id_project)
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -127,6 +154,7 @@ class ProjectWorkerController extends Controller
         $data_worker = ProjectWorker::where('id_worker', $id)
             ->delete();
 
-        return redirect('project_worker_index/' . $data_project->id_project);
+        return redirect('project_worker_index/' . $data_project->id_project)
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
