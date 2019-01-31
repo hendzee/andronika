@@ -60,7 +60,8 @@ class ProjectPaymentController extends Controller
             'transfer' => $request->transfer            
         ]);
 
-        return redirect('project_payment_index/'. $request->id_project );
+        return redirect('project_payment_index/'. $request->id_project )
+            ->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -105,7 +106,8 @@ class ProjectPaymentController extends Controller
             'transfer' => $request->transfer            
         ]);
 
-        return redirect('project_payment_index/'. $request->id_project );    
+        return redirect('project_payment_index/'. $request->id_project )
+            ->with('success', 'Data berhasil dirubah.');    
     }
 
     /**
@@ -121,6 +123,7 @@ class ProjectPaymentController extends Controller
         $data_payment = ProjectPayment::where('id_payment', $id)
             ->delete();
 
-        return redirect('project_payment_index/'. $data_project->id_project );
+        return redirect('project_payment_index/'. $data_project->id_project )
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
