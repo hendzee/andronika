@@ -95,7 +95,8 @@ class RepairAndUsedController extends Controller
             ]);
         }
 
-        return redirect('repair_and_used');
+        return redirect('repair_and_used')
+            ->with('success', 'Data berhasil ditambahkan / dirubah.');
     }
 
     /**

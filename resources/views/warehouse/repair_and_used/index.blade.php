@@ -21,6 +21,18 @@
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                <strong>Sukses!</strong> {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                <strong>Error!</strong> {{ session('error') }} 
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN SAMPLE FORM PORTLET-->
@@ -80,16 +92,6 @@
                                                 <a href="{{ route('repair_and_used.edit', $data->item_name) }}" class="btn btn-icon-only green">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <form action="{{ action('@destroy', ) }}" method="POST">
-                                                    {{ method_field('DELETE') }}
-                                                    {{ csrf_field() }}
-
-                                                    <button type="submit" class="btn btn-icon-only red">
-                                                        <i class="fa fa-remove"></i>
-                                                    </button>
-                                                </form>
                                             </div>
                                         </div>
                                     </td>
