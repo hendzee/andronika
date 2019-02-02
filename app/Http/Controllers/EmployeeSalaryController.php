@@ -89,7 +89,8 @@ class EmployeeSalaryController extends Controller
             ]);
         }
         
-        return redirect('/employee_salary');
+        return redirect('/employee_salary')
+            ->with('success', 'Data berhasil ditambahkan / dirubah.');
     }
 
     /**
@@ -100,11 +101,6 @@ class EmployeeSalaryController extends Controller
      */
     public function destroy($id)
     {
-        // EmployeeSalary::find($id)->delete();
-        //return redirect('/employee_salary');
-        $EmployeeSalary->delete();
-  
-        return redirect()->route('EmployeeSalary.index')
-                        ->with('success','Product deleted successfully');
+
     }
 }
