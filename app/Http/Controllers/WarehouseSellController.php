@@ -60,7 +60,8 @@ class WarehouseSellController extends Controller
                 'number' => DB::raw("number-($request->number)")
             ]);
 
-        return redirect('warehouse_sell/');
+        return redirect('warehouse_sell/')
+            ->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -123,7 +124,8 @@ class WarehouseSellController extends Controller
                 'resp_person' => $request->resp_person,
             ]);
 
-        return redirect('warehouse_sell');
+        return redirect('warehouse_sell')
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -137,6 +139,7 @@ class WarehouseSellController extends Controller
         $data_sell = WarehouseSell::where('id_sell', $id)
             ->delete();
             
-        return redirect('warehouse_sell');
+        return redirect('warehouse_sell')
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
