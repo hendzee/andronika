@@ -40,18 +40,28 @@ class EmployeeController extends Controller
     {
         $gen = new GeneratorId();
 
-        $employee = Employee::create([
-            'id_employee' => $gen->generateId('employee'),
-            'name' => $request->name,
-            'age' => date("Y-m-d", strtotime($request->age)),
-            'address' => $request->address,
-            'telp' => $request->telp,
-            'gender' => $request->gender,
-            'religion' => $request->religion,
-            'division' => $request->division
-        ]);
+        $check_employee = Employee::where('name', $request->name)
+            ->where('address', $request->address)
+            ->first();
 
-        return redirect('/employee');
+        if ($check_employee == null){
+            $employee = Employee::create([
+                'id_employee' => $gen->generateId('employee'),
+                'name' => $request->name,
+                'age' => date("Y-m-d", strtotime($request->age)),
+                'address' => $request->address,
+                'telp' => $request->telp,
+                'gender' => $request->gender,
+                'religion' => $request->religion,
+                'division' => $request->division
+            ]);
+
+            return redirect('/employee')
+                ->with('success', 'Data berhasil ditambahkan.');
+        }else{
+            return redirect('/employee')
+                ->with('error', 'Data karyawan sudah ada, gunakan nama dan alamat yang baru.');
+        }
     }
 
     /**
@@ -88,19 +98,36 @@ class EmployeeController extends Controller
      */
     public function update(EmployeeRequest $request, $id)
     {
-        $data_employee = Employee::where('id_employee', $id)
-            ->first()
-            ->update([
-                'name' => $request->name,
-                'age' => date("Y-m-d", strtotime($request->age)),
-                'address' => $request->address,
-                'telp' => $request->telp,
-                'gender' => $request->gender,
-                'religion' => $request->religion,
-                'division' => $request->division                
-            ]);
+        $check_employee = Employee::where('name', $request->name)
+            ->where('address', $request->address)
+            ->first();
+
+        if ($check_employee == null){
+            $data_employee = Employee::where('id_employee', $id)
+                ->first()
+                ->update([
+                    'name' => $request->name,
+                    'age' => date("Y-m-d", strtotime($request->age)),
+                    'address' => $request->address,
+                    'telp' => $request->telp,
+                    'gender' => $request->gender,
+                    'religion' => $request->religion,
+                    'division' => $request->division                
+                ]);
+        }else{
+            $data_employee = Employee::where('id_employee', $id)
+                ->first()
+                ->update([
+                    'age' => date("Y-m-d", strtotime($request->age)),
+                    'telp' => $request->telp,
+                    'gender' => $request->gender,
+                    'religion' => $request->religion,
+                    'division' => $request->division                
+                ]);
+        }
         
-        return redirect('/employee');
+        return redirect('/employee')
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -114,6 +141,7 @@ class EmployeeController extends Controller
         $data_employee = Employee::where('id_employee', $id)
             ->delete();
 
-        return redirect('employee');
+        return redirect('employee')
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
