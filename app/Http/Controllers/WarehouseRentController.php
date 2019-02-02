@@ -58,7 +58,8 @@ class WarehouseRentController extends Controller
             'status' => 'DISEWA'
         ]);
 
-        return redirect('warehouse_rent');
+        return redirect('warehouse_rent')
+            ->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -112,7 +113,8 @@ class WarehouseRentController extends Controller
                 'status' => $request->status
             ]);
 
-        return redirect('warehouse_rent');
+        return redirect('warehouse_rent')
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -126,6 +128,7 @@ class WarehouseRentController extends Controller
         $data_rent = WarehouseRent::where('id_rent', $id)
             ->delete();
         
-        return redirect('warehouse_rent');
+        return redirect('warehouse_rent')
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
