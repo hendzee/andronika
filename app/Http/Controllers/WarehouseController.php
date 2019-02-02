@@ -38,20 +38,24 @@ class WarehouseController extends Controller
      */
     public function store(WarehouseRequest $request)
     {
-        $number = 0;
+        $check_warehouse = Warehouse::where('item_name', $request->item_name)
+            ->first();
 
-        if ($request->number != null){
-            $number = $request->number;
+        if ($check_warehouse == null){
+            $warehouse = Warehouse::create([
+                'item_name' => $request->item_name,
+                'measure' => $request->measure,
+                'number' => $request->number,
+                'rent_status' => $request->rent_status
+            ]);
+
+            return redirect('warehouse/')
+                ->with('success', 'Data berhasil ditambahkan.');
+        }else{
+            return redirect('warehouse/')
+                ->with('error', 'Data sudah ada, gunakan nama lain.');;
         }
 
-        $warehouse = Warehouse::create([
-            'item_name' => $request->item_name,
-            'measure' => $request->measure,
-            'number' => $number,
-            'rent_status' => $request->rent_status
-        ]);
-
-        return redirect('warehouse/');
     }
 
     /**
@@ -88,16 +92,30 @@ class WarehouseController extends Controller
      */
     public function update(WarehouseRequest $request, $id)
     {
-        $data_item = Warehouse::where('item_name', $id)
-            ->first()
-            ->update([
-                'item_name' => $request->item_name,
-                'measure' => $request->measure,
-                'number' => $request->number,
-                'rent_status' => $request->rent_status
-            ]);
+        $check_warehouse = Warehouse::where('item_name', $request->item_name)
+            ->first();
 
-        return redirect('warehouse/');
+        if ($check_warehouse == null){
+            $data_item = Warehouse::where('item_name', $id)
+                ->first()
+                ->update([
+                    'item_name' => $request->item_name,
+                    'measure' => $request->measure,
+                    'number' => $request->number,
+                    'rent_status' => $request->rent_status
+                ]);
+        }else {
+            $data_item = Warehouse::where('item_name', $id)
+                ->first()
+                ->update([
+                    'measure' => $request->measure,
+                    'number' => $request->number,
+                    'rent_status' => $request->rent_status
+                ]);
+        }
+
+        return redirect('warehouse/')
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -111,6 +129,7 @@ class WarehouseController extends Controller
         $data_item = Warehouse::where('item_name', $id)
             ->delete();
 
-        return redirect('warehouse/');
+        return redirect('warehouse/')
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
