@@ -66,7 +66,8 @@ class EmployeeBonusController extends Controller
             'description' => $request->desc
         ]);
         
-        return redirect('employee_bonus_index/'. $request->id_detail);
+        return redirect('employee_bonus_index/'. $request->id_detail)
+            ->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -119,7 +120,8 @@ class EmployeeBonusController extends Controller
                 'description' => $request->desc,            
             ]);
         
-        return redirect('employee_bonus_index/'. $request->id_detail);
+        return redirect('employee_bonus_index/'. $request->id_detail)
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -136,6 +138,7 @@ class EmployeeBonusController extends Controller
         $data_bonus = EmployeeBonus::where('id_bonus', $id)
             ->delete();
         
-        return redirect('employee_bonus_index/'. $data_detail->id_detail);
+        return redirect('employee_bonus_index/'. $data_detail->id_detail)
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
