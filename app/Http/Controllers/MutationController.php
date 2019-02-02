@@ -45,16 +45,22 @@ class MutationController extends Controller
     {
         $gen = new GeneratorId();
 
-        $mutation = Mutation::create([
-            'id_mutation' => $gen->generateId('mutation'),
-            'source' => $request->source,
-            'destiny' => $request->destiny,
-            'nominal' => $request->nominal,
-            'date' => date('Y-m-d', strtotime($request->date)),
-            'description' => $request->description
-        ]);
+        if ($request->source == $request->destiny){
+            return redirect('mutation')
+                ->with('error', 'Uang asal dan tujuan tidak boleh sama, silahkan coba lagi.');
+        }else{
+            $mutation = Mutation::create([
+                'id_mutation' => $gen->generateId('mutation'),
+                'source' => $request->source,
+                'destiny' => $request->destiny,
+                'nominal' => $request->nominal,
+                'date' => date('Y-m-d', strtotime($request->date)),
+                'description' => $request->description
+            ]);
 
-        return redirect('mutation');
+            return redirect('mutation')
+                ->with('success', 'Data berhasil ditambahkan.');
+        }
     }
 
     /**
@@ -98,17 +104,23 @@ class MutationController extends Controller
      */
     public function update(MutationRequest $request, $id)
     {
-        $mutation = Mutation::where('id_mutation', $id)
-            ->first()
-            ->update([            
-                'source' => $request->source,
-                'destiny' => $request->destiny,
-                'nominal' => $request->nominal,
-                'date' => date('Y-m-d', strtotime($request->date)),
-                'description' => $request->description
-            ]);
+        if ($request->source == $request->destiny){
+            return redirect('mutation')
+                ->with('error', 'Uang asal dan tujuan tidak boleh sama, silahkan coba lagi.');
+        }else{
+            $mutation = Mutation::where('id_mutation', $id)
+                ->first()
+                ->update([            
+                    'source' => $request->source,
+                    'destiny' => $request->destiny,
+                    'nominal' => $request->nominal,
+                    'date' => date('Y-m-d', strtotime($request->date)),
+                    'description' => $request->description
+                ]);
 
-        return redirect('mutation');
+            return redirect('mutation')
+                ->with('success', 'Data berhasil dirubah.');
+        }
     }
 
     /**
@@ -122,6 +134,7 @@ class MutationController extends Controller
         $data_mutation = Mutation::where('id_mutation', $id)
             ->delete();
 
-        return redirect('mutation');
+        return redirect('mutation')
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
