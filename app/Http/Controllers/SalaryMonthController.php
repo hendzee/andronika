@@ -72,9 +72,13 @@ class SalaryMonthController extends Controller
             }
 
             DB::table('salary_month_detail')->insert($data_insert);
+
+            return redirect('salary_month/')
+                ->with('success', 'Data berhasil ditambahkan.');
+        }else {
+            return redirect('salary_month/')
+                ->with('error', 'Data sudah ada, gunakan tanggal lain.');
         }
-        
-        return redirect('salary_month/');
     }
 
     /**
@@ -121,7 +125,8 @@ class SalaryMonthController extends Controller
                 ]);
         }
 
-        return redirect('salary_month/');
+        return redirect('salary_month/')
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -135,6 +140,7 @@ class SalaryMonthController extends Controller
         $data_month = SalaryMonth::where('id_month', $id)
             ->delete();
 
-        return redirect('salary_month/');
+        return redirect('salary_month/')
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
