@@ -53,9 +53,13 @@ class SMDetailController extends Controller
                 'id_employee' => $request->id_employee,
                 'salary' => $request->salary
             ]);
-        }
 
-        return redirect('salary_month_detail/'.$request->id_month);
+            return redirect('salary_month_detail/'.$request->id_month)
+                ->with('success', 'Data berhasil ditambahkan.');
+        }else{
+            return redirect('salary_month_detail/'.$request->id_month)
+                ->with('error', 'Data untuk karyawan ini sudah ada.');;
+        }
     }
 
     /**
@@ -102,7 +106,8 @@ class SMDetailController extends Controller
                 'salary' => $request->salary
             ]);
 
-        return redirect('salary_month_detail/'.$request->id_month);
+        return redirect('salary_month_detail/'.$request->id_month)
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -119,6 +124,7 @@ class SMDetailController extends Controller
         $data_detail = SMDetail::where('id_detail', $id)
             ->delete();
 
-        return redirect('salary_month_detail/'.$data_month->id_month);
+        return redirect('salary_month_detail/'.$data_month->id_month)
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
