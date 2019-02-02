@@ -68,7 +68,8 @@ class EmployeeTransactionController extends Controller
             'date' => date("Y-m-d", strtotime($request->date)),
         ]);
 
-        return redirect('employee_transaction_index/'. $request->id_detail);
+        return redirect('employee_transaction_index/'. $request->id_detail)
+            ->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -120,7 +121,8 @@ class EmployeeTransactionController extends Controller
                 'date' => date("Y-m-d", strtotime($request->date))            
             ]);
         
-        return redirect('employee_transaction_index/'. $request->id_detail);
+        return redirect('employee_transaction_index/'. $request->id_detail)
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -137,6 +139,7 @@ class EmployeeTransactionController extends Controller
         $data_transaction = EmployeeTransaction::where('id_transaction', $id)
             ->delete();
 
-        return redirect('employee_transaction_index/'. $data_detail->id_detail);
+        return redirect('employee_transaction_index/'. $data_detail->id_detail)
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
