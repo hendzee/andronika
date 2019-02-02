@@ -50,7 +50,8 @@ class RentPaymentController extends Controller
             'date' => date('Y-m-d', strtotime($request->date))
         ]);        
 
-        return redirect ('rent_payment/' . $request->id_rent);
+        return redirect ('rent_payment/' . $request->id_rent)
+            ->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -117,7 +118,8 @@ class RentPaymentController extends Controller
                 'date' => date('Y-m-d', strtotime($request->date))
             ]);
 
-        return redirect ('rent_payment/' . $request->id_rent);
+        return redirect ('rent_payment/' . $request->id_rent)
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -134,6 +136,7 @@ class RentPaymentController extends Controller
         $data_payment = RentPayment::where('id_payment', $id)
             ->delete();
 
-        return redirect ('rent_payment/' . $data_rent->id_rent);
+        return redirect ('rent_payment/' . $data_rent->id_rent)
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
