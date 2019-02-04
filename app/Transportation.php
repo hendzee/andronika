@@ -17,4 +17,9 @@ class Transportation extends Model
     {
         return $this->belongsTo('App\Employee', 'id_employee');
     }
+
+    public function transaction_transportation()
+    {
+        return $this->hasMany('App\TransactionTransportation', 'id_transportation');
+    }
 }

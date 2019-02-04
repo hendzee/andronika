@@ -6,11 +6,11 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Transportasi</a>
+                    <a href="{{ route('transportation.index') }}">Transportasi</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Edit Data Bahan Bakar</span>
+                    <span>Edit</span>
                 </li>
             </ul>         
         </div>
@@ -50,48 +50,104 @@
                                         <span class="help-block"> Keterangan Supir </span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('starting_point') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Awal</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="starting_point" value="{{ $data_transportation->starting_point }}" class="form-control" placeholder="Tempat Awal"/>
-                                        <span class="help-block"> Awal Keberangkatan Barang Dikirim</span>
+                                        <input type="text" value="{{ old('starting_point', $data_transportation->starting_point) }}" name="starting_point" class="form-control" placeholder="Tempat Awal"/>
+                                        
+                                        @if ($errors->has('starting_point'))
+                                            <span class="help-block"> {{ $errors->first('starting_point') }} </span>    
+                                        @else
+                                            <span class="help-block"> Alamat asal. </span>
+                                        @endif
                                     </div>
                                 </div>                                                          
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('destination') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tujuan</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="destination" value="{{ $data_transportation->destination }}" class="form-control" placeholder="Tujuan"/>
-                                        <span class="help-block"> Tujuan Akhir Barang Dikirim </span>
+                                        <input type="text" value="{{ old('destination', $data_transportation->destination) }}" name="destination" class="form-control" placeholder="Tujuan"/>
+                                        
+                                        @if ($errors->has('destination'))
+                                            <span class="help-block"> {{ $errors->first('destination') }} </span>    
+                                        @else
+                                            <span class="help-block"> Alamat tujuan. </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('distance') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Jarak</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="distance" value="{{ $data_transportation->distance }}" class="form-control" placeholder="Jarak (KM)"/>
-                                        <span class="help-block"> Jarak Tempuh Keberangkatan Sampai Tujuan Dalam Kilometer (KM) </span>
+                                        <input type="text" value="{{ old('distance', $data_transportation->distance) }}" name="distance" class="form-control" placeholder="Jarak (KM)"/>
+                                        
+                                        @if ($errors->has('distance'))
+                                            <span class="help-block"> {{ $errors->first('distance') }} </span>
+                                        @else
+                                            <span class="help-block"> Jarak asal dan tujuan (KM). </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Total Biaya Solar</label>
+                                <div class="form-group {{ $errors->has('cost') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Biaya Transport</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="cost" value="{{ $data_transportation->cost }}" class="form-control" placeholder="Total Pengeluaran Bahan Bakar"/>
-                                        <span class="help-block"> Total Pengeluaran Bahan Bakar </span>
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" value="{{ old('cost', round($data_transportation->cost)) }}" placeholder="Biaya Transport" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="cost" class="masking-form-hidden">
+                                            </div>
+                                        </div>
+                                        
+                                        @if ($errors->has('cost'))
+                                            <span class="help-block"> {{ $errors->first('cost') }} </span>    
+                                        @else
+                                            <span class="help-block"> Biaya supir dan solar. </span>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="form-group">
+                                </div> 
+                                <div class="form-group {{ $errors->has('total') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Harga Sewa</label>
+                                    <div class="col-md-9">
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" value="{{ old('total', round($data_transportation->total)) }}" placeholder="Harga Sewa" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="total" class="masking-form-hidden">
+                                            </div>
+                                        </div>
+                                        
+                                        @if ($errors->has('total'))
+                                            <span class="help-block"> {{ $errors->first('total') }} </span>    
+                                        @else
+                                            <span class="help-block"> Harga sewa jasa / pengiriman. </span>
+                                        @endif
+                                    </div>
+                                </div>                                     
+                                <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Keterangan Transportasi</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="description" value="{{ $data_transportation->description }}" class="form-control" placeholder="Keterangan"/>
-                                        <span class="help-block"> Keterangan Barang Yang Dikirim </span>
+                                        <input type="text" value="{{ old('description', $data_transportation->description) }}" name="description" class="form-control" placeholder="Keterangan"/>
+                                        
+                                        @if ($errors->has('description'))
+                                            <span class="help-block"> {{ $errors->first('description') }} </span>
+                                        @else
+                                            <span class="help-block"> Keterangan pengiriman. </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Token</label>
+                                <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Tanggal Pengiriman</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="url_token" value="{{ $data_transportation->url_token }}" class="form-control" placeholder="Keterangan"/>
-                                        <span class="help-block"> Token Pembelian Solar Oleh Supir </span>
+                                        <input name="date" value="{{ old('date', date('m/d/Y', strtotime($data_transportation->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('date'))
+                                            <span class="help-block"> {{ $errors->first('description') }} </span>
+                                        @endif
                                     </div>
-                                </div>                                                                                                                                                  
+                                </div>                                                                                                                                                 
                             </div>
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}

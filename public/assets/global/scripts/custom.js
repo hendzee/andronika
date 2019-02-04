@@ -7,13 +7,18 @@ $(document).ready(function(){
     $('th:first').attr('style', 'min-width:150px');
 
     //curency on create and edit page
-    $('.masking-form').keypress(function () {
-        var total = $(this);
+    $('.form-group').each(function(){
+        var group = $(this);
 
-        total.mask('000,000,000,000,000', { reverse: true });
+        $(this).find('.masking-form').keypress(function () {
+            var total = $(this);
 
-        total.change(function (e) {
-            $('.masking-form-hidden').val(total.cleanVal())
+            
+            total.mask('000,000,000,000,000', { reverse: true });
+            
+            total.change(function (e) {
+                group.find('.masking-form-hidden').val(total.cleanVal())
+            });
         });
     });
 
@@ -22,10 +27,12 @@ $(document).ready(function(){
 
 function checkMasking()
 {
-    var total = $('.masking-form');
+    $('.form-group').each(function(){
+        var x = $(this).find('.masking-form');
 
-    if (total.val().length !== 0) {
-        total.mask('000,000,000,000,000', { reverse: true });
-        $('.masking-form-hidden').val(total.cleanVal());
-    } 
+        if (x.length > 0){
+            x.mask('000,000,000,000,000', { reverse: true });
+            $(this).find('.masking-form-hidden').val(x.cleanVal());
+        }
+    });
 }

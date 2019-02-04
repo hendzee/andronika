@@ -6,18 +6,18 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="index.html">Transportasi</a>
+                    <a href="{{ route('transportation.index') }}">Transportasi</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Data Transportasi</span>
+                    <span>Daftar</span>
                 </li>
             </ul>         
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Data Transportasi Solar
+            Data Transportasi
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -64,45 +64,58 @@
                                     <th> ID Tranportasi </th>
                                     <th> Supir </th>                               
                                     <th> Pengantaran </th>
-                                    <th> Total Biaya Solar </th>
+                                    <th> Biaya Transport </th>
+                                    <th> Harga Sewa </th>
+                                    <th> Keuntungan </th>
+                                    <th> Tanggal Pengantaran </th>
                                     <th> Keterangan </th>
-                                    <th> Token </th>
                                     <th> Aksi </th>                                
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($data_transportation as $data)
-                                <tr class="odd gradeX">
-                                    <td> {{ $data->id_transportation }} </td>
-                                    <td> {{ $data->employee->name .'|'. $data->employee->id_employee }} </td>
-                                    <td> 
-                                        {{ $data->starting_point .' - '. $data->destination }} 
-                                        <br> 
-                                        {{ $data->distance .' Km ' }} 
-                                    </td>
-                                    <td> {{ 'Rp. ' . $data->cost}} </td>
-                                    <td> {{ $data->description }} </td>  
-                                    <td> {{ $data->url_token }} </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                                AKSI <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li>
-                                                    <a href="transportation/{{ $data->id_transportation }}/edit">
-                                                        <i class="icon-docs"></i> Edit 
+                                    <tr class="odd gradeX">
+                                        <td> {{ $data->id_transportation }} </td>
+                                        <td> {{ $data->employee->name .'|'. $data->employee->id_employee }} </td>
+                                        <td> 
+                                            {{ $data->starting_point .' - '. $data->destination }} 
+                                            <br> 
+                                            {{ $data->distance .' Km ' }} 
+                                        </td>
+                                        <td> {{ 'Rp ' . number_format($data->cost) }} </td>
+                                        <td>
+                                            <a href="{{ route('transaction_transportation_index' , $data->id_transportation)}}"> 
+                                                {{ 'Rp ' . number_format($data->total) }} 
+                                            </a>
+
+                                            @if ($data->total - ($data->transaction_transportation->sum('nominal')) > 0)
+                                                <br>
+                                                BELUM LUNAS
+                                            @endif
+                                        </td>
+                                        <td> {{ 'Rp ' . ($data->total-$data->cost) }} </td>
+                                        <td> {{ date('d M, Y', strtotime($data->date)) }} </td>
+                                        <td> {{ $data->description }} </td>  
+                                        <td>
+                                            <div class="row button-on-table">
+                                                <div class="col-xs-6">
+                                                    <a href="{{ route('transportation.edit', $data->id_transportation) }}" class="btn btn-icon-only green">
+                                                        <i class="fa fa-edit"></i>
                                                     </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <i class="icon-tag"></i> Hapus
-                                                    </a>
-                                                </li>                                                
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <form action="{{ action('TransportationController@destroy', $data->id_transportation) }}" method="POST">
+                                                        {{ method_field('DELETE') }}
+                                                        {{ csrf_field() }}
+
+                                                        <button type="submit" class="btn btn-icon-only red">
+                                                            <i class="fa fa-remove"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach                                
                             </tbody>
                         </table>

@@ -21,6 +21,7 @@ use APp\Fuel;
 use App\ProjectSupply;
 use App\SalaryMonth;
 use App\SMDetail;
+use App\TransactionTransportation;
 
 class GeneratorId extends Model
 {
@@ -139,6 +140,12 @@ class GeneratorId extends Model
                 $search_id = 'id_transportation';
                 $unique_code = 'TT';
                 $obj = new Transportation();
+            break;
+
+            case 'transaction_transportation':
+                $search_id = 'id_transportation';
+                $unique_code = 'TG';
+                $obj = new TransactionTransportation();
             break;
 
             case 'fuel':

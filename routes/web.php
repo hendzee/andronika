@@ -131,6 +131,14 @@ Route::get('transportation_update_status/{status}/{id}', [
     'uses' => 'TransportationController@updateStatus',
     'as' => 'transportation_update_status']);
 
+Route::resource('transaction_transportation', 'TransactionTransportationController');
+Route::get('transaction_transportation_index/{id}',[
+    'uses' => 'TransactionTransportationController@index', 
+    'as' => 'transaction_transportation_index']);
+Route::get('transaction_transportation_create/{id}', [ 
+    'uses' => 'TransactionTransportationController@create', 
+    'as' => 'transaction_transportation_create']);
+
 Route::resource('fuel', 'FuelController');
 
 Route::resource('repair_and_used', 'RepairAndUsedController');
