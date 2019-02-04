@@ -21,6 +21,18 @@
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                <strong>Sukses!</strong> {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                <strong>Error!</strong> {{ session('error') }} 
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN SAMPLE FORM PORTLET-->
@@ -94,7 +106,7 @@
                                                 </span>
                                             @endif
                                         </td>
-                                        <td> {{ 'Rp ' . ($data->total-$data->cost) }} </td>
+                                        <td> {{ 'Rp ' . number_format(($data->total-$data->cost)) }} </td>
                                         <td> {{ date('d M, Y', strtotime($data->date)) }} </td>
                                         <td> {{ $data->description }} </td>  
                                         <td>

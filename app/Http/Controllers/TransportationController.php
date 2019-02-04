@@ -58,7 +58,8 @@ class TransportationController extends Controller
             'date' => date("Y-m-d", strtotime($request->date))
         ]);        
 
-        return redirect('transportation');
+        return redirect('transportation')
+            ->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -111,7 +112,8 @@ class TransportationController extends Controller
                 'date' => date("Y-m-d", strtotime($request->date))
             ]);
     
-        return redirect('transportation');
+        return redirect('transportation')
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -125,6 +127,7 @@ class TransportationController extends Controller
         $data_transportation = Transportation::where('id_transportation', $id)
             ->delete();
 
-        return redirect('transportation');
+        return redirect('transportation')
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
