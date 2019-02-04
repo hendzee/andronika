@@ -108,6 +108,12 @@ class TransactionTransportationController extends Controller
      */
     public function destroy($id)
     {
-        
+        $data_id = TransactionTransportation::where('id_transaction', $id)
+            ->first();
+
+        $data_transaction = TransactionTransportation::where('id_transaction', $id)
+            ->delete();
+
+        return redirect('transaction_transportation_index/'. $data_id->id_transportation );
     }
 }
