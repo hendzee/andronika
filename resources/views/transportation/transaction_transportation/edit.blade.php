@@ -31,12 +31,12 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form action="{{ action('TransactionTransportationController@update', $data_ttransportation->id_transaction) }}" method="POST" class="form-horizontal form-row-seperated">
+                        <form action="{{ action('TransactionTransportationController@update', $data_transaction->id_transaction) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-3">ID Transaksi</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="id_transaction" value="{{ $data_ttransportation->id_transaction }}" class="form-control" disabled/>
+                                        <input type="text" name="id_transaction" value="{{ $data_transaction->id_transaction }}" class="form-control" disabled/>
                                         <span class="help-block">ID Transaksi</span>
                                     </div>
                                 </div>
@@ -47,19 +47,35 @@
                                         <span class="help-block">ID Transporatsi</span>
                                     </div>
                                 </div>
-                                <input type="hidden" name="id_transportation" value="{{ $data_ttransportation->id_transportation }}" />
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Jumlah Pembayaran</label>
+                                <input type="hidden" name="id_transportation" value="{{ $data_transaction->id_transportation }}" />
+                                <div class="form-group {{ $errors->has('nominal') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Uang Masuk</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="nominal" value="{{ $data_ttransportation->nominal }}" class="form-control"/>
-                                        <span class="help-block">Nominal Pembayaran</span>
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" value="{{ old('nominal', round($data_transaction->nominal)) }}" placeholder="Uang Masuk" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="nominal" class="masking-form-hidden">
+                                            </div>
+                                        </div>
+                                        
+                                        @if ($errors->has('nominal'))
+                                            <span class="help-block"> {{ $errors->first('nominal') }} </span>    
+                                        @else
+                                            <span class="help-block"> Uang Masuk. </span>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="form-group">
+                                </div>                                     
+                                <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Pembayaran</label>
                                     <div class="col-md-9">
-                                        <input name="date" value="{{ date('d/m/Y', strtotime($data_ttransportation->date)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text"/>
-                                        <span class="help-block">Tanggal Pembayaran</span>
+                                        <input name="date" value="{{ old('date', date('m/d/Y', strtotime($data_transaction->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text"/>
+                                        
+                                        @if ($errors->has('date'))
+                                            <span class="help-block"> {{ $errors->first('date') }} </span>
+                                        @endif
                                     </div>
                                 </div>                                                                                                                                                  
                             </div>
@@ -71,7 +87,7 @@
                                         <button type="submit" class="btn green">
                                             Simpan
                                         </button>
-                                        <a href="{{ route('transaction_transportation_index', $data_ttransportation->id_transportation) }}" class="btn default"> 
+                                        <a href="{{ route('transaction_transportation_index', $data_transaction->id_transportation) }}" class="btn default"> 
                                             Batal 
                                         </a>
                                     </div>

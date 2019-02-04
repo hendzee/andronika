@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\TransactionTransportation;
 use App\GeneratorId;
 use Illuminate\Http\Request;
+use App\Http\Requests\TransactionTransportationRequest;
 
 class TransactionTransportationController extends Controller
 {
@@ -40,7 +41,7 @@ class TransactionTransportationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransactionTransportationRequest $request)
     {
         $gen = new GeneratorId();
         $transportation = TransactionTransportation::create([
@@ -72,12 +73,12 @@ class TransactionTransportationController extends Controller
      */
     public function edit($id)
     {
-        $data_ttransportation = TransactionTransportation::where('id_transaction', $id)
+        $data_transaction = TransactionTransportation::where('id_transaction', $id)
             ->first();
         
         $id_transportation = $id;
 
-        return view('transportation.transaction_transportation.edit', compact('data_ttransportation','id_transportation'));
+        return view('transportation.transaction_transportation.edit', compact('data_transaction','id_transportation'));
     }
 
     /**
@@ -87,7 +88,7 @@ class TransactionTransportationController extends Controller
      * @param  \App\TransactionTransportation  $transactionTransportation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TransactionTransportationRequest $request, $id)
     {
         $transportation = TransactionTransportation::where('id_transaction', $id)
             ->first()
@@ -105,7 +106,7 @@ class TransactionTransportationController extends Controller
      * @param  \App\TransactionTransportation  $transactionTransportation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TransactionTransportation $transactionTransportation)
+    public function destroy($id)
     {
         
     }

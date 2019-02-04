@@ -37,22 +37,38 @@
                                     <label class="control-label col-md-3">ID Transportasi</label>
                                     <div class="col-md-9">
                                         <input type="text" name="id_transporation" value="{{ $id_transportation }}"class="form-control" placeholder="ID Transportasi" disabled/>
-                                        <span class="help-block">ID Transporatsi</span>
+                                        <span class="help-block">ID transporatsi.</span>
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_transportation" value="{{ $id_transportation }}"/>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Jumlah Pembayaran</label>
+                                <div class="form-group {{ $errors->has('nominal') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Uang Masuk</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="nominal" class="form-control" placeholder="Nominal Jumlah Pembayaran"/>
-                                        <span class="help-block">Nominal Pembayaran</span>
+                                        <div class="input-inline">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    Rp
+                                                </span>
+                                                <input type="text" value="{{ old('nominal') }}" placeholder="Uang Masuk" class="form-control masking-form" />
+                                                <input type="hidden" id="total_hidden" name="nominal" class="masking-form-hidden">
+                                            </div>
+                                        </div>
+                                        
+                                        @if ($errors->has('nominal'))
+                                            <span class="help-block"> {{ $errors->first('nominal') }} </span>    
+                                        @else
+                                            <span class="help-block"> Uang Masuk. </span>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="form-group">
+                                </div>                                     
+                                <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Pembayaran</label>
                                     <div class="col-md-9">
-                                        <input name="date" class="form-control form-control-inline input-medium date-picker" size="16" type="text"/>
-                                        <span class="help-block">Tanggal Pembayaran</span>
+                                        <input name="date" value="{{ old('date') }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text"/>
+                                        
+                                        @if ($errors->has('date'))
+                                            <span class="help-block"> {{ $errors->first('date') }} </span>
+                                        @endif
                                     </div>
                                 </div>                                                                                                                                                                                                                 
                             </div>
