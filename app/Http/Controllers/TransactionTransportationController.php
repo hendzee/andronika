@@ -51,7 +51,8 @@ class TransactionTransportationController extends Controller
             'date' => date('Y-m-d', strtotime($request->date))
         ]);
 
-        return redirect('transaction_transportation_index/'. $request->id_transportation );
+        return redirect('transaction_transportation_index/'. $request->id_transportation )
+            ->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -97,7 +98,8 @@ class TransactionTransportationController extends Controller
                 'date' => date('Y-m-d', strtotime($request->date))          
             ]);
 
-        return redirect('transaction_transportation_index/'. $request->id_transportation );
+        return redirect('transaction_transportation_index/'. $request->id_transportation )
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -114,6 +116,7 @@ class TransactionTransportationController extends Controller
         $data_transaction = TransactionTransportation::where('id_transaction', $id)
             ->delete();
 
-        return redirect('transaction_transportation_index/'. $data_id->id_transportation );
+        return redirect('transaction_transportation_index/'. $data_id->id_transportation )
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
