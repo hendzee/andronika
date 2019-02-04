@@ -6,18 +6,22 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
+                    <a href="{{ route('transportation.index') }}">Transportasi</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
                     <a href="{{ route('transaction_transportation_index', $id_transportation) }}"> Transaksi Transportasi </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Data Transaksi Transportasi</span>
+                    <span>Edit</span>
                 </li>
             </ul>         
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Transaksi Transportasi Baru          
+            Edit Transaksi Transportasi
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->

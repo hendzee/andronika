@@ -6,11 +6,15 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
+                    <a href="{{ route('transportation.index') }}">Transportasi</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
                     <a href="{{ route('transaction_transportation_index', $id_transportation) }}"> Transaksi Transportasi </a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Data Transaksi Transportasi</span>
+                    <span>Baru</span>
                 </li>
             </ul>         
         </div>

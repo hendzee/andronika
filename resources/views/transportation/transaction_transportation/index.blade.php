@@ -6,18 +6,22 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{ route('transaction_transportation_index', $id_transportation) }}"> Transaksi Transportasi </a>
+                    <a href="{{ route('transportation.index') }}">Transportasi</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Data Transaksi Transportasi</span>
+                    <a href="{{ route('transaction_transportation_index', $id_transportation) }}"> Pembayaran </a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Daftar</span>
                 </li>
             </ul>         
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Transaksi Transportasi Baru          
+            Pembayaran Transportasi
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -31,7 +35,7 @@
                                 <div class="col-md-6">
                                     <div class="btn-group">
                                         <a href="{{ route('transaction_transportation_create', $id_transportation) }}" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Transaksi Transportasi Baru
+                                            Pembayaran Baru
                                         </a>
                                     </div>
                                 </div>

@@ -89,8 +89,9 @@
                                             </a>
 
                                             @if ($data->total - ($data->transaction_transportation->sum('nominal')) > 0)
-                                                <br>
-                                                BELUM LUNAS
+                                                <span class="label label-sm label-danger top-space">
+                                                    BELUM LUNAS
+                                                </span>
                                             @endif
                                         </td>
                                         <td> {{ 'Rp ' . ($data->total-$data->cost) }} </td>
