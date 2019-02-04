@@ -145,11 +145,6 @@
                             <span class="title">Data Transportasi</span>
                         </a>
                     </li>                    
-                    <li class="nav-item  ">
-                        <a href="{{ route( 'fuel.index' ) }}" class="nav-link ">
-                            <span class="title">Data Solar</span>
-                        </a>
-                    </li>                    
                 </ul>                
             </li>
         </ul>
