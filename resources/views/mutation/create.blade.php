@@ -34,6 +34,7 @@
                                     <div class="col-md-9">
                                         <select class="form-control" name="source">
                                             <option value="PERUSAHAAN">PERUSAHAAN</option>
+                                            <option value="KAS">KAS</option>
                                             @foreach ($data_project as $data)
                                                 <option value="{{ $data->id_project }}">
                                                     {{ $data->name . ' | ' . date('d M, Y', strtotime($data->start)) }}
@@ -48,6 +49,7 @@
                                     <div class="col-md-9">
                                         <select class="form-control" name="destiny">
                                                 <option value="PERUSAHAAN">PERUSAHAAN</option>
+                                                <option value="KAS">KAS</option>
                                                 @foreach ($data_project as $data)
                                                     <option value="{{ $data->id_project }}">
                                                             {{ $data->name . ' | ' . date('d M, Y', strtotime($data->start)) }}

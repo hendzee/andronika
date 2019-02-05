@@ -49,6 +49,7 @@
                                                 </option>
                                             @endif                                            
                                             <option value="PERUSAHAAN">PERUSAHAAN</option>
+                                            <option value="KAS">KAS</option>
                                             @foreach ($data_project as $data)
                                                 <option value="{{ $data->id_project }}">
                                                     {{ $data->name . ' | ' . date('d M, Y', strtotime($data->start)) }}
@@ -78,6 +79,7 @@
                                                 </option>
                                             @endif                                            
                                             <option value="PERUSAHAAN">PERUSAHAAN</option>
+                                            <option value="KAS">KAS</option>
                                             @foreach ($data_project as $data)
                                                 <option value="{{ $data->id_project }}">
                                                     {{ $data->name . ' | ' . date('d M, Y', strtotime($data->start)) }}

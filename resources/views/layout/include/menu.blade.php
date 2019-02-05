@@ -147,6 +147,20 @@
                     </li>                    
                 </ul>                
             </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span class="title">Uang Kas</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{ route( 'company_cash.index' ) }}" class="nav-link ">
+                            <span class="title">Pengeluaran</span>
+                        </a>
+                    </li>                    
+                </ul>                
+            </li>
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

@@ -30204,3 +30204,8 @@ body.stop-scrolling {
 div.button-on-table {
   width: 85px;
 }
+
+a.btn-dashboard {
+    position: 'relative';
+    bottom: 15px;
+}

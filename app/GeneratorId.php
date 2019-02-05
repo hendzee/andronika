@@ -22,6 +22,7 @@ use App\ProjectSupply;
 use App\SalaryMonth;
 use App\SMDetail;
 use App\TransactionTransportation;
+use App\CompanyCash;
 
 class GeneratorId extends Model
 {
@@ -158,6 +159,12 @@ class GeneratorId extends Model
                 $search_id = 'id_driver';
                 $unique_code = 'TD';
                 $obj = new Driver();
+            break;
+
+            case 'company_cash':
+                $search_id = 'id_transaction';
+                $unique_code = 'CC';
+                $obj = new CompanyCash();
             break;
         }
 

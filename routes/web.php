@@ -149,3 +149,5 @@ Route::resource('salary_month_detail', 'SMDetailController');
 Route::get('salary_month_detail_create/{id}', [ 
     'uses' => 'SMDetailController@create', 
     'as' => 'smd_create']);
+
+Route::resource('company_cash', 'CompanyCashController');
