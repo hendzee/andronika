@@ -10,7 +10,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Data Uang Kas</span>
+                    <span>Edit</span>
                 </li>
             </ul>         
         </div>

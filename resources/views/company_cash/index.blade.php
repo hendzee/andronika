@@ -10,7 +10,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Data Uang Kas</span>
+                    <span>Daftar Uang Kas</span>
                 </li>
             </ul>         
         </div>
@@ -21,6 +21,18 @@
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                <strong>Sukses!</strong> {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                <strong>Error!</strong> {{ session('error') }} 
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="dashboard-stat dashboard-stat-v2 {{ ($data_TCash - ($data_TUCash + $data_cash->sum('total'))) <= 500000 ? 'red' : 'blue' }}">

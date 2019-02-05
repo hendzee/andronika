@@ -54,7 +54,8 @@ class CompanyCashController extends Controller
             'total' => ($request->price * $request->number)
         ]);
 
-        return redirect('/company_cash');
+        return redirect('/company_cash')
+            ->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -102,7 +103,8 @@ class CompanyCashController extends Controller
                 'total' => ($request->price * $request->number)               
             ]);
         
-        return redirect('company_cash');
+        return redirect('company_cash')
+            ->with('success', 'Data berhasil dirubah.');
     }
 
     /**
@@ -116,6 +118,7 @@ class CompanyCashController extends Controller
         $data_cash = CompanyCash::where('id_transaction', $id)
             ->delete();
 
-        return redirect('company_cash');
+        return redirect('company_cash')
+            ->with('success', 'Data berhasil dihapus.');
     }
 }
