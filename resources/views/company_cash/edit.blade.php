@@ -27,12 +27,12 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form action="{{ action('CompanyCashController@update', $data_CCash->id_transaction) }}" method="POST" class="form-horizontal form-row-seperated">
+                        <form action="{{ action('CompanyCashController@update', $data_cash->id_transaction) }}" method="POST" class="form-horizontal form-row-seperated">
                             <div class="form-body">
                                 <div class="form-group {{ $errors->has('desc') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Keterangan</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ old('desc', $data_CCash->description) }}" name="desc" class="form-control" placeholder="Barang (Satuan)"/>
+                                        <input type="text" value="{{ old('desc', $data_cash->description) }}" name="desc" class="form-control" placeholder="Barang (Satuan)"/>
                                         
                                         @if ($errors->has('desc'))
                                             <span class="help-block">{{ $errors->first('desc') }}</span>
@@ -48,7 +48,7 @@
                                             <span class="input-group-addon">
                                                 Rp
                                             </span>
-                                            <input type="text" value="{{ old('price', round($data_CCash->price)) }}" placeholder="Harga Per Satuan" class="form-control masking-form" />
+                                            <input type="text" value="{{ old('price', round($data_cash->price)) }}" placeholder="Harga Per Satuan" class="form-control masking-form" />
                                             <input type="hidden" id="total_hidden" name="price" class="masking-form-hidden">
                                         </div>
 
@@ -60,7 +60,7 @@
                                 <div class="form-group {{ $errors->has('number') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Jumlah</label>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{ old('number', $data_CCash->number) }}" name="number" class="form-control" placeholder="Jumlah"/>
+                                        <input type="text" value="{{ old('number', $data_cash->number) }}" name="number" class="form-control" placeholder="Jumlah"/>
                                         
                                         @if ($errors->has('number'))
                                             <span class="help-block"> {{ $errors->first('number') }} </span>
@@ -72,7 +72,7 @@
                                 <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Pembelian</label>
                                     <div class="col-md-9">
-                                        <input name="date" value="{{ old('date', date('m/d/Y', strtotime($data_CCash->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        <input name="date" value="{{ old('date', date('m/d/Y', strtotime($data_cash->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
                                         
                                         @if ($errors->has('date'))
                                             <span class="help-block">{{ $errors->first('date') }}</span>

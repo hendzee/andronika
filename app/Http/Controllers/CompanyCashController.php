@@ -18,10 +18,10 @@ class CompanyCashController extends Controller
     public function index()
     {
         //
-        $data_CCash = CompanyCash::all();
+        $data_cash = CompanyCash::all();
         $data_TCash = Mutation::where('destiny', 'KAS')->sum('nominal');
         $data_TUCash = Mutation::where('source', 'KASs')->sum('nominal');
-        return view('company_cash.index', compact('data_CCash','data_TCash','data_TUCash','data_Total'));
+        return view('company_cash.index', compact('data_cash','data_TCash','data_TUCash','data_Total'));
     }
 
     /**
@@ -77,10 +77,10 @@ class CompanyCashController extends Controller
     public function edit($id)
     {
         //
-        $data_CCash = CompanyCash::where('id_transaction', $id)
+        $data_cash = CompanyCash::where('id_transaction', $id)
             ->first();
 
-        return view('company_cash.edit', compact('data_CCash'));
+        return view('company_cash.edit', compact('data_cash'));
     }
 
     /**
@@ -111,8 +111,11 @@ class CompanyCashController extends Controller
      * @param  \App\CompanyCash  $companyCash
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CompanyCash $companyCash)
+    public function destroy($id)
     {
-        //
+        $data_cash = CompanyCash::where('id_transaction', $id)
+            ->delete();
+
+        return redirect('company_cash');
     }
 }

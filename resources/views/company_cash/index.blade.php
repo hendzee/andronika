@@ -23,13 +23,13 @@
         <!-- END PAGE HEADER-->
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="dashboard-stat dashboard-stat-v2 {{ ($data_TCash - ($data_TUCash + $data_CCash->sum('total'))) <= 500000 ? 'red' : 'blue' }}">
+                <div class="dashboard-stat dashboard-stat-v2 {{ ($data_TCash - ($data_TUCash + $data_cash->sum('total'))) <= 500000 ? 'red' : 'blue' }}">
                     <div class="visual">
                         <i class="fa fa-money"></i>
                     </div>
                     <div class="details">
                         <div class="number">
-                            Rp <span data-counter="counterup" data-value="{{ number_format(($data_TCash - ($data_TUCash + $data_CCash->sum('total')))) }}">0</span>
+                            Rp <span data-counter="counterup" data-value="{{ number_format(($data_TCash - ($data_TUCash + $data_cash->sum('total')))) }}">0</span>
                         </div>
                         <div class="desc"> Uang Kas Saat Ini </div>
                     </div>
@@ -91,13 +91,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data_CCash as $data)
+                                @foreach($data_cash as $data)
                                 <tr class="odd gradeX">
                                     <td> {{ $data->id_transaction }}</td>
                                     <td> {{ date('d M, Y', strtotime($data->date)) }}</td>
                                     <td> {{ $data->description }}</td>
                                     <td> {{ "Rp " . number_format($data->price) }}</td>
-                                    <td> {{  $data->number }}</td>
+                                    <td> {{ $data->number }}</td>
                                     <td> {{ "Rp " . number_format($data->total) }}</td>
                                     <td>
                                         <div class="row button-on-table">
