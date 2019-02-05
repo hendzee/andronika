@@ -151,3 +151,5 @@ Route::get('salary_month_detail_create/{id}', [
     'as' => 'smd_create']);
 
 Route::resource('company_cash', 'CompanyCashController');
+
+Route::resource('private_money', 'PrivateMoneyController');

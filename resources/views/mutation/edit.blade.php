@@ -50,6 +50,7 @@
                                             @endif                                            
                                             <option value="PERUSAHAAN">PERUSAHAAN</option>
                                             <option value="KAS">KAS</option>
+                                            <option value="PRIBADI">PRIBADI</option>
                                             @foreach ($data_project as $data)
                                                 <option value="{{ $data->id_project }}">
                                                     {{ $data->name . ' | ' . date('d M, Y', strtotime($data->start)) }}
@@ -80,6 +81,7 @@
                                             @endif                                            
                                             <option value="PERUSAHAAN">PERUSAHAAN</option>
                                             <option value="KAS">KAS</option>
+                                            <option value="PRIBADI">PRIBADI</option>
                                             @foreach ($data_project as $data)
                                                 <option value="{{ $data->id_project }}">
                                                     {{ $data->name . ' | ' . date('d M, Y', strtotime($data->start)) }}

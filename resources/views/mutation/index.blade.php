@@ -86,7 +86,7 @@
                                 <tr class="odd gradeX">                                                                       
                                     <td>{{ $data->id_mutation }}</td>
                                     <td>
-                                        @if ($data->source != 'PERUSAHAAN' && $data->source != 'KAS')
+                                        @if ($data->source != 'PERUSAHAAN' && $data->source != 'KAS' && $data->source !='PRIBADI')
                                             @php
                                                 $get_project = App\Project::where('id_project', $data->source)
                                                     ->first();
@@ -99,7 +99,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($data->destiny != 'PERUSAHAAN' && $data->destiny !='KAS')
+                                        @if ($data->destiny != 'PERUSAHAAN' && $data->destiny !='KAS' && $data->destiny !='PRIBADI')
                                             @php
                                                 $get_project = App\Project::where('id_project', $data->destiny)
                                                     ->first();

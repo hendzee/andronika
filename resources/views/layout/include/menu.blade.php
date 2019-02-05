@@ -52,6 +52,20 @@
                     </li>                    
                 </ul>                
             </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-credit-card"></i>
+                    <span class="title">Uang Pribadi</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{ route( 'private_money.index' ) }}" class="nav-link ">
+                            <span class="title">Data</span>
+                        </a>
+                    </li>                    
+                </ul>                
+            </li>
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-male"></i>
