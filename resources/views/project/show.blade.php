@@ -24,10 +24,10 @@
         <!-- END PAGE HEADER-->
         <!-- BEGIN DASHBOARD STATS 1-->
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="dashboard-stat dashboard-stat-v2 blue">
                     <div class="visual">
-                        <i class="fa fa-bar-chart-o"></i>
+                        <i class="fa fa-plus-circle"></i>
                     </div>
                     <div class="details">
                         <div class="number">
@@ -35,12 +35,25 @@
                         </div>
                         <div class="desc"> Pemasukan </div>
                     </div>
-                </a>
+                </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <a class="dashboard-stat dashboard-stat-v2 red" href="#">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="dashboard-stat dashboard-stat-v2 purple">
                     <div class="visual">
-                        <i class="fa fa-bar-chart-o"></i>
+                        <i class="fa fa-group"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            Rp <span data-counter="counterup" data-value="{{ number_format($project_obligation) }}">0</span>
+                        </div>
+                        <div class="desc"> Kewajiban (Pembayaran pekerja) </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="dashboard-stat dashboard-stat-v2 red">
+                    <div class="visual">
+                        <i class="fa fa-minus-circle"></i>
                     </div>
                     <div class="details">
                         <div class="number">
@@ -48,10 +61,10 @@
                         </div>
                         <div class="desc"> Pengeluaran </div>
                     </div>
-                </a>
+                </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <a class="dashboard-stat dashboard-stat-v2 green" href="#">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="dashboard-stat dashboard-stat-v2 green">
                     <div class="visual">
                         <i class="fa fa-bar-chart-o"></i>
                     </div>
@@ -61,7 +74,7 @@
                         </div>
                         <div class="desc"> Profit </div>
                     </div>
-                </a>
+                </div>
             </div>           
         </div>
         <div class="clearfix"></div>

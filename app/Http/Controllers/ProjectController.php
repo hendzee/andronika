@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\DB;
 use App\Mutation;
 use App\WorkerContract;
 use App\Http\Requests\ProjectRequest;
+use App\PSTransaction;
+use App\PCT;
 
 class ProjectController extends Controller
 {
@@ -101,7 +103,7 @@ class ProjectController extends Controller
         $worker_contract = WorkerContract::where('id_project', $id)
             ->get()
             ->sum('contract_value');
-        
+
         $project_bonus = ProjectBonus::where('id_project', $id)
             ->get()
             ->sum('bonus');
@@ -109,7 +111,7 @@ class ProjectController extends Controller
         $project_purchase = ProjectPurchase::select(DB::raw('sum(price_per_item * total_item) as total'))
             ->where('id_project', $id)
             ->first();
-
+        
         $mutation_in = Mutation::where('destiny', $id)
             ->get()
             ->sum('nominal');
@@ -132,13 +134,33 @@ class ProjectController extends Controller
         }
         //end financial data
 
+        //payment obligation
+        $salary_obli = PSTransaction::where('id_project', $id)
+            ->get()
+            ->sum('nominal');
+        
+        $bonus_obli = ProjectBonus::where('id_project', $id)
+            ->where('status', 'BELUM DIAMBIL')
+            ->get()
+            ->sum('bonus');
+        
+        $contract_obli = PCT::where('id_project', $id)
+            ->get()
+            ->sum('nominal');
+
+        $total_obli = $salary_obli + $bonus_obli + $contract_obli;
+
+        $project_obligation = ($worker_payment->total) 
+            + $worker_contract + $project_bonus - $total_obli;
+        //end payment obligation
+
         $data_project = Project::where('id_project', $id)
             ->first();
 
         $id_project = $id;
         
         return view('project.show', compact('data_project', 'id_project',
-            'income', 'outcome', 'assets', 'profit'));
+            'income', 'outcome', 'assets', 'profit', 'project_obligation'));
     }
 
     /**
