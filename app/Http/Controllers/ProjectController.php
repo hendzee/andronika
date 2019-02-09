@@ -6,16 +6,9 @@ use Illuminate\Http\Request;
 use App\Project;
 use App\Client;
 use App\GeneratorId;
-use App\ProjectPayment;
-use App\WorkerSalary;
-use App\ProjectBonus;
-use App\ProjectPurchase;
-use Illuminate\Support\Facades\DB;
 use App\Mutation;
-use App\WorkerContract;
 use App\Http\Requests\ProjectRequest;
-use App\PSTransaction;
-use App\PCT;
+use App\ProjectAssets;
 
 class ProjectController extends Controller
 {
@@ -90,77 +83,20 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //financial data
-        $payment = ProjectPayment::where('id_project', $id)
-            ->get()
-            ->sum('transfer');
+        $project_assets = new ProjectAssets;
 
-        $worker_payment = WorkerSalary::select(DB::raw('sum((salary * fullday)' 
-            . '+ (salary * halfday * 0.5)) as total'))
-            ->where('id_project', $id)
-            ->first();
-
-        $worker_contract = WorkerContract::where('id_project', $id)
-            ->get()
-            ->sum('contract_value');
-
-        $project_bonus = ProjectBonus::where('id_project', $id)
-            ->get()
-            ->sum('bonus');
-
-        $project_purchase = ProjectPurchase::select(DB::raw('sum(price_per_item * total_item) as total'))
-            ->where('id_project', $id)
-            ->first();
+        $income = $project_assets->getProjectIncome($id);
+        $outcome = $project_assets->getProjectOutcome($id);
+        $profit = $project_assets->getProjectProfit($id);
+        $project_obligation = $project_assets->getSalaryObligation($id);
         
-        $mutation_in = Mutation::where('destiny', $id)
-            ->get()
-            ->sum('nominal');
-
-        $mutation_out = Mutation::where('source', $id)
-            ->get()
-            ->sum('nominal');
-
-        $income = $payment + $mutation_in;
-        
-        $outcome = ($worker_payment->total) + $worker_contract + $project_bonus 
-            + ($project_purchase->total) + $mutation_out;
-
-        $assets = $income - $outcome;
-
-        if ($income > 0){
-            $profit = ($assets / $income) * 100;
-        }else {
-            $profit = 0;
-        }
-        //end financial data
-
-        //payment obligation
-        $salary_obli = PSTransaction::where('id_project', $id)
-            ->get()
-            ->sum('nominal');
-        
-        $bonus_obli = ProjectBonus::where('id_project', $id)
-            ->where('status', 'BELUM DIAMBIL')
-            ->get()
-            ->sum('bonus');
-        
-        $contract_obli = PCT::where('id_project', $id)
-            ->get()
-            ->sum('nominal');
-
-        $total_obli = $salary_obli + $bonus_obli + $contract_obli;
-
-        $project_obligation = ($worker_payment->total) 
-            + $worker_contract + $project_bonus - $total_obli;
-        //end payment obligation
-
         $data_project = Project::where('id_project', $id)
             ->first();
 
         $id_project = $id;
         
         return view('project.show', compact('data_project', 'id_project',
-            'income', 'outcome', 'assets', 'profit', 'project_obligation'));
+            'income', 'outcome', 'profit', 'project_obligation'));
     }
 
     /**

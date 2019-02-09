@@ -38,19 +38,6 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="dashboard-stat dashboard-stat-v2 purple">
-                    <div class="visual">
-                        <i class="fa fa-group"></i>
-                    </div>
-                    <div class="details">
-                        <div class="number">
-                            Rp <span data-counter="counterup" data-value="{{ number_format($project_obligation) }}">0</span>
-                        </div>
-                        <div class="desc"> Kewajiban (Pembayaran pekerja) </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="dashboard-stat dashboard-stat-v2 red">
                     <div class="visual">
                         <i class="fa fa-minus-circle"></i>
@@ -70,9 +57,22 @@
                     </div>
                     <div class="details">
                         <div class="number">
-                            Rp <span data-counter="counterup" data-value="{{ number_format($assets) }}">0</span>                           
+                            Rp <span data-counter="counterup" data-value="{{ number_format($profit) }}">0</span>                           
                         </div>
                         <div class="desc"> Profit </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="dashboard-stat dashboard-stat-v2 purple">
+                    <div class="visual">
+                        <i class="fa fa-group"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            Rp <span data-counter="counterup" data-value="{{ number_format($project_obligation) }}">0</span>
+                        </div>
+                        <div class="desc"> Kewajiban (Pembayaran Pekerja) </div>
                     </div>
                 </div>
             </div>           
