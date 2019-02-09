@@ -11,21 +11,65 @@ use App\ProjectPurchase;
 use App\Mutation;
 use App\WarehouseSell;
 use App\WarehouseRent;
+use App\RentPayment;
 use App\WorkerContract;
 use App\EmployeeSalary;
 use App\EmployeeBonus;
+use App\Transportation;
+use App\TransactionTransportation;
+use App\EmployeeTransaction;
+use App\SMDetail;
 
 class AssetsData extends Model
 {
     public function getCompanyProfit()
     {        
-        $company_asset = 0;
-        $company_asset = $this->getCompanyIncome() - $this->getCompanyOutcome();
+        $profit = $this->getCompanyIncome() - $this->getCompanyOutcome();
 
-        return $company_asset;
+        return $profit;
     }
 
     public function getCompanyIncome()
+    {
+        $income = $this->mutationToIncome() + $this->projectToIncome() + $this->transportToIncome()
+            + $this->sellToIncome() + $this->rentToIncome();
+
+        return $income;
+    }
+
+    public function getCompanyOutcome()
+    {
+        $outcome = $this->mutationToDecrease() + $this->salaryToDecrease() + $this->transportToDecrease();
+
+        return $outcome;
+    }
+
+    //company income from mutation
+    public function mutationToIncome()
+    {
+        //company income mutation
+        $company_mutation_in = Mutation::where('destiny', 'PERUSAHAAN')
+            ->get()
+            ->sum('nominal');
+        //end company income mutation
+
+        return $company_mutation_in;
+    }
+
+    // mutation out
+    public function mutationToDecrease()
+    {
+        //company income mutation
+        $company_mutation_out = Mutation::where('source', 'PERUSAHAAN')
+            ->get()
+            ->sum('nominal');
+        //end company income mutation
+
+        return $company_mutation_out;
+    }
+
+    //company income from project
+    public function projectToIncome()
     {
         //project assset
         $project_payment = DB::table('project')
@@ -81,49 +125,83 @@ class AssetsData extends Model
         $project_asset = $project_income - $project_outcome;        
         //end project asset
 
-        //company income mutation
-        $company_mutation_in = Mutation::where('destiny', 'PERUSAHAAN')
-            ->get()
-            ->sum('nominal');
-        //end company income mutation
+        return $project_asset;
+    }
 
+    //income from transportation
+    public function transportToIncome()
+    {
+        //transport income
+        $transport_income = TransactionTransportation::all()
+            ->sum('nominal');
+
+        return $transport_income;
+    }
+
+    public function transportToDecrease()
+    {
+        //transport outcome
+        $transport_outcome = Transportation::all()
+            ->sum('cost');
+
+        return $transport_outcome;
+
+    }
+
+    // income from selling
+    public function sellToIncome()
+    {
         //company income selling
         $company_sell = WarehouseSell::select(DB::raw('sum(price_per_item * number) as total'))
             ->first();
         //end compant income selling
 
-        //company income renting
-        $company_rent = RentPayment::all()
-            ->sum('nominal');
-        //end company income renting
-
-        $company_income = $project_asset + $company_mutation_in 
-            + ($company_sell->total) + $company_rent;
-
-        return $company_income;  
+        return $company_sell->total;
     }
 
-    public function getCompanyOutcome()
+    // income from renting
+    public function rentToIncome()
     {
-        //company outcome mutation
-        $company_mutation_out = Mutation::where('source', 'PERUSAHAAN')
-            ->get()
+        $rent_income = RentPayment::all()
             ->sum('nominal');
-        //end company outcome mutation        
 
-        //company outcome employee salary
-        $company_salary = EmployeeSalary::all()
-            ->sum('salary');
-        //end company outcome employee salary
+        return $rent_income;
+    }
+
+    // outcome from employee salary
+    public function salaryToDecrease()
+    {
+        // salary given
+        $salary_given = EmployeeTransaction::all()
+            ->sum('nominal');
+        // end salary given
 
         //company outcome employee bonus
-        $company_bonus = EmployeeBonus::all()
+        $company_bonus = EmployeeBonus::where('status', 'SUDAH DIAMBIL')
+            ->get()
             ->sum('bonus');
         //end company employee bonus
+        
+        $salary_outcome = $salary_given + $company_bonus;
 
-        $company_outcome = $company_mutation_out + $company_salary 
-            + $company_bonus;
-
-        return $company_outcome;
+        return $salary_outcome;
     }
+
+    public function getSalaryObligation()
+    {
+        // salary
+        $tot_salary = SMDetail::all()
+            ->sum('salary');
+        // end salary given
+
+        // bonus
+        $tot_bonus = EmployeeBonus::all()
+            ->sum('bonus');
+        // end bonus
+        
+        $salary_obli = ($tot_salary + $tot_bonus) - $this->salaryToDecrease();
+
+        return $salary_obli;
+    }
+
 }
