@@ -95,16 +95,18 @@
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </div>
-                                            <div class="col-xs-6">
-                                                <form action="{{ action('ClientController@destroy', $data->id_client) }}" method="POST">
-                                                    {{ method_field('DELETE') }}
-                                                    {{ csrf_field() }}
+                                            @can('delete client')
+                                                <div class="col-xs-6">
+                                                    <form action="{{ action('ClientController@destroy', $data->id_client) }}" method="POST">
+                                                        {{ method_field('DELETE') }}
+                                                        {{ csrf_field() }}
 
-                                                    <button type="submit" class="btn btn-icon-only red">
-                                                        <i class="fa fa-remove"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
+                                                        <button type="submit" class="btn btn-icon-only red">
+                                                            <i class="fa fa-remove"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            @endcan
                                         </div>
                                     </td>
                                 </tr>

@@ -15,7 +15,11 @@ Route::get('/', 'DashboardController@index');
 
 Route::resource('dashboard', 'DashboardController');
 
-Route::resource('client', 'ClientController');
+Route::group(['middleware' => [
+    'role:ADMIN|BENDAHARA'
+]], function(){
+    Route::resource('client', 'ClientController');
+});
 
 Route::resource('project', 'ProjectController');
 Route::get('project_update_status/{status}/{id}', [        
@@ -153,3 +157,10 @@ Route::get('salary_month_detail_create/{id}', [
 Route::resource('company_cash', 'CompanyCashController');
 
 Route::resource('private_money', 'PrivateMoneyController');
+
+Route::resource('user', 'UserController');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -12,6 +12,11 @@ class Employee extends Model
     public $incrementing = false;  
     public $timestamps = false;
 
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id_employee');
+    }
+
     public function employee_salary()
     {
         return $this->hasOne('App\EmployeeSalary', 'id_employee');

@@ -38,6 +38,20 @@
                     </li>                                      
                 </ul>
             </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-home"></i>
+                    <span class="title">Admin</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{ route('user.index') }}" class="nav-link ">
+                            <span class="title">Admin</span>
+                        </a>
+                    </li>                                      
+                </ul>
+            </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-shopping-cart"></i>
