@@ -15,11 +15,7 @@ Route::get('/', 'DashboardController@index');
 
 Route::resource('dashboard', 'DashboardController');
 
-Route::group(['middleware' => [
-    'role:ADMIN|BENDAHARA'
-]], function(){
-    Route::resource('client', 'ClientController');
-});
+Route::resource('client', 'ClientController');
 
 Route::resource('project', 'ProjectController');
 Route::get('project_update_status/{status}/{id}', [        
