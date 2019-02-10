@@ -52,6 +52,7 @@
                     </li>                                      
                 </ul>
             </li>
+            @can('read data project')
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-building-o"></i>
@@ -65,7 +66,8 @@
                         </a>
                     </li>                    
                 </ul>
-            </li>           
+            </li>
+            @endcan
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-cubes"></i>

@@ -7,6 +7,7 @@ var ComponentsDateTimePickers = function () {
                 rtl: App.isRTL(),
                 orientation: "left",
                 autoclose: true
+
             });
             //$('body').removeClass("modal-open"); // fix bug when inline picker is used in modal
         }

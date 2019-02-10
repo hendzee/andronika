@@ -158,6 +158,12 @@ class GeneratorId extends Model
                 $unique_code = 'TD';
                 $obj = new Driver();
             break;
+
+            case 'company_cash':
+                $search_id = 'id_cash';
+                $unique_code = 'CS';
+                $obj = new CompanyCash();
+                break;
         }
 
         do {

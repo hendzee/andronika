@@ -18,6 +18,9 @@ $(document).ready(function(){
     });
 
    checkMasking();
+   $('.date-picker').datepicker({
+       format: 'dd-mm-yyyy'
+   })
 });
 
 function checkMasking()
