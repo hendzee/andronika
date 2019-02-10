@@ -1,7 +1,7 @@
 @extends('layout.master')
 @section('content')
-     <!-- BEGIN CONTENT BODY -->
-     <div class="page-content">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
         <!-- BEGIN PAGE HEADER-->
         <!-- BEGIN PAGE BAR -->
         <div class="page-bar">
@@ -91,13 +91,14 @@
                 <div class="portlet light bordered">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="icon-share font-blue"></i>
-                            <span class="caption-subject font-blue bold uppercase">Projek</span>
+                            <span class="caption-subject font-blue bold uppercase">
+                                <i class="fa fa-building"></i> Projek
+                            </span>
                             <span class="caption-helper">Terbaru</span>
                         </div>
                         <div class="actions">
                             <div class="btn-group">
-                                <a class="btn green btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 
+                                <a class="btn green btn-sm" href="{{ route('project.index') }}"> 
                                     LIHAT SEMUA
                                 </a>
                             </div>
@@ -192,6 +193,172 @@
                                                             <a href="javascript:;" class="btn btn-sm btn-default">
                                                                 <i class="fa fa-search"></i> Lihat </a>
                                                         </td>
+                                                    </tr>    
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End: life time stats -->
+            </div>
+            <div class="col-md-6">
+                <!-- Begin: life time stats -->
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <span class="caption-subject font-blue bold uppercase">
+                                <i class="fa fa-shopping-cart"></i> Jual
+                            </span>
+                            <span class="caption-helper">Terbaru</span>
+                        </div>
+                        <div class="actions">
+                            <div class="btn-group">
+                                <a class="btn green btn-sm" href="{{ route('warehouse_sell.index') }}"> 
+                                    LIHAT SEMUA
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="tabbable-line">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#sell_1" data-toggle="tab"> BARU </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="sell_1">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th> ID Transaksi </th>
+                                                    <th> Nama </th>
+                                                    <th> Jumlah </th>
+                                                    <th> Harga / Satuan </th>
+                                                    <th> Total </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($data_sell as $data)
+                                                    <tr>
+                                                        <td>{{ $data->id_sell }}</td>
+                                                        <td>{{ $data->item_name }}</td>
+                                                        <td>{{ $data->number }}</td>
+                                                        <td>{{ $data->price_per_item }}</td>
+                                                        <td>{{ 'Rp ' . number_format($data->number * $data->price_per_item) }}</td>
+                                                    </tr>    
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End: life time stats -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Begin: life time stats -->
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <span class="caption-subject font-blue bold uppercase">
+                                <i class="fa fa-shopping-cart"></i> Penyewaan
+                            </span>
+                            <span class="caption-helper">Terbaru</span>
+                        </div>
+                        <div class="actions">
+                            <div class="btn-group">
+                                <a class="btn green btn-sm" href="{{ route('warehouse_rent.index') }}"> 
+                                    LIHAT SEMUA
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="tabbable-line">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#sell_1" data-toggle="tab"> BARU </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="sell_1">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th> ID Sewa </th>
+                                                    <th> Nama </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($data_rent as $data)
+                                                    <tr>
+                                                        <td>{{ $data->id_rent }}</td>
+                                                        <td>{{ $data->item_name }}</td>
+                                                    </tr>    
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End: life time stats -->
+            </div>
+            <div class="col-md-6">
+                <!-- Begin: life time stats -->
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <span class="caption-subject font-blue bold uppercase">
+                                <i class="fa fa-shopping-cart"></i> Transportasi
+                            </span>
+                            <span class="caption-helper">Terbaru</span>
+                        </div>
+                        <div class="actions">
+                            <div class="btn-group">
+                                <a class="btn green btn-sm" href="{{ route('transportation.index') }}"> 
+                                    LIHAT SEMUA
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="tabbable-line">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#sell_1" data-toggle="tab"> BARU </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="sell_1">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th> ID Transportasi </th>
+                                                    <th> Biaya </th>
+                                                    <th> Invoice </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($data_transport as $data)
+                                                    <tr>
+                                                        <td>{{ $data->id_transportation }}</td>
+                                                        <td>{{ 'Rp ' . number_format($data->cost) }}</td>
+                                                        <td>{{ 'Rp ' . number_format($data->total) }}</td>
                                                     </tr>    
                                                 @endforeach
                                             </tbody>

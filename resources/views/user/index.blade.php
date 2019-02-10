@@ -64,12 +64,12 @@
                                     <td>
                                         <div class="row button-on-table">
                                             <div class="col-xs-6">
-                                                <a href="{{ route('user.edit', $data->id_user) }}" class="btn btn-icon-only green">
+                                                <a href="{{ route('user.edit', $data->id_employee) }}" class="btn btn-icon-only green">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </div>
                                             <div class="col-xs-6">
-                                                <form action="{{ action('User@destroy', $data->id_user) }}" method="POST">
+                                                <form action="{{ action('UserController@destroy', $data->id_employee) }}" method="POST">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
 

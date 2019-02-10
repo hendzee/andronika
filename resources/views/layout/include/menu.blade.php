@@ -23,8 +23,8 @@
 
             <li class="heading">
                 <h3 class="uppercase">Admin Menu</h3>
-            </li>            
-            <li class="nav-item  ">
+            </li>
+            <li class="nav-item active">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-home"></i>
                     <span class="title">Dashboard</span>
@@ -33,11 +33,11 @@
                 <ul class="sub-menu">
                     <li class="nav-item  ">
                         <a href="{{ route('dashboard.index') }}" class="nav-link ">
-                            <span class="title">Menu</span>
+                            <span class="title">Dashboard</span>
                         </a>
                     </li>                                      
                 </ul>
-            </li>
+            </li>            
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-home"></i>
