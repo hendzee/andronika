@@ -161,6 +161,7 @@ Route::group(['middleware' => [
     Route::resource('user', 'UserController');
 
     Route::get('/home', 'HomeController@index')->name('home');
+
 });
 
 Auth::routes();

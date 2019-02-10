@@ -81,6 +81,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <button type="submit" class="btn red btn-block uppercase">Login</button>
         </div>
         <div class="form-actions">
+            
             <div class="pull-left">
                 <label class="rememberme mt-checkbox mt-checkbox-outline">
                     <input type="checkbox" name="remember" /> Remember me
