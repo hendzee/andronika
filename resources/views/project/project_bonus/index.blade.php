@@ -61,21 +61,31 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                        <a class="btn green btn-outline" href="javascript:;" data-toggle="dropdown">
+                                            <span class="hidden-xs"> Import | Print </span>
                                             <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right">
+                                        </a>
+                                        <ul class="dropdown-menu pull-right" id="sample_1_tools">
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-print"></i> Print </a>
+                                                <a href="javascript:;" data-action="0" class="tool-action">
+                                                    <i class="icon-printer"></i> Print</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
+                                                <a href="javascript:;" data-action="1" class="tool-action">
+                                                    <i class="icon-check"></i> Copy</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                                <a href="javascript:;" data-action="2" class="tool-action">
+                                                    <i class="icon-doc"></i> PDF</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="3" class="tool-action">
+                                                <i class="icon-paper-clip"></i> Excel</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="4" class="tool-action">
+                                                    <i class="icon-cloud-upload"></i> CSV</a>
+                                            </li>
                                             </li>
                                         </ul>
                                     </div>
@@ -91,7 +101,7 @@
                                     <th> Keterangan </th>
                                     <th> Status </th>
                                     <th> Tanggal Ambil </th>
-                                    <th> Aksi </th>                                    
+                                    <th class="no-sort"></th>                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -101,12 +111,18 @@
                                     <td>{{ $data->worker->name }}</td>
                                     <td>{{ 'Rp ' . number_format($data->bonus) }}</td> 
                                     <td>{{ $data->description }}</td>                    
-                                    <td>{{ $data->status }}</td>                                    
+                                    <td>
+                                    <span class="label label-sm {{ $data->status == 'DIAMBIL' ? 'label-success' : 'label-danger' }} top-space">
+                                            {{ $data->status }}
+                                        </span>
+                                    </td>                                    
                                     <td>
                                         @if($data->date_take != null)
                                             {{ date('d M, Y', strtotime($data->date_take)) }}
                                         @else
-                                            BELUM DIAMBIL
+                                            <span class="label label-sm label-danger top-space">
+                                                BELUM DIAMBIL
+                                            </span>
                                         @endif
                                     </td>                                                                                                                                                         
                                     <td>

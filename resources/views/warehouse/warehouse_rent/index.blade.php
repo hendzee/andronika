@@ -49,24 +49,31 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                        <a class="btn green btn-outline" href="javascript:;" data-toggle="dropdown">
+                                            <span class="hidden-xs"> Import | Print </span>
                                             <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right">
+                                        </a>
+                                        <ul class="dropdown-menu pull-right" id="sample_1_tools">
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-print"></i> Print 
-                                                </a>
+                                                <a href="javascript:;" data-action="0" class="tool-action">
+                                                    <i class="icon-printer"></i> Print</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF 
-                                                </a>
+                                                <a href="javascript:;" data-action="1" class="tool-action">
+                                                    <i class="icon-check"></i> Copy</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel 
-                                                </a>
+                                                <a href="javascript:;" data-action="2" class="tool-action">
+                                                    <i class="icon-doc"></i> PDF</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="3" class="tool-action">
+                                                <i class="icon-paper-clip"></i> Excel</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="4" class="tool-action">
+                                                    <i class="icon-cloud-upload"></i> CSV</a>
+                                            </li>
                                             </li>
                                         </ul>
                                     </div>
@@ -77,14 +84,17 @@
                             <thead>
                                 <tr>                                                                                                    
                                     <th> ID Peminjaman </th>
+                                    <th> ID Client </th>
                                     <th> Klien </th>
                                     <th> Nama Barang </th>                                
                                     <th> Jumlah </th>
                                     <th> Hrg. Sewa/Hari </th>
                                     <th> Tgl. Sewa </th>
+                                    <th> Durasi </th>
                                     <th> Tot. Pembayaran </th>
-                                    <th> Status </th>                                    
-                                    <th> Aksi </th>                                
+                                    <th> Sts.Bayar </th>                                    
+                                    <th> Sts.Kembali </th>                                    
+                                    <th class="no-sort"></th>                                
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,25 +108,19 @@
 
                                     <tr class="odd gradeX">                                                                       
                                         <td>{{ $data->id_rent }}</td>
-                                        <td>
-                                            {{ $data->client->description }}
-                                            <br/>
-                                            {{ $data->client->address }}
-                                        </td>
+                                        <td>{{ $data->client->id_client }}</td>
+                                        <td>{{ $data->client->description }}</td>
                                         <td>{{ $data->item_name }}</td>    
                                         <td>{{ $data->number_item }}</td>                                
                                         <td>{{ 'Rp ' . number_format($data->price_day) }}</td>
                                         <td>
                                             {{ 
-                                                date('d M, Y', strtotime($data->start)) 
+                                                date('d-m-Y', strtotime($data->start)) 
                                                 . ' - ' 
-                                                . date('d M, Y', strtotime($data->end))                                                                                             
+                                                . date('d-m-Y', strtotime($data->end))                                                                                             
                                             }}
-                                            <br/>
-                                            <span class="label label-sm label-danger top-space">
-                                                {{ $finalDiff . ' hari' }}
-                                            </span>
-                                        </td>                                   
+                                        </td>
+                                        <td>{{ $finalDiff . ' hari' }}</td>                                   
                                         <td>
                                             <a href="{{ route('rent_payment.show', $data->id_rent) }}">
                                                 @php
@@ -124,19 +128,20 @@
                                                 @endphp
                                                 {{ 'Rp ' . number_format($total) }}
                                             </a>
-                                            <br/>
+                                        </td>
+                                        <td>
                                             @if ($total <= ($data->payment->sum('nominal')))
-                                                <span class="label label-sm label-danger top-space">
+                                                <span class="label label-sm label-success">
                                                     LUNAS
                                                 </span>
                                             @else
-                                                <span class="label label-sm label-danger top-space">
+                                                <span class="label label-sm label-danger">
                                                     BELUM LUNAS
                                                 </span>
                                             @endif                                            
                                         </td>
                                         <td>
-                                            <span class="label label-sm label-danger">
+                                            <span class="label label-sm {{ $data->status == 'DISEWA' ? 'label-danger' : 'label-success' }}">
                                                 {{ $data->status }}
                                             </span>
                                         </td>                                    

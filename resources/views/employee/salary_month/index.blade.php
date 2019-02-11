@@ -40,32 +40,11 @@
                     <div class="portlet-body">
                         <div class="table-toolbar">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="btn-group">
                                         <a href="{{ route('salary_month.create') }}" id="sample_editable_1_new" class="btn sbold green"> 
                                             Tanggal Baru
                                         </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                            <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <a href="">
-                                                    <i class="fa fa-print"></i> Print </a>
-                                            </li>
-                                            <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                            </li>
-                                            <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +61,7 @@
                                     <tr class="odd gradeX">                                                                                                           
                                         <td>
                                             <a href="{{ route('salary_month_detail.show', $data->id_month) }}">
-                                                {{ date('d M, Y', strtotime($data->date)) }}
+                                                {{ date('d-m-Y', strtotime($data->date)) }}
                                             </a>
                                         </td>
                                         <td>

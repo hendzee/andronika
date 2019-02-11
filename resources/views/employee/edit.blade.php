@@ -41,16 +41,6 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group {{ $errors->has('age') ? 'has-error' : '' }}">
-                                    <label class="control-label col-md-3">Tanggal Lahir</label>
-                                    <div class="col-md-9">
-                                        <input name="age" value="{{ old('age', date('d/m/Y', strtotime($data_employee->age))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
-                                        
-                                        @if ($errors->has('age'))
-                                            <span class="help-block"> {{ $errors->first('age') }} </span>
-                                        @endif
-                                    </div>
-                                </div>
                                 <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Alamat</label>
                                     <div class="col-md-9">
@@ -58,6 +48,16 @@
                                         
                                         @if ($errors->has('address'))
                                             <span class="help-block"> {{ $errors->first('address') }} </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group {{ $errors->has('age') ? 'has-error' : '' }}">
+                                    <label class="control-label col-md-3">Tanggal Lahir</label>
+                                    <div class="col-md-9">
+                                        <input name="age" value="{{ old('age', date('d/m/Y', strtotime($data_employee->age))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        
+                                        @if ($errors->has('age'))
+                                            <span class="help-block"> {{ $errors->first('age') }} </span>
                                         @endif
                                     </div>
                                 </div>

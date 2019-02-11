@@ -33,21 +33,31 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                        <a class="btn green btn-outline" href="javascript:;" data-toggle="dropdown">
+                                            <span class="hidden-xs"> Import | Print </span>
                                             <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right">
+                                        </a>
+                                        <ul class="dropdown-menu pull-right" id="sample_1_tools">
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-print"></i> Print </a>
+                                                <a href="javascript:;" data-action="0" class="tool-action">
+                                                    <i class="icon-printer"></i> Print</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
+                                                <a href="javascript:;" data-action="1" class="tool-action">
+                                                    <i class="icon-check"></i> Copy</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                                <a href="javascript:;" data-action="2" class="tool-action">
+                                                    <i class="icon-doc"></i> PDF</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="3" class="tool-action">
+                                                <i class="icon-paper-clip"></i> Excel</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="4" class="tool-action">
+                                                    <i class="icon-cloud-upload"></i> CSV</a>
+                                            </li>
                                             </li>
                                         </ul>
                                     </div>
@@ -62,7 +72,7 @@
                                     <th> Tujuan </th>                                
                                     <th> Nominal </th>
                                     <th> date </th>                                    
-                                    <th> Aksi </th>                                
+                                    <th class="no-sort"> </th>                                
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,50 +80,52 @@
                                 <tr class="odd gradeX">                                                                       
                                     <td>{{ $data->id_mutation }}</td>
                                     <td>
-                                        @if ($data->source != 'PERUSAHAAN')
+                                        @if ($data->source != 'PERUSAHAAN' && $data->source != 'KAS' 
+                                            && $data->source != 'PRIBADI')
                                             @php
                                                 $get_project = App\Project::where('id_project', $data->source)
                                                     ->first();
                                             @endphp                                            
                                             {{ $get_project->name . ' | ' 
-                                                . date('d M, Y', strtotime($get_project->start))
+                                                . date('d-m-Y', strtotime($get_project->start))
                                             }}                                            
                                         @else                                            
                                             {{ $data->source }}                                            
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($data->destiny != 'PERUSAHAAN')
+                                        @if ($data->destiny != 'PERUSAHAAN' && $data->destiny != 'KAS' 
+                                            && $data->destiny != 'PRIBADI')
                                             @php
                                                 $get_project = App\Project::where('id_project', $data->destiny)
                                                     ->first();
                                             @endphp                                            
                                             {{ $get_project->name . ' | ' 
-                                                . date('d M, Y', strtotime($get_project->start))
+                                                . date('d-m-Y', strtotime($get_project->start))
                                             }}                                            
                                         @else                                            
                                             {{ $data->destiny }}                                            
                                         @endif
                                     </td>    
                                     <td>{{ 'Rp ' . number_format($data->nominal) }}</td>                                
-                                    <td>{{ date('m D, Y', strtotime($data->date)) }}</td>                                    
+                                    <td>{{ date('d-m-Y', strtotime($data->date)) }}</td>                                    
                                     <td>
-                                        <div class="btn-group">
-                                            <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                                AKSI <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li>
-                                                    <a href="{{ route('mutation.edit', $data->id_mutation) }}">
-                                                        <i class="icon-docs"></i> Edit 
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <i class="icon-tag"></i> Hapus
-                                                    </a>
-                                                </li>                                                
-                                            </ul>
+                                        <div class="row button-on-table">
+                                            <div class="col-xs-6">
+                                                <a href="{{ route('mutation.edit', $data->id_mutation) }}" class="btn btn-icon-only green">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <form action="{{ action('MutationController@destroy', $data->id_mutation) }}" method="POST">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+
+                                                    <button type="submit" class="btn btn-icon-only red">
+                                                        <i class="fa fa-remove"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

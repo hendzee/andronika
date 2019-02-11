@@ -53,21 +53,31 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                        <a class="btn green btn-outline" href="javascript:;" data-toggle="dropdown">
+                                            <span class="hidden-xs"> Import | Print </span>
                                             <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right">
+                                        </a>
+                                        <ul class="dropdown-menu pull-right" id="sample_1_tools">
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-print"></i> Print </a>
+                                                <a href="javascript:;" data-action="0" class="tool-action">
+                                                    <i class="icon-printer"></i> Print</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
+                                                <a href="javascript:;" data-action="1" class="tool-action">
+                                                    <i class="icon-check"></i> Copy</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                                <a href="javascript:;" data-action="2" class="tool-action">
+                                                    <i class="icon-doc"></i> PDF</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="3" class="tool-action">
+                                                <i class="icon-paper-clip"></i> Excel</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="4" class="tool-action">
+                                                    <i class="icon-cloud-upload"></i> CSV</a>
+                                            </li>
                                             </li>
                                         </ul>
                                     </div>
@@ -76,27 +86,25 @@
                         </div>
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
-                                <tr>                                                                                                    
-                                    <th> Karyawan </th>                                    
+                                <tr>
+                                    <th> ID Karyawan </th>                                                                                                    
+                                    <th> Nama </th>                                    
                                     <th> Divisi </th>
                                     <th> Tanggal Gaji </th>                                
                                     <th> Gaji Pokok </th>
                                     <th> Diambil </th>
                                     <th> Sisa </th>
                                     <th> Bonus </th>
-                                    <th> Aksi </th>                                
+                                    <th class="no-sort"></th>                                
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($data_detail as $data)
-                                <tr class="odd gradeX">                                                                                                           
-                                    <td>
-                                        {{ $data->employee->name }}
-                                        <br/>
-                                        {{ $data->id_employee }}
-                                    </td>
+                                <tr class="odd gradeX"> 
+                                    <td>{{ $data->id_employee }}</td>                                                                                                          
+                                    <td>{{ $data->employee->name }}</td>
                                     <td>{{ $data->employee->division }}</td>
-                                    <td>{{ date('d M, Y', strtotime($data->salary_month->date)) }}</td> 
+                                    <td>{{ date('d-m-Y', strtotime($data->salary_month->date)) }}</td> 
                                     <td>{{ 'Rp ' . number_format($data->salary) }}</td>                                
                                     <td>
                                         @php
@@ -104,8 +112,8 @@
                                         @endphp
                                         {{ 'Rp ' . number_format($transaction) }}
                                         <br/>
-                                        <a href="{{ route('employee_transaction_index', $data->id_detail) }}">
-                                            detail
+                                        <a href="{{ route('employee_transaction_index', $data->id_detail) }}" class="btn btn-circle btn-sm blue">
+                                            <i class="fa fa-search"></i>
                                         </a>
                                     </td>
                                     <td>{{ 'Rp ' . number_format(($data->salary - $transaction)) }}</td>
@@ -117,8 +125,8 @@
                                         @endphp
                                         {{ 'Rp ' . number_format($bonus) }}
                                         <br/>
-                                        <a href="{{ route('employee_bonus_index', $data->id_detail) }}">
-                                            detail
+                                        <a href="{{ route('employee_bonus_index', $data->id_detail) }}" class="btn btn-circle btn-sm blue">
+                                            <i class="fa fa-search"></i>
                                         </a>
                                     </td>
                                     <td>

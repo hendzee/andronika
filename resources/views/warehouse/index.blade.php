@@ -49,21 +49,31 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                        <a class="btn green btn-outline" href="javascript:;" data-toggle="dropdown">
+                                            <span class="hidden-xs"> Import | Print </span>
                                             <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right">
+                                        </a>
+                                        <ul class="dropdown-menu pull-right" id="sample_1_tools">
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-print"></i> Print </a>
+                                                <a href="javascript:;" data-action="0" class="tool-action">
+                                                    <i class="icon-printer"></i> Print</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
+                                                <a href="javascript:;" data-action="1" class="tool-action">
+                                                    <i class="icon-check"></i> Copy</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                                <a href="javascript:;" data-action="2" class="tool-action">
+                                                    <i class="icon-doc"></i> PDF</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="3" class="tool-action">
+                                                <i class="icon-paper-clip"></i> Excel</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="4" class="tool-action">
+                                                    <i class="icon-cloud-upload"></i> CSV</a>
+                                            </li>
                                             </li>
                                         </ul>
                                     </div>
@@ -80,7 +90,7 @@
                                     <th> Dipinjam </th>
                                     <th> Tersedia </th>
                                     <th> Status Pinjam </th>
-                                    <th> Aksi </th>                                                            
+                                    <th class="no-sort"> </th>                                                            
                                 </tr>
                             </thead>
                             <tbody>                                
@@ -97,42 +107,54 @@
                                     <td>
                                         @php
                                             $repair = 0;
+                                            $repair = $data->repair_and_used == null ? 0 : $data->repair_and_used->number_repair
                                         @endphp
-
-                                        {{ $repair = $data->repair_and_used == null ? 0 : $data->repair_and_used->number_repair }}                                        
-                                        {{ ' ' . $data->measure }}
+                                        
+                                        {{  $repair . ' ' . $data->measure }}                                        
                                     </td>
                                     <td>
                                         @php
                                             $used = 0;    
+                                            $used = $data->repair_and_used == null ? : $data->repair_and_used->number_used
                                         @endphp
 
-                                        {{ $used = $data->repair_and_used == null ? : $data->repair_and_used->number_used }}                                        
-                                        {{ ' ' . $data->measure }}
+                                        {{  $used . ' ' . $data->measure}}                                        
                                     </td>
                                     <td>
                                         @if ($data->rent_status == 'BOLEH')
                                             @php
                                                 $rent = 0;
+                                                $rent = $data->rent->sum('number_item')
                                             @endphp
 
-                                            {{ $rent = $data->rent->sum('number_item') }}   
-                                            {{ ' ' . $data->measure }}                                                                                     
+                                            {{  $rent . ' ' . $data->measure}}   
                                         @else
                                             -
                                         @endif                                        
                                     </td>
                                     <td>
-                                          @if ($data->rent_status == 'BOLEH')
-                                              {{ $data->number - ($repair + $used + $rent) }}
-                                          @else
-                                              {{ $data->number - ($repair + $used) }}
-                                          @endif  
-
-                                          {{ ' ' . $data->measure }}
+                                        @php
+                                            $current_number = 0;
+                                        @endphp
+                                        
+                                        @if ($data->rent_status == 'BOLEH')
+                                            @php
+                                                $current_number = ($data->number - ($repair + $used + $rent)) 
+                                            @endphp
+                                            
+                                            {{  $current_number . ' ' . $data->measure }}
+                                        @else
+                                            @php
+                                                $current_number = ($data->number - ($repair + $used))   
+                                            @endphp
+                                            
+                                            {{  $current_number . ' ' . $data->measure }}
+                                        @endif  
                                     </td>   
-                                    <td> 
-                                        {{ $data->rent_status }}                                         
+                                    <td>
+                                        <span class="label label-sm {{ $data->rent_status == 'BOLEH' ? 'label-info' : 'label-danger'}} top-space">
+                                            {{ $data->rent_status }}                                         
+                                        </span> 
                                     </td>                                     
                                     <td>
                                         <div class="row button-on-table">

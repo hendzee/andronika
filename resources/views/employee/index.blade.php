@@ -49,21 +49,31 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                        <a class="btn green btn-outline" href="javascript:;" data-toggle="dropdown">
+                                            <span class="hidden-xs"> Import | Print </span>
                                             <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right">
+                                        </a>
+                                        <ul class="dropdown-menu pull-right" id="sample_1_tools">
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-print"></i> Print </a>
+                                                <a href="javascript:;" data-action="0" class="tool-action">
+                                                    <i class="icon-printer"></i> Print</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
+                                                <a href="javascript:;" data-action="1" class="tool-action">
+                                                    <i class="icon-check"></i> Copy</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                                <a href="javascript:;" data-action="2" class="tool-action">
+                                                    <i class="icon-doc"></i> PDF</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="3" class="tool-action">
+                                                <i class="icon-paper-clip"></i> Excel</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="4" class="tool-action">
+                                                    <i class="icon-cloud-upload"></i> CSV</a>
+                                            </li>
                                             </li>
                                         </ul>
                                     </div>
@@ -81,17 +91,24 @@
                                     <th> Gender </th>
                                     <th> Agama </th>
                                     <th> Divisi </th>
-                                    <th> Aksi </th>                                
+                                    <th class="no-sort"> </th>                                
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($data_employee as $data)
-                                <tr class="odd gradeX">                                                                       
+                                <tr class="odd gradeX">
+                                    @php
+                                        $born = new DateTime($data->age);
+                                        $now = new DateTime('now');
+                                        $diff = date_diff($born, $now);
+                                        $finalDiff =  ($diff->format('%y'));
+                                    @endphp
+
                                     <td>{{ $data->id_employee }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->address }}</td>    
                                     <td>{{ $data->telp }}</td>                                
-                                    <td>{{ $data->age }}</td>
+                                    <td>{{ $finalDiff . ' th' }}</td>
                                     <td>{{ $data->gender }}</td>
                                     <td>{{ $data->religion }}</td>
                                     <td>{{ $data->division }}</td>

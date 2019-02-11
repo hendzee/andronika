@@ -48,21 +48,31 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                        <a class="btn green btn-outline" href="javascript:;" data-toggle="dropdown">
+                                            <span class="hidden-xs"> Import | Print </span>
                                             <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right">
+                                        </a>
+                                        <ul class="dropdown-menu pull-right" id="sample_1_tools">
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-print"></i> Print </a>
+                                                <a href="javascript:;" data-action="0" class="tool-action">
+                                                    <i class="icon-printer"></i> Print</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
+                                                <a href="javascript:;" data-action="1" class="tool-action">
+                                                    <i class="icon-check"></i> Copy</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                                <a href="javascript:;" data-action="2" class="tool-action">
+                                                    <i class="icon-doc"></i> PDF</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="3" class="tool-action">
+                                                <i class="icon-paper-clip"></i> Excel</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="4" class="tool-action">
+                                                    <i class="icon-cloud-upload"></i> CSV</a>
+                                            </li>
                                             </li>
                                         </ul>
                                     </div>
@@ -71,7 +81,8 @@
                         </div>
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
-                                <tr>                                                                                                    
+                                <tr>
+                                    <th> ID Projek </th>                                                                                                    
                                     <th> Projek </th>
                                     <th> Klien </th>                                                                 
                                     <th> Mulai </th>
@@ -79,12 +90,13 @@
                                     <th> Pulau </th>  
                                     <th> Status </th>
                                     <th> Hrg. Projek </th>  
-                                    <th> Aksi </th>                                 
+                                    <th class="no-sort"> </th>                                 
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($data_project as $data)
-                                <tr class="odd gradeX">                                                                       
+                                <tr class="odd gradeX">
+                                    <td> {{ $data->id_project }} </td>                                                                       
                                     <td>                                        
                                         <a href="project/{{ $data->id_project }}">
                                             {{ $data->name }}
@@ -92,24 +104,33 @@
                                     </td>
                                     <td>
                                         {{ $data->client->description }}
-                                        <br/>
-                                        {{ $data->id_client }}                                
                                     </td>
-                                    <td>{{ date('d M, Y', strtotime($data->start)) }}</td>                                
-                                    <td>{{ date('d M, Y', strtotime($data->end)) }}</td>                                    
+                                    <td>{{ date('d-m-Y', strtotime($data->start)) }}</td>                                
+                                    <td>{{ date('d-m-Y', strtotime($data->end)) }}</td>                                    
                                     <td>{{ $data->island }}</td>                                    
                                     <td>
-                                        {{ $data->status }}
-                                        <br/>
-                                        @if ($data->status == 'PROSES')
-                                            <a href="{{ route('project_update_status', ['status' => 'SELESAI', 'id' => $data->id_project]) }}" >
-                                                Update (Selesai)
-                                            </a>
-                                        @else
-                                            <a href="{{ route('project_update_status', ['status' => 'PROSES', 'id' => $data->id_project]) }}" >
-                                                Update (Proses)
-                                            </a>
-                                        @endif                                
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <span class="label label-sm top-space {{ $data->status == 'SELESAI' ? 'label-info' : 'label-danger' }}">
+                                                    {{ $data->status }}
+                                                </span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                @if ($data->status == 'PROSES')
+                                                    <a href="{{ route('project_update_status', ['status' => 'SELESAI', 'id' => $data->id_project]) }}" >
+                                                        <span class="label label-sm label-info top-space">
+                                                            <i class="fa fa-refresh"></i>
+                                                        </span>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('project_update_status', ['status' => 'PROSES', 'id' => $data->id_project]) }}" >
+                                                        <span class="label label-sm label-danger top-space">
+                                                            <i class="fa fa-refresh"></i>
+                                                        </span>
+                                                    </a>
+                                                @endif                                
+                                            </div>
+                                        </div>
                                     </td>
                                     <td>{{ 'Rp ' . number_format($data->total) }}</td>                                    
                                     <td>

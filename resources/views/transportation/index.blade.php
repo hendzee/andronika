@@ -49,21 +49,31 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                        <a class="btn green btn-outline" href="javascript:;" data-toggle="dropdown">
+                                            <span class="hidden-xs"> Import | Print </span>
                                             <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right">
+                                        </a>
+                                        <ul class="dropdown-menu pull-right" id="sample_1_tools">
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-print"></i> Print </a>
+                                                <a href="javascript:;" data-action="0" class="tool-action">
+                                                    <i class="icon-printer"></i> Print</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
+                                                <a href="javascript:;" data-action="1" class="tool-action">
+                                                    <i class="icon-check"></i> Copy</a>
                                             </li>
                                             <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                                <a href="javascript:;" data-action="2" class="tool-action">
+                                                    <i class="icon-doc"></i> PDF</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="3" class="tool-action">
+                                                <i class="icon-paper-clip"></i> Excel</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="4" class="tool-action">
+                                                    <i class="icon-cloud-upload"></i> CSV</a>
+                                            </li>
                                             </li>
                                         </ul>
                                     </div>
@@ -74,40 +84,50 @@
                             <thead>
                                 <tr>                                                                                                    
                                     <th> ID Tranportasi </th>
+                                    <th> ID Supir </th>
                                     <th> Supir </th>                               
                                     <th> Pengantaran </th>
                                     <th> Biaya Transport </th>
-                                    <th> Harga Sewa </th>
+                                    <th> Har.Sewa </th>
+                                    <th> Sts.Bayar </th>
                                     <th> Keuntungan </th>
                                     <th> Tanggal Pengantaran </th>
                                     <th> Keterangan </th>
-                                    <th> Aksi </th>                                
+                                    <th class="no-sort"></th>                                
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($data_transportation as $data)
                                     <tr class="odd gradeX">
                                         <td> {{ $data->id_transportation }} </td>
-                                        <td> {{ $data->employee->name .'|'. $data->employee->id_employee }} </td>
+                                        <td> {{ $data->employee->id_employee }} </td>
+                                        <td> {{ $data->employee->name }} </td>
                                         <td> 
-                                            {{ $data->starting_point .' - '. $data->destination }} 
-                                            <br> 
-                                            {{ $data->distance .' Km ' }} 
+                                            {{ 
+                                                $data->starting_point 
+                                                . ' - ' . $data->destination 
+                                                . ', ' . $data->distance . ' Km ' 
+                                            }} 
                                         </td>
                                         <td> {{ 'Rp ' . number_format($data->cost) }} </td>
                                         <td>
                                             <a href="{{ route('transaction_transportation_index' , $data->id_transportation)}}"> 
                                                 {{ 'Rp ' . number_format($data->total) }} 
                                             </a>
-
+                                        </td>
+                                        <td>
                                             @if ($data->total - ($data->transaction_transportation->sum('nominal')) > 0)
-                                                <span class="label label-sm label-danger top-space">
+                                                <span class="label label-sm label-danger">
                                                     BELUM LUNAS
+                                                </span>
+                                            @else
+                                                <span class="label label-sm label-success">
+                                                    LUNAS
                                                 </span>
                                             @endif
                                         </td>
                                         <td> {{ 'Rp ' . number_format(($data->total-$data->cost)) }} </td>
-                                        <td> {{ date('d M, Y', strtotime($data->date)) }} </td>
+                                        <td> {{ date('d-m-Y', strtotime($data->date)) }} </td>
                                         <td> {{ $data->description }} </td>  
                                         <td>
                                             <div class="row button-on-table">
