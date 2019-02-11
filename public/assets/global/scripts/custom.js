@@ -22,7 +22,7 @@ $(document).ready(function(){
         });
     });
 
-   checkMasking();
+    checkMasking();
 
     $('#sample_1').dataTable({
         language: {
@@ -42,6 +42,9 @@ $(document).ready(function(){
             extend: "print",
             className: "btn dark btn-outline"
         }, {
+            extend: "copy",
+            className: "btn red btn-outline"
+        }, {
             extend: "pdf",
             className: "btn green btn-outline"
         }, {
@@ -50,7 +53,15 @@ $(document).ready(function(){
         }, {
             extend: "csv",
             className: "btn purple btn-outline "
+        }, {
+            extend: "colvis",
+            className: "btn dark btn-outline",
+            text: "Columns"
         }],
+        columnDefs: [{ 
+            targets: 'no-sort', 
+            orderable: false 
+        }],  
         lengthMenu: [
             [5, 10, 15, 20, -1],
             [5, 10, 15, 20, "All"]
@@ -58,6 +69,13 @@ $(document).ready(function(){
         pageLength: 5,
         dom: "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>"
     })
+
+    $("#sample_1_tools > li > a.tool-action").on("click", function () {
+        var e = $(this).attr("data-action");
+        $('#sample_1').DataTable().button(e).trigger()
+    })
+
+    $('.dt-buttons').hide();
 });
 
 function checkMasking()

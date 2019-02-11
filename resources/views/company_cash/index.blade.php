@@ -68,7 +68,35 @@
                                     </a>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="tools"> </div>
+                                    <div class="btn-group pull-right">
+                                        <a class="btn green btn-outline" href="javascript:;" data-toggle="dropdown">
+                                            <span class="hidden-xs"> Import | Print </span>
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right" id="sample_1_tools">
+                                            <li>
+                                                <a href="javascript:;" data-action="0" class="tool-action">
+                                                    <i class="icon-printer"></i> Print</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="1" class="tool-action">
+                                                    <i class="icon-check"></i> Copy</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="2" class="tool-action">
+                                                    <i class="icon-doc"></i> PDF</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="3" class="tool-action">
+                                                <i class="icon-paper-clip"></i> Excel</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" data-action="4" class="tool-action">
+                                                    <i class="icon-cloud-upload"></i> CSV</a>
+                                            </li>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +109,7 @@
                                     <th> Harga Per Satuan </th>
                                     <th> Total </th>
                                     <th> Total Harga </th>
-                                    <th> Aksi </th>                                
+                                    <th class="no-sort"> </th>                                
                                 </tr>
                             </thead>
                             <tbody>
