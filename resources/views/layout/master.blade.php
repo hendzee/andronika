@@ -142,20 +142,24 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{ asset('assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/global/plugins/datatables/datatables.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/global/plugins/datatables/datatables.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/global/plugins/jquery-mask/jquery.mask.js') }}" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="{{ asset('assets/global/scripts/app.min.js') }}" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
+
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ asset('assets/pages/scripts/dashboard.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/pages/scripts/table-datatables-managed.min.js') }}" type="text/javascript"></script>
+{{-- <script src="{{ asset('assets/pages/scripts/table-datatables-managed.min.js') }}" type="text/javascript"></script> --}}
+{{-- <script src="{{ asset('assets/pages/scripts/table-datatables-buttons.min.js') }}" type="text/javascript"></script> --}}
 <script src="{{ asset('assets/pages/scripts/components-date-time-pickers.min.js') }}" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
+
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <script src="{{ asset('assets/layouts/layout/scripts/layout.min.js') }}" type="text/javascript"></script>
-<!-- <script src="{{ asset('assets/layouts/layout/scripts/demo.min.js') }}" type="text/javascript"></script> -->
+{{-- <!-- <script src="{{ asset('assets/layouts/layout/scripts/demo.min.js') }}" type="text/javascript"></script> --> --}}
 <script src="{{ asset('assets/layouts/global/scripts/quick-sidebar.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/layouts/global/scripts/quick-nav.min.js') }}" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->

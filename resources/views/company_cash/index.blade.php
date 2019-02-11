@@ -68,25 +68,7 @@
                                     </a>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                            <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <a href="">
-                                                    <i class="fa fa-print"></i> Print </a>
-                                            </li>
-                                            <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                            </li>
-                                            <li>
-                                                <a href="">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <div class="tools"> </div>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +88,7 @@
                                 @foreach($data_cash as $data)
                                 <tr class="odd gradeX">
                                     <td> {{ $data->id_transaction }}</td>
-                                    <td> {{ date('d M, Y', strtotime($data->date)) }}</td>
+                                    <td> {{ date('d-m-Y', strtotime($data->date)) }}</td>
                                     <td> {{ $data->description }}</td>
                                     <td> {{ "Rp " . number_format($data->price) }}</td>
                                     <td> {{ $data->number }}</td>
