@@ -32,7 +32,7 @@
         <!-- BEGIN DASHBOARD STATS 1-->
         <div class="row">
             <div class="col-xs-6">
-                <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
+                <div class="dashboard-stat dashboard-stat-v2 blue">
                     <div class="visual">
                         <i class="fa fa-comments"></i>
                     </div>
@@ -42,10 +42,10 @@
                         </div>
                         <div class="desc"> Total Pemasukkan </div>
                     </div>
-                </a>
+                </div>
             </div>
             <div class="col-xs-6">
-                <a class="dashboard-stat dashboard-stat-v2 red" href="#">
+                <div class="dashboard-stat dashboard-stat-v2 red">
                     <div class="visual">
                         <i class="fa fa-bar-chart-o"></i>
                     </div>
@@ -55,10 +55,10 @@
                         </div>
                         <div class="desc"> Total Pengeluaran </div>
                     </div>
-                </a>
+                </div>
             </div>
             <div class="col-xs-6">
-                <a class="dashboard-stat dashboard-stat-v2 green" href="#">
+                <div class="dashboard-stat dashboard-stat-v2 green">
                     <div class="visual">
                         <i class="fa fa-shopping-cart"></i>
                     </div>
@@ -68,10 +68,10 @@
                         </div>
                         <div class="desc"> Profit Perusahaan </div>
                     </div>
-                </a>
+                </div>
             </div>
             <div class="col-xs-6">
-                <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
+                <div class="dashboard-stat dashboard-stat-v2 purple">
                     <div class="visual">
                         <i class="fa fa-globe"></i>
                     </div>
@@ -80,7 +80,7 @@
                             Rp <span data-counter="counterup" data-value="{{ number_format($data_obli) }}"> </div>
                         <div class="desc"> Kewajiban (Gaji Pegawai) </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
         <div class="clearfix"></div>
