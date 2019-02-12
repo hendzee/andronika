@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -35,5 +36,21 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function attemptLogin(Request $request)
+    {
+
+        $loggedIn = \Auth::attempt([
+            'id_employee' => $request->id_employee,
+            'password' => $request->password,
+        ], $request->filled('remember'));
+
+        return $loggedIn;
+    }
+
+    public function username()
+    {
+        return 'id_employee';
     }
 }

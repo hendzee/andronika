@@ -10,13 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-
-    Route::group(['middleware' => [
-        'role:ADMIN|BENDAHARA'
-]], function(){
     Route::get('/', 'DashboardController@index');
+
+    Route::resource('client', 'ClientController');
 
     Route::resource('dashboard', 'DashboardController');
 
@@ -160,11 +156,7 @@
 
     Route::resource('user', 'UserController');
 
-    // Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/home', 'DashboardController@index')->name('home');
-
-});
-
-Auth::routes();
+    Auth::routes();
 

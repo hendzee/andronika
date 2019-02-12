@@ -76,6 +76,13 @@ $(document).ready(function(){
     })
 
     $('.dt-buttons').hide();
+
+    // LOGOUT
+    $('#btn-logout').on('click', function(e){
+        e.preventDefault();
+
+        $('#logout-form').submit();
+    })
 });
 
 function checkMasking()
