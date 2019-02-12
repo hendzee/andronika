@@ -62,6 +62,8 @@ class ProjectAssets extends Model
         $project_purchase = ProjectPurchase::select(DB::raw('sum(price_per_item * total_item) as total'))
             ->where('id_project', $id)
             ->first();
+
+        return $project_purchase->total;
     }
 
     public function salaryToDecrease($id)
