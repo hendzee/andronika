@@ -40,7 +40,7 @@
             </li>            
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-home"></i>
+                    <i class="fa fa-exclamation-triangle"></i>
                     <span class="title">Admin</span>
                     <span class="arrow"></span>
                 </a>

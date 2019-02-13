@@ -61,8 +61,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <body class=" login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-    <h2>PT. Andronika Delta Putra</h2>
-    <sub>Perusahaan Kontraktor Sulawesi Selatan Kota Luwuk</sub>
+    <a href="{{ route('home') }}">
+        <img src="{{ asset('assets/pages/img/logo-big-white.png') }}" style="height: 100px;" alt="" /> 
+        <h5>PT. Andronika Putra Delta - Sistem Admin</h5>
+    </a>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
@@ -71,7 +73,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <form class="login-form" action="{{ route('login') }}" method="post">
         @csrf
         <div class="form-title">
-            <span class="form-title">Masukan ID dan password</span>
+            <span class="form-title">Selamat datang.</span>
             <span class="form-subtitle">Login</span>
         </div>
         <div class="alert alert-danger display-hide">
