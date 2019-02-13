@@ -18,6 +18,9 @@ class ProjectPaymentController extends Controller
     public function index($id)
     {
         $data_payment = ProjectPayment::where('id_project', $id)->get();
+        $invoice = Project::where('id_project', $id)
+            ->first()
+            ->value('total');
         $id_project = $id;
         $total_trans = ProjectPayment::where('id_project', $id)
             ->sum('transfer');
@@ -26,7 +29,7 @@ class ProjectPaymentController extends Controller
         $remain = ($total->total - $total_trans);
 
         return view('project.project_payment.index', compact('data_payment', 
-            'id_project', 'total_trans', 'remain'));
+            'id_project', 'total_trans', 'remain', 'invoice'));
     }
 
     /**

@@ -88,7 +88,7 @@
                                     <th> Supir </th>                               
                                     <th> Pengantaran </th>
                                     <th> Biaya Transport </th>
-                                    <th> Har.Sewa </th>
+                                    <th> Hrg.Sewa </th>
                                     <th> Sts.Bayar </th>
                                     <th> Keuntungan </th>
                                     <th> Tanggal Pengantaran </th>
