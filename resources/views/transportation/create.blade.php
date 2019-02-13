@@ -28,7 +28,20 @@
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
                         <form action="{{ action('TransportationController@store') }}" method="POST" class="form-horizontal form-row-seperated">
-                            <div class="form-body">     
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Klien</label>
+                                    <div class="col-md-9">
+                                        <select name="id_client" class="form-control">
+                                            @foreach($data_client as $data)
+                                                <option value="{{ $data->id_client }}">
+                                                    {{ $data->description . ' | ' . $data->address }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="help-block"> Keterangan Klien / Pembeli </span>
+                                    </div>
+                                </div>     
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Supir</label>
                                     <div class="col-md-9">

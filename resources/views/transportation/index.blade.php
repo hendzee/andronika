@@ -85,7 +85,9 @@
                                 <tr>                                                                                                    
                                     <th> ID Tranportasi </th>
                                     <th> ID Supir </th>
-                                    <th> Supir </th>                               
+                                    <th> ID Klien </th>
+                                    <th> Supir </th>
+                                    <th> Klien </th>               
                                     <th> Pengantaran </th>
                                     <th> Biaya Transport </th>
                                     <th> Hrg.Sewa </th>
@@ -100,8 +102,10 @@
                                 @foreach($data_transportation as $data)
                                     <tr class="odd gradeX">
                                         <td> {{ $data->id_transportation }} </td>
-                                        <td> {{ $data->employee->id_employee }} </td>
+                                        <td> {{ $data->id_employee }} </td>
+                                        <td> {{ $data->id_client }} </td>
                                         <td> {{ $data->employee->name }} </td>
+                                        <td> {{ $data->client->description }} </td>
                                         <td> 
                                             {{ 
                                                 $data->starting_point 

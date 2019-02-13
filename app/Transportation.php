@@ -18,6 +18,11 @@ class Transportation extends Model
         return $this->belongsTo('App\Employee', 'id_employee');
     }
 
+    public function client()
+    {
+        return $this->belongsTo('App\Client', 'id_client');
+    }
+
     public function transaction_transportation()
     {
         return $this->hasMany('App\TransactionTransportation', 'id_transportation');
