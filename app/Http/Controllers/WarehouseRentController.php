@@ -34,7 +34,12 @@ class WarehouseRentController extends Controller
         $data_item = Warehouse::where('rent_status', 'BOLEH')
             ->get();
 
-        return view('warehouse.warehouse_rent.create', compact('data_client', 'data_item'));
+        if (count($data_client) > 0){
+            return view('warehouse.warehouse_rent.create', compact('data_client', 'data_item'));
+        }else {
+            return redirect('project')
+                ->with('error', 'Data klien kosong, isi minimal 1 klien.');;
+        }
     }
 
     /**

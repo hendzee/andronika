@@ -35,8 +35,13 @@ class TransportationController extends Controller
             ->get();
 
         $data_client = Client::all();
-        
-        return view('transportation.create', compact('data_employee', 'data_client'));
+
+        if (count($data_client) > 0){
+            return view('transportation.create', compact('data_employee', 'data_client'));
+        }else {
+            return redirect('project')
+                ->with('error', 'Data klien kosong, isi minimal 1 klien.');;
+        }
     }
 
     /**
