@@ -14,12 +14,6 @@ class RolePermision extends Seeder
      */
     public function run()
     {
-        User::create( 
-        [
-            'id_employee' => '002',
-            'name' => 'brian',
-            'email' => 'brian@gmail.com',
-            'password' => bcrypt('brian')
-        ]);
+        
     }
 }

@@ -138,7 +138,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-xs-6">
-                                                <form action="{{ action('SMDetailController@destroy', $data->id_detail) }}" method="POST">
+                                                <form action="{{ action('SMDetailController@destroy', $data->id_detail) }}" method="POST" class="form-del" data-type="salary-month-detail">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
 

@@ -61,6 +61,15 @@ class SalaryMonthController extends Controller
             $x = 0;
 
             foreach ($data_employee as $key => $data) {
+                
+                if ($data->employee_salary == null){
+                    $stop_store = SalaryMonth::where('id_month', $id_month)
+                        ->delete();
+
+                    return redirect('salary_month/')
+                        ->with('error', 'Ada karyawan yang tidak memiliki gaji pokok, pastikan semua gaji pokok telah terisi.');
+                }
+
                 $data_insert[] = array(
                     'id_month' => $id_month,
                     'id_detail' => $gen->generateId('salary_month_detail') . $x,

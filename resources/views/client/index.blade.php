@@ -76,7 +76,7 @@
                                     <th> Alamat </th>
                                     <th> Telpon </th>                                
                                     <th> Email </th>
-                                    <th> Deskripsi </th>  
+                                    <th> Nama </th>  
                                     <th> Aksi </th>                                 
                                 </tr>
                             </thead>
@@ -95,18 +95,16 @@
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </div>
-                                            @can('delete client')
-                                                <div class="col-xs-6">
-                                                    <form action="{{ action('ClientController@destroy', $data->id_client) }}" method="POST">
-                                                        {{ method_field('DELETE') }}
-                                                        {{ csrf_field() }}
+                                            <div class="col-xs-6">
+                                                <form action="{{ action('ClientController@destroy', $data->id_client) }}" method="POST" class="form-del" data-type="client">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
 
-                                                        <button type="submit" class="btn btn-icon-only red">
-                                                            <i class="fa fa-remove"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            @endcan
+                                                    <button type="submit" class="btn btn-icon-only red">
+                                                        <i class="fa fa-remove"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

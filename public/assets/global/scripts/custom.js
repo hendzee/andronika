@@ -82,9 +82,76 @@ $(document).ready(function(){
         e.preventDefault();
 
         $('#logout-form').submit();
-    })
+    });
+
+    // CLIENT DELETE ALERT
+    $('.form-del').each(function(){
+        $(this).submit(function(e){
+            e.preventDefault();
+            
+            var form = this;
+            var data = "";
+
+            switch ($(this).data("type")) {
+                case "client":
+                    data = "Klien";
+                    break;
+
+                case "project":
+                    data = "Projek";
+                    break;
+
+                case "project-supply":
+                    data = "Projek supply";
+                    break;
+
+                case "warehouse":
+                    data = "warehouse";
+                    break;
+
+                case "warehouse-rent":
+                    data = "warehouse-rent";
+                    break;
+
+                case "employee":
+                    data = "employee";
+                    break;
+
+                case "salary-month":
+                    data = "salary-month";
+                    break;
+
+                case "salary-month-detail":
+                    data = "salary-month-detail";
+                    break;
+
+                case "transportation":
+                    data = "transportation";
+                    break;
+            
+                default:
+                    data = "";
+                    break;
+            }
+
+            swal({
+                title: "Data ini terhubung dengan data lain !",
+                text: data,
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "Batalkan",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Tetap hapus",
+                closeOnConfirm: false
+                },
+                function (isTrue) {
+                    if (isTrue) form.submit();
+            });
+        });
+    });
 });
 
+// check masking value on load page
 function checkMasking()
 {
     $('.form-group').each(function(){
@@ -96,3 +163,4 @@ function checkMasking()
         }
     });
 }
+

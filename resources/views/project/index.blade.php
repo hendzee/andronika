@@ -141,7 +141,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-xs-6">
-                                                <form action="{{ action('ProjectController@destroy', $data->id_project) }}" method="POST">
+                                                <form action="{{ action('ProjectController@destroy', $data->id_project) }}" method="POST" class="form-del" data-type="project">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
 

@@ -120,7 +120,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-xs-6">
-                                                <form action="{{ action('EmployeeController@destroy', $data->id_employee) }}" method="POST">
+                                                <form action="{{ action('EmployeeController@destroy', $data->id_employee) }}" method="POST" class="form-del" data-type="employee">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
 

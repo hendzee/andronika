@@ -72,7 +72,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <form action="{{ action('SalaryMonthController@destroy', $data->id_month) }}" method="POST">
+                                                    <form action="{{ action('SalaryMonthController@destroy', $data->id_month) }}" method="POST" class="form-del" data-type="salary-month">
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
 
