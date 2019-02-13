@@ -136,9 +136,28 @@ class WarehouseSellController extends Controller
      */
     public function destroy($id)
     {
+        // update data warehouse first
+        $get_sell = WarehouseSell::where('id_sell', $id)
+            ->first();
+
+        $item_name = $get_sell->item_name;
+        $number_sell = $get_sell->number;
+
+        $get_warehouse = Warehouse::where('item_name', $item_name)
+            ->first();
+
+        $number = ($get_warehouse->number + $number_sell);
+
+        $warehouse =  Warehouse::where('item_name', $item_name)
+            ->first()
+            ->update([
+                'number' => $number
+            ]);
+        // end update data warehouse first
+        
         $data_sell = WarehouseSell::where('id_sell', $id)
             ->delete();
-            
+        
         return redirect('warehouse_sell')
             ->with('success', 'Data berhasil dihapus.');
     }

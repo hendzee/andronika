@@ -32,17 +32,10 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Nama Barang</label>
                                     <div class="col-md-9">
-                                        <select name="item_name" class="form-control">
-                                            <option value="{{$data_sell->item_name}}">
-                                                {{ $data_sell->item_name . ' (DATA SAAT INI)' }}
-                                            </option> 
-                                            @foreach ($data_item as $data)
-                                                <option value={{ $data->item_name }}>{{ $data->item_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <span class="help-block"> Nama Barang </span>
+                                        <input type="text" value="{{ $data_sell->item_name }}" name="number" placeholder="Jumlah Barang" class="form-control" disabled/>
                                     </div>
-                                </div>                            
+                                </div> 
+                                <input type="hidden" name="item_name" value="{{ $data_sell->item_name }}" />
                                 <div class="form-group {{ $errors->has('number') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Jumlah Barang</label>
                                     <div class="col-md-9">

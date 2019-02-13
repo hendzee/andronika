@@ -33,7 +33,8 @@
                                     <label class="control-label col-md-3">Uang Asal</label>
                                     <div class="col-md-9">
                                         <select class="form-control" name="source">
-                                            @if ($data_mutation->source != 'PERUSAHAAN')
+                                            @if ($data_mutation->source != 'PERUSAHAAN' 
+                                                && $data_mutation->source != 'KAS' && $data_mutation->source != 'PRIBADI')
                                                 @php
                                                     $get_project = App\Project::where('id_project', $data_mutation->source)
                                                         ->first();
@@ -64,7 +65,8 @@
                                     <label class="control-label col-md-3">Tujuan Uang</label>
                                     <div class="col-md-9">
                                         <select class="form-control" name="destiny">                                                
-                                            @if ($data_mutation->destiny != 'PERUSAHAAN')
+                                            @if ($data_mutation->destiny != 'PERUSAHAAN'
+                                                && $data_mutation->destiny != 'KAS' && $data_mutation->destiny != 'PRIBADI')
                                                 @php
                                                     $get_project = App\Project::where('id_project', $data_mutation->destiny)
                                                         ->first();

@@ -115,7 +115,7 @@
                                     <td>
                                         @php
                                             $used = 0;    
-                                            $used = $data->repair_and_used == null ? : $data->repair_and_used->number_used
+                                            $used = $data->repair_and_used == null ? 0 : $data->repair_and_used->number_used
                                         @endphp
 
                                         {{  $used . ' ' . $data->measure}}                                        
@@ -124,7 +124,8 @@
                                         @if ($data->rent_status == 'BOLEH')
                                             @php
                                                 $rent = 0;
-                                                $rent = $data->rent->sum('number_item')
+                                                $rent = $data->rent->where('status', 'DISEWA')
+                                                    ->sum('number_item')
                                             @endphp
 
                                             {{  $rent . ' ' . $data->measure}}   
