@@ -90,19 +90,12 @@
                                 </tr>
                                 @endforeach
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="6">
-                                        Total Pengambilan Uang: Rp {{ number_format($data_take_out->sum('nominal')) }}                                        
-                                    </td>                                                              
-                                </tr>
-                                <tr>
-                                     <td colspan="6">
-                                        Total Pengerluaran Uang: Rp {{ number_format($data_take_in->sum('nominal')) }}                                        
-                                    </td>
-                                </tr>
-                            </tfoot>
                         </table>
+                        <div id="pay-info" class="pull-right">
+                            <h3>Informasi</h3>
+                            <h4>Total Pengambilan Uang: Rp {{ number_format($data_take_out->sum('nominal')) }}</h4>
+                            <h4>Total Pengerluaran Uang: Rp {{ number_format($data_take_in->sum('nominal')) }}</h4>
+                        </div> 
                     </div>
                 </div>
                 <!-- END SAMPLE FORM PORTLET-->                
