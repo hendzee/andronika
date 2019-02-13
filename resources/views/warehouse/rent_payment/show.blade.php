@@ -125,6 +125,9 @@
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <td colspan="5">{{ 'Tagihan: Rp ' . number_format($invoice) }}</td>                                                
+                                </tr>
+                                <tr>
                                     <td colspan="5">{{ 'Total Uang Masuk: Rp ' . number_format($total_trans) }}</td>                                                
                                 </tr>
                                 <tr>

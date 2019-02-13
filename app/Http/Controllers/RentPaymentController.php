@@ -79,12 +79,12 @@ class RentPaymentController extends Controller
         $diff = date_diff($start, $end);
         $finalDiff =  ($diff->format('%a')) + 1;
 
-        $total = ($finalDiff * ($get_rent->price_day) * ($get_rent->number_item));
+        $invoice = ($finalDiff * ($get_rent->price_day) * ($get_rent->number_item));
 
-        $remain = $total - $total_trans;
+        $remain = $invoice - $total_trans;
         
         return view('warehouse.rent_payment.show', compact('id_rent', 'data_payment', 
-            'total_trans', 'remain'));
+            'total_trans', 'remain', 'invoice'));
     }
 
     /**
