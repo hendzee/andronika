@@ -114,7 +114,15 @@
                                             {{ $data->status }}
                                         </span>
                                     </td>         
-                                    <td>{{ date('d-m-Y', strtotime($data->date)) }}</td>                                                                                
+                                    <td>
+                                        @if ($data->status == 'SUDAH DIAMBIL')
+                                            {{ date('d-m-Y', strtotime($data->date)) }}
+                                        @else
+                                            <span class="label label-sm {{ $data->status == 'SUDAH DIAMBIL' ? 'label-success' : 'label-danger' }} top-space">
+                                                {{ $data->status }}
+                                            </span>
+                                        @endif
+                                    </td>                                                                                
                                     <td>
                                         <div class="row button-on-table">
                                             <div class="col-xs-6">

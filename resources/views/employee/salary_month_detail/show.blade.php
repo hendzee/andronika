@@ -121,6 +121,7 @@
                                         @php
                                             $bonus = $data->employee_bonus
                                                 ->where('id_detail', $data->id_detail)
+                                                ->where('status', 'BELUM DIAMBIL')
                                                 ->sum('bonus') 
                                         @endphp
                                         {{ 'Rp ' . number_format($bonus) }}
