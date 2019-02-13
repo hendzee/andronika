@@ -125,22 +125,13 @@
                                 </tr>
                                 @endforeach                                
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="5">
-                                        {{ 'Tagihan: Rp ' . number_format($invoice) }}                                        
-                                    </td>                                                              
-                                </tr>
-                                <tr>
-                                    <td colspan="5">
-                                        {{ 'Total Pembayaran: Rp ' . number_format($total_trans) }}                                        
-                                    </td>                                                              
-                                </tr>
-                                <tr>
-                                    <td colspan="5">{{'Sisa Pembayaran: Rp ' . number_format($remain)}}</td>
-                                </tr>
-                            </tfoot>
-                        </table>                        
+                        </table>
+                        <div id="pay-info" class="pull-right">
+                            <h3>Informasi</h3>
+                            <h4>{{ 'Tagihan: Rp ' . number_format($invoice) }}</h4>
+                            <h4>{{ 'Total Pembayaran: Rp ' . number_format($total_trans) }}</h4>
+                            <h4>{{'Sisa Pembayaran: Rp ' . number_format($remain)}}</h4>
+                        </div>                        
                     </div>
                 </div>
                 <!-- END SAMPLE FORM PORTLET-->                

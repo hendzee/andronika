@@ -95,7 +95,7 @@
                                 </tr>
                             </thead>
                             <tbody>                                
-                                @foreach($data_ttransportation as $data)
+                                @foreach($data_trans_transportation as $data)
                                 <tr class="odd gradeX">                                                                       
                                     <td>{{ $data->id_transaction }}</td>
                                     <td>{{ $data->id_transportation }}</td>
@@ -123,7 +123,13 @@
                                 </tr>
                                 @endforeach                                
                             </tbody>
-                        </table>                        
+                        </table>
+                        <div id="pay-info" class="pull-right">
+                            <h3>Informasi</h3>
+                            <h4>{{ 'Tagihan: Rp ' . number_format($invoice) }}</h4>
+                            <h4>{{ 'Total Pembayaran: Rp ' . number_format($total_trans) }}</h4>
+                            <h4>{{'Sisa Pembayaran: Rp ' . number_format($remain)}}</h4>
+                        </div>                        
                     </div>
                 </div>
                 <!-- END SAMPLE FORM PORTLET-->                

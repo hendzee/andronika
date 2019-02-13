@@ -30209,3 +30209,25 @@ a.btn-dashboard {
     position: 'relative';
     bottom: 15px;
 }
+
+#pay-info{
+    border:1px #e5e0ed solid;
+    margin-top:25px;
+    padding:5px;
+    min-width:120px;
+    position: relative;
+    right: -20px;
+}
+
+#pay-info h3{
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+#pay-info h4{
+    margin-top: 3px;
+    font-size: 1em;
+    font-weight: 400;
+}

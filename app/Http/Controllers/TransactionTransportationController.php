@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Transportation;
 use App\TransactionTransportation;
 use App\GeneratorId;
 use Illuminate\Http\Request;
@@ -16,11 +17,22 @@ class TransactionTransportationController extends Controller
      */
     public function index($id)
     {
-        $data_ttransportation = TransactionTransportation::where('id_transportation', $id)
+        $data_trans_transportation = TransactionTransportation::where('id_transportation', $id)
             ->get();
         $id_transportation = $id;
 
-        return view('transportation.transaction_transportation.index', compact('data_ttransportation', 'id_transportation'));
+        $invoice = Transportation::where('id_transportation', $id)
+            ->first()
+            ->value('total');
+
+        $total_trans = TransactionTransportation::where('id_transportation', $id)
+            ->get()
+            ->sum('nominal');
+
+        $remain = $invoice - $total_trans;
+
+        return view('transportation.transaction_transportation.index', compact('data_trans_transportation', 
+            'id_transportation', 'invoice', 'total_trans', 'remain'));
     }
 
     /**
