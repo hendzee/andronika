@@ -149,6 +149,12 @@ $(document).ready(function(){
             });
         });
     });
+
+    $('.error-del').each(function(){
+        $(this).on('click', function(){
+            alert('anda tidak diberi hak untuk menghapus');
+        })
+    });
 });
 
 // check masking value on load page

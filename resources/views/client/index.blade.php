@@ -106,14 +106,21 @@
                                                 </a>
                                             </div>
                                             <div class="col-xs-6">
-                                                <form action="{{ action('ClientController@destroy', $data->id_client) }}" method="POST" class="form-del" data-type="client">
-                                                    {{ method_field('DELETE') }}
-                                                    {{ csrf_field() }}
+                                                @can('client_delete')
+                                                    <form action="{{ action('ClientController@destroy', $data->id_client) }}" method="POST" class="form-del" data-type="client">
+                                                        {{ method_field('DELETE') }}
+                                                        {{ csrf_field() }}
 
-                                                    <button type="submit" class="btn btn-icon-only red">
+                                                        <button type="submit" class="btn btn-icon-only red">
+                                                            <i class="fa fa-remove"></i>
+                                                        </button>
+                                                    </form>
+                                                @endcan
+                                                @cannot('client_delete')
+                                                    <button class="btn btn-icon-only default error-del">
                                                         <i class="fa fa-remove"></i>
-                                                    </button>
-                                                </form>
+                                                    </button>    
+                                                @endcannot
                                             </div>
                                         </div>
                                     </td>

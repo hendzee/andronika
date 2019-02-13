@@ -37,21 +37,23 @@
                         </a>
                     </li>                                      
                 </ul>
-            </li>            
-            <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-exclamation-triangle"></i>
-                    <span class="title">Admin</span>
-                    <span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="nav-item  ">
-                        <a href="{{ route('user.index') }}" class="nav-link ">
-                            <span class="title">Admin</span>
-                        </a>
-                    </li>                                      
-                </ul>
             </li>
+            @can('client_add', 'client_edit', 'client_delete')
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        <span class="title">Admin</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="{{ route('user.index') }}" class="nav-link ">
+                                <span class="title">Admin</span>
+                            </a>
+                        </li>                                      
+                    </ul>
+                </li>
+            @endcan            
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-shopping-cart"></i>
