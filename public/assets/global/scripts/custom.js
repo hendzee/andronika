@@ -94,39 +94,39 @@ $(document).ready(function(){
 
             switch ($(this).data("type")) {
                 case "client":
-                    data = "Klien";
+                    data = "Data ini berkaitan dengan projek, transportasi dan peminjaman, serta tabel yang berkaitan dengan tabel-tabel tersebut, kami rekomendasikan anda mem-backupnya terlebih dahulu.";
                     break;
 
                 case "project":
-                    data = "Projek";
+                    data = "Data ini berkaitan dengan pembayaran projek, barang kebutuhan projek, pembelian, pekerja harian dan pekerja kontrak, serta tabel yang berkaitan dengan tabel-tabel tersebut, kami rekomendasikan anda mem-backupnya terlebih dahulu.";
                     break;
 
                 case "project-supply":
-                    data = "Projek supply";
+                    data = "Data ini berkaitan dengan pembelian barang di dalam projek, serta tabel yang berkaitan dengan tabel-tabel tersebut, kami rekomendasikan anda mem-backupnya terlebih dahulu.";
                     break;
 
                 case "warehouse":
-                    data = "warehouse";
+                    data = "Data ini berkaitan dengan penujalan barang dan peminjaman barang serta tabel yang berkaitan dengan tabel-tabel tersebut, kami rekomendasikan anda mem-backupnya terlebih dahulu.";
                     break;
 
                 case "warehouse-rent":
-                    data = "warehouse-rent";
+                    data = "Data ini berkaitan dengan pembayaran sewa, serta tabel yang berkaitan dengan tabel-tabel tersebut, kami rekomendasikan anda mem-backupnya terlebih dahulu.";
                     break;
 
                 case "employee":
-                    data = "employee";
+                    data = "Data ini berkaitan dengan gaji karyawan dan transportasi, serta tabel yang berkaitan dengan tabel-tabel tersebut, kami rekomendasikan anda mem-backupnya terlebih dahulu.";
                     break;
 
                 case "salary-month":
-                    data = "salary-month";
+                    data = "Data ini berkaitan dengan gaji bulanan, pengambilan gaji serta tabel yang berkaitan dengan tabel-tabel tersebut, kami rekomendasikan anda mem-backupnya terlebih dahulu.";
                     break;
 
                 case "salary-month-detail":
-                    data = "salary-month-detail";
+                    data = "Data ini berkaitan dengan projek, transportasi dan peminjaman, serta tabel yang berkaitan dengan tabel-tabel tersebut, kami rekomendasikan anda mem-backupnya terlebih dahulu.";
                     break;
 
                 case "transportation":
-                    data = "transportation";
+                    data = "Data ini berkaitan dengan pembayaran transportasi, serta tabel yang berkaitan dengan tabel-tabel tersebut, kami rekomendasikan anda mem-backupnya terlebih dahulu.";
                     break;
             
                 default:
