@@ -5,7 +5,6 @@
         <div class="page-logo">
             <a href="{{ route('dashboard.index') }}">
                 <img src="{{ asset('assets/layouts/layout/img/logo.png') }}" alt="logo" class="logo-default" /> 
-                <h1>APD ADMIN</h1>
             </a>
             <div class="menu-toggler sidebar-toggler">
                 <span></span>
