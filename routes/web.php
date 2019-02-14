@@ -11,7 +11,8 @@
 |
 */
     Route::group(['middleware' => [
-        'role:SUPER_ADMIN|ADMIN'
+        'role:SUPER_ADMIN|ADMIN', 
+        'auth'
         ]], function(){
         Route::get('/', 'DashboardController@index');
 

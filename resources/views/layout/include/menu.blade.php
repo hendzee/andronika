@@ -38,7 +38,7 @@
                     </li>                                      
                 </ul>
             </li>
-            @can('client_add', 'client_edit', 'client_delete')
+            @can('admin_add', 'admin_edit', 'admin_delete')
                 <li class="nav-item  ">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="fa fa-exclamation-triangle"></i>
