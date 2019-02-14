@@ -108,13 +108,13 @@
                         <div class="tabbable-line">
                             <ul class="nav nav-tabs">
                                 <li class="active">
-                                    <a href="#project_1" data-toggle="tab"> KOTA LUWUK </a>
+                                    <a href="#project_1" data-toggle="tab"> Kota Luwuk </a>
                                 </li>
                                 <li>
-                                    <a href="#project_2" data-toggle="tab"> BANGGAI LAUT </a>
+                                    <a href="#project_2" data-toggle="tab"> Banggai Laut </a>
                                 </li>
                                 <li>
-                                    <a href="#overview_3" data-toggle="tab"> BANGGAI KEPULAUAN </a>
+                                    <a href="#project_3" data-toggle="tab"> Banggai Kepulauan </a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -126,6 +126,7 @@
                                                     <th> ID Projek </th>
                                                     <th> Nama </th>
                                                     <th> Tanggal </th>
+                                                    <th> Status </th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -134,10 +135,16 @@
                                                     <tr>
                                                         <td>{{ $data->id_project }}</td>
                                                         <td>{{ $data->name }}</td>
-                                                        <td>{{ $data->start }}</td>
+                                                        <td>{{ date('d-m-Y', strtotime($data->start)) }}</td>
                                                         <td>
-                                                            <a href="javascript:;" class="btn btn-sm btn-default">
-                                                                <i class="fa fa-search"></i> Lihat </a>
+                                                            <span class="label label-sm {{ $data->status == 'PROSES' ? 'label-warning' : 'label-success' }}">
+                                                                {{ $data->status }}
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('project.show', $data->id_project) }}" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> Lihat 
+                                                            </a>
                                                         </td>
                                                     </tr>    
                                                 @endforeach
@@ -153,6 +160,7 @@
                                                     <th> ID Projek </th>
                                                     <th> Nama </th>
                                                     <th> Tanggal </th>
+                                                    <th> Status </th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -161,10 +169,16 @@
                                                     <tr>
                                                         <td>{{ $data->id_project }}</td>
                                                         <td>{{ $data->name }}</td>
-                                                        <td>{{ $data->start }}</td>
+                                                        <td>{{ date('d-m-Y', strtotime($data->start)) }}</td>
                                                         <td>
-                                                            <a href="javascript:;" class="btn btn-sm btn-default">
-                                                                <i class="fa fa-search"></i> Lihat </a>
+                                                            <span class="label label-sm {{ $data->status == 'PROSES' ? 'label-warning' : 'label-success' }}">
+                                                                {{ $data->status }}
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('project.show', $data->id_project) }}" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> Lihat 
+                                                            </a>
                                                         </td>
                                                     </tr>    
                                                 @endforeach
@@ -180,6 +194,7 @@
                                                     <th> ID Projek </th>
                                                     <th> Nama </th>
                                                     <th> Tanggal </th>
+                                                    <th> Status </th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -188,10 +203,16 @@
                                                     <tr>
                                                         <td>{{ $data->id_project }}</td>
                                                         <td>{{ $data->name }}</td>
-                                                        <td>{{ $data->start }}</td>
+                                                        <td>{{ date('d-m-Y', strtotime($data->start)) }}</td>
                                                         <td>
-                                                            <a href="javascript:;" class="btn btn-sm btn-default">
-                                                                <i class="fa fa-search"></i> Lihat </a>
+                                                            <span class="label label-sm {{ $data->status == 'PROSES' ? 'label-warning' : 'label-success' }}">
+                                                                {{ $data->status }}
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('project.show', $data->id_project) }}" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> Lihat 
+                                                            </a>
                                                         </td>
                                                     </tr>    
                                                 @endforeach
@@ -211,7 +232,7 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <span class="caption-subject font-blue bold uppercase">
-                                <i class="fa fa-shopping-cart"></i> Jual
+                                <i class="fa fa-shopping-cart"></i> Penjualan
                             </span>
                             <span class="caption-helper">Terbaru</span>
                         </div>
@@ -227,7 +248,7 @@
                         <div class="tabbable-line">
                             <ul class="nav nav-tabs">
                                 <li class="active">
-                                    <a href="#sell_1" data-toggle="tab"> BARU </a>
+                                    <a href="#sell_1" data-toggle="tab"> Penjualan Baru </a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -287,7 +308,7 @@
                         <div class="tabbable-line">
                             <ul class="nav nav-tabs">
                                 <li class="active">
-                                    <a href="#sell_1" data-toggle="tab"> BARU </a>
+                                    <a href="#sell_1" data-toggle="tab"> Peyewaan Baru </a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -298,13 +319,46 @@
                                                 <tr>
                                                     <th> ID Sewa </th>
                                                     <th> Nama </th>
+                                                    <th> Sts.Bayar </th>
+                                                    <th> Sts.Pinjam </th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($data_rent as $data)
+                                                    @php
+                                                        $start = new DateTime($data->start);
+                                                        $end = new DateTime($data->end);
+                                                        $diff = date_diff($start, $end);
+                                                        $finalDiff =  ($diff->format('%a')) + 1;
+                                                        $total = ($finalDiff * ($data->price_day) * ($data->number_item));
+                                                        $status = $total - $data->payment->sum('nominal');
+                                                    @endphp
+                                                    
                                                     <tr>
                                                         <td>{{ $data->id_rent }}</td>
                                                         <td>{{ $data->item_name }}</td>
+                                                        <td>
+                                                            @if ($status > 0)
+                                                                <span class="label label-sm label-danger">
+                                                                    BELUM LUNAS
+                                                                </span>
+                                                            @else
+                                                                <span class="label label-sm label-success">
+                                                                    LUNAS
+                                                                </span>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <span class="label label-sm {{ $data->status == 'DISEWA' ? 'label-danger' : 'label-success' }}">
+                                                                {{ $data->status }}
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('rent_payment.show', $data->id_rent) }}" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> Lihat 
+                                                            </a>
+                                                        </td>
                                                     </tr>    
                                                 @endforeach
                                             </tbody>
