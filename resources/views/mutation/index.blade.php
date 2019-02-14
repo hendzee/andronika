@@ -124,23 +124,59 @@
                                     <td>{{ 'Rp ' . number_format($data->nominal) }}</td>                                
                                     <td>{{ date('d-m-Y', strtotime($data->date)) }}</td>                                    
                                     <td>
-                                        <div class="row button-on-table">
-                                            <div class="col-xs-6">
-                                                <a href="{{ route('mutation.edit', $data->id_mutation) }}" class="btn btn-icon-only green">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <form action="{{ action('MutationController@destroy', $data->id_mutation) }}" method="POST">
-                                                    {{ method_field('DELETE') }}
-                                                    {{ csrf_field() }}
+                                        @if ($data->source == 'PRIBADI' || $data->destiny == 'PRIBADI')
+                                            @can('private_money_edit', 'private_money_delete')
+                                                <div class="row button-on-table">
+                                                    <div class="col-xs-6">
+                                                        <a href="{{ route('mutation.edit', $data->id_mutation) }}" class="btn btn-icon-only green">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <form action="{{ action('MutationController@destroy', $data->id_mutation) }}" method="POST">
+                                                            {{ method_field('DELETE') }}
+                                                            {{ csrf_field() }}
 
-                                                    <button type="submit" class="btn btn-icon-only red">
-                                                        <i class="fa fa-remove"></i>
-                                                    </button>
-                                                </form>
+                                                            <button type="submit" class="btn btn-icon-only red">
+                                                                <i class="fa fa-remove"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            @endcan
+                                            @cannot('private_money_edit', 'private_money_delete')
+                                                <div class="row button-on-table">
+                                                    <div class="col-xs-6">
+                                                        <button class="btn btn-icon-only default error-del">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <button class="btn btn-icon-only default error-del">
+                                                            <i class="fa fa-remove"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            @endcannot
+                                        @else
+                                            <div class="row button-on-table">
+                                                <div class="col-xs-6">
+                                                    <a href="{{ route('mutation.edit', $data->id_mutation) }}" class="btn btn-icon-only green">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <form action="{{ action('MutationController@destroy', $data->id_mutation) }}" method="POST">
+                                                        {{ method_field('DELETE') }}
+                                                        {{ csrf_field() }}
+
+                                                        <button type="submit" class="btn btn-icon-only red">
+                                                            <i class="fa fa-remove"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach                                

@@ -152,7 +152,13 @@ $(document).ready(function(){
 
     $('.error-del').each(function(){
         $(this).on('click', function(){
-            alert('anda tidak diberi hak untuk menghapus');
+            swal({
+                title: "ERROR!",
+                text: "Anda tidak diberikan hak untuk melakukan aksi ini!",
+                type: "error",
+                confirmButtonClass: "btn-info",
+                confirmButtonText: "Saya mengerti",
+            });
         })
     });
 });

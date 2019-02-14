@@ -27,7 +27,6 @@
 
                 <li class="dropdown dropdown-user">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <img alt="" class="img-circle" src="{{ asset('assets/layouts/layout/img/avatar3_small.jpg') }}" />
                         <span class="username username-hide-on-mobile">  
                             {{ Auth::user()->name }}
                         </span>

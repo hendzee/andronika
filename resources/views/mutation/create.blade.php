@@ -35,7 +35,11 @@
                                         <select class="form-control" name="source">
                                             <option value="PERUSAHAAN">PERUSAHAAN</option>
                                             <option value="KAS">KAS</option>
-                                            <option value="PRIBADI">PRIBADI</option>
+                                            @can('private_money_add', 'private_money_edit', 
+                                                'private_money_delete')
+                                                <option value="PRIBADI">PRIBADI</option>
+                                            @endcan
+                                            
                                             @foreach ($data_project as $data)
                                                 <option value="{{ $data->id_project }}">
                                                     {{ $data->name . ' | ' . date('d M, Y', strtotime($data->start)) }}
@@ -51,7 +55,11 @@
                                         <select class="form-control" name="destiny">
                                                 <option value="PERUSAHAAN">PERUSAHAAN</option>
                                                 <option value="KAS">KAS</option>
-                                                <option value="PRIBADI">PRIBADI</option>
+                                                @can('private_money_add', 'private_money_edit', 
+                                                'private_money_delete')
+                                                    <option value="PRIBADI">PRIBADI</option>
+                                                @endcan
+                                                
                                                 @foreach ($data_project as $data)
                                                     <option value="{{ $data->id_project }}">
                                                             {{ $data->name . ' | ' . date('d M, Y', strtotime($data->start)) }}

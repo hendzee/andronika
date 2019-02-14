@@ -7,6 +7,7 @@ use App\Mutation;
 use App\Project;
 use App\GeneratorId;
 use App\Http\Requests\MutationRequest;
+use Auth;
 
 class MutationController extends Controller
 {
@@ -91,6 +92,15 @@ class MutationController extends Controller
 
         $data_mutation = Mutation::where('id_mutation', $id)
             ->first();
+
+        if ($data_mutation->source == 'PRIBADI' || $data_mutation->destiny == 'PRIBADI'){
+            $auth = Auth::user()->hasPermissionTo('private_money_edit');
+
+            if (!$auth){
+                abort('403');
+            }
+        }
+
 
         return view('mutation.edit', compact('data_mutation', 'data_project'));
     }
