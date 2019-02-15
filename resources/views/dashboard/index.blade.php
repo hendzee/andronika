@@ -403,16 +403,38 @@
                                             <thead>
                                                 <tr>
                                                     <th> ID Transportasi </th>
-                                                    <th> Biaya </th>
-                                                    <th> Invoice </th>
+                                                    <th> Asal - Tujuan </th>
+                                                    <th> Status </th>
+                                                    <th>  </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($data_transport as $data)
+                                                    @php
+                                                        $status = $data->total - $data->transaction_transportation
+                                                            ->sum('nominal');
+                                                    @endphp
                                                     <tr>
                                                         <td>{{ $data->id_transportation }}</td>
-                                                        <td>{{ 'Rp ' . number_format($data->cost) }}</td>
-                                                        <td>{{ 'Rp ' . number_format($data->total) }}</td>
+                                                        <td>
+                                                            {{ $data->starting_point . '-' . $data->destination }}
+                                                        </td>
+                                                        <td>
+                                                            @if ($status > 0 )
+                                                                <span class="label label-sm label-danger">
+                                                                    BELUM LUNAS
+                                                                </span>
+                                                            @else
+                                                                <span class="label label-sm label-success">
+                                                                    LUNAS
+                                                                </span>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('transaction_transportation_index', $data->id_transportation) }}" class="btn btn-sm btn-default">
+                                                                <i class="fa fa-search"></i> Lihat 
+                                                            </a>
+                                                        </td>
                                                     </tr>    
                                                 @endforeach
                                             </tbody>
