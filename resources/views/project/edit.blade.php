@@ -85,24 +85,20 @@
                                 <div class="form-group {{ $errors->has('start') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Mulai</label>
                                     <div class="col-md-9">
-                                        <input name="start" value="{{ old('start', date('m/d/Y', strtotime($data_project->start))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        <input name="start" value="{{ old('start', date('d-m-Y', strtotime($data_project->start))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
                                         
                                         @if ($errors->has('start'))
                                             <span class="help-block"> {{ $errors->first('start') }} </span>
-                                        @else
-                                            <span class="help-block"> dd/mm/yyy. </span>
                                         @endif
                                     </div>
                                 </div>                                
                                 <div class="form-group {{ $errors->has('end') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Berakhir</label>
                                     <div class="col-md-9">
-                                        <input name="end" value="{{ old('end', date('m/d/Y', strtotime($data_project->end))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        <input name="end" value="{{ old('end', date('d-m-Y', strtotime($data_project->end))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
                                         
                                         @if ($errors->has('end'))
                                             <span class="help-block"> {{ $errors->first('end') }} </span>
-                                        @else
-                                            <span class="help-block"> dd/mm/yyy. </span>
                                         @endif
                                     </div>
                                 </div>                                  
@@ -114,7 +110,7 @@
                                                 <span class="input-group-addon">
                                                     Rp
                                                 </span>
-                                                <input type="text" value="{{ old('total', round($data_project->total)) }}" id="total" placeholder="Ex.5000000" class="form-control masking-form" />
+                                                <input type="text" value="{{ old('total', round($data_project->total)) }}" id="total" placeholder="Harga Projek" class="form-control masking-form" />
                                                 <input type="hidden" id="total_hidden" name="total" class="masking-form-hidden">
                                             </div>
                                         </div>

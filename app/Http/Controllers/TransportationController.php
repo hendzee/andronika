@@ -93,10 +93,13 @@ class TransportationController extends Controller
         $data_employee = Employee::where('division', 'DRIVER')
             ->get();
 
+        $data_client = Client::all();
+
         $data_transportation = Transportation::where('id_transportation', $id)
             ->first();        
 
-        return view('transportation.edit', compact('data_transportation', 'data_employee'));
+        return view('transportation.edit', compact('data_transportation', 'data_employee',
+            'data_client'));
     }
 
     /**

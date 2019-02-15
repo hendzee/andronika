@@ -108,24 +108,20 @@
                                 <div class="form-group {{ $errors->has('start') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Mulai</label>
                                     <div class="col-md-9">
-                                        <input name="start" value="{{ old('start', date('m/d/Y', strtotime($data_rent->start))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        <input name="start" value="{{ old('start', date('d-m-Y', strtotime($data_rent->start))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
                                         
                                         @if ($errors->has('start'))
                                             <span class="help-block"> {{ $errors->first('start') }} </span>
-                                        @else
-                                            <span class="help-block"> MM/DD/YYY. </span>
                                         @endif
                                     </div>
                                 </div>
                                 <div class="form-group {{ $errors->has('end') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Selesai</label>
                                     <div class="col-md-9">
-                                        <input name="end" value="{{ old('end', date('m/d/Y', strtotime($data_rent->end))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        <input name="end" value="{{ old('end', date('d-m-Y', strtotime($data_rent->end))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
                                         
                                         @if ($errors->has('end'))
                                             <span class="help-block"> {{ $errors->first('end') }} </span>
-                                        @else
-                                            <span class="help-block"> MM/DD/YYY. </span>
                                         @endif
                                     </div>
                                 </div>                                                                                                                                                    

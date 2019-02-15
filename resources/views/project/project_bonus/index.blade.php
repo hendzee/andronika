@@ -118,7 +118,7 @@
                                     </td>                                    
                                     <td>
                                         @if($data->date_take != null)
-                                            {{ date('d M, Y', strtotime($data->date_take)) }}
+                                            {{ date('d-m-Y', strtotime($data->date_take)) }}
                                         @else
                                             <span class="label label-sm label-danger top-space">
                                                 BELUM DIAMBIL

@@ -100,7 +100,12 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Tanggal Pengambilan</label>
                                     <div class="col-md-9">
-                                        <input name="date" value="{{ date('m/d/Y', strtotime($data_bonus->date)) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        @if ($data_bonus->status == null || $data_bonus->status == 'BELUM DIAMBIL')
+                                            <input name="date" value="{{ old('date') }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text"/>    
+                                        @else
+                                            <input name="date" value="{{ old('date', date('d-m-Y', strtotime($data_bonus->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text"/>
+                                        @endif
+                                        
                                         <span class="help-block"> Tanggal pengambilan bonus. </span>
                                     </div>
                                 </div>                                                                

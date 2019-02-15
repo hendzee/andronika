@@ -36,8 +36,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Projek</label>
                                     <div class="col-md-9">
-                                            <input type="text" value="{{ $data_payment->project->name . ' | ' . date('d M, Y', strtotime($data_payment->project->start)) }}" disabled class="form-control" />
-                                        <span class="help-block">Projek</span>
+                                        <input type="text" value="{{ $data_payment->project->name . ' | ' . date('d M, Y', strtotime($data_payment->project->start)) }}" disabled class="form-control" />
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_project" value="{{ $data_payment->id_project }}" />                                                          
@@ -62,12 +61,10 @@
                                 <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal</label>
                                     <div class="col-md-9">
-                                        <input name="date" value="{{ old('date', date('m/d/Y', strtotime($data_payment->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        <input name="date" value="{{ old('date', date('d-m-Y', strtotime($data_payment->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
                                         
                                         @if ($errors->has('date'))                                            
                                             <span class="help-block"> {{ $errors->first('date') }} </span>
-                                        @else
-                                            <span class="help-block"> Tanggal transfer (mm/dd/yyy). </span>
                                         @endif
                                     </div>
                                 </div>                                                                                                                                                           

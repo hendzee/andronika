@@ -69,8 +69,6 @@
                                         
                                         @if ($errors->has('start'))
                                             <span class="help-block"> {{ $errors->first('start') }} </span>
-                                        @else
-                                            <span class="help-block"> dd/mm/yyy. </span>
                                         @endif
                                     </div>
                                 </div>
@@ -81,8 +79,6 @@
                                         
                                         @if ($errors->has('end'))
                                             <span class="help-block"> {{ $errors->first('end') }} </span>
-                                        @else
-                                            <span class="help-block"> dd/mm/yyy. </span>
                                         @endif
                                     </div>
                                 </div>
@@ -94,7 +90,7 @@
                                                 <span class="input-group-addon">
                                                     Rp
                                                 </span>
-                                                <input type="text" value="{{ old('total') }}" id="total" placeholder="Ex.5000000" class="form-control masking-form" />
+                                                <input type="text" value="{{ old('total') }}" id="total" placeholder="Harga Projek" class="form-control masking-form" />
                                                 <input type="hidden" id="total_hidden" name="total" class="masking-form-hidden">
                                             </div>
                                         </div>

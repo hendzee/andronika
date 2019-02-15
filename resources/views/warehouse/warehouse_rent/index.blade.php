@@ -116,7 +116,7 @@
                                         <td>
                                             {{ 
                                                 date('d-m-Y', strtotime($data->start)) 
-                                                . ' - ' 
+                                                . ' / ' 
                                                 . date('d-m-Y', strtotime($data->end))                                                                                             
                                             }}
                                         </td>

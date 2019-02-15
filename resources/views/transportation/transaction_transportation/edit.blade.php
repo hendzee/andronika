@@ -71,7 +71,7 @@
                                 <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Pembayaran</label>
                                     <div class="col-md-9">
-                                        <input name="date" value="{{ old('date', date('m/d/Y', strtotime($data_transaction->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text"/>
+                                        <input name="date" value="{{ old('date', date('d-m-Y', strtotime($data_transaction->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text"/>
                                         
                                         @if ($errors->has('date'))
                                             <span class="help-block"> {{ $errors->first('date') }} </span>

@@ -161,6 +161,10 @@ $(document).ready(function(){
             });
         })
     });
+
+    $('.date-picker').datepicker({
+        format: 'dd/mm-yyyy',
+    });
 });
 
 // check masking value on load page

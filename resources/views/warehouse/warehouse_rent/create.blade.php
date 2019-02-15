@@ -89,8 +89,6 @@
                                         
                                         @if ($errors->has('start'))
                                             <span class="help-block"> {{ $errors->first('start') }} </span>
-                                        @else
-                                            <span class="help-block"> MM/DD/YYY. </span>
                                         @endif
                                     </div>
                                 </div>
@@ -101,8 +99,6 @@
                                         
                                         @if ($errors->has('end'))
                                             <span class="help-block"> {{ $errors->first('end') }} </span>
-                                        @else
-                                            <span class="help-block"> MM/DD/YYY. </span>
                                         @endif
                                     </div>
                                 </div>                                                                                                                                                    

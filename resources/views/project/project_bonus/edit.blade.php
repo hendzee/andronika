@@ -93,14 +93,18 @@
                                                 {{ $data_bonus->status . ' (Nilai Saat Ini)' }}
                                             </option>
                                             <option value="BELUM DIAMBIL">BELUM DIAMBIL</option>
-                                            <option value="DIAMBIL">SUDAH DIAMBIL</option>
+                                            <option value="DIAMBIL">DIAMBIL</option>
                                         </select>                                        
                                     </div>
                                 </div> 
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Tanggal Pengambilan</label>
                                     <div class="col-md-9">
-                                        <input name="date_take" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        @if ($data_bonus->status == null || $data_bonus->status == 'BELUM DIAMBIL')
+                                            <input name="date_take" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="{{ old('date_take') }}" />
+                                        @else
+                                            <input name="date_take" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="{{ old('date_take', date('d-m-Y', strtotime($data_bonus->date_take))) }}" />
+                                        @endif
                                         <span class="help-block"> Isikan jika bonus sudah diambil. </span>
                                     </div>
                                 </div>                                                                

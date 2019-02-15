@@ -33,8 +33,11 @@
                                     <label class="control-label col-md-3">Klien</label>
                                     <div class="col-md-9">
                                         <select name="id_client" class="form-control">
-                                            <option>
-                                                {{ $data_transportation->id_employee . ' (DATA SAAT INI)' }}
+                                            <option value="{{ $data_transportation->id_client }}">
+                                                {{ 
+                                                    $data_transportation->client->description 
+                                                    . ' | ' . $data_transportation->client->address
+                                                    . ' (DATA SAAT INI)' }}
                                             </option>
                                             @foreach($data_client as $data)
                                                 <option value="{{ $data->id_client }}">
@@ -157,7 +160,7 @@
                                 <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Pengiriman</label>
                                     <div class="col-md-9">
-                                        <input name="date" value="{{ old('date', date('m/d/Y', strtotime($data_transportation->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        <input name="date" value="{{ old('date', date('d-m-Y', strtotime($data_transportation->date))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
                                         
                                         @if ($errors->has('date'))
                                             <span class="help-block"> {{ $errors->first('description') }} </span>

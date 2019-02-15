@@ -59,8 +59,6 @@
                                         
                                         @if ($errors->has('date'))
                                             <span class="help-block"> {{ $errors->first('date') }} </span>
-                                        @else
-                                            <span class="help-block"> mm/dd/yyy. </span>
                                         @endif
                                     </div>
                                 </div>
