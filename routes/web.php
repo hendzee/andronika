@@ -11,11 +11,16 @@
 |
 */
     Route::group(['middleware' => [
+            'role:EMPLOYEE|ADMIN|SUPER_ADMIN'
+        ]], function(){
+            Route::get('/', 'DashboardController@index');
+            Route::get('/home', 'DashboardController@index')->name('home');
+        });
+        
+    Route::group(['middleware' => [
         'role:SUPER_ADMIN|ADMIN', 
         'auth'
         ]], function(){
-        Route::get('/', 'DashboardController@index');
-
         Route::resource('dashboard', 'DashboardController');
 
         Route::resource('client', 'ClientController');
@@ -156,7 +161,8 @@
 
         Route::resource('private_money', 'PrivateMoneyController');
 
-        Route::get('/home', 'DashboardController@index')->name('home');
+        Route::get('change_password',['uses' => 'UserController@formChangePassword', 'as' => 'form_change_password']);
+        Route::post('change_password', ['uses' => 'UserController@actionChangePassword', 'as' => 'action_change_password']);
 
     });
 
@@ -165,6 +171,20 @@
         ]], function(){
         
         Route::resource('user', 'UserController');
+
+        Route::get('reset_password/{id}',['uses' => 'UserController@resetPassword', 'as' => 'reset_password']);
+    });
+
+    Route::group(['middleware' => [
+        'role:EMPLOYEE|ADMIN'
+    ]], function(){
+        Route::resource('show_salary', 'ShowSalaryController');
+        Route::get('show_salary_gaji/{id}', [
+            'uses' => 'ShowSalaryController@show_salary_gaji',
+            'as' => 'show_salary_gaji']);
+        Route::get('show_salary_bonus/{id}', [
+            'uses' => 'ShowSalaryController@show_salary_bonus',
+            'as' => 'show_salary_bonus']);
     });
 
     Auth::routes();

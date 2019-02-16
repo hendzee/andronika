@@ -17,7 +17,7 @@
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> 
-            Data Klien
+            Data Admin
         </h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -38,45 +38,32 @@
                 <div class="portlet light bordered">                    
                     <div class="portlet-body">
                         <div class="table-toolbar">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="btn-group">
-                                        <a href="user.create" id="sample_editable_1_new" class="btn sbold green"> 
-                                            Admin Baru
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
-                                <tr>                                                                                                    
-                                    <th> ID Admin </th>
+                                <tr>
                                     <th> ID User </th>
-                                    <th> Aksi </th>                                 
+                                    <th> Nama </th>
+                                    <th> Status Admin </th>
+                                    <th class="no-sort"> </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($data_user as $data)
-                                <tr class="odd gradeX">                                                                       
-                                    <td>{{ $data->id_user }}</td>
+                                <tr class="odd gradeX">
                                     <td>{{ $data->id_employee }}</td>
+                                    <td>{{ $data->name }}</td>
+                                    <td>
+                                        @foreach($data->getRoleNames() as $item)
+                                            {{ $item }}
+                                        @endforeach
+                                    </td>
                                     <td>
                                         <div class="row button-on-table">
-                                            <div class="col-xs-6">
-                                                <a href="{{ route('user.edit', $data->id_employee) }}" class="btn btn-icon-only green">
+                                            <div class="col-xs-12">
+                                                <a href="{{ route('user.edit', $data->id) }}" class="btn btn-icon-only green">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <form action="{{ action('UserController@destroy', $data->id_employee) }}" method="POST">
-                                                    {{ method_field('DELETE') }}
-                                                    {{ csrf_field() }}
-
-                                                    <button type="submit" class="btn btn-icon-only red">
-                                                        <i class="fa fa-remove"></i>
-                                                    </button>
-                                                </form>
                                             </div>
                                         </div>
                                     </td>

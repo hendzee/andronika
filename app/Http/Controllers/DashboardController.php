@@ -8,11 +8,16 @@ use App\Project;
 use App\WarehouseSell;
 use App\WarehouseRent;
 use App\Transportation;
+use Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->hasRole('EMPLOYEE')){
+            return redirect()->route('show_salary.index');
+        }
+
         $assets_data = new AssetsData();
 
         $data_outcome = $assets_data->getCompanyOutcome();

@@ -33,7 +33,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
                         <li>
-                            <a href="page_user_profile_1.html">
+                        <a href="{{ route('form_change_password') }}">
                                 <i class="icon-key"></i> Ganti Password </a>
                         </li>
                         <li class="divider"> </li>

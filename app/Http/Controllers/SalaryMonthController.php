@@ -47,7 +47,8 @@ class SalaryMonthController extends Controller
         $check_data = SalaryMonth::where('date', date('Y-m-d', strtotime($request->date)))
             ->first();
 
-        $data_employee = Employee::all();
+        $data_employee = Employee::where('id_employee', '<>', 'SUPER')
+            ->get();
 
         if ($check_data == null){
             $id_month = $gen->generateId('salary_month');

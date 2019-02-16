@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Employee;
 use App\GeneratorId;
 use App\Http\Requests\EmployeeRequest;
+use App\User;
 
 class EmployeeController extends Controller
 {
@@ -55,6 +56,12 @@ class EmployeeController extends Controller
                 'religion' => $request->religion,
                 'division' => $request->division
             ]);
+
+            $user = new User();
+            $user->name = $request->name;
+            $user->password = bcrypt('123456');
+            $employee->user()->save($user);
+            $user->assignRole('EMPLOYEE');
 
             return redirect('/employee')
                 ->with('success', 'Data berhasil ditambahkan.');
