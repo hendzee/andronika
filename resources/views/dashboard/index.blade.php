@@ -14,13 +14,6 @@
                     <span>Dashboard</span>
                 </li>
             </ul>
-            <div class="page-toolbar">
-                <div id="dashboard-report-range" class="pull-right tooltips btn btn-sm" data-container="body" data-placement="bottom" data-original-title="Change dashboard date range">
-                    <i class="icon-calendar"></i>&nbsp;
-                    <span class="thin uppercase hidden-xs"></span>&nbsp;
-                    <i class="fa fa-angle-down"></i>
-                </div>
-            </div>
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
@@ -34,7 +27,7 @@
             <div class="col-xs-6">
                 <div class="dashboard-stat dashboard-stat-v2 blue">
                     <div class="visual">
-                        <i class="fa fa-comments"></i>
+                        <i class="fa fa-plus-circle"></i>
                     </div>
                     <div class="details">
                         <div class="number">
@@ -47,7 +40,7 @@
             <div class="col-xs-6">
                 <div class="dashboard-stat dashboard-stat-v2 red">
                     <div class="visual">
-                        <i class="fa fa-bar-chart-o"></i>
+                        <i class="fa fa-minus-circle"></i>
                     </div>
                     <div class="details">
                         <div class="number">
@@ -60,7 +53,7 @@
             <div class="col-xs-6">
                 <div class="dashboard-stat dashboard-stat-v2 green">
                     <div class="visual">
-                        <i class="fa fa-shopping-cart"></i>
+                        <i class="fa fa-bar-chart-o"></i>
                     </div>
                     <div class="details">
                         <div class="number">
@@ -73,7 +66,7 @@
             <div class="col-xs-6">
                 <div class="dashboard-stat dashboard-stat-v2 purple">
                     <div class="visual">
-                        <i class="fa fa-globe"></i>
+                        <i class="fa fa-group"></i>
                     </div>
                     <div class="details">
                         <div class="number">
