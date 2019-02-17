@@ -165,6 +165,30 @@ $(document).ready(function(){
             });
         })
     });
+
+    $('#form_change_password').submit(function (e) {
+        e.preventDefault();
+
+        var validated_retype = false;
+        var group_retype = $('#group-retype');
+
+        if ($('#new_password').val() === $('#retype').val()) {
+            group_retype.addClass('has-success');
+            group_retype.removeClass('has-error');
+            $('#message').html('Password sama');
+            validated_retype = true;
+        } else {
+            group_retype.addClass('has-error');
+            group_retype.removeClass('has-success');
+            $('#message').html('Password tidak sama');
+            validated_retype = false;
+        }
+
+        if (validated_retype === true) {
+            this.submit();
+        }
+
+    });
 });
 
 // check masking value on load page
@@ -177,6 +201,19 @@ function checkMasking()
             x.mask('000,000,000,000,000', { reverse: true });
             $(this).find('.masking-form-hidden').val(x.cleanVal());
         }
+    });
+}
+
+function checkOldPassword() {
+    $.ajax({
+        url: "/check_old_password",
+        type: "GET",
+        data: $('#form_change_password').serialize(),
+
+        success: function (data) {
+            return data
+        }
+
     });
 }
 

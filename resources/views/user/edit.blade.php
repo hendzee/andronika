@@ -62,7 +62,7 @@
                                         <a href="{{ route('reset_password', $user->id) }}" class="btn red">
                                             Reset Password
                                         </a>
-                                        <a href="http://andronika.test/mutation" class="btn default">
+                                        <a href="{{ route('user.index') }}" class="btn default">
                                             Batal
                                         </a>
                                     </div>

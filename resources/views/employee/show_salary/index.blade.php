@@ -46,9 +46,6 @@
                                 <li>
                                     <a href="#layout_2" data-toggle="tab"> Data Gaji Karyawan </a>
                                 </li>
-                                <li>
-                                    <a href="#layout_3" data-toggle="tab"> Ubah Password </a>
-                                </li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="layout_1">
@@ -87,10 +84,9 @@
                                 </div>
                                 <div class="tab-pane" id="layout_2">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+                                        <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
                                             <thead>
                                                 <tr>
-                                                    <th> ID Karyawan </th>                                                                                                    
                                                     <th> Nama </th>
                                                     <th> Tanggal Gaji </th>                                
                                                     <th> Gaji Pokok </th>
@@ -103,7 +99,6 @@
                                             <tbody>
                                                 @foreach($data_salary as $data)
                                                 <tr class="odd gradeX"> 
-                                                    <td>{{ $data->id_employee }}</td>                                                                                                          
                                                     <td>{{ $data->employee->name }}</td>
                                                     <td>{{ date('d-m-Y', strtotime($data->salary_month->date)) }}</td> 
                                                     <td>{{ 'Rp ' . number_format($data->salary) }}</td>                                
@@ -143,18 +138,6 @@
                                                     </td>
                                                 </tr>
                                                 @endforeach                                
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="layout_3">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-hover table-bordered">
-                                            <thead>
-                                                
-                                            </thead>
-                                            <tbody>
-                                                
                                             </tbody>
                                         </table>
                                     </div>

@@ -100,9 +100,11 @@ class UserController extends Controller
     public function actionChangePassword(Request $request){
 
         $user = User::find(\Auth::id());
+
         if (\Hash::check($request->current_password, $user->password)){
             $user->password = bcrypt($request->new_password);
             $user->save();
+
             return redirect()->route('dashboard.index');
         }else{
             return redirect()->back()->withErrors(['error' => 'Password salah']);
@@ -114,6 +116,7 @@ class UserController extends Controller
         $user->password = bcrypt('123456');
         $user->save();
 
-        return redirect()->back();
+        return redirect()->back()
+            ->with('success', 'Password berhasil di-reset.');
     }
 }

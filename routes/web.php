@@ -13,16 +13,18 @@
     Route::group(['middleware' => [
             'role:EMPLOYEE|ADMIN|SUPER_ADMIN', 'auth'
         ]], function(){
+            Route::resource('dashboard', 'DashboardController');
             Route::get('/', 'DashboardController@index');
             Route::get('/home', 'DashboardController@index')->name('home');
+
+            Route::get('change_password',['uses' => 'UserController@formChangePassword', 'as' => 'form_change_password']);
+            Route::post('change_password', ['uses' => 'UserController@actionChangePassword', 'as' => 'action_change_password']);
         });
         
     Route::group(['middleware' => [
         'role:SUPER_ADMIN|ADMIN', 
         'auth'
         ]], function(){
-        Route::resource('dashboard', 'DashboardController');
-
         Route::resource('client', 'ClientController');
         
         Route::resource('project', 'ProjectController');
@@ -161,9 +163,6 @@
         Route::resource('company_cash', 'CompanyCashController');
 
         Route::resource('private_money', 'PrivateMoneyController');
-
-        Route::get('change_password',['uses' => 'UserController@formChangePassword', 'as' => 'form_change_password']);
-        Route::post('change_password', ['uses' => 'UserController@actionChangePassword', 'as' => 'action_change_password']);
 
     });
 

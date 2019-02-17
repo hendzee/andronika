@@ -41,16 +41,23 @@
                     </ul>
                 </li>
                 @can('admin_add', 'admin_edit', 'admin_delete')
-                    <li class="nav-item  {{ Route::is('user.*') ? 'active' : '' }}">
+                    <li class="nav-item  {{ Route::is('user.*') || Route::is( 'form_change_password')
+                         ? 'active' : '' }}">
                         <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="fa fa-exclamation-triangle"></i>
                             <span class="title">Admin</span>
-                            <span class="arrow {{ Route::is('user.*') ? 'open' : '' }}"></span>
+                            <span class="arrow {{ Route::is('user.*')
+                            || Route::is( 'form_change_password') ? 'open' : '' }}"></span>
                         </a>
                         <ul class="sub-menu">
                             <li class="nav-item  {{ Route::is('user.*') ? 'active' : '' }}">
                                 <a href="{{ route('user.index') }}" class="nav-link ">
                                     <span class="title">Admin</span>
+                                </a>
+                            </li>                                      
+                            <li class="nav-item  {{ Route::is( 'form_change_password') ? 'active' : '' }}">
+                                <a href="{{ route('form_change_password') }}" class="nav-link ">
+                                    <span class="title">Kata Sandi</span>
                                 </a>
                             </li>                                      
                         </ul>
@@ -245,18 +252,23 @@
 
             @hasanyrole('ADMIN|EMPLOYEE')
                 <li class="nav-item  {{ Route::is('show_salary.*') || Route::is('show_salary_gaji')
-                    || Route::is('show_salary_bonus') ? 'active' : '' }}">
+                    || Route::is('show_salary_bonus') || Route::is('form_change_password') ? 'active' : '' }}">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="fa fa-user"></i>
                         <span class="title">Profil</span>
                         <span class="arrow {{ Route::is('show_salary.*') || Route::is('show_salary_gaji')
-                            || Route::is('show_salary_bonus') ? 'open' : '' }}"></span>
+                            || Route::is('show_salary_bonus') || Route::is('form_change_password') ? 'open' : '' }}"></span>
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-item  {{ Route::is('show_salary.*') || Route::is('show_salary_gaji')
                             || Route::is('show_salary_bonus') ? 'active' : '' }}">
                             <a href="{{ route( 'show_salary.index' ) }}" class="nav-link ">
                                 <span class="title">Profil</span>
+                            </a>
+                        </li>                    
+                        <li class="nav-item  {{ Route::is('form_change_password') ? 'active' : '' }}">
+                            <a href="{{ route( 'form_change_password' ) }}" class="nav-link ">
+                                <span class="title">Kata Sandi</span>
                             </a>
                         </li>                    
                     </ul>                
