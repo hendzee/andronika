@@ -79,20 +79,19 @@ class AssetsData extends Model
             ->sum('transfer');
 
         $worker_payment = DB::table('project')
-            ->join('worker_salary', 'project.id_project', '=', 'worker_salary.id_project')
+            ->join('project_salary_transaction', 'project.id_project', '=', 'project_salary_transaction.id_project')
             ->where('project.status', 'SELESAI')
-            ->select(DB::raw('sum((salary * fullday) + (salary * halfday * 0.5)) as total'))
-            ->first();
+            ->sum('project_salary_transaction.nominal');
 
         $worker_contract = DB::table('project')
-            ->join('worker_contract', 'project.id_project', '=', 'worker_contract.id_project' )
+            ->join('project_contract_transaction', 'project.id_project', '=', 'project_contract_transaction.id_project' )
             ->where('status', 'SELESAI')
-            ->get()
-            ->sum('contract_value');
+            ->sum('nominal');
 
         $project_bonus = DB::table('project')
             ->join('project_bonus', 'project.id_project', '=', 'project_bonus.id_project')
             ->where('project.status', 'SELESAI')
+            ->where('project_bonus.status', 'DIAMBIL')
             ->get()
             ->sum('bonus');
         
@@ -118,7 +117,7 @@ class AssetsData extends Model
 
         $project_income = $project_payment + $project_mutation_in;
         
-        $project_outcome = ($worker_payment->total) + $worker_contract 
+        $project_outcome = ($worker_payment) + $worker_contract 
             + $project_bonus + ($project_purchase->total) 
             + $project_mutation_out;
 
