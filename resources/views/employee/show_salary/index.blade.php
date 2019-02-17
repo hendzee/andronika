@@ -63,7 +63,7 @@
                                                 <td>{{ $data_employee->name }}</td>
                                             </tr>
                                             <tr>
-                                                <th>Devision</th>
+                                                <th>Divisi</th>
                                                 <td>{{ $data_employee->division }}</td>
                                             </tr>
                                             <tr>

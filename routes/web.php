@@ -11,7 +11,7 @@
 |
 */
     Route::group(['middleware' => [
-            'role:EMPLOYEE|ADMIN|SUPER_ADMIN'
+            'role:EMPLOYEE|ADMIN|SUPER_ADMIN', 'auth'
         ]], function(){
             Route::get('/', 'DashboardController@index');
             Route::get('/home', 'DashboardController@index')->name('home');
@@ -24,6 +24,7 @@
         Route::resource('dashboard', 'DashboardController');
 
         Route::resource('client', 'ClientController');
+        
         Route::resource('project', 'ProjectController');
         Route::get('project_update_status/{status}/{id}', [
             'uses' => 'ProjectController@updateStatus',
@@ -103,8 +104,26 @@
 
         Route::resource('warehouse', 'WarehouseController');
 
+        Route::resource('warehouse_rent', 'WarehouseRentController');
+
+        Route::resource('rent_payment', 'RentPaymentController');
+        Route::get('rent_payment_create/{id}', [
+            'uses' => 'RentPaymentController@create',
+            'as' => 'rent_payment_create']);
+
+        Route::resource('warehouse_sell', 'WarehouseSellController');
+
+        Route::resource('repair_and_used', 'RepairAndUsedController');
+
         Route::resource('employee', 'EmployeeController');
         Route::resource('employee_salary', 'EmployeeSalaryController');
+
+        Route::resource('salary_month', 'SalaryMonthController');
+
+        Route::resource('salary_month_detail', 'SMDetailController');
+        Route::get('salary_month_detail_create/{id}', [
+            'uses' => 'SMDetailController@create',
+            'as' => 'smd_create']);
 
         Route::resource('employee_transaction', 'EmployeeTransactionController');
         Route::get('employee_transaction_index/{id}',[
@@ -124,15 +143,6 @@
 
         Route::resource('mutation', 'MutationController');
 
-        Route::resource('warehouse_rent', 'WarehouseRentController');
-
-        Route::resource('rent_payment', 'RentPaymentController');
-        Route::get('rent_payment_create/{id}', [
-            'uses' => 'RentPaymentController@create',
-            'as' => 'rent_payment_create']);
-
-        Route::resource('warehouse_sell', 'WarehouseSellController');
-
         Route::resource('transportation', 'TransportationController');
         Route::get('transportation_update_status/{status}/{id}', [
             'uses' => 'TransportationController@updateStatus',
@@ -148,15 +158,6 @@
 
         Route::resource('fuel', 'FuelController');
 
-        Route::resource('repair_and_used', 'RepairAndUsedController');
-
-        Route::resource('salary_month', 'SalaryMonthController');
-
-        Route::resource('salary_month_detail', 'SMDetailController');
-        Route::get('salary_month_detail_create/{id}', [
-            'uses' => 'SMDetailController@create',
-            'as' => 'smd_create']);
-
         Route::resource('company_cash', 'CompanyCashController');
 
         Route::resource('private_money', 'PrivateMoneyController');
@@ -167,7 +168,7 @@
     });
 
     Route::group(['middleware' => [
-        'role:SUPER_ADMIN'
+        'role:SUPER_ADMIN', 'auth'
         ]], function(){
         
         Route::resource('user', 'UserController');
@@ -176,7 +177,7 @@
     });
 
     Route::group(['middleware' => [
-        'role:EMPLOYEE|ADMIN'
+        'role:EMPLOYEE|ADMIN', 'auth'
     ]], function(){
         Route::resource('show_salary', 'ShowSalaryController');
         Route::get('show_salary_gaji/{id}', [
