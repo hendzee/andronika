@@ -121,7 +121,6 @@ class ProjectWorkerController extends Controller
                     'gender' => $request->gender,
                     'religion' => $request->religion,
                     'division' => $request->division,
-                    'salary_status' => $request->salary_status               
                 ]);
         }else{
             $data_worker = ProjectWorker::where('id_worker', $id)
@@ -132,7 +131,6 @@ class ProjectWorkerController extends Controller
                     'gender' => $request->gender,
                     'religion' => $request->religion,
                     'division' => $request->division,
-                    'salary_status' => $request->salary_status               
                 ]);
         }
     

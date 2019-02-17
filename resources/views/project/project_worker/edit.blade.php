@@ -113,22 +113,13 @@
                                         </select>
                                         <span class="help-block"> Gender </span>
                                     </div>
-                                </div>  
+                                </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Metode Gaji</label>
                                     <div class="col-md-9">
-                                        <select name="salary_status" class="form-control" >
-                                            <option value={{ $data_worker->salary_status }}>
-                                                {{ $data_worker->salary_status . ' (DATA SAAT INI)' }}
-                                            </option>
-                                            <option value="KONTRAK">KONTRAK</option>
-                                            <option value="HARIAN">HARIAN</option>                                            
-                                        </select>
-                                        <span class="help-block"> 
-                                            Pilih kontrak (pembayaran dengan sistem kontrak) / harian (dibayar berdasarkan hari kerja)
-                                        </span>
+                                        <input name="division" value="{{ $data_worker->salary_status }}" type="text" placeholder="Pekerjaan Dalam Projek" class="form-control" disabled />
                                     </div>
-                                </div>                                                                 
+                                </div>  
                             </div>
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}
