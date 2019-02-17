@@ -128,6 +128,10 @@ $(document).ready(function(){
                 case "transportation":
                     data = "Data ini berkaitan dengan pembayaran transportasi, serta tabel yang berkaitan dengan tabel-tabel tersebut, kami rekomendasikan anda mem-backupnya terlebih dahulu.";
                     break;
+
+                case "worker":
+                    data = "Data ini berkaitan dengan pembayaran pekerja harian dan kontrak, serta tabel yang berkaitan dengan tabel-tabel tersebut, kami rekomendasikan anda mem-backupnya terlebih dahulu.";
+                    break;
             
                 default:
                     data = "";
