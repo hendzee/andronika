@@ -16,6 +16,7 @@ class EmployeeSalaryController extends Controller
     public function index()
     {
         $data_employee = Employee::where('id_employee', '<>', 'SUPER')
+            ->where('active_status', 'AKTIF')
             ->get();
         
         return view('employee.employee_salary.index', compact('data_employee'));

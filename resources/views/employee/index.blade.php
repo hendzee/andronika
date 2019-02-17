@@ -91,6 +91,7 @@
                                     <th> Gender </th>
                                     <th> Agama </th>
                                     <th> Divisi </th>
+                                    <th> Aktif </th>
                                     <th class="no-sort"> </th>                                
                                 </tr>
                             </thead>
@@ -112,6 +113,7 @@
                                     <td>{{ $data->gender }}</td>
                                     <td>{{ $data->religion }}</td>
                                     <td>{{ $data->division }}</td>
+                                    <td>{{ $data->active_status }}</td>
                                     <td>
                                         <div class="row button-on-table">
                                             <div class="col-xs-6">

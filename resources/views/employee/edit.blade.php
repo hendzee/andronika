@@ -54,7 +54,7 @@
                                 <div class="form-group {{ $errors->has('age') ? 'has-error' : '' }}">
                                     <label class="control-label col-md-3">Tanggal Lahir</label>
                                     <div class="col-md-9">
-                                        <input name="age" value="{{ old('age', date('d/m/Y', strtotime($data_employee->age))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                                        <input name="age" value="{{ old('age', date('d-m-Y', strtotime($data_employee->age))) }}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
                                         
                                         @if ($errors->has('age'))
                                             <span class="help-block"> {{ $errors->first('age') }} </span>
@@ -77,7 +77,9 @@
                                     <label class="control-label col-md-3">Agama</label>
                                     <div class="col-md-9">
                                         <select name="religion" value="{{ $data_employee->religion }}" class="form-control" >
-                                            <option value="{{ $data_employee->religion }}">{{ $data_employee->religion }}</option>
+                                            <option value="{{ $data_employee->religion }}">
+                                                {{ $data_employee->religion . ' (DATA SAAT INI)' }}
+                                            </option>
                                             <option value="ISLAM">ISLAM</option>
                                             <option value="KRISTEN">KRISTEN</option>
                                             <option value="HINDU">HINDU</option>
@@ -90,7 +92,9 @@
                                     <label class="control-label col-md-3">Divisi</label>
                                     <div class="col-md-9">
                                         <select name="division" class="form-control" >
-                                            <option value="{{ $data_employee->division }}">{{ $data_employee->division }}</option>
+                                            <option value="{{ $data_employee->division }}">
+                                                {{ $data_employee->division . ' (DATA SAAT INI)' }}
+                                            </option>
                                             <option value="BENDAHARA">BENDAHARA</option>
                                             <option value="DRIVER">DRIVER</option>
                                             <option value="MARKETING">MARKETING</option> 
@@ -101,12 +105,26 @@
                                     <label class="control-label col-md-3">Gender</label>
                                     <div class="col-md-9">
                                         <select name="gender" class="form-control" >
-                                            <option value="{{ $data_employee->gender }}">{{ $data_employee->gender }}</option>
+                                            <option value="{{ $data_employee->gender }}">
+                                                {{ $data_employee->gender . ' (DATA SAAT INI)'}}
+                                            </option>
                                             <option value="PRIA">PRIA</option>
                                             <option value="WANITA">WANITA</option>                                            
                                         </select>
                                     </div>
-                                </div>                                                                
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Aktif</label>
+                                    <div class="col-md-9">
+                                        <select name="active_status" class="form-control" >
+                                            <option value="{{ $data_employee->active_status }}">
+                                                {{ $data_employee->active_status . ' (DATA SAAT INI)' }}
+                                            </option>
+                                            <option value="AKTIF">AKTIF</option>
+                                            <option value="KELUAR">KELUAR</option>                                            
+                                        </select>
+                                    </div>
+                                </div>                                                                                                                                
                             </div>
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}

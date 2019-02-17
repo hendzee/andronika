@@ -48,7 +48,13 @@ class SalaryMonthController extends Controller
             ->first();
 
         $data_employee = Employee::where('id_employee', '<>', 'SUPER')
+            ->where('active_status', 'AKTIF')
             ->get();
+
+        if (count($data_employee) <= 0){
+            return redirect('salary_month/')
+                ->with('error', 'Tidak ada data karyawan yang aktif.');
+        }
 
         if ($check_data == null){
             $id_month = $gen->generateId('salary_month');

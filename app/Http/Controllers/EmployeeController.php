@@ -56,7 +56,8 @@ class EmployeeController extends Controller
                 'telp' => $request->telp,
                 'gender' => $request->gender,
                 'religion' => $request->religion,
-                'division' => $request->division
+                'division' => $request->division,
+                'active_status' => 'AKTIF'
             ]);
 
             $user = new User();
@@ -121,7 +122,8 @@ class EmployeeController extends Controller
                     'telp' => $request->telp,
                     'gender' => $request->gender,
                     'religion' => $request->religion,
-                    'division' => $request->division                
+                    'division' => $request->division,
+                    'active_status' => $request->active_status                
                 ]);
         }else{
             $data_employee = Employee::where('id_employee', $id)
@@ -131,7 +133,8 @@ class EmployeeController extends Controller
                     'telp' => $request->telp,
                     'gender' => $request->gender,
                     'religion' => $request->religion,
-                    'division' => $request->division                
+                    'division' => $request->division,
+                    'active_status' => $request->active_status                
                 ]);
         }
         

@@ -27,7 +27,9 @@ class SMDetailController extends Controller
      */
     public function create($id)
     {
-        $data_employee = Employee::all();
+        $data_employee = Employee::where('id_employee', '<>', 'SUPER')
+            ->where('active_status', 'AKTIF')
+            ->get();
         $id_month = $id;
 
         return view('employee.salary_month_detail.create', compact('data_employee', 'id_month'));
