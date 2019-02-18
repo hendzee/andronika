@@ -44,7 +44,7 @@
 <div class="logo">
     <a href="{{ route('home') }}">
         <img src="{{ asset('assets/pages/img/logo-big-white.png') }}" style="height: 100px;" alt="" /> 
-        <h5>PT. Andronika Putra Delta - Sistem Admin</h5>
+        <h1 style="font-size:1.5em">PT. Andronika Putra Delta - Sistem Admin</h1>
     </a>
 </div>
 <!-- END LOGO -->
@@ -85,7 +85,7 @@
     </form>
     <!-- END LOGIN FORM -->
 </div>
-<div class="copyright hide"> 2019 PT Andronika Delta Putra, Sulawesi Selatan Kota Luwuk</div>
+<div class="copyright hide"> 2019 PT Andronika Putra Delta, Luwuk, Sulawesi</div>
 <!-- END LOGIN -->
 <!-- BEGIN CORE PLUGINS -->
 <script src="{{ asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>

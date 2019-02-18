@@ -95,8 +95,25 @@
                             </thead>
                             <tbody>
                                 @foreach($data_project as $data)
+                                
+                                @php
+                                    $start = new DateTime($data->start);
+                                    $end = new DateTime($data->end);
+                                    $diff = date_diff($start, $end);
+                                    $finalDiff =  ($diff->format('%a')) + 1;
+                                @endphp
+
                                 <tr class="odd gradeX">
-                                    <td> {{ $data->id_project }} </td>                                                                       
+                                    <td> 
+                                        @if ($finalDiff < 31)
+                                            <span class="label label-sm label-danger top-space">
+                                                <i class="fa fa-hourglass-end"></i>
+                                                {{ $data->id_project }}     
+                                            </span>
+                                        @else
+                                            {{ $data->id_project }}
+                                        @endif
+                                    </td>                                                                       
                                     <td>                                        
                                         <a href="project/{{ $data->id_project }}">
                                             {{ $data->name }}
